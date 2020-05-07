@@ -22,18 +22,25 @@
 				<tr>
 					<td colspan="3" align="center">----- 작성된 공지사항이 없습니다 -----</td>
 				</tr>
+				<tr>	
+						<td colspan="3"><input type="button" value="글쓰기" onclick="location.href='notificationInsert.do'"></td>
+					</tr>
 			</c:when>
 			<c:otherwise>
 					<c:forEach items="${notificationList}" var="dto">
 					<tr>
-						<td><a href="notificationDetail.do?notification_seq=${notification_seq}">${dto.notification_title}</a></td>
+						<td><a href="notificationDetail.do?notification_seq=${dto.notification_seq}">${dto.notification_title}</a></td>
 						<td>${dto.notification_writer}</td>
 						<td>${dto.notification_date}</td>
 					</tr>	
 					</c:forEach>
+					<tr>	
+						<td colspan="3"><input type="button" value="글쓰기" onclick="location.href='notificationInsert.do'"></td>
+					</tr>
 			</c:otherwise>
 		</c:choose>
 		</tbody>
+		
 	</table>
 
 </body>

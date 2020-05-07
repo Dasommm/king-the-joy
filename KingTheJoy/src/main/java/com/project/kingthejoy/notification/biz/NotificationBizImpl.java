@@ -43,4 +43,16 @@ public class NotificationBizImpl implements NotificationBiz {
 		return dao.deleteNotification(notification_seq);
 	}
 
+	@Override
+	public int insertNotificationCheck(int notification_seq) {
+		// TODO Auto-generated method stub
+		return dao.insertNotificationCheck(notification_seq);
+	}
+
+	@Override
+	public int newNotification() {
+		// TODO Auto-generated method stub
+		return dao.newNotification();
+	}
+
 }

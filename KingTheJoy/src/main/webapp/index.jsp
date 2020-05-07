@@ -20,6 +20,7 @@
 		<div class="home-img"><img src="${pageContext.request.contextPath}/resources/img/home.png" alt="homeLogo"></div>
 		<div class="home-div col-4">
 			<img src="${pageContext.request.contextPath}/resources/img/Logo.png" class="img-responsive center-block">
+			<h1><a href="notification.do">Notification</a></h1>
 			<div class="col-12 id-textbox">
 				아이디 
 				<input type="text" placeholder="아이디를 입력해주세요">

@@ -7,8 +7,9 @@
 	</select>
 	<select id="selectOne" parameterType="int"
 		resultType="notificationDto">
-		select * from notification where notification_seq =
-		#{notification_seq}
+		select * 
+		from notification 
+		where notification_seq = #{notification_seq}
 	</select>
 
 	<insert id="insert" parameterType="notificationDto">
@@ -25,13 +26,30 @@
 
 	<update id="update" parameterType="notificationDto">
 		UPDATE notification
-		SET notification_title = #{notification_title},
+		SET 
+		notification_title = #{notification_title},
 		notification_content = #{notification_content}
 		WHERE notification_seq = #{notification_seq}
 	</update>
 
 	<delete id="delete" parameterType="int">
-		delete from notification where
-		notification_seq = #{notification_seq}
+		delete from notification 
+		where notification_seq = #{notification_seq}
 	</delete>
+	
+	<select id="selectMember" resultType="int">
+		SELECT member_seq FROM MEMBER WHERE MEMBER_ROLE = 0
+	</select>
+	
+	<select id="selectLastNotification" resultType="int">
+		SELECT notification_seq FROM (SELECT * FROM notification ORDER BY notification_seq) WHERE rownum = 1
+	</select>
+	
+	<insert id="insertCheck" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=" " open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
+		into notificationcheck 
+		values
+        (#{item.notification_seq},#{item.member_flag},#{item.member_seq})
+   		</foreach>
+	</insert>
 </mapper>

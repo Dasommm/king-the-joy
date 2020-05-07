@@ -11,5 +11,7 @@ public interface NotificationDao {
 	public int insertNotification(NotificationDto notificationDto);
 	public int updateNotification(NotificationDto notificationDto);
 	public int deleteNotification(int notification_seq);
+	public int insertNotificationCheck(int notification_seq);
+	public int newNotification();
 
 }

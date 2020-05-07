@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.kingthejoy.notification.dto.NotificationCheckDto;
 import com.project.kingthejoy.notification.dto.NotificationDto;
 
 @Repository
@@ -31,7 +32,7 @@ public class NotificationDaoImpl implements NotificationDao {
 	public NotificationDto selectNotificationOne(int notification_seq) {
 		NotificationDto notificationDto = null;
 		try {
-			notificationDto = sqlSession.selectOne(NAMESPACE+"selectOne");
+			notificationDto = sqlSession.selectOne(NAMESPACE+"selectOne",notification_seq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,6 +67,42 @@ public class NotificationDaoImpl implements NotificationDao {
 		int res = 0;
 		try {
 			res = sqlSession.delete(NAMESPACE+"delete",notification_seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int insertNotificationCheck(int notification_seq) {
+		List<Integer> list = new ArrayList<Integer>();
+		int res = 0;
+		try {
+			 list = sqlSession.selectList(NAMESPACE+"selectMember");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		List<NotificationCheckDto> checkList = new ArrayList<NotificationCheckDto>();
+		for(int i=0; i<list.size(); i++) {
+			NotificationCheckDto dto = new NotificationCheckDto();
+			dto.setNotification_seq(notification_seq);
+			dto.setMember_flag(0);
+			dto.setMember_seq(list.get(i));
+			checkList.add(dto);
+		}
+		try {
+			 res = sqlSession.insert(NAMESPACE+"insertCheck",checkList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int newNotification() {
+		int res = 0;
+		try {
+			 res = sqlSession.selectOne(NAMESPACE+"selectLastNotification");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
