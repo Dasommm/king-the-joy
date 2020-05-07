@@ -4,10 +4,12 @@
 
 	<typeAliases>
 		<typeAlias type="com.project.kingthejoy.member.dto.MemberDto" alias="memberDto" />
+		<typeAlias type="com.project.kingthejoy.notification.dto.NotificationDto" alias="notificationDto"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="/mybatis/member-mapper.xml" />
+		<mapper resource="/mybatis/notification-mapper.xml"/>
 	</mappers>
 	
 	<!-- resource : src/main/resources -->
