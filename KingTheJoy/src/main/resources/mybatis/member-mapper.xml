@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-
+	
 	<!-- 회원가입 -->
 	<insert id="join" parameterType="memberDto">
 		insert into member(
@@ -12,15 +12,40 @@
 							MEMBER_PHONE,
 							MEMBER_EMAIL,
 							MEMBER_ROLE, 
-							MEMBER_ADDR	)
+							MEMBER_OADDR,
+							MEMBER_ADDR,
+							MEMBER_DETAILADDR)
 					values( member_seq.nextval,
-							#{mem_id},
-							#{mem_pw},
-							#{mem_name},
-							#{mem_phone},
-							#{mem_email},
-							#{mem_role},
-							#{mem_addr})
+							#{member_id},
+							#{member_pw},
+							#{member_name},
+							#{member_phone},
+							#{member_email},
+							#{member_role},
+							#{member_oaddr},
+							#{member_addr},
+							#{member_detailaddr})
 	</insert>
+	
+	<!-- 로그인 확인 -->
+	<select id="loginCheck" resultType="String">
+		SELECT MEMBER_NAME FROM MEMBER
+		WHERE MEMBER_ID = #{member_id} AND MEMBER_PW = #{member_pw}
+	</select>
+	
+	<select id="memberView" resultType="memberDto">
+		SELECT
+			MEMBER_ID,
+			MEMBER_NAME,
+			MEMBER_SEQ,
+			MEMBER_PHONE,
+			MEMBER_EMAIL,
+			MEMBER_OADDR,
+			MEMBER_ADDR,
+			MEMBER_DETAILADDR,
+			MEMBER_DATE
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id} AND MEMBER_PW = #{member_pw}
+	</select>
   
 </mapper>
