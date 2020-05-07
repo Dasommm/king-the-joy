@@ -5,16 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	
-	<link href="/resources/css/common.css" rel="stylesheet">
-	<link href="/resources/css/home.css" rel="stylesheet">
-	
+<link href="<c:url value="/resources/css/loading.css"/>" rel="stylesheet">
+
+<script>
+function window_onload(){
+	setTimeout('go_url()',5000)
+}
+
+function go_url(){
+	location.href="home.do"
+}
+
+</script>
 <title>Insert title here</title>
 </head>
+<<<<<<< HEAD
 <body> 
 	<div class="row">
 		<div class="home-img"><img src="${pageContext.request.contextPath}/resources/img/home.png" alt="homeLogo"></div>
@@ -44,5 +49,13 @@
 			</div> 
 		</div>
 	</div>
+=======
+<body onload="javascript:window_onload()"> 
+<div class="stand">
+  <div class="ball"></div>
+  <div class="ball"></div>
+  <div class="ball"></div>
+</div>
+>>>>>>> 5fa469811700ae993eecbdc15b9c9505347db6b9
 </body>
 </html> 

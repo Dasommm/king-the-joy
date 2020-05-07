@@ -12,29 +12,29 @@ var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a
 var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
 /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/
 
-var addrss = $('#mem_detailaddress');
+var addrss = $('#member_detailaddraddress');
 
 $(document).ready(function(){
-    var address = $('#mem_detailaddress');
+    var address = $('#member_detailaddraddress');
 
     // 아이디 중복확인
-    $('#mem_id').blur(function(){
-        if($('#mem_id').val()==''){
+    $('#member_id').blur(function(){
+        if($('#member_id').val()==''){
             $('#id_check').text('아이디를 입력하세요');
             $('#id_check').css('color','red');
-        }else if(idJ.text($('#mem_id').val()) != true){
+        }else if(idJ.text($('#member_id').val()) != true){
             $('#id_check').text('4~12자의 영문, 숫자만 사용 가능합니다.');
             $('#id_check').css('color','red');
-        }else if($('#mem_id').val()!=''){
+        }else if($('#member_id').val()!=''){
 
-            var mem_id = $('#mem_id').val();
+            var member_id = $('#member_id').val();
             
             $.ajax({
                 async : true,
                 type : 'POST',
-                data : mem_id,
+                data : member_id,
                 url : 'idcheck.do',
-                dataType: 'json',
+                dataType: 'json', 
                 contentType: "application/json; charset=UTF-8",
                 success : function(data){
                     
@@ -43,12 +43,12 @@ $(document).ready(function(){
                         $('#id_check').css('color','red');
                         $('#usercheck').attr("disabled", true);
                     }else{
-                        if(idJ.test(mem_id)){
+                        if(idJ.test(member_id)){
                             $('#id_check').text('사용가능한 아이디 입니다.');
                             $('#id_check').css('color','blue');
                             $('#usercheck').attr("disabled", false);
                         }
-                        else if(mem_id==''){
+                        else if(member_id==''){
                             $('#id_check').text('아이디를 입력해주세요.');
                             $('#id_check').css('color','red');
                             $('#usercheck').attr("disabled", true);
@@ -62,10 +62,10 @@ $(document).ready(function(){
             });
         }
     });
-    
+     
     $('form').on('submit',function(){
         var inval_Arr = new Array(6).fill(false);
-        if(idJ.test($('#mem_id').val())) {
+        if(idJ.test($('#member_id').val())) {
             inval_Arr[0] = true;
         }else{
             inval_Arr[0] = false;
@@ -73,8 +73,8 @@ $(document).ready(function(){
             return false;
         }
 
-        if(($('#mem_pw').val() == ($('#mem_pw2').val()))
-            && pwJ.test($('#mem_pw').val())) {
+        if(($('#member_pw').val() == ($('#member_pw2').val()))
+            && pwJ.test($('#member_pw').val())) {
                 inval_Arr[1] = true;
             }else{
                 inval_Arr[1] = false;
@@ -82,7 +82,7 @@ $(document).ready(function(){
                 return false;
             }
         
-        if(nameJ.test($('#mem_name').val())){
+        if(nameJ.test($('#member_name').val())){
             inval_Arr[2] = true;
         }else{
             inval_Arr[2] = false;
@@ -90,8 +90,8 @@ $(document).ready(function(){
             return false;
         }
 
-        if(mailJ.test($('#mem_email').val())){
-            console.log(mailJ.test($('#mem_email').val()));
+        if(mailJ.test($('#member_email').val())){
+            console.log(mailJ.test($('#member_email').val()));
             inval_Arr[3] = true;
         }else{
             inval_Arr[3] = false;
@@ -99,8 +99,8 @@ $(document).ready(function(){
             return false;
         }
 
-        if (phoneJ.test($('#mem_phone').val())){
-            console.log(phoneJ.test($('#mem_phone').val()));
+        if (phoneJ.test($('#member_phone').val())){
+            console.log(phoneJ.test($('#member_phone').val()));
             inval_Arr[4] = true;
         }else{
             inval_Arr[4] = false;
@@ -123,15 +123,13 @@ $(document).ready(function(){
             }
         }
 
-        if(validAll == true){
-            alert('KINDERJOY 회원가입 감사합니다.');
-        }else{
-            alert('정보를 다시 확인하세요');
+        if(validAll == false){
+        	alert('정보를 다시 확인하세요');
         }
     });
 
-    $('#mem_id').blur(function(){
-        if(idJ.test($('#mem_id').val())){
+    $('#member_id').blur(function(){
+        if(idJ.test($('#member_id').val())){
             console.log('true');
             $('#id_check').text('');
         }else{
@@ -141,8 +139,8 @@ $(document).ready(function(){
         }
     });
 
-    $('#mem_pw').blur(function(){
-        if(pwJ.test($('#mem_pw').val())){
+    $('#member_pw').blur(function(){
+        if(pwJ.test($('#member_pw').val())){
             console.log('true');
             $('#pw_check').text('');
         }else{
@@ -152,8 +150,8 @@ $(document).ready(function(){
         }
     });
 
-    $('#mem_pw2').blur(function(){
-        if($('#mem_pw').val() != $(this).val()){
+    $('#member_pw2').blur(function(){
+        if($('#member_pw').val() != $(this).val()){
             $('#pw2_check').text('비밀번호가 일치하지 않습니다.');
             $('#pw2_check').css('color','red');
         }else{
@@ -161,7 +159,7 @@ $(document).ready(function(){
         }
     });
             
-    $('#mem_name').blur(function(){
+    $('#member_name').blur(function(){ 
         if(nameJ.test($(this).val())){
             console.log(nanmeJ.test($(this).val()));
             $('#name_check').text('');
@@ -171,7 +169,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#mem_email').blur(function(){
+    $('#member_email').blur(function(){
         if(mailJ.test($(this).val())){
             $('#email_check').text('');
         }else{
@@ -180,7 +178,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#mem_phone').blur(function(){
+    $('#member_phone').blur(function(){
         if(phoneJ.test($(this).val())){
             console.log(phoneJ.test($(this).val()));
             $('#phone_check').text('');
@@ -224,10 +222,10 @@ function execPostCode() {
             console.log(data.zonecode);
             console.log(fullRoadAddr);
 
-            $("[name=mem_oaddress]").val(data.zonecode);
-            $("[name=mem_address]").val(fullRoadAddr);
-            document.getElementById('mem_oaddress').value = data.zonecode; //5자리 새우편번호 사용
-            document.getElementById('mem_address').value = fullRoadAddr;
+            $("[name=member_oaddr]").val(data.zonecode);
+            $("[name=member_addr]").val(fullRoadAddr);
+            document.getElementById('member_oaddr').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('member_addr').value = fullRoadAddr;
         }
     }).open();
 }
