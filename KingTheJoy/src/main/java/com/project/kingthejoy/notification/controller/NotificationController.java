@@ -2,6 +2,8 @@ package com.project.kingthejoy.notification.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.kingthejoy.member.controller.MemberController;
+import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.notification.biz.NotificationBiz;
 import com.project.kingthejoy.notification.dto.NotificationDto;
 
@@ -37,20 +40,29 @@ public class NotificationController {
 	}
 	// 공지사항 글쓰기 폼 열기
 	@RequestMapping(value = "/notificationInsert.do")
-	public String notificationInsert() {
-		return "notification/notificationInsertForm";
+	public String notificationInsert(HttpSession session, Model model) {
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
+		if(memberDto.getMember_role()==3) {
+			System.out.println("공지사항 글쓰기 권한없음");
+			model.addAttribute("msg","공지사항을 작성할 권한이 없습니다.");
+			model.addAttribute("url","notification.do");
+			return "common/alert";
+		}else {
+			return "notification/notificationInsertForm";
+		}
 	}
 	
 	// 공지사항 글 쓰기
 	// session 연결하면 회원 번호, 아이디 추가할것
 	@RequestMapping(value = "/notificationInsertRes.do")
-	public String notificationInsertRes(Model model, String notification_title, String notification_content) {
+	public String notificationInsertRes(HttpSession session, Model model, String notification_title, String notification_content) {
 		logger.info("notification insert res");
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
 		NotificationDto notificationDto = new NotificationDto();
 		notificationDto.setNotification_title(notification_title);
 		notificationDto.setNotification_content(notification_content);
-		notificationDto.setMember_seq(1);
-		notificationDto.setNotification_writer("admin");
+		notificationDto.setMember_seq(memberDto.getMember_seq());
+		notificationDto.setNotification_writer(memberDto.getMember_name());
 		int res = notificationBiz.insertNotification(notificationDto);
 		if(res>0) {
 			System.out.println("공지사항 등록성공");
@@ -77,11 +89,18 @@ public class NotificationController {
 	}
 	// 공지사항 수정폼 열기
 	@RequestMapping(value = "/notificationUpdate.do")
-	public String notificationUpdate(Model model, int notification_seq) {
+	public String notificationUpdate(HttpSession session, Model model, int notification_seq) {
 		logger.info("notification updateForm notification_seq : " +notification_seq+ " Open");
-		NotificationDto notificationDto = notificationBiz.selectNotificationOne(notification_seq);
-		model.addAttribute("notificationDto", notificationDto);
-		return "notification/notificationUpdateForm";
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
+		if(memberDto.getMember_role()==3) {
+			model.addAttribute("msg","공지사항을 수정할 권한이 없습니다.");
+			model.addAttribute("url","notificationUpdate.do?notification_seq="+notification_seq);
+			return "common/alert";
+		}else {
+			NotificationDto notificationDto = notificationBiz.selectNotificationOne(notification_seq);
+			model.addAttribute("notificationDto", notificationDto);
+			return "notification/notificationUpdateForm";
+		}
 	}
 	// 공지사항 수정하기
 	// session 연결하면 회원번호, 아이디 추가할것
@@ -91,7 +110,6 @@ public class NotificationController {
 		notificationDto.setNotification_seq(notification_seq);
 		notificationDto.setNotification_title(notification_title);
 		notificationDto.setNotification_content(notification_content);
-		System.out.println("컨트롤러 title "+notificationDto.getNotification_title());
 		int res = notificationBiz.updateNotification(notificationDto);
 		
 		if(res>0) {
@@ -109,22 +127,27 @@ public class NotificationController {
 	
 	// 공지사항 삭제
 	@RequestMapping(value = "/notificationDelete.do")
-	public String notificationDelete(Model model, int notification_seq) {
-		int res = notificationBiz.deleteNotification(notification_seq);
-		if(res>0) {
-			System.out.println("공지사항 삭제성공");
-			model.addAttribute("msg","공지사항 삭제에 성공하셨습니다.");
-			model.addAttribute("url","notification.do");
+	public String notificationDelete(Model model, int notification_seq, HttpSession session) {
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
+		if(memberDto.getMember_role()==3) {
+			model.addAttribute("msg","공지사항을 삭제할 권한이 없습니다.");
+			model.addAttribute("url","notificationUpdate.do?notification_seq="+notification_seq);
 			return "common/alert";
 		}else {
-			System.out.println("공지사항 삭제실패");
-			model.addAttribute("msg","공지사항 삭제에 실패하셨습니다.");
-			model.addAttribute("url","notificationDetail.do?notification_seq="+notification_seq);
-			return "common/alert";
+
+			int res = notificationBiz.deleteNotification(notification_seq);
+			if(res>0) {
+				System.out.println("공지사항 삭제성공");
+				model.addAttribute("msg","공지사항 삭제에 성공하셨습니다.");
+				model.addAttribute("url","notification.do");
+				return "common/alert";
+			}else {
+				System.out.println("공지사항 삭제실패");
+				model.addAttribute("msg","공지사항 삭제에 실패하셨습니다.");
+				model.addAttribute("url","notificationDetail.do?notification_seq="+notification_seq);
+				return "common/alert";
+			}
 		}
 	}
-	
-	
-	
-	
+
 }
