@@ -43,7 +43,8 @@
 			MEMBER_OADDR,
 			MEMBER_ADDR,
 			MEMBER_DETAILADDR,
-			MEMBER_DATE
+			MEMBER_DATE,
+			MEMBER_ROLE
 		FROM MEMBER
 		WHERE MEMBER_ID = #{member_id} AND MEMBER_PW = #{member_pw}
 	</select>
