@@ -1,0 +1,23 @@
+.header-logo img{
+    width: 50%;
+    height: 50%;
+    margin-left: 100px;
+}
+
+.navbar-nav{
+    margin-left: 7%;
+}
+
+.nav-link{
+    margin-left: 50px;
+    font-weight: bold;
+    color:black;
+}
+
+.ml-auto button{
+    margin-right: 20px;
+}
+
+.navbar{
+    border-bottom: 2.5px solid grey;
+}
