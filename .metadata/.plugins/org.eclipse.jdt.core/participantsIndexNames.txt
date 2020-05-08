@@ -1,9 +1,0 @@
-INDEX VERSION 1.131
-C:\kinderjoy2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1532268456.index
-\KingTheJoy\src\main\java
-C:\kinderjoy2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3007858056.index
-\KingTheJoy\src\main\java
-C:\kinderjoy2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4263698367.index
-\KingTheJoy\src\main\java
-C:\kinderjoy2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1797936534.index
-\KingTheJoy\src\main\java

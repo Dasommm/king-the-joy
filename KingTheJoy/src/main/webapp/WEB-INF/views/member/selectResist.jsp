@@ -26,7 +26,7 @@
 							<h2><span> 원장님이신가요?</span></h2>
 						</div>
 					</figcaption>
-					<a href="resistForm.do?mem_role=1"></a>
+					<a href="resistForm.do?member_role=1"></a>
 				</figure>
 			</div>
 			
@@ -39,7 +39,7 @@
 						<h2><span>선생님이신가요?</span></h2>
 					</div>
 				</figcaption>
-				<a href="resistForm.do?mem_role=2"></a>
+				<a href="resistForm.do?member_role=2"></a>
 			</figure>
 		</div>
 		
@@ -52,7 +52,7 @@
 						<h2><span>학부모이신가요?</span></h2>
 					</div>
 				</figcaption>
-				<a href="resistForm.do?mem_role=3"></a>
+				<a href="resistForm.do?member_role=3"></a>
 			</figure>
 		</div>
 	</div>
