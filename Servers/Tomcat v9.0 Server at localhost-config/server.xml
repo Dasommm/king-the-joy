@@ -17,7 +17,7 @@
 --><!-- Note:  A "Server" is not itself a "Container", so you may not
      define subcomponents such as "Valves" at this level.
      Documentation at /docs/config/server.html
- --><Server port="8005" shutdown="SHUTDOWN">
+ --><Server port="8787" shutdown="SHUTDOWN">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
@@ -58,13 +58,21 @@
          Java HTTP Connector: /docs/config/http.html
          Java AJP  Connector: /docs/config/ajp.html
          APR (HTTP/AJP) Connector: /docs/apr.html
+<<<<<<< HEAD:Servers/Tomcat v9.0 Server at localhost-config/server.xml
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8787
+=======
+         Define a non-SSL/TLS HTTP/1.1 Connector on port 8090
+>>>>>>> 659c91dcd9a48eba68887f0d91fe65079e4c9089:.metadata/.plugins/org.eclipse.core.resources/.history/cf/f0b53fc69a8b001a17199af349bf14b8
     -->
-    <Connector connectionTimeout="20000" port="8787" protocol="HTTP/1.1" redirectPort="8443"/>
+    <Connector connectionTimeout="20000" port="8090" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
+<<<<<<< HEAD:Servers/Tomcat v9.0 Server at localhost-config/server.xml
                port="8787" protocol="HTTP/1.1"
+=======
+               port="8090" protocol="HTTP/1.1"
+>>>>>>> 659c91dcd9a48eba68887f0d91fe65079e4c9089:.metadata/.plugins/org.eclipse.core.resources/.history/cf/f0b53fc69a8b001a17199af349bf14b8
                connectionTimeout="20000"
                redirectPort="8443" />
     -->
@@ -149,7 +157,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      </Host>
+      <Context docBase="KingTheJoy" path="/kingthejoy" reloadable="true" source="org.eclipse.jst.jee.server:KingTheJoy"/></Host>
     </Engine>
   </Service>
 </Server>

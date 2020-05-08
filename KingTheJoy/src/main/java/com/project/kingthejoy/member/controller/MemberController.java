@@ -1,5 +1,6 @@
 package com.project.kingthejoy.member.controller;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -7,10 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import com.project.kingthejoy.member.biz.MemberBiz;
 import com.project.kingthejoy.member.dto.MemberDto;
@@ -23,6 +23,7 @@ public class MemberController {
 	@Autowired
 	MemberBiz biz;
 	
+	
 	@RequestMapping(value = "/home.do")
 	public String homepageForm() { 
 		 
@@ -32,8 +33,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/main.do")
-	public String mainPageForm() {
-		return "main/main"; 
+	public String mainPageForm(HttpSession session) {
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
+		System.out.println(memberDto.getMember_role());
+		System.out.println(memberDto.getMember_seq());
+		if(memberDto.getMember_role()==0) {
+			//관리자
+			return "main/main";
+		}else if(memberDto.getMember_role()==1){
+			//원장
+			return "main/main";
+		}else if(memberDto.getMember_role()==2){
+			//선생님
+			return "main/main";
+		}else{
+			//학부모
+			return "main/parentMain";
+		}
+		
+	
 	}
 	
 	@RequestMapping(value = "/selectResistForm.do")
