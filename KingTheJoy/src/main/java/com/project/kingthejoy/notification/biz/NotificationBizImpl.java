@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.kingthejoy.notification.dao.NotificationDao;
+import com.project.kingthejoy.notification.dto.NotificationCheckDto;
 import com.project.kingthejoy.notification.dto.NotificationDto;
 
 @Service
@@ -13,10 +14,11 @@ public class NotificationBizImpl implements NotificationBiz {
 
 	@Autowired
 	private NotificationDao dao;
+	
 	@Override
-	public List<NotificationDto> selectNotificationList() {
+	public List<NotificationDto> selectNotificationList(int school_seq) {
 		// TODO Auto-generated method stub
-		return dao.selectNotificationList();
+		return dao.selectNotificationList(school_seq);
 	}
 
 	@Override
@@ -44,15 +46,34 @@ public class NotificationBizImpl implements NotificationBiz {
 	}
 
 	@Override
-	public int insertNotificationCheck(int notification_seq) {
+	public int insertNotificationCheck(int notification_seq, int school_seq) {
 		// TODO Auto-generated method stub
-		return dao.insertNotificationCheck(notification_seq);
+		return dao.insertNotificationCheck(notification_seq, school_seq);
 	}
 
 	@Override
 	public int newNotification() {
 		// TODO Auto-generated method stub
 		return dao.newNotification();
+	}
+
+	@Override
+	public int selectWritten(int member_seq, int notification_seq) {
+		NotificationCheckDto checkDto = new NotificationCheckDto();
+		checkDto.setMember_seq(member_seq);
+		checkDto.setNotification_seq(notification_seq);
+		int res = dao.selectWritten(checkDto);
+		if(res==0) {
+			return dao.updateWritten(checkDto);
+		}else {
+			return 1;
+		}
+	}
+
+	@Override
+	public int updateWritten(NotificationCheckDto checkDto) {
+		// TODO Auto-generated method stub
+		return dao.updateWritten(checkDto);
 	}
 
 }

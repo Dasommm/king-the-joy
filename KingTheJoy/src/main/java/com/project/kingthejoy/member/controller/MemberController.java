@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.kingthejoy.member.biz.MemberBiz;
 import com.project.kingthejoy.member.dto.MemberDto;
 
+
 @Controller
 public class MemberController {
 	
@@ -50,8 +51,6 @@ public class MemberController {
 			//학부모
 			return "main/parentMain";
 		}
-		
-	
 	}
 	
 	@RequestMapping(value = "/selectResistForm.do")

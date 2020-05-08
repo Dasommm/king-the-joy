@@ -13,5 +13,5 @@ public class NotificationDto {
 	private String notification_title;
 	private String notification_content;
 	private Date notification_date;
-
+	private int school_seq;
 }
