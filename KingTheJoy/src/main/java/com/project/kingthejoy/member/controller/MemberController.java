@@ -97,5 +97,8 @@ public class MemberController {
 		return "common/alert";
 	
 	}
+	
+
+	
 
 }
