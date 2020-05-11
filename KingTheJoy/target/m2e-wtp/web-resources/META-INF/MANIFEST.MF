@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: Sophie
 Build-Jdk: 1.8.0_231
-=======
-Built-By: eunjoo
-Build-Jdk: 1.8.0_221
->>>>>>> kinderjoy2/master
 Created-By: Maven Integration for Eclipse
 

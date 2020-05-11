@@ -15,7 +15,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --><!-- Note:  A "Server" is not itself a "Container", so you may not
-     define subcomponents such as "Valves" at this level.
+     define subcomponents such as "Valves" at this level.ㄹ
      Documentation at /docs/config/server.html
  --><Server port="8005" shutdown="SHUTDOWN">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener"/>

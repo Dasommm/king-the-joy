@@ -1,217 +1,213 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset='utf-8' />
 
+<link href='resources/fullcalendar/core/main.css' rel='stylesheet' />
+<link href='resources/fullcalendar/daygrid/main.css' rel='stylesheet' />
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src='resources/fullcalendar/core/main.js'></script>
+<script src='resources/fullcalendar/daygrid/main.js'></script>
+<script src='resources/fullcalendar/interaction/main.js'></script>
+<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+<style>
+
+  /*
+  i wish this required CSS was better documented :(
+  https://github.com/FezVrasta/popper.js/issues/674
+  derived from this CSS on this page: https://popper.js.org/tooltip-examples.html
+  */
+
+  .popper,
+  .tooltip {
+    position: absolute;
+    z-index: 9999;
+    background: #FFC107;
+    color: black;
+    width: 150px;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    padding: 10px;
+    text-align: center;
+  }
+  .style5 .tooltip {
+    background: #1E252B;
+    color: #FFFFFF;
+    max-width: 200px;
+    width: auto;
+    font-size: .8rem;
+    padding: .5em 1em;
+  }
+  .popper .popper__arrow,
+  .tooltip .tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    margin: 5px;
+  }
+
+  .tooltip .tooltip-arrow,
+  .popper .popper__arrow {
+    border-color: #FFC107;
+  }
+  .style5 .tooltip .tooltip-arrow {
+    border-color: #1E252B;
+  }
+  .popper[x-placement^="top"],
+  .tooltip[x-placement^="top"] {
+    margin-bottom: 5px;
+  }
+  .popper[x-placement^="top"] .popper__arrow,
+  .tooltip[x-placement^="top"] .tooltip-arrow {
+    border-width: 5px 5px 0 5px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    bottom: -5px;
+    left: calc(50% - 5px);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .popper[x-placement^="bottom"],
+  .tooltip[x-placement^="bottom"] {
+    margin-top: 5px;
+  }
+  .tooltip[x-placement^="bottom"] .tooltip-arrow,
+  .popper[x-placement^="bottom"] .popper__arrow {
+    border-width: 0 5px 5px 5px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    top: -5px;
+    left: calc(50% - 5px);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .tooltip[x-placement^="right"],
+  .popper[x-placement^="right"] {
+    margin-left: 5px;
+  }
+  .popper[x-placement^="right"] .popper__arrow,
+  .tooltip[x-placement^="right"] .tooltip-arrow {
+    border-width: 5px 5px 5px 0;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    left: -5px;
+    top: calc(50% - 5px);
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .popper[x-placement^="left"],
+  .tooltip[x-placement^="left"] {
+    margin-right: 5px;
+  }
+  .popper[x-placement^="left"] .popper__arrow,
+  .tooltip[x-placement^="left"] .tooltip-arrow {
+    border-width: 5px 0 5px 5px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    right: -5px;
+    top: calc(50% - 5px);
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+</style>
+
+
+ <script>
+
+
+		document.addEventListener('DOMContentLoaded', function () {
+			console.log("캘린더!!!!!!");
+	      var calendarEl = document.getElementById('calendar');
+	
+	      var calendar = new FullCalendar.Calendar(calendarEl, {
+	          plugins: ['dayGrid'],
+	          defaultView: 'dayGridMonth',
+	          height : 800,
+	          locale : 'ko',
+	          displayEventTime : false,
+	          eventRender : function(info){
+	        	  console.log(info.el);
+	        	  console.log(info.event.extendedProps.description);
+	        	  var tooltip = new Tooltip(info.el, {
+	        		  title : info.event.extendedProps.description,
+	        		  placement : 'top',
+	        		  trigger : 'hover',
+	        		  container : 'body'	        	  
+	        	  });
+	        	  
+	          },
+	          eventSources : [
+	        	  {
+	        		  url : '/kingthejoy/menuList.do',
+	        		  type : 'POST',
+	        		  error : function(){
+	        			  alert('menu load failure');
+	        		  },
+	        		  color : 'yellow'
+	        	  }
+
+	          ]
+	          	          
+	      });
+	      calendar.render();
+	  });
+
+	
+
+	 
+
+		
+</script>
 <style type="text/css">
 
 /* 배경 이미지 사이즈 */
 #background img{
-	position: fixed;
+	z-index : -1;
 	bottom: 0px;
 	left: 0px;
+	position : absolute;
+	top : 430px;
 }
-
-/* 챗봇 이미지 사이즈 */
-#chatBot img {
-	width: 130px;
-	height: 130px;
-	position: fixed;
-	top: 620px;
-	right: 10px;
-}
-
-/* 챗봇 답변 div */
-.pNa {
-	text-align: center;
-	width: 300px;
-	height: 100px;
-	display: none;
-	position: fixed;
-	top: 600px;
-	right: 130px;
-}
-
-/* 챗봇 답변 div boder */
-.boder{
-	border-radius:50px 50px 50px 50px;
-}
-
 /* 캘린더 */
-
 /* h1 */
-
 h1{
 	text-align: center;
 }
-
-
 </style>
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-
-	//챗봇 눌렀을 때 회원,비회원 선택시 출력
-	$(function() {
-		$('#chatBot').click(function() {
-			if($('.pNa').css('display') == "none"){
-				$('.pNa').css('top','600px');
-				$('.pNa').hide();
-				$('#question01').show('slow');
-			}else{
-				$('.pNa').hide();
-			}
-		});
-	});
-
-	//회원 비회원 선택 시 선택지들 show
-	//-회원
-	$(function() {
-		$('#pNa01').click(function() {
-			$('#question01').hide();
-			$('.pNa').css('top','550px');
-			$('#question02').show('slow');
-		});
-	});
-	
-	//-비회원
-	$(function() {
-		$('#pNa02').click(function() {
-			$('#question01').hide();
-			$('.pNa').css('top','550px');
-			$('#question03').show('slow');
-		});
-	});
-
-	//회원 선택지들 클릭 답변
-	$(function() {
-		$('#pNa03').click(function() {
-			$('#question02').hide();
-			$('.pNa').css('top','630px');
-			$('#answer02_01').show('slow');
-		});
-	});
-
-	$(function() {
-		$('#pNa04').click(function() {
-			$('#question02').hide();
-			$('.pNa').css('top','630px');
-			$('#answer02_02').show('slow');
-		});
-	});
-
-	$(function() {
-		$('#pNa05').click(function() {
-			$('#question02').hide();
-			$('.pNa').css('top','630px');
-			$('#answer02_03').show('slow');
-		});
-	});
-
-	$(function() {
-		$('#pNa06').click(function() {
-			$('#question02').hide();
-			$('.pNa').css('top','630px');
-			$('#answer02_04').show('slow');
-		});
-	});
-
-	//비회원 선택지들 클릭 답변
-
-	$(function() {
-		$('#pNa07').click(function() {
-			$('#question03').hide();
-			$('.pNa').css('top','630px');
-			$('#answer03_01').show('slow');
-		});
-	});
-
-	$(function() {
-		$('#pNa08').click(function() {
-			$('#question03').hide();
-			$('.pNa').css('top','630px');
-			$('#answer03_02').show('slow');
-		});
-	});
-
-	$(function() {
-		$('#pNa09').click(function() {
-			$('#question03').hide();
-			$('.pNa').css('top','630px');
-			$('#answer03_03').show('slow');
-		});
-	});
-
-	$(function() {
-		$('#pNa10').click(function() {
-			$('#question03').hide();
-			$('.pNa').css('top','630px');
-			$('#answer03_04').show('slow');
-		});
-	});
-	
-</script>
 </head>
 <body>
 
-<!-- 배경 사진 -->
-<div id="background">
-	<img src="./resources/img/parentMain.jpg">
-</div>
+<section>
+
+<%@include file="../parent/parentChatbot.jsp" %>
 
 <h1>오늘의 식단</h1>
 
-<div>캘린더</div>
+	<!-- 공지사항 -->
+	<div>공지사항 부분</div>
+	<input type="button" value="선생님용식단페이지" onclick="location='menuteacher.do?'">
 
-<!-- 챗봇 -->
-<div id="chatBot">
-		<img src="./resources/img/chatIcon.png">
-	</div>
-	<div id="question01" class="pNa" >
-		<p id="pNa01" class="boder" style="background-color: #f5c2c2">회원</p>
-		<p id="pNa02" class="boder" style="background-color: #f58b7b">비회원</p>
-	</div>
-	<div id="question02" class="pNa">
-		<p id="pNa03" class="boder" style="background-color: #f5f189">1번 선택지</p>
-		<p id="pNa04" class="boder" style="background-color: #a8f58c">2번 선택지</p>
-		<p id="pNa05" class="boder" style="background-color: #f57373">3번 선택지</p>
-		<p id="pNa06" class="boder" style="background-color: #539ff5">4번 선택지</p>
-	</div>
-	<div id="question03" class="pNa">
-		<p id="pNa07" class="boder" style="background-color: #f5f189">1번 선택지</p>
-		<p id="pNa08" class="boder" style="background-color: #a8f58c">2번 선택지</p>
-		<p id="pNa09" class="boder" style="background-color: #f57373">3번 선택지</p>
-		<p id="pNa10" class="boder" style="background-color: #539ff5">4번 선택지</p>
+	<div>
+	<!-- 식단표 -->
+		<div id='calendar' style="width: 800px; margin-left:350px;"></div>
+		<div id='background'>
+			<img alt="" src="./resources/img/parentMain.jpg">
+		</div>
 	</div>
 
-	<div id="answer02_01" class="pNa">
-		<p id="ans01" class="boder" style="background-color: #d8f5f5">회원의 1번 선택지 답변입니다.</p>
-	</div>
-	<div id="answer02_02" class="pNa">
-		<p id="ans02" class="boder" style="background-color: #d8f5f5">회원의 2번 선택지 답변입니다.</p>
-	</div>
-	<div id="answer02_03" class="pNa">
-		<p id="ans03" class="boder" style="background-color: #d8f5f5">회원의 3번 선택지 답변입니다.</p>
-	</div>
-	<div id="answer02_04" class="pNa">
-		<p id="ans04" class="boder" style="background-color: #d8f5f5">회원의 4번 선택지 답변입니다.</p>
-	</div>
 
-	<div id="answer03_01" class="pNa">
-		<p id="ans05" class="boder" style="background-color: #d8f5f5">비회원의 1번 선택지 답변입니다.</p>
-	</div>
-	<div id="answer03_02" class="pNa">
-		<p id="ans06" class="boder" style="background-color: #d8f5f5">비회원의 2번 선택지 답변입니다.</p>
-	</div>
-	<div id="answer03_03" class="pNa">
-		<p id="ans07" class="boder" style="background-color: #d8f5f5">비회원의 3번 선택지 답변입니다.</p>
-	</div>
-	<div id="answer03_04" class="pNa">
-		<p id="ans08" class="boder" style="background-color: #d8f5f5">비회원의 4번 선택지 답변입니다.</p>
-	</div>
-
+</section>
+<%@include file="../common/footer.jsp" %>
 </body>
+
 </html>
