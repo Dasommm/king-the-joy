@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,107 +31,113 @@
 
 /* 챗봇 답변 div boder */
 .boder {
-   border-radius: 50px 50px 50px 50px;
+	border-radius: 50px 50px 50px 50px;
 }
 </style>
 
-<script type="text/javascript"
-   src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-   //챗봇 눌렀을 때 회원,비회원 선택시 출력
-   $(function() {
-      $('#chatBot').click(function() {
-         if ($('.pNa').css('display') == "none") {
-            $('.pNa').css('top', '600px');
-            $('.pNa').hide();
-            $('#question01').show('slow');
-         } else {
-            $('.pNa').hide();
-         }
-      });
-   });
+	//챗봇 눌렀을 때 회원,비회원 선택시 출력
+	$(function() {
+		$('#chatBot').click(function() {
+			if ($('.pNa').css('display') == "none") {
+				$('.pNa').css('top', '600px');
+				$('.pNa').hide();
+				$('#question01').show('slow');
+			} else {
+				$('.pNa').hide();
+			}
+		});
+	});
 
-   //회원 비회원 선택 시 선택지들 show
-   //-회원
-   $(function() {
-      $('#pNa01').click(function() {
-         $('#question01').hide();
-         $('.pNa').css('top', '550px');
-         $('#question02').show();
-      });
-   });
+	//회원 비회원 선택 시 선택지들 show
+	//-회원
+	$(function() {
+		$('#pNa01').click(function() {
+			$('#question01').hide();
+			$('.pNa').css('top', '550px');
+			$('#question02').show('slow');
+		});
+	});
 
- 
-   //회원 선택지들 클릭 답변
-   $(function() {
-      $('#pNa03').click(function() {
-         $('#question02').hide();
-         $('.pNa').css('top', '630px');
-         $('#answer02_01').show('slow');
-      });
-   });
+	//-비회원
+	$(function() {
+		$('#pNa02').click(function() {
+			$('#question01').hide();
+			$('.pNa').css('top', '550px');
+			$('#question03').show('slow');
+		});
+	});
 
-   $(function() {
-      $('#pNa04').click(function() {
-         $('#question02').hide();
-         $('.pNa').css('top', '630px');
-         $('#answer02_02').show('slow');
-      });
-   });
+	//회원 선택지들 클릭 답변
+	$(function() {
+		$('#pNa03').click(function() {
+			$('#question02').hide();
+			$('.pNa').css('top', '630px');
+			$('#answer02_01').show('slow');
+		});
+	});
 
-   $(function() {
-      $('#pNa05').click(function() {
-         $('#question02').hide();
-         $('.pNa').css('top', '630px');
-         $('#answer02_03').show('slow');
-      });
-   });
+	$(function() {
+		$('#pNa04').click(function() {
+			$('#question02').hide();
+			$('.pNa').css('top', '630px');
+			$('#answer02_02').show('slow');
+		});
+	});
 
-   $(function() {
-      $('#pNa06').click(function() {
-         $('#question02').hide();
-         $('.pNa').css('top', '630px');
-         $('#answer02_04').show('slow');
-      });
-   });
+	$(function() {
+		$('#pNa05').click(function() {
+			$('#question02').hide();
+			$('.pNa').css('top', '630px');
+			$('#answer02_03').show('slow');
+		});
+	});
 
-   //비회원 선택지들 클릭 답변
+	$(function() {
+		$('#pNa06').click(function() {
+			$('#question02').hide();
+			$('.pNa').css('top', '630px');
+			$('#answer02_04').show('slow');
+		});
+	});
 
-   $(function() {
-      $('#pNa07').click(function() {
-         $('#question03').hide();
-         $('.pNa').css('top', '630px');
-         $('#answer03_01').show('slow');
-      });
-   });
+	//비회원 선택지들 클릭 답변
 
-   $(function() {
-      $('#pNa08').click(function() {
-         $('#question03').hide();
-         $('.pNa').css('top', '630px');
-         $('#answer03_02').show('slow');
-      });
-   });
+	$(function() {
+		$('#pNa07').click(function() {
+			$('#question03').hide();
+			$('.pNa').css('top', '630px');
+			$('#answer03_01').show('slow');
+		});
+	});
 
-   $(function() {
-      $('#pNa09').click(function() {
-         $('#question03').hide();
-         $('.pNa').css('top', '630px');
-         $('#answer03_03').show('slow');
-      });
-   });
+	$(function() {
+		$('#pNa08').click(function() {
+			$('#question03').hide();
+			$('.pNa').css('top', '630px');
+			$('#answer03_02').show('slow');
+		});
+	});
 
-   $(function() {
-      $('#pNa10').click(function() {
-         $('#question03').hide();
-         $('.pNa').css('top', '630px');
-         $('#answer03_04').show('slow');
-      });
-   });
+	$(function() {
+		$('#pNa09').click(function() {
+			$('#question03').hide();
+			$('.pNa').css('top', '630px');
+			$('#answer03_03').show('slow');
+		});
+	});
+
+	$(function() {
+		$('#pNa10').click(function() {
+			$('#question03').hide();
+			$('.pNa').css('top', '630px');
+			$('#answer03_04').show('slow');
+		});
+	});
 </script>
 </head>
 <body>
-
    <!-- 챗봇 -->
    <div id="chatBot">
       <img src="./resources/img/chatIcon.png">
