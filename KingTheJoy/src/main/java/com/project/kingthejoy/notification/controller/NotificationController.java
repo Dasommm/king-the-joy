@@ -179,10 +179,10 @@ public class NotificationController {
 	public String returnasdf() {
 		return "main/testrolling";
 	}
-
+	
 	@RequestMapping(value = "/rollingtest.do", method = RequestMethod.GET)
 	@ResponseBody
-	public List<NotificationDto> notificationDelete() {
+	public List<NotificationDto> rollingNotification(HttpSession session) {
 		int school_seq = 1;
         List<NotificationDto> notificationList = notificationBiz.selectNotificationList(school_seq);
 

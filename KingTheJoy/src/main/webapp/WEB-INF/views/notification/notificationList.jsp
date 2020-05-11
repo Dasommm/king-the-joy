@@ -29,7 +29,7 @@
 			<c:otherwise>
 					<c:forEach items="${notificationList}" var="dto">
 					<tr>
-						<td><a href="notificationDetail.do?notification_seq=${dto.notification_seq}">${dto.notification_title}</a></td>
+						<td><strong><a href="notificationDetail.do?notification_seq=${dto.notification_seq}">${dto.notification_title}</a></strong></td>
 						<td>${dto.notification_writer}</td>
 						<td>${dto.notification_date}</td>
 					</tr>	

@@ -38,7 +38,7 @@
 		where notification_seq = #{notification_seq}
 	</delete>
 	
-	<select id="selectMember" resultType="int">
+	<select id="selectMember" resultType="int" parameterType="int">
 		SELECT member_seq FROM MEMBER WHERE MEMBER_ROLE = 0
 	</select>
 	

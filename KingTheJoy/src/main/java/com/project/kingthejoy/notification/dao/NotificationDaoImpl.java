@@ -77,7 +77,7 @@ public class NotificationDaoImpl implements NotificationDao {
 		List<Integer> list = new ArrayList<Integer>();
 		int res = 0;
 		try {
-			list = sqlSession.selectList(NAMESPACE + "selectMember");
+			list = sqlSession.selectList(NAMESPACE + "selectMember", school_seq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

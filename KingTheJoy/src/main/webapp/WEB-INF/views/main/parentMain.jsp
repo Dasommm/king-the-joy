@@ -162,6 +162,7 @@ h1{
 	<img src="./resources/img/parentMain.jpg">
 </div>
 <h1><a href="rolling.do">rolling</a> </h1>
+<h1><a href="chatgo.do">chat</a></h1>
 
 <h1>오늘의 식단</h1>
 
