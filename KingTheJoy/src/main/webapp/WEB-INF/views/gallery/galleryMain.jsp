@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>임시페이지 galleryMain</h1>
+	<h2><a href="galleryUpload.do?classseq=1">1반 앨범 등록</a></h2>
+	<h2><a href="galleryForm.do?classseq=1">form-file(normal)</a></h2>
+	<h2><a href="galleryPage.do?classseq=1">1반 앨범 보기</a></h2>
+</body>
+</html>
