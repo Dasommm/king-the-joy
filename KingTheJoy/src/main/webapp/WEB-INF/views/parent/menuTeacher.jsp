@@ -32,6 +32,9 @@
 	          dateClick : function(){
 	        	  window.open("/kingthejoy/menuInsertForm.do?","menuInsert","width=400, height=415, left=100, top=50");
 	          },
+	          eventClick : function(event, jsEvent, view){
+	        	  editEvent(evnet);
+	          },
 	          eventRender : function(info){
 	        	  console.log(info.el);
 	        	  console.log(info.event.extendedProps.description);
