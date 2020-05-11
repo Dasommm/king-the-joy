@@ -17,7 +17,6 @@ public class MemberBizImpl implements MemberBiz {
 	@Autowired
 	private MemberDao dao;
 	
-	
 	@Override
 	public int memberJoin(MemberDto memberDto) {
 		
