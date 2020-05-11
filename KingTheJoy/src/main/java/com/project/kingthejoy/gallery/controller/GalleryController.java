@@ -1,18 +1,11 @@
 package com.project.kingthejoy.gallery.controller;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.http.HttpServletRequest;
-import javax.sound.sampled.AudioFormat.Encoding;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;

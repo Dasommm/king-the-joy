@@ -31,10 +31,10 @@
 	
 	<div class="grid">
 		<div class="item">
-			<div class="item-content" id="item-content1"></div>
+			<div class="item-content"></div>
 		</div>
 		<div class="item">
-			<div class="item-content" id="item-content2"></div>
+			<div class="item-content"></div>
 		</div>
 	</div>
 	
@@ -83,11 +83,12 @@ $(document).ready(function () {
 	}
 	
 	//ajax file upload
-	function upload(imageNumber) {
+	function upload(imageNumber, files) {
 		var formData = new FormData();
-		var inputFile = $("input[name='uploadFile"+imageNumber+"']");
-		var files = inputFile[0].files;
-		console.log(files);
+		console.log("drop>>", files);
+		//var inputFile = $("input[name='uploadFile"+imageNumber+"']");
+		//var files = inputFile[0].files;
+		//console.log(files);
 		
 		//add filedate to formdata
 		for(var i=0; i<files.length; i++){	
@@ -112,56 +113,34 @@ $(document).ready(function () {
 	}		
 	//}); //end click uploadBtn 업로드 버튼
 	
-	//드래그 업로드
-/* 	const $fileDrop = $('.item-content');		
-	//$('.item-content').on('drop', (evt) =>{
-	$fileDrop.on('drop', (evt) =>{
-		evt.preventDefault();
-		alert("드래그 성공");
-	}); */
+	//드래그 & 드랍 업로드
+	$(".item").each(function(i, e) {
+		$(".item-content:eq("+i+")").on('dragover dragenter', (evt) => {
+			evt.preventDefault();
+			$(".item-content:eq("+i+")").css("border", "2px solid red");
+		});
+		$(".item-content:eq("+i+")").on('dragleave', (evt) => {
+		    evt.preventDefault();
+		    $(".item-content:eq("+i+")").css("border", "2px solid #222222");
+		});
+		$(".item-content:eq("+i+")").on('drop', (evt) => {
+		    evt.preventDefault();
+		    let files = evt.originalEvent.dataTransfer.files;
+		    //console.log("drop>>", files);
+		    $(".item-content:eq("+i+")").css("border", "none");
+		    var imageNum = i+1;
+		    upload(imageNum, files);
+		    setTimeout(function() { showUploadedFile(i) }, 100);;
+		});
+	});
 	
-	$("#item-content1").on('dragover dragenter', (evt) => {
-		evt.preventDefault();
-		$("#item-content1").css("border", "2px solid red");
-	});
-	$("#item-content1").on('dragleave', (evt) => {
-	    evt.preventDefault();
-	    $("#item-content1").css("border", "2px solid #222222");
-	});
-	$("#item-content1").on('drop', (evt) => {
-	    evt.preventDefault();
-	    let files = evt.originalEvent.dataTransfer.files;
-	    console.debug("drop>>", files);
-	    $("#item-content1").css("border", "none");
-	    alert("드래그 성공");
-	    showUploadedFile();
-	});
-
-	//var imageNumber = 0;
-/* 	const $fileDrop = $('.item-content');		
-	$fileDrop.on('dragover dragenter', (evt) => {
-		evt.preventDefault();
-		$fileDrop.css("border", "2px solid red");
-	});
-	$fileDrop.on('dragleave', (evt) => {
-	    evt.preventDefault();
-	    $fileDrop.css("border", "2px solid #222222");
-	});
-	$fileDrop.on('drop', (evt) => {
-	    evt.preventDefault();
-	    let files = evt.originalEvent.dataTransfer.files;
-	    console.debug("drop>>", files);
-	    $fileDrop.css("border", "none");
-	    alert("드래그 성공");
-	    showUploadedFile();
-	}); */
-
-	
-	
-	function showUploadedFile() {
+	//이미지 보여주기
+	function showUploadedFile(num) {
 		var str = "";
-		var uploadAppend = $(".item-content:eq(0)");
-		str += "<img src='/kingthejoy/resources/gallery/1/1.jpg' style='border: 2px solid #222222; border-radius: 4px 4px 4px 4px;'>"
+		var imageNum = num+1;
+		console.log("num: "+num+"/ imageNum: "+imageNum); 
+		var uploadAppend = $(".item-content:eq("+num+")");
+		str += "<img src='/kingthejoy/resources/gallery/1/"+imageNum+".jpg' style='border: 2px solid #222222; border-radius: 4px 4px 4px 4px; box-sizing: border-box;'>"
 		uploadAppend.append(str);
 	}
 	

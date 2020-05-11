@@ -39,6 +39,7 @@ img{
   text-align: center;
   border: 2px solid #222222;
   border-radius: 4px 4px 4px 4px; 
+  box-sizing: border-box;
 }
 .item.muuri-item-dragging .item-content{
   background: #8993a2;
