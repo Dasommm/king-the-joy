@@ -24,17 +24,9 @@ public class MemberBizImpl implements MemberBiz {
 	public boolean loginCheck(MemberDto dto, HttpSession session) {
 		boolean result = dao.loginCheck(dto);
 		if(result) {
-			MemberDto dto2 = memberView(dto);
+			MemberDto memberDto = memberView(dto);
 			
-			session.setAttribute("member_id", dto2.getMember_id());
-			session.setAttribute("member_name", dto2.getMember_name());
-			session.setAttribute("member_seq", dto2.getMember_seq());
-			session.setAttribute("member_phone", dto2.getMember_phone());
-			session.setAttribute("member_email", dto2.getMember_email());
-			session.setAttribute("member_oaddr", dto2.getMember_oaddr());
-			session.setAttribute("member_addr", dto2.getMember_addr());
-			session.setAttribute("member_detailaddr", dto2.getMember_detailaddr());
-			session.setAttribute("member_date", dto2.getMember_date());
+			session.setAttribute("memberDto", memberDto);	
 		}
 		return result;
 	}
