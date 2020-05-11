@@ -1,5 +1,8 @@
 package com.project.kingthejoy.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -7,21 +10,26 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.kingthejoy.member.biz.MemberBiz;
 import com.project.kingthejoy.member.dto.MemberDto;
+import com.project.kingthejoy.school.dto.SchoolDto;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
-public class MemberController {
+public class MemberController<dataList> {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
+	
 	@Autowired
 	MemberBiz biz;
+	
 	
 	@RequestMapping(value = "/home.do")
 	public String homepageForm() { 
@@ -35,6 +43,110 @@ public class MemberController {
 	public String mainPageForm() {
 		return "main/main"; 
 	}
+	
+	@RequestMapping(value="/naverLoginResult.do")
+	public String naverLoginCallback() {
+		return "member/callback";
+	}
+	
+	@RequestMapping(value="/naverLoginSuccess.do" , method = {RequestMethod.POST, RequestMethod.GET})
+	 
+	public String naverLoginSuccess(HttpSession session, String naver_name, String naver_email) {
+		
+		session.setAttribute("sns_name", naver_name);
+		session.setAttribute("sns_email", naver_email);
+		
+		return "member/snsMemberUpdate";
+		
+	}
+	
+	@RequestMapping(value="/kakaoLogin.do")
+	public String kakaoLogin(HttpSession session, String kakao_nickname, String kakao_email) {
+		session.setAttribute("sns_name",kakao_nickname);
+		session.setAttribute("sns_email", kakao_email);
+		
+		return "member/snsMemberUpdate";
+	}
+	
+	@RequestMapping(value="/memberUpdateForm.do")
+	public String memberUpdateForm() {
+		return "member/memberUpdate";
+	}
+	
+	@RequestMapping(value="snsLoginUpdatePage.do")
+	public String snsLoginUpdatePage() {
+		return "member/snsMemberUpdate";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/tableDataSend.do")
+	public void insertChildOrSchool(String data, HttpSession session) {
+		String[] dataArray = null;
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+		
+		dataArray = data.split(",");
+		
+		
+		
+		
+		
+		log.info("session value = {}", memberDto.getMember_seq());
+		log.info("dataArray Length = {}" ,dataArray[1]);
+		for(int i=0; i<dataArray.length; i++) {
+			SchoolDto schoolDto = new SchoolDto();
+			String[] temp = dataArray[i].split("/");
+			schoolDto.setSchool_addr(temp[1]);
+			schoolDto.setSchool_name(temp[2]);
+			
+			if(biz.selectSchool(schoolDto) == null) {
+				Map<String,String> childMap = new HashMap<String, String>();
+				Map<String,String> schoolListMap = new HashMap<String, String>();
+				Map<String,Integer> schoolMap = new HashMap<String, Integer>();
+
+				log.info("children_name = {}" , temp[0]);
+				childMap.put("children_name", temp[0]);
+				childMap.put("member_seq", Integer.toString(memberDto.getMember_seq()));
+				biz.insertChildInfo(childMap);
+				
+				schoolListMap.put("school_addr", temp[1]);
+				schoolListMap.put("school_name", temp[2]);
+				biz.insertSchoolInfo(schoolListMap);
+				int children_seq = biz.selectChildrenSeqOfSchool(memberDto.getMember_seq());
+				int school_seq = biz.selectSchoolSeq(schoolListMap);
+				
+				schoolMap.put("children_seq", children_seq);
+				schoolMap.put("school_seq", school_seq);
+				schoolMap.put("member_seq", memberDto.getMember_seq());
+				
+				biz.insertSchool(schoolMap);
+				
+				
+			}else {
+				Map<String,String> childMap = new HashMap<String, String>();
+				Map<String,Integer> schoolMap = new HashMap<String, Integer>();
+				Map<String,String> schoolListMap = new HashMap<String, String>();
+				
+				childMap.put("children_name", temp[0]);
+				childMap.put("member_seq", Integer.toString(memberDto.getMember_seq()));
+				biz.insertChildInfo(childMap);
+				
+				schoolListMap.put("school_addr", temp[1]);
+				schoolListMap.put("school_name", temp[2]);
+				
+				int children_seq = biz.selectChildrenSeqOfSchool(memberDto.getMember_seq());
+				int school_seq = biz.selectSchoolSeq(schoolListMap);
+				
+				schoolMap.put("children_seq", children_seq);
+				schoolMap.put("school_seq", school_seq);
+				schoolMap.put("member_seq", memberDto.getMember_seq());
+				
+				biz.insertSchool(schoolMap);
+				
+			}		
+		}
+	}
+	
+	
 	
 	@RequestMapping(value = "/selectResistForm.do")
 	public String selectResistForm() { 
@@ -73,13 +185,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/loginCheck.do")
-	public String loginCheck(MemberDto dto, HttpSession session, Model model) {
+	public String loginCheck(MemberDto memberDto, HttpSession session, Model model) {
 		
-		boolean result = biz.loginCheck(dto, session);
+		boolean result = biz.loginCheck(memberDto, session);
+		MemberDto dto = (MemberDto)session.getAttribute("memberDto");
+		log.info("현재 회원 자녀들의 학교 번호 = {}", dto.getSchool_seq());
 		
 		if(result == true) {
 			model.addAttribute("msg","킨더조이 로그인 성공");
-			model.addAttribute("url","main.do");
+			model.addAttribute("url","memberUpdateForm.do");
 			return "common/alert";
 		}else {
 			model.addAttribute("msg","킨더조이 로그인 실패");

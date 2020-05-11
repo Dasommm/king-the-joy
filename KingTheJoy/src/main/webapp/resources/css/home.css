@@ -15,7 +15,7 @@
     border-radius: 50%;
 }
 
-.home-div img{
+.kingthejoyLogo img{
     height: 100px;
     margin-top: 20px;
 }
@@ -49,4 +49,14 @@
 .search-button{
     margin-top: 5px;
     width: 280px;
+}
+
+
+#kakao-login-btn{  
+	width:277.5px;
+	height:60px;
+}
+
+.marginTop{
+	padding-top:5px;
 }
