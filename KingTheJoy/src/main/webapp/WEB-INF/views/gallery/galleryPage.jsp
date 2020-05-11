@@ -49,7 +49,7 @@
 	<div class="bigPictureWrapper">
 		<div class="bigPicture"></div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script src="https://unpkg.com/muuri@0.8.0/dist/muuri.min.js"></script>
@@ -59,12 +59,7 @@
 	});
 	
 	function showImage(fileNum){
-		alert("fileNum: "+fileNum);
-	   
-/* 		$("img").error(function() {
-	        $(".item-content a").remove();
-	    }); */
-		
+		//alert("fileNum: "+fileNum);
  		$(".bigPictureWrapper").css("display","flex").show();
 		$(".bigPicture")
 		.html("<img src='display.do?fileName="+fileNum+".jpg'>")

@@ -1,11 +1,18 @@
 package com.project.kingthejoy.gallery.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.sound.sampled.AudioFormat.Encoding;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
@@ -152,7 +159,7 @@ public class GalleryController {
 	public byte[] getFile(String fileName, HttpServletRequest request) {
 		
 		log.info("/display.do 진입");
-		log.info(fileName);
+		//log.info(fileName);
 		String path = request.getSession().getServletContext().getRealPath("/resources/gallery/1/");
 		
 		File file = new File(path+fileName);
