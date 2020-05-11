@@ -5,8 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.kingthejoy.member.dao.MemberDao;
 import com.project.kingthejoy.member.dto.MemberDto;
+import com.project.kingthejoy.member.dao.MemberDao;
+
+
 
 @Service
 public class MemberBizImpl implements MemberBiz {
@@ -24,9 +26,11 @@ public class MemberBizImpl implements MemberBiz {
 	public boolean loginCheck(MemberDto dto, HttpSession session) {
 		boolean result = dao.loginCheck(dto);
 		if(result) {
+
 			MemberDto memberDto = memberView(dto);
 			
 			session.setAttribute("memberDto", memberDto);	
+
 		}
 		return result;
 	}
