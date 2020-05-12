@@ -35,7 +35,7 @@
 <body>
 	<h1>${dto.classseq }반 갤러리</h1>
 	<div class="grid">
-		<c:forEach var="i" begin="1" end="5" step="1">
+		<c:forEach var="i" begin="1" end="9" step="1">
 			<div class="item">
 				<div class="item-content">
 					<a ondblclick="location.href='javascript:showImage(${i })';">

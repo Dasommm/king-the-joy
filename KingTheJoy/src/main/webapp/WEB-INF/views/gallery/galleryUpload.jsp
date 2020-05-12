@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,29 +16,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${dto.classseq }반 앨범</h1>
-	<p>jpg 파일만 올려주세요. (5MB이하)</p>
-	<div class="uploadDiv">
-		1번 : <input type="file" accept=".jpg" name="uploadFile1">
-	</div>
-	<div class="uploadDiv">
-		2번 : <input type="file" accept=".jpg" name="uploadFile2">
-	</div>
-	<div class="uploadDiv">
-		3번 : <input type="file" accept=".jpg" name="uploadFile3">
-	</div>
-	<button id="uploadBtn">Upload</button>
-	<hr/>
-	
+	<h1>${dto.classseq }반 사진등록</h1>
+	<h4>사진을 드래그해서 올려주세요. jpg 파일만 가능합니다. (5MB이하)</h4>
 	<div class="grid">
-		<div class="item">
-			<div class="item-content"></div>
-		</div>
-		<div class="item">
-			<div class="item-content"></div>
-		</div>
+		<c:forEach var="i" begin="1" end="9" step="1">
+			<div class="item">
+				<div class="item-content">
+					<img src="/kingthejoy/resources/gallery/${dto.classseq }/${i }.jpg"
+						onerror="this.src='/kingthejoy/resources/img/dropicon.png'">
+				</div>
+			</div>
+		</c:forEach>
 	</div>
-	
 <script src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
@@ -47,25 +37,8 @@ const grid = new Muuri('.grid', {
 	dragEnabled: true,
 });
 $(document).ready(function () { 
-	
-	//이미지 선택
-	var imageNumber = 0;
- 	$("input[type=file]:eq(0)").change(function(e){
-		alert("첫번째 선택됨");
-		imageNumber = 1;
-		upload(imageNumber);
-	});
-	$("input[type=file]:eq(1)").change(function(e){
-		alert("두번째 선택됨");
-		imageNumber = 2;
-		upload(imageNumber);
-	});
-	$("input[type=file]:eq(2)").change(function(e){
-		alert("세번째 선택됨");
-		imageNumber = 3;
-		upload(imageNumber);
-	}); 
-	
+	//반번호
+	var classseq = ${dto.classseq};
 	
 	//파일 제한
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
@@ -83,7 +56,7 @@ $(document).ready(function () {
 	}
 	
 	//ajax file upload
-	function upload(imageNumber, files) {
+	function upload(imageNumber, files, classseq) {
 		var formData = new FormData();
 		console.log("drop>>", files);
 		//var inputFile = $("input[name='uploadFile"+imageNumber+"']");
@@ -99,7 +72,7 @@ $(document).ready(function () {
 		}
 		
 		$.ajax({
-			url: 'uploadAjaxAction.do?imageNumber='+imageNumber,
+			url: 'uploadAjaxAction.do?imageNumber='+imageNumber+"&classseq="+classseq,
 			processData: false,
 			contentType: false,
 			data: formData,
@@ -129,8 +102,8 @@ $(document).ready(function () {
 		    //console.log("drop>>", files);
 		    $(".item-content:eq("+i+")").css("border", "none");
 		    var imageNum = i+1;
-		    upload(imageNum, files);
-		    setTimeout(function() { showUploadedFile(i) }, 100);;
+		    upload(imageNum, files, classseq);
+		    setTimeout(function() { showUploadedFile(i) }, 300);
 		});
 	});
 	
@@ -140,7 +113,8 @@ $(document).ready(function () {
 		var imageNum = num+1;
 		console.log("num: "+num+"/ imageNum: "+imageNum); 
 		var uploadAppend = $(".item-content:eq("+num+")");
-		str += "<img src='/kingthejoy/resources/gallery/1/"+imageNum+".jpg' style='border: 2px solid #222222; border-radius: 4px 4px 4px 4px; box-sizing: border-box;'>"
+		$(".item-content:eq("+num+") img").remove();
+		str += "<img src='/kingthejoy/resources/gallery/"+classseq+"/"+imageNum+".jpg' style='border: 2px solid #222222; border-radius: 4px 4px 4px 4px; box-sizing: border-box;'>"
 		uploadAppend.append(str);
 	}
 	

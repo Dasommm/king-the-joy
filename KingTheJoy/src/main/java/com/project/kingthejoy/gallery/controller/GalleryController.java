@@ -107,10 +107,12 @@ public class GalleryController {
 		log.info("into: ajax");
 		
 		int imageNumber = Integer.parseInt(request.getParameter("imageNumber"));
+		int classseq = Integer.parseInt(request.getParameter("classseq"));
 		log.info("imageNumber: "+imageNumber);
+		log.info("classseq: "+classseq);
 		
 		//실제경로
-		String path = request.getSession().getServletContext().getRealPath("\\resources\\gallery\\1\\");
+		String path = request.getSession().getServletContext().getRealPath("\\resources\\gallery\\"+classseq+"\\");
 		log.info("path: "+path);
 		
 		//파일생성
