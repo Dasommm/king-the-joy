@@ -18,4 +18,6 @@ public class MemberDto {
 	private String member_addr;
 	private String member_detailaddr;
 	private Date member_date;
+	
+	private int school_seq;
 }
