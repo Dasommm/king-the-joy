@@ -200,7 +200,7 @@ public class MemberController<dataList> {
 			// 원장님 페이지 연결
 			log.info("원장님 페이지 연결");
 			if (biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()) > 0) {
-				memberDto.setSchool_seq(biz.selectChildrenSeqOfSchool(memberDto.getMember_seq()));
+				memberDto.setSchool_seq(biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()));
 				session.setAttribute("memberDto", memberDto);
 				return "main/masterMain";
 			} else {
@@ -212,7 +212,7 @@ public class MemberController<dataList> {
 			// 선생님 페이지 연결
 			log.info("선생님 페이지 연결");
 			if (biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()) > 0) {
-				memberDto.setSchool_seq(biz.selectChildrenSeqOfSchool(memberDto.getMember_seq()));
+				memberDto.setSchool_seq(biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()));
 				session.setAttribute("memberDto", memberDto);
 				return "main/teacherMain";
 			} else {
@@ -224,7 +224,7 @@ public class MemberController<dataList> {
 			// 학부모 페이지 연결
 			log.info("학부모 페이지 연결");
 			if (biz.selectChildrenSeqOfSchool(memberDto.getMember_seq()) > 0) {
-				memberDto.setSchool_seq(biz.selectChildrenSeqOfSchool(memberDto.getMember_seq()));
+				memberDto.setSchool_seq(biz.selectSchoolSeqOfParent(memberDto.getMember_seq()));
 				session.setAttribute("memberDto", memberDto);
 				return "main/parentMain";
 			} else {

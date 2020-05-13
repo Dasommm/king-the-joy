@@ -36,8 +36,8 @@ body
 }
 
 #notice {
-	width: 100%;
+	margin: auto;
+	width: 30%;
 	height: 50px;
 	overflow: hidden;
-	background-color: #fff;
 }

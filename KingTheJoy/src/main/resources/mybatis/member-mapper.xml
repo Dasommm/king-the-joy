@@ -138,9 +138,9 @@
    </insert>
    
    <select id="selectSchoolSeqOfMasterAndTeacher" parameterType="int" resultType="int">
-   	SELECT MEMBER_SEQ
+   	SELECT SCHOOL_SEQ
     FROM
-         (SELECT MEMBER_SEQ
+         (SELECT SCHOOL_SEQ
          FROM SCHOOL
          WHERE MEMBER_SEQ = #{member_seq}
          ORDER BY MEMBER_SEQ DESC)

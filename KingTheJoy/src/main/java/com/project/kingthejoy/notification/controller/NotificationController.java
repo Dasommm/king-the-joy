@@ -36,8 +36,7 @@ public class NotificationController {
 	@RequestMapping(value = "/notification.do")
 	public String notificationList(Model model, HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-		// school_seq 받아야함
-		int school_seq = 1;
+		int school_seq = memberDto.getSchool_seq();
 		logger.info("notification List Open");
 		List<NotificationDto> notificationList = notificationBiz.selectNotificationList(school_seq);
 		model.addAttribute("notificationList", notificationList);
@@ -77,8 +76,7 @@ public class NotificationController {
 			String notification_content) {
 		logger.info("notification insert res");
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-		// school_seq 유치원 번호 받아와야함
-		int school_seq = 1;
+		int school_seq = memberDto.getSchool_seq();
 		NotificationDto notificationDto = new NotificationDto();
 		notificationDto.setNotification_title(notification_title);
 		notificationDto.setNotification_content(notification_content);
@@ -175,17 +173,13 @@ public class NotificationController {
 		}
 	}
 	
-	@RequestMapping(value = "/rolling.do")
-	public String returnasdf() {
-		return "main/testrolling";
-	}
-	
 	@RequestMapping(value = "/rollingtest.do", method = RequestMethod.GET)
 	@ResponseBody
 	public List<NotificationDto> rollingNotification(HttpSession session) {
-		int school_seq = 1;
-        List<NotificationDto> notificationList = notificationBiz.selectNotificationList(school_seq);
-
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+        List<NotificationDto> notificationList = notificationBiz.selectNotificationList(memberDto.getSchool_seq());
+        System.out.println(memberDto.getSchool_seq());
+        System.out.println(notificationList.size());
         return notificationList;
 	}
 
