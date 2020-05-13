@@ -32,7 +32,7 @@ public interface MemberBiz {
 	
 	public int selectSchoolSeqOfParent(int member_seq);
 	
-	
+	public int selectSchoolSeqOfMasterAndTeacher(int member_seq);
 
 }
  

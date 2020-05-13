@@ -49,6 +49,7 @@
 			<div class="col-12">
 				<button type="button" class="btn btn-info btn-md search-button">아이디/비밀번호 찾기</button>
 			</div> 
+			<a href="s.do">school</a>
 		</div>
 	</div>
 	</form>

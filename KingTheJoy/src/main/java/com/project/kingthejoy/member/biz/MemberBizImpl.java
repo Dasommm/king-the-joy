@@ -29,8 +29,6 @@ public class MemberBizImpl implements MemberBiz {
 		boolean result = dao.loginCheck(memberDto);
 		if(result) {
 			MemberDto dto = memberView(memberDto);
-			
-			dto.setSchool_seq(selectSchoolSeqOfParent(dto.getMember_seq()));
 			session.setAttribute("memberDto", dto);
 		}
 		return result; 
@@ -79,6 +77,11 @@ public class MemberBizImpl implements MemberBiz {
 	@Override
 	public int selectSchoolSeqOfParent(int member_seq) {
 		return dao.selectSchoolSeqOfParent(member_seq);
+	}
+
+	@Override
+	public int selectSchoolSeqOfMasterAndTeacher(int member_seq) {
+		return dao.selectSchoolSeqOfMasterAndTeacher(member_seq);
 	}
 
 }
