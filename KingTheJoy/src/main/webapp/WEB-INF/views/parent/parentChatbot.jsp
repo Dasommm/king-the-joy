@@ -27,6 +27,7 @@
    position: fixed;
    top: 600px;
    right: 130px;
+   z-index: 3;
 }
 
 /* 챗봇 답변 div boder */

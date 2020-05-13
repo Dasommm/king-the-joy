@@ -6,9 +6,29 @@
 <head>
     <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/parentHeader.css"/>">
+<style type="text/css">
+
+
+/* 배경 이미지 사이즈 */
+#background img{
+   z-index : -1;
+   bottom: 0px;
+   left: 0px;
+   top : 464px;
+   opacity : 0.7;
+   height:559px;
+   width: 777px;
+   position: absolute;
+}
+
+
+</style>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+
 <body>
     <nav>
     
@@ -19,7 +39,7 @@
        	
      	<div class="MyMenu">
           	<a href="#" class="mymenu-link">마이페이지</a>
-          	<a href="#" class="mymenu-link">로그아웃</a>
+          	<a href="logout.do" class="mymenu-link">로그아웃</a>
         </div>
         
         <ul class="menu_ul">
@@ -51,6 +71,11 @@
           </ul>
           
       </nav>
+      
+      
+      <div id='background'>
+         <img alt="" src="./resources/img/parentMain.jpg">
+      </div>
       
       
 </body>
