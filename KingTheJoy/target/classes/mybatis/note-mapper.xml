@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="note">
+
+<select id="selectClass" resultType="string" parameterType="int">
+SELECT CLASS_NAME FROM CLASS
+WHERE SCHOOL_SEQ = #{school_seq}
+</select>
+
+<insert id="noteInsert" parameterType="noteDto">
+INSERT INTO NOTE
+VALUES(NOTESEQ.NEXTVAL, #{member_seq}, #{children_seq}, NULL, NULL, SYSDATE, #{note_feeling}, #{note_health}, #{note_temp}, #{note_meal}, 
+#{note_sleep}, #{note_def}, #{note_spec})
+</insert>
+
+</mapper>

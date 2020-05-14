@@ -29,7 +29,6 @@ public class MemberBizImpl implements MemberBiz {
 		boolean result = dao.loginCheck(memberDto);
 		if(result) {
 			MemberDto dto = memberView(memberDto);
-			
 			dto.setSchool_seq(selectSchoolSeqOfParent(dto.getMember_seq()));
 			session.setAttribute("memberDto", dto);
 		}

@@ -40,8 +40,23 @@ public class MemberController<dataList> {
    }
    
    @RequestMapping(value="/main.do")
-   public String mainPageForm() {
-      return "main/main"; 
+   public String mainPageForm(HttpSession session) {
+	   MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
+	      System.out.println(memberDto.getMember_role());
+	      System.out.println(memberDto.getMember_seq());
+	      if(memberDto.getMember_role()==0) {
+	         //관리자
+	         return "main/main";
+	      }else if(memberDto.getMember_role()==1){
+	         //원장
+	         return "main/main";
+	      }else if(memberDto.getMember_role()==2){
+	         //선생님
+	         return "main/main";
+	      }else{
+	         //학부모
+	         return "main/parentMain";
+	      }
    }
    
    @RequestMapping(value="/naverLoginResult.do")
@@ -193,7 +208,7 @@ public class MemberController<dataList> {
       
       if(result == true) {
          model.addAttribute("msg","킨더조이 로그인 성공");
-         model.addAttribute("url","memberUpdateForm.do");
+         model.addAttribute("url","memeberUpdateForm.do");	
          return "common/alert";
       }else {
          model.addAttribute("msg","킨더조이 로그인 실패");

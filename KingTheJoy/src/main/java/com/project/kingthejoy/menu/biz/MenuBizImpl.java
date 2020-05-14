@@ -31,14 +31,23 @@ public class MenuBizImpl implements MenuBiz {
 
 	@Override
 	public int menuUpdate(MenuDto menuDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("menuUpdate bizImpl:::::");
+		return menuDao.menuUpdate(menuDto);
+
 	}
 
 	@Override
-	public int menuDelete(MenuDto menuDto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int menuDelete(int menu_seq) {
+		System.out.println("menuDelete bizImpl :::::");
+		return menuDao.menuDelete(menu_seq);
+
+	}
+
+	@Override
+	public MenuDto menuSelectOne(int menu_seq) {
+		System.out.println("menuSelectOne BizImpl!!!");
+		return menuDao.menuSelectOne(menu_seq);
+
 	}
 
 }

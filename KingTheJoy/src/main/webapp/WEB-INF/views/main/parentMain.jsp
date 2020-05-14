@@ -22,6 +22,7 @@
   derived from this CSS on this page: https://popper.js.org/tooltip-examples.html
   */
 
+/*tooltip css 지정*/
   .popper,
   .tooltip {
     position: absolute;
@@ -121,14 +122,12 @@
 
 </style>
 
-
+<!-- 캘린더 설정 -->
  <script>
-
-
 		document.addEventListener('DOMContentLoaded', function () {
 			console.log("캘린더!!!!!!");
 	      var calendarEl = document.getElementById('calendar');
-	
+
 	      var calendar = new FullCalendar.Calendar(calendarEl, {
 	          plugins: ['dayGrid'],
 	          defaultView: 'dayGridMonth',
@@ -136,6 +135,7 @@
 	          locale : 'ko',
 	          displayEventTime : false,
 	          eventRender : function(info){
+	        	  console.log(info);
 	        	  console.log(info.el);
 	        	  console.log(info.event.extendedProps.description);
 	        	  var tooltip = new Tooltip(info.el, {
@@ -143,8 +143,7 @@
 	        		  placement : 'top',
 	        		  trigger : 'hover',
 	        		  container : 'body'	        	  
-	        	  });
-	        	  
+	        	  });	        	  
 	          },
 	          eventSources : [
 	        	  {
@@ -187,16 +186,15 @@ h1{
 </head>
 <body>
 
-<<<<<<< HEAD
 <section>
-=======
+
 <!-- 배경 사진 -->
 <div id="background">
 	<img src="./resources/img/parentMain.jpg">
 </div>
+
 <h1><a href="rolling.do">rolling</a> </h1>
 <h1><a href="chatgo.do">chat</a></h1>
->>>>>>> notification
 
 <%@include file="../parent/parentChatbot.jsp" %>
 
@@ -205,6 +203,7 @@ h1{
 	<!-- 공지사항 -->
 	<div>공지사항 부분</div>
 	<input type="button" value="선생님용식단페이지" onclick="location='menuteacher.do?'">
+	<input type="button" value="학부모 알림장" onclick="location='note.do?'">
 
 	<div>
 	<!-- 식단표 -->

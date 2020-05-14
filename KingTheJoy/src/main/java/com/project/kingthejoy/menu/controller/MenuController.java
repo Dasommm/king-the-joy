@@ -52,20 +52,20 @@ public class MenuController {
 	@RequestMapping(value = "/menuteacher.do")
 	public String menuTeacher() {
 		
-		return "parent/menuTeacher";
+		return "menu/menuTeacher";
 		
 	}
-	
+
 	@RequestMapping(value="/tooltip.do")
 	public String tollTipTest() {
 		
-		return "parent/tooltipTest";
+		return "menu/tooltipTest";
 		
 	}
 	
 	@RequestMapping(value = "/menuInsertForm.do")	//식단입력 팝업 페이지로 이동
 	public String menuInsert() {
-		return "parent/menuInsert";
+		return "menu/menuInsert";
 	}
 	
 	@RequestMapping(value = "/menuInsertDb.do", method = RequestMethod.POST)
@@ -120,9 +120,53 @@ public class MenuController {
 			
 	}
 	
+	@RequestMapping(value = "/menuUpdate.do")
+	public String menuUpdate(int menu_seq, Model model) {	//selectOne 해서 뿌려주기
+		logger.info("menuUpdateForm controller:::");
+		MenuDto menuUpdate = menuBiz.menuSelectOne(menu_seq);
+		model.addAttribute("menuSelectOne", menuUpdate);
+		
+		return "/menu/menuUpdateForm";
+	}
+	
+	@RequestMapping(value = "/menuUpdateDb.do")
+	public String menuUpdateDb(Model model, MenuDto menuDto) {
+		logger.info("menuUpdateDB controller:::::::::");
+		int updateRes = menuBiz.menuUpdate(menuDto);
+		if(updateRes>0) {
+			model.addAttribute("msg", "수정성공");
+			model.addAttribute("url", "alertClose.do");
+			return "/common/alert";
+		}else {
+			model.addAttribute("msg", "수정실패");
+			model.addAttribute("url", "menuUpdate.do"+menuDto.getMenu_seq());
+			return "/common/alert";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/menuDelete.do")
+	public String menuDelete(int menu_seq, Model model) {
+		logger.info("menuDeleteController");
+		int deleteRes = menuBiz.menuDelete(menu_seq);
+		if(deleteRes>0) {
+			model.addAttribute("msg", "삭제성공");
+			model.addAttribute("url", "alertClose.do");
+			return "/common/alert";
+		}else {
+			model.addAttribute("msg", "삭제실패");
+			model.addAttribute("url", "menuList.do");
+			return "/common/alert";
+		}
+		
+	}
+	
 	@RequestMapping(value = "/alertClose.do")
 	public String alertClose() {
-		return "/parent/menuAlertClose";
-	}
+		return "/menu/menuAlertClose";
+	}	
 
+		
+	
+	
 }
