@@ -4,11 +4,18 @@
 
 	<typeAliases>
 		<typeAlias type="com.project.kingthejoy.member.dto.MemberDto" alias="memberDto" />
+		<typeAlias type="com.project.kingthejoy.child.dto.ChildDto" alias="childDto" />
 	</typeAliases>
+	
+	
+
+
 
 	<mappers>
 		<mapper resource="/mybatis/member-mapper.xml" />
+		<mapper resource="/mybatis/child-mapper.xml" />
 	</mappers>
+	
 	
 	<!-- resource : src/main/resources -->
 

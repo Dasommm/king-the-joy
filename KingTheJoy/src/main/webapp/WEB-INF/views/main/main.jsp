@@ -8,6 +8,10 @@
 </head>
 <body>
 ${sessionScope.member_name }님이 로그인중입니다.
-<a href="logout.do">로그아웃</a>
+<a href="logout.do">로그아웃</a><br>
+<br><br><br><br>
+<a href="translate.do">translate</a>
+<br><br><br><br>
+<a href="child.do">child noticeboard</a>
 </body>
 </html>
