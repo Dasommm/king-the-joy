@@ -14,7 +14,7 @@
    z-index : -1;
    bottom: 0px;
    left: 0px;
-   top : 464px;
+   top : 491px;
    opacity : 0.7;
    height:559px;
    width: 777px;

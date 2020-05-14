@@ -168,14 +168,6 @@
 </script>
 <style type="text/css">
 
-/* 배경 이미지 사이즈 */
-#background img {
-	z-index: -1;
-	bottom: 0px;
-	left: 0px;
-	position: absolute;
-	top: 430px;
-}
 /* 캘린더 */
 /* h1 */
 h1 {
@@ -198,11 +190,9 @@ h1 {
 
    <!-- 공지사항 -->
    <div id="mainNotice">
-   		<a>공지사항 부분</a>
    </div>
    <div id="notice">
 			<ul class="rolling" id="notification">
-			<li>TEXT</li>
 			</ul>
 	</div>
 
@@ -215,24 +205,6 @@ h1 {
 
 
 
-	<section>
-	
-
-		<h1>오늘의 식단</h1>
-
-		
-		<input type="button" value="선생님용식단페이지"
-			onclick="location='menuteacher.do?'">
-
-		<div>
-			<!-- 식단표 -->
-			<div id='calendar' style="width: 800px; margin-left: 350px;" ></div>
-			<div id='background'>
-				<img alt="" src="./resources/img/parentMain.jpg">
-			</div>
-		</div>
-	</section>
-	<%@include file="../common/footer.jsp"%>
 </body>
 
 </html>
