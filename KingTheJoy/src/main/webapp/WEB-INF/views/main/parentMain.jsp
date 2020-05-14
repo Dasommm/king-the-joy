@@ -179,7 +179,6 @@
 /* 캘린더 */
 /* h1 */
 h1 {
->>>>>>> master
 	text-align: center;
 	font-weight: bold;
 }
@@ -217,7 +216,7 @@ h1 {
 
 
 	<section>
-		<%@include file="../parent/parentChatbot.jsp"%>
+	
 
 		<h1>오늘의 식단</h1>
 

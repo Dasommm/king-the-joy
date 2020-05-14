@@ -45,7 +45,7 @@
         <ul class="menu_ul">
             <li class="menu_li" >
             	<div class="menu-css" id="not">
-                <a class="menu-link" href="#">공지 사항</a>
+                <a class="menu-link" href="notification.do">공지 사항</a>
             	</div>   
             </li>
           <li class="menu_li">
