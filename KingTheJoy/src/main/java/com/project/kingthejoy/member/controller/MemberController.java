@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,9 +40,21 @@ public class MemberController<dataList> {
 		return "common/home";
 	}
 	
-	@RequestMapping(value="/main.do")
-	public String mainPageForm() {
-		return "main/main"; 
+	@RequestMapping(value="/myPage.do" ,method = RequestMethod.GET)
+	public String mainPageForm(Model model, HttpSession session) {
+		
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
+		int member_seq = memberDto.getMember_seq();
+		int member_role = memberDto.getMember_role();
+		
+		if(member_role == 3) {
+			model.addAttribute("childrenList", biz.childrenList(member_seq));
+
+		}else if(member_role == 2 || member_role == 1) {
+			
+		}
+		
+		return "member/myPage"; 
 	}
 	
 	@RequestMapping(value="/naverLoginResult.do")
@@ -49,23 +62,69 @@ public class MemberController<dataList> {
 		return "member/callback";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="/naverLoginSuccess.do" , method = {RequestMethod.POST, RequestMethod.GET})
 	 
-	public String naverLoginSuccess(HttpSession session, String naver_name, String naver_email) {
+	public String naverLoginSuccess(HttpSession session, String naver_name, String naver_email, MemberDto memberDto) {
 		
-		session.setAttribute("sns_name", naver_name);
-		session.setAttribute("sns_email", naver_email);
+		session.setAttribute("member_name", naver_name);
+		session.setAttribute("member_id", naver_email);
 		
-		return "member/snsMemberUpdate";
+		Map<String,String> snsMap = new HashMap<String, String>();
+		snsMap.put("member_name", naver_name);
+		snsMap.put("member_id", naver_email);
+		System.out.println(naver_name);
+		System.out.println(naver_email);
+		log.info("SNS check 넘어온 데이터 : {}", biz.snsMemberCheck(snsMap, session));
 		
+		boolean result = biz.snsMemberCheck(snsMap, session);
+		
+		if(result == true) {
+			return "main"; 
+		}else {
+			return "selectResistForm";
+		}
+	}
+
+	@RequestMapping(value="/snsMemberUpdate.do", method=RequestMethod.POST)
+	public String snsMemberUpdate(MemberDto memberDto, Model model) {
+		
+		logger.info("SNS Member Join");
+		
+		int res = biz.insertSnsInfo(memberDto);
+		
+		if(res>0) { 
+			logger.info("회원가입 완료");
+			model.addAttribute("msg","추가정보 입력 완료 > 자녀를 등록합니다.");
+			model.addAttribute("url","memberUpdateForm.do");
+			return "common/alert";
+		}else {
+			model.addAttribute("msg","회원가입이 실패하였습니다. 다시 시도해주세요.");
+			model.addAttribute("url","selectResistForm.do");
+			return "commom/alert";
+		}
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="/kakaoLogin.do")
-	public String kakaoLogin(HttpSession session, String kakao_nickname, String kakao_email) {
-		session.setAttribute("sns_name",kakao_nickname);
-		session.setAttribute("sns_email", kakao_email);
+	public String kakaoLogin(HttpSession session, String kakao_nickname, String kakao_email, Model model, MemberDto memberDto) {
 		
-		return "member/snsMemberUpdate";
+		session.setAttribute("member_name", kakao_nickname);
+		session.setAttribute("member_id", kakao_email);
+		System.out.println(kakao_nickname);
+		System.out.println(kakao_email);
+		Map<String,String> snsMap = new HashMap<String, String>();
+		snsMap.put("member_name", kakao_nickname);
+		snsMap.put("member_id", kakao_email);
+		log.info("SNS check 넘어온 데이터 : {}", biz.snsMemberCheck(snsMap, session));
+		 
+		boolean result = biz.snsMemberCheck(snsMap, session);
+		
+		if(result == true) { 
+			return "roleCheck";
+		}else {
+			return "selectResistForm";
+		}
 	}
 	
 	@RequestMapping(value="/memberUpdateForm.do")
@@ -80,18 +139,14 @@ public class MemberController<dataList> {
 	
 	@ResponseBody
 	@RequestMapping(value="/tableDataSend.do")
-	public void insertChildOrSchool(String data, HttpSession session) {
+	public String insertChildOrSchool(String data, HttpSession session) {
 		String[] dataArray = null;
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-		
+		System.out.println(data);
 		dataArray = data.split(",");
-		
-		
-		
-		
-		
+		System.out.println(dataArray[0]);
 		log.info("session value = {}", memberDto.getMember_seq());
-		log.info("dataArray Length = {}" ,dataArray[1]);
+		log.info("dataArray Length = {}" ,dataArray[0]);
 		for(int i=0; i<dataArray.length; i++) {
 			SchoolDto schoolDto = new SchoolDto();
 			String[] temp = dataArray[i].split("/");
@@ -114,12 +169,13 @@ public class MemberController<dataList> {
 				int children_seq = biz.selectChildrenSeqOfSchool(memberDto.getMember_seq());
 				int school_seq = biz.selectSchoolSeq(schoolListMap);
 				
-				schoolMap.put("children_seq", children_seq);
+				schoolMap.put("children_seq", children_seq); 
 				schoolMap.put("school_seq", school_seq);
-				schoolMap.put("member_seq", memberDto.getMember_seq());
+				schoolMap.put("member_seq", memberDto.getMember_seq()); 
 				
 				biz.insertSchool(schoolMap);
 				
+				return "main/parentMain";
 				
 			}else {
 				Map<String,String> childMap = new HashMap<String, String>();
@@ -141,9 +197,10 @@ public class MemberController<dataList> {
 				schoolMap.put("member_seq", memberDto.getMember_seq());
 				
 				biz.insertSchool(schoolMap);
-				
+				return "main/parentMain";
 			}		
 		}
+		return data;
 	}
 	
 	
@@ -157,13 +214,17 @@ public class MemberController<dataList> {
 	}
 	
 	@RequestMapping(value= "/resistForm.do")
-	public String resistForm(int member_role, Model model) {
+	public String resistForm(int member_role, Model model, HttpSession session) {
 		
 		logger.info("Resist Form Open : " + member_role + "번");
 		
 		model.addAttribute("member_role", member_role);
 		
-		return "member/resist"; 
+		if(session.getAttribute("member_id") == null){
+			return "member/resist";
+		}else {
+			return "member/snsMemberUpdate";
+		}
 	}
 	 
 	@RequestMapping(value="/memberJoin.do", method=RequestMethod.POST)
@@ -186,19 +247,16 @@ public class MemberController<dataList> {
 	
 	@RequestMapping("/loginCheck.do")
 	public String loginCheck(MemberDto memberDto, HttpSession session, Model model) {
-		
 		boolean result = biz.loginCheck(memberDto, session);
-		MemberDto dto = (MemberDto)session.getAttribute("memberDto");
-		log.info("현재 회원 자녀들의 학교 번호 = {}", dto.getSchool_seq());
-		
-		if(result == true) {
-			model.addAttribute("msg","킨더조이 로그인 성공");
-			model.addAttribute("url","memberUpdateForm.do");
+		if (result == true) {
+			log.info("session value(member_role) = {}", memberDto.getMember_role());
+			model.addAttribute("msg", "킨더조이 로그인 성공");
+			model.addAttribute("url", "roleCheck.do");
 			return "common/alert";
-		}else {
-			model.addAttribute("msg","킨더조이 로그인 실패");
-			model.addAttribute("url","home.do");
-			return "common/alert"; 
+		} else {
+			model.addAttribute("msg", "킨더조이 로그인 실패");
+			model.addAttribute("url", "home.do");
+			return "common/alert";
 		}
 	}
 	
@@ -210,6 +268,90 @@ public class MemberController<dataList> {
 		model.addAttribute("url","home.do");
 		return "common/alert";
 	
+	}
+	
+	@RequestMapping("/roleCheck.do")
+	public String roleCheck(HttpSession session, Model model) {
+		// 0관리자, 1원장, 2선생님, 3학부모
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+		log.info("로그인된 사용자 등급 = {} ", memberDto.getMember_role());
+		log.info("로그인된 사용자 번호 = {} ", memberDto.getMember_seq());
+
+		
+		if (memberDto.getMember_role() == 0) {
+			// 관리자 (node로 연결)
+			log.info("관리자 페이지 연결");
+			return "common/home";
+		} else if (memberDto.getMember_role() == 1) {
+			// 원장님 페이지 연결
+			log.info("원장님 페이지 연결");
+			if (biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()) > 0) {
+				memberDto.setSchool_seq(biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()));
+				session.setAttribute("memberDto", memberDto);
+				return "main/masterMain";
+			} else {
+				model.addAttribute("msg", "소속된 유치원 정보를 입력해주세요");
+				model.addAttribute("url", "schoolInfoUpdate.do");
+				return "common/alert";
+			}
+		} else if (memberDto.getMember_role() == 2) {
+			// 선생님 페이지 연결
+			log.info("선생님 페이지 연결");
+			if (biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()) > 0) {
+				memberDto.setSchool_seq(biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()));
+				session.setAttribute("memberDto", memberDto);
+				return "main/teacherMain";
+			} else {
+				model.addAttribute("msg", "소속된 유치원 정보를 입력해주세요");
+				model.addAttribute("url", "schoolInfoUpdate.do");
+				return "common/alert";
+			}
+		} else {
+			// 학부모 페이지 연결
+			log.info("학부모 페이지 연결");
+			
+			  
+			if (biz.selectChildrenSeqOfSchool(memberDto.getMember_seq()) > 0) {
+				memberDto.setSchool_seq(biz.selectSchoolSeqOfParent(memberDto.getMember_seq()));
+				session.setAttribute("memberDto", memberDto);
+				return "main/parentMain";
+			} else {
+				model.addAttribute("msg", "자녀정보를 추가로 입력해주세요");
+				model.addAttribute("url", "memberUpdateForm.do");
+				return "common/alert";
+			}
+		}
+	}
+	
+	@RequestMapping("/schoolInfoUpdate.do")
+	public String fowardToSchoolInfoUpdate(Model model, HttpSession session) {
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto"); 
+		model.addAttribute("member_role",memberDto.getMember_role());
+		return "member/schoolInfoUpdate";
+	}
+	
+	@RequestMapping(value = "/schoolInfo.do", method = RequestMethod.POST)
+	public String schoolInfoInsert(String school_addr, String school_name, HttpSession session, Model model) {
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+		Map<String, Integer> schoolMap = new HashMap<String, Integer>();
+		SchoolDto schoolDto = new SchoolDto();
+		schoolDto.setSchool_addr(school_addr);
+		schoolDto.setSchool_name(school_name);
+		Map<String, String> schoolListMap = new HashMap<String, String>();
+		schoolListMap.put("school_addr", school_addr);
+		schoolListMap.put("school_name", school_name);
+		System.out.println("school_addr : "+school_addr);
+		if(biz.selectSchool(schoolDto)==null) {
+			biz.insertSchoolInfo(schoolListMap);
+		}
+		int school_seq = biz.selectSchoolSeq(schoolListMap);
+		schoolMap.put("school_seq", school_seq);
+		schoolMap.put("member_seq", memberDto.getMember_seq());
+		biz.insertSchool(schoolMap);
+		log.info("session value = {}", memberDto.getMember_seq());
+		model.addAttribute("msg", "유치원 정보입력을 성공하였습니다");
+		model.addAttribute("url", "roleCheck.do");
+		return "common/alert";
 	}
 
 }

@@ -41,12 +41,29 @@
 			,MEMBER_SEQ
 			,MEMBER_PHONE
 			,MEMBER_EMAIL
+			,MEMBER_ROLE 
 			,MEMBER_OADDR
 			,MEMBER_ADDR
 			,MEMBER_DETAILADDR
 			,MEMBER_DATE
 		FROM MEMBER
 		WHERE MEMBER_ID = #{member_id} AND MEMBER_PW = #{member_pw}
+	</select>
+	
+		<select id="snsMemberView" resultType="memberDto">
+		SELECT
+			 MEMBER_ID
+			,MEMBER_NAME
+			,MEMBER_SEQ
+			,MEMBER_PHONE
+			,MEMBER_EMAIL
+			,MEMBER_ROLE 
+			,MEMBER_OADDR
+			,MEMBER_ADDR
+			,MEMBER_DETAILADDR
+			,MEMBER_DATE
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id}
 	</select>
 	
 	<insert id = "insertChildInfo" parameterType="Map">
@@ -105,9 +122,9 @@
 	<insert id="insertSchool" parameterType="Map">
 		INSERT INTO SCHOOL
 		VALUES(
-			 #{children_seq}
-			,#{member_seq}
-			,#{school_seq}
+			 ${children_seq}
+			,${member_seq}
+			,${school_seq}
 		)
 	</insert>
 	
@@ -120,5 +137,59 @@
 		]]>
 	</select>
 	
+	<select id="snsMemberCheck" resultType="String" parameterType="Map">
+		SELECT MEMBER_ID
+		FROM MEMBER 
+		WHERE MEMBER_ID = #{member_id} 
+	</select>
+	 
+	 <insert id="insertSnsInfo" parameterType="memberDto">
+	 			INSERT INTO MEMBER(
+							 MEMBER_SEQ
+							,MEMBER_ID
+							,MEMBER_PW
+							,MEMBER_NAME
+							,MEMBER_PHONE
+							,MEMBER_EMAIL
+							,MEMBER_ROLE 
+							,MEMBER_OADDR
+							,MEMBER_ADDR
+							,MEMBER_DETAILADDR)
+					VALUES
+						   ( member_seq.nextval,
+							#{member_id},
+							#{member_pw},
+							#{member_name},
+							#{member_phone},
+							#{member_email},
+							#{member_role},
+							#{member_oaddr},
+							#{member_addr},
+							#{member_detailaddr})
+	</insert>
+	 
+	<insert id="teacherMasterInsertSchool" parameterType="Map">
+		INSERT INTO SCHOOL(MEMBER_SEQ, SCHOOL_SEQ)
+			VALUES(
+			 #{member_seq}
+			,#{school_seq}
+			)
+	</insert>
+   
+	<select id="selectSchoolSeqOfMasterAndTeacher" parameterType="int" resultType="int">
+		SELECT SCHOOL_SEQ
+		FROM
+			(SELECT SCHOOL_SEQ
+			FROM SCHOOL
+			WHERE MEMBER_SEQ = #{member_seq}
+			ORDER BY MEMBER_SEQ DESC)
+		WHERE ROWNUM = 1
+	</select>
+	
+	<select id="childrenList" resultType="childrenDto" parameterType="int">
+		SELECT *
+		FROM CHILDREN
+		WHERE MEMBER_SEQ = #{member_seq}
+	</select>
 	
 </mapper>

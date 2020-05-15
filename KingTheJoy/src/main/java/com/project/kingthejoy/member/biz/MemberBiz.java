@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.project.kingthejoy.children.dto.ChildrenDto;
 import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.school.dto.SchoolDto;
 
@@ -15,6 +16,8 @@ public interface MemberBiz {
 	public boolean loginCheck(MemberDto memberDto, HttpSession session);
 	
 	public MemberDto memberView(MemberDto memberDto);
+	
+	public MemberDto snsMemberView(MemberDto membetDto);
 	
 	public void logout(HttpSession session);
 	
@@ -32,7 +35,15 @@ public interface MemberBiz {
 	
 	public int selectSchoolSeqOfParent(int member_seq);
 	
+	public int insertSnsInfo(MemberDto memberDto);
 	
-
+	public boolean snsMemberCheck(Map<String, String> snsMap, HttpSession session);
+	
+	public int selectSchoolSeqOfMasterAndTeacher(int member_seq);
+	
+	public List<ChildrenDto> childrenList(int member_seq);
+	
+	public void selectSchoolInfo(SchoolDto schoolDto);
+	
 }
  

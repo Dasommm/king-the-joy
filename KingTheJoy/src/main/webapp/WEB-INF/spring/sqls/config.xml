@@ -5,6 +5,7 @@
 	<typeAliases>
 		<typeAlias type="com.project.kingthejoy.member.dto.MemberDto" alias="memberDto" />
 		<typeAlias type="com.project.kingthejoy.school.dto.SchoolDto" alias="schoolDto" />
+		<typeAlias type="com.project.kingthejoy.children.dto.ChildrenDto" alias="childrenDto" />
 	</typeAliases>
 
 	<mappers>
