@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.kingthejoy.children.dto.ChildrenDto;
 import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.school.dto.SchoolDto;
 
@@ -89,6 +90,22 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
+	public int insertSnsInfo(MemberDto memberDto) {
+		return sqlSession.insert("member.insertSnsInfo", memberDto);
+	}
+ 
+	@Override
+	public boolean snsMemberCheck(Map<String, String> snsMap) {
+		String check = sqlSession.selectOne("member.snsMemberCheck", snsMap);
+		return (check == null) ? false : true; 
+	}
+
+	@Override
+	public MemberDto snsMemberView(MemberDto memberDto) {
+		return sqlSession.selectOne("member.snsMemberView", memberDto);
+	}
+
+	@Override
 	public int selectSchoolSeqOfMasterAndTeacher(int member_seq) {
 		if(sqlSession.selectOne("member.selectSchoolSeqOfMasterAndTeacher", member_seq)==null) {
 			return -1;
@@ -96,5 +113,14 @@ public class MemberDaoImpl implements MemberDao {
 			return sqlSession.selectOne("member.selectSchoolSeqOfMasterAndTeacher", member_seq);
 		}
 	}
+	@Override
+	public List<ChildrenDto> childrenList(int member_seq) {
+		return sqlSession.selectList("member.childrenList", member_seq);
+	}
 
+	@Override
+	public void selectSchoolInfo(SchoolDto schoolDto) {
+		// TODO Auto-generated method stub
+		
+	}
 }
