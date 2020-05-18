@@ -80,4 +80,9 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.selectSchoolSeqOfParent(member_seq);
 	}
 
+	@Override
+	public int selectSchoolSeqOfMasterAndTeacher(int member_seq) {
+		return dao.selectSchoolSeqOfMasterAndTeacher(member_seq);
+	}
+
 }

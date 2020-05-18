@@ -96,6 +96,15 @@
          ORDER BY CHILDREN_SEQ DESC)
       WHERE ROWNUM = 1
    </select>
+   <select id="selectMemberSeqOfSchool" parameterType="int" resultType="int">
+	  SELECT MEMBER_SEQ
+	     FROM
+	        (SELECT CHILDREN_SEQ
+	        FROM CHILDREN
+	        WHERE MEMBER_SEQ = #{member_seq}
+	        ORDER BY CHILDREN_SEQ DESC)
+	     WHERE ROWNUM = 1
+   </select>
    
    <select id="selectSchoolSeq" parameterType="Map" resultType="int">
       SELECT SCHOOL_SEQ
@@ -120,6 +129,22 @@
          AND ROWNUM >= 1 AND ROWNUM < 2
       ]]>
    </select>
+   <insert id="teacherMasterInsertSchool" parameterType="Map">
+    INSERT INTO SCHOOL(member_seq, school_seq)
+      VALUES(
+          #{member_seq}
+         ,#{school_seq}
+      )
+   </insert>
    
+   <select id="selectSchoolSeqOfMasterAndTeacher" parameterType="int" resultType="int">
+   	SELECT SCHOOL_SEQ
+    FROM
+         (SELECT SCHOOL_SEQ
+         FROM SCHOOL
+         WHERE MEMBER_SEQ = #{member_seq}
+         ORDER BY MEMBER_SEQ DESC)
+      WHERE ROWNUM = 1
+   </select>
    
 </mapper>

@@ -62,7 +62,11 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int selectChildrenSeqOfSchool(int member_seq) {
-		return sqlSession.selectOne("member.selectChildrenSeqOfSchool", member_seq);
+		if(sqlSession.selectOne("member.selectChildrenSeqOfSchool", member_seq)==null) {
+			return -1;
+		}else {
+			return sqlSession.selectOne("member.selectChildrenSeqOfSchool", member_seq);
+		}
 	}
 
 	@Override
@@ -72,12 +76,25 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insertSchool(Map<String, Integer> schoolMap) {
-		return sqlSession.insert("member.insertSchool", schoolMap);
+		if(schoolMap.get("childresn_seq")==null) {
+			return sqlSession.insert("member.teacherMasterInsertSchool", schoolMap);
+		}else {
+			return sqlSession.insert("member.insertSchool", schoolMap);
+		}
 	}
 
 	@Override
 	public int selectSchoolSeqOfParent(int member_seq) {
 		return sqlSession.selectOne("member.selectSchoolSeqOfParent", member_seq);
+	}
+
+	@Override
+	public int selectSchoolSeqOfMasterAndTeacher(int member_seq) {
+		if(sqlSession.selectOne("member.selectSchoolSeqOfMasterAndTeacher", member_seq)==null) {
+			return -1;
+		}else {
+			return sqlSession.selectOne("member.selectSchoolSeqOfMasterAndTeacher", member_seq);
+		}
 	}
 
 }

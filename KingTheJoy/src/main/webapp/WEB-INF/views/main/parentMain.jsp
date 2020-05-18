@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +8,16 @@
 
 <link href='resources/fullcalendar/core/main.css' rel='stylesheet' />
 <link href='resources/fullcalendar/daygrid/main.css' rel='stylesheet' />
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/rollingNotice.css"/>">
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src='resources/fullcalendar/core/main.js'></script>
+
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src='resources/fullcalendar/core/main.js'></script>
 <script src='resources/fullcalendar/daygrid/main.js'></script>
 <script src='resources/fullcalendar/interaction/main.js'></script>
-<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
-<script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script> 
+
 
 <!-- 캘린더 설정 -->
  <script>
@@ -49,21 +53,19 @@
 	      calendar.render();
 	  });
 		
+
 </script>
 <style type="text/css">
 
-/* 배경 이미지 사이즈 */
-#background img{
-	z-index : -1;
-	bottom: 0px;
-	left: 0px;
-	position : absolute;
-	top : 430px;
-}
 /* 캘린더 */
 /* h1 */
-h1{
+h1 {
 	text-align: center;
+	font-weight: bold;
+}
+
+#mainNotice{
+ text-align: center;
 }
 </style>
 </head>
@@ -79,7 +81,10 @@ h1{
 <h1><a href="rolling.do">rolling</a> </h1>
 <h1><a href="chatgo.do">chat</a></h1>
 
+
+<%@include file="../common/parentHeader.jsp" %>
 <%@include file="../parent/parentChatbot.jsp" %>
+
 
 <h1>오늘의 식단</h1>
 
@@ -95,11 +100,18 @@ h1{
 		<div id='background'>
 			<img alt="" src="./resources/img/parentMain.jpg">
 		</div>
+
 	</div>
 
+ 
+   <!-- 식단표 -->
+      <div id='calendar' style="width: 800px; margin-left:350px;"></div>
 
 </section>
 <%@include file="../common/footer.jsp" %>
+
+
+
 </body>
 
 </html>
