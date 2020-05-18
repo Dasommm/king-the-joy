@@ -11,6 +11,24 @@ WHERE SCHOOL_SEQ = #{school_seq}
 INSERT INTO NOTE
 VALUES(NOTESEQ.NEXTVAL, #{member_seq}, #{children_seq}, NULL, NULL, SYSDATE, #{note_feeling}, #{note_health}, #{note_temp}, #{note_meal}, 
 #{note_sleep}, #{note_def}, #{note_spec})
+	<selectKey keyProperty="note_seq" resultType="int" order="AFTER">
+		select noteseq.currval as note_seq from dual
+	</selectKey>
 </insert>
 
+<select id="selectNote" parameterType="int" resultType="noteDto">
+SELECT * FROM NOTE
+WHERE NOTE_SEQ = #{note_seq}
+</select>
+
+<select id="selectEmail" parameterType="String" resultType="String">
+SELECT MEMBER_EMAIL 
+FROM MEMBER M FULL OUTER JOIN CLASS C
+ON M.MEMBER_SEQ = C.MEMBER_SEQ
+WHERE CLASS_NAME =#{email_class}
+</select>
+
+
 </mapper>
+
+

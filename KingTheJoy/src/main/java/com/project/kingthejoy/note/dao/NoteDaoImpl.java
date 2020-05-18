@@ -1,5 +1,6 @@
 package com.project.kingthejoy.note.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -19,17 +20,19 @@ public class NoteDaoImpl implements NoteDao {
 	String NAMESPACE = "note.";
 
 	@Override
-	public Set<String> selectClass(int school_seq) {
+	public List<String> selectClass(int school_seq) {
 		
 		List<String> selectClass = sqlSessionTemplate.selectList(NAMESPACE+"selectClass",school_seq);
 		System.out.println("noteDaoImpl list:::::::::::"+selectClass.toString());
 		Collection<String> collection = selectClass;
 		
 		Set<String> set = new HashSet<String>(collection);
-		System.out.println(set);
+		List<String> selectClazz = new ArrayList<String>(set);
+		
+		System.out.println(selectClazz);
 		
 		
-		return set;
+		return selectClazz;
 
 	}
 
@@ -43,8 +46,27 @@ public class NoteDaoImpl implements NoteDao {
 	public int noteInsertDb(NoteDto noteDto) {
 		System.out.println("noteDaoImpl :::::: noteInsertDB");
 		int res = sqlSessionTemplate.insert(NAMESPACE+"noteInsert",noteDto);
+		System.out.println("::::::::::noteSeq::::::::"+noteDto.getNote_seq());
+		int note_seq = noteDto.getNote_seq();
 		System.out.println("noteInsertRES ="+res);
-		return res;
+		return note_seq;
+
+	}
+
+	@Override
+	public NoteDto selectNoteInsert(int note_seq) {
+		NoteDto selectNote = sqlSessionTemplate.selectOne(NAMESPACE+"selectNote",note_seq);
+		System.out.println("::::::noteDto::::::"+selectNote.toString());
+		
+		return selectNote;
+
+	}
+
+	@Override
+	public List<String> selectEmail(String mail_class) {
+		List<String> selectEmail = sqlSessionTemplate.selectList(NAMESPACE+"selectEmail", mail_class);
+		//System.out.println(":::::::selectEmail:::::"+selectEmail.toString());
+		return selectEmail;
 
 	}
 

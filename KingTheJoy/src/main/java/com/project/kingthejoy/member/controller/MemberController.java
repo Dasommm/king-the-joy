@@ -208,7 +208,7 @@ public class MemberController<dataList> {
       
       if(result == true) {
          model.addAttribute("msg","킨더조이 로그인 성공");
-         model.addAttribute("url","memeberUpdateForm.do");	
+         model.addAttribute("url","main.do");	//다시 수정하기 -> memeberUpdateForm.do로 
          return "common/alert";
       }else {
          model.addAttribute("msg","킨더조이 로그인 실패");

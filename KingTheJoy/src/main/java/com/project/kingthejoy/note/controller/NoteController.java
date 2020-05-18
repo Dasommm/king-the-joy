@@ -1,5 +1,6 @@
 package com.project.kingthejoy.note.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.kingthejoy.member.controller.MemberController;
+import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.note.biz.NoteBiz;
 import com.project.kingthejoy.note.dto.NoteDto;
 
@@ -48,17 +50,72 @@ public class NoteController {
 
 		System.out.println(noteDto.toString());
 		
-		int noteInsertRes = notebiz.noteInsertDb(noteDto);
-		if(noteInsertRes>0) {
+		int insertDbNoteSeq = notebiz.noteInsertDb(noteDto);	//저장한 알림장 번호
+		if(insertDbNoteSeq>0) {
+			NoteDto sendNote = notebiz.selectNoteInsert(insertDbNoteSeq);
+			// 부모님 전화번호 가져와서 값 넣기
+			sendNote.setNote_receiver("01050543568");
+			System.out.println("::::sendNote controller:::::"+sendNote.toString());
 			
+
 			// 문자보내기
-			// 전송완료 알림띄우기
-			return "common/alert";
+			int sendRes = notebiz.sendText(sendNote);
+			if(sendRes>0) {
+				// 전송완료 알림띄우기
+				model.addAttribute("msg", "전송 완료");
+				model.addAttribute("url", "note.do");
+				return "common/alert";				
+			}else {
+				//전송실패 알림띄우기
+				model.addAttribute("msg", "전송실패");
+				model.addAttribute("url", "note.do");
+				return "common/alert";
+			}
 		}else {
 			model.addAttribute("msg", "전송에 실패했습니다.");
-			model.addAttribute("url", "");
+			model.addAttribute("url", "note.do");
 			return "common/alert";
 		}
 		
 	}
+	
+	@RequestMapping(value = "/mailform.do")
+	public String mailform(HttpSession session, Model model) {
+		logger.info(":::::::mailForm controller");
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+		int school_seq = memberDto.getSchool_seq();
+		//해당 유치원의 반
+		List<String> selectClass = notebiz.selectClass(school_seq);
+		System.out.println("반::::::::::::"+selectClass.toString());
+		
+		model.addAttribute("clazz", selectClass);
+		return "note/mailform";
+	}
+	
+	@RequestMapping(value = "/sendMail.do", method = RequestMethod.POST)
+	public String sendMail(Model model, String mail_title, String mail_body, String mail_class) {
+		logger.info(":::::::::메일보내기");
+		System.out.println(mail_title+ mail_body+ mail_class);
+		//선택된 반 이름으로 학부모 메일 뽑아오기
+		List<String> selectEmail = notebiz.selectEmail(mail_class);
+		System.out.println("::::::::selectEmail controller:::::::"+selectEmail.toString());
+		//메일 보내기 biz
+		int res = notebiz.sendEmail(selectEmail, mail_title, mail_body);
+		
+		if(res >0) {
+			//메일 보내기 성공
+			model.addAttribute("msg", "메일 발송 성공");
+			model.addAttribute("url", "mailform.do");
+			
+			return "common/alert";
+		}else {
+			//메일 보내기 실패
+			model.addAttribute("msg", "메일 발송 실패");
+			model.addAttribute("url", "mailform.do");
+			
+			return "common/alert";			
+		}
+		
+	}
+	
 }

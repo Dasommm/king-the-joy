@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<% response.setContentType("text/html; charset=UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -13,7 +15,9 @@
 <body>
 
 	<h1>알림장 보내기</h1>
-	<form action="noteInsert.do" method="post">
+	<form action="noteInsert.do?" method="post">
+	<input type="hidden" name="member_seq" value="21">
+	<input type="hidden" name="children_seq" value="7">
         <fieldset>
             <legend>기본입력</legend>
             <table>
@@ -48,14 +52,7 @@
                 <tr>
                     <th>식사여부</th>
                     <td>
-                        <input type="checkbox" id="no" name="note_meal" value="안했음">
-                        <label for="no">안했음</label>
-                        <input type="checkbox" id="morning" name="note_meal" value="조식">
-                        <label for="morning">조식</label>
-                        <input type="checkbox" id="snack" name="note_meal" value="간식">
-                        <label for="snack">간식</label>
-                        <input type="checkbox" id="lunch" name="note_meal" value="중식">
-                        <label for="lunch">중식</label>
+                        <input type="text" name="note_meal">
                     </td>
                 </tr>
                 <tr>

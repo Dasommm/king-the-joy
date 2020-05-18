@@ -124,8 +124,6 @@ h1{
 <h1>선생님용 식단 페이지</h1>
 
 
-	<input type="button" value="tooltipTest" onclick="location='tooltip.do?'">
-
 	<div>
 	<!-- 식단표 -->
 		<div id='calendar' style="width: 800px; margin-left:350px;"></div>
