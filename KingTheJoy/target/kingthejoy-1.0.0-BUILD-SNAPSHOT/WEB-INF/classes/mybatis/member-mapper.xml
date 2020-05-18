@@ -121,15 +121,10 @@
 	
 	<insert id="insertSchool" parameterType="Map">
 		INSERT INTO SCHOOL
-			(
-			CHILDREN_SEQ
-			,MEMBER_SEQ
-			,SCHOOL_SEQ
-			)
 		VALUES(
-			 #{children_seq}
-			,#{member_seq}
-			,#{school_seq}
+			 ${children_seq}
+			,${member_seq}
+			,${school_seq}
 		)
 	</insert>
 	
