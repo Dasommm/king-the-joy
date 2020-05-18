@@ -3,6 +3,8 @@ package com.project.kingthejoy.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -138,8 +140,9 @@ public class MemberController<dataList> {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/tableDataSend.do")
-	public String insertChildOrSchool(String data, HttpSession session) {
+	@RequestMapping(value="/tableDataSend.do") 
+	public String insertChildOrSchool(String data, HttpSession session , HttpServletRequest req, HttpServletResponse res) {
+		
 		String[] dataArray = null;
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
 		System.out.println(data);
@@ -152,7 +155,7 @@ public class MemberController<dataList> {
 			String[] temp = dataArray[i].split("/");
 			schoolDto.setSchool_addr(temp[1]);
 			schoolDto.setSchool_name(temp[2]);
-			
+			 
 			if(biz.selectSchool(schoolDto) == null) {
 				Map<String,String> childMap = new HashMap<String, String>();
 				Map<String,String> schoolListMap = new HashMap<String, String>();
@@ -202,8 +205,6 @@ public class MemberController<dataList> {
 		}
 		return data;
 	}
-	
-	
 	
 	@RequestMapping(value = "/selectResistForm.do")
 	public String selectResistForm() { 
