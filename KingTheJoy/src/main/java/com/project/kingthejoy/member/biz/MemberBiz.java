@@ -45,5 +45,6 @@ public interface MemberBiz {
 	
 	public void selectSchoolInfo(SchoolDto schoolDto);
 	
+
 }
  

@@ -8,10 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.project.kingthejoy.children.dto.ChildrenDto;
 import com.project.kingthejoy.member.dao.MemberDao;
 import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.school.dto.SchoolDto;
+
 
 @Service
 public class MemberBizImpl implements MemberBiz {
@@ -114,6 +116,7 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.selectSchoolSeqOfMasterAndTeacher(member_seq);
 	}
 
+
 	@Override
 	public List<ChildrenDto> childrenList(int member_seq) {
 		return dao.childrenList(member_seq);
@@ -123,5 +126,6 @@ public class MemberBizImpl implements MemberBiz {
 	public void selectSchoolInfo(SchoolDto schoolDto) {
 		
 	}
+
 
 }
