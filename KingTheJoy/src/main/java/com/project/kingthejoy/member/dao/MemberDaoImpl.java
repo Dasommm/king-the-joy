@@ -77,7 +77,8 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insertSchool(Map<String, Integer> schoolMap) {
-		if(schoolMap.get("childresn_seq")==null) {
+		System.out.println("여긴다오다 애새기"+schoolMap.get("children_seq"));
+		if(schoolMap.get("children_seq")==null) {
 			return sqlSession.insert("member.teacherMasterInsertSchool", schoolMap);
 		}else {
 			return sqlSession.insert("member.insertSchool", schoolMap);

@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/memberUpdate.css"/>">
-<script src="<c:url value="/resources/js/memberUpdate.js"/>"></script>
+<script src="<c:url value="/resources/js/schoolInfoUpdate.js"/>"></script>
 
 <title>회원가입창</title>
 </head>
@@ -26,8 +26,8 @@
 		<img src="<c:url value="/resources/img/home.png"/>" alt="homeLogo">
 	</div>
 	<!-- <form action="tableDataSend.do" method="post" role="form" id="submit"> -->
-	<input type="hidden" name="member_role" value="${member_role }">
-	<form action="memberUpdate.do" method="post" id="insert">
+		<input type="hidden" name="member_role" value="${member_role }">
+		<form action="schoolInfo.do" method="post" id="insert">
 		<div class="home-div col-8 row">
 			<div class="image-center col-12">
 				<img src="<c:url value="/resources/img/Logo.png"/>"
@@ -38,27 +38,24 @@
 				<button type="button" class="btn btn-primary" aria-label="Add"
 					data-toggle="modal" data-target="#formModal">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-					자녀 추가
+					유치원 찾기
 				</button>
 				<hr />
-				<table class="table" id="tableTest">
+					<table class="table" id="tableTest">
 					<thead>
 						<tr>
-							<td>자녀 이름</td>
 							<td>유치원 주소</td>
-							<td>유치원 이름</td>
+							<td>유치원 이름 </td>
 						</tr>
 					</thead>
 					<tbody id="list">
 					</tbody>
 				</table>
 			</div>
-			<div>
-				<button type="submit" id="submit" class="btn btn-success">회원가입하기</button>
-			</div>
+			<div><button type="submit" id="submit" class="btn btn-success">등록하기</button></div> 
 		</div>
-	</form>
-
+		</form>
+		
 	<!-- </form>  -->
 
 	<!-- Modal -->
@@ -71,17 +68,10 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Add item</h4>
+					<h4 class="modal-title" id="myModalLabel">Add item</h4> 
 				</div>
 				<div class="modal-body">
-
 					<div class="form-group">
-						<label>자녀 이름</label> <input type="text" name="children_name"
-							id="children_name" class="form-control" />
-					</div>
-
-					<div class="form-group">
-						<label>유치원</label>
 						<button type="button" class="btn btn-default"
 							onclick="execPostCode();">
 							<i class="fa fa-search"></i>유치원 찾기

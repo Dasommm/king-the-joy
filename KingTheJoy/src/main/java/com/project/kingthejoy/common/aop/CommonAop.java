@@ -1,6 +1,8 @@
 package com.project.kingthejoy.common.aop;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,14 +27,15 @@ import com.project.kingthejoy.member.dto.LogHistDto;
 @Configuration
 @EnableAspectJAutoProxy
 public class CommonAop {
-	
 	public final static String elasticProtocol = "http"; 
-	public final static String elasticHost     = "192.168.0.17";
+	//public final static String elasticHost     = "172.20.10.5";
 	public final static Integer elasticPort    = 9200;
 	
 	@Around("execution(* com.project.kingthejoy..*Controller.*(..))")
-	public Object logHistAop(ProceedingJoinPoint pjp){ 
+	public Object logHistAop(ProceedingJoinPoint pjp) throws UnknownHostException{ 
 		
+		
+		String elasticHost = InetAddress.getLocalHost().getHostAddress();
 		System.out.println("AOP is Workiung");
 		Object ret = null;
 		try { 

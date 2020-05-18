@@ -13,6 +13,7 @@ function execPostCode() {
 			if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
 				extraRoadAddr += data.bname;
 			}
+
 			// 건물명이 있고, 공동주택일 경우 추가한다.
 			if (data.buildingName !== '' && data.apartment === 'Y') {
 				extraRoadAddr += (extraRoadAddr !== '' ? ', '
@@ -35,28 +36,17 @@ function execPostCode() {
 		}
 	}).open();
 }
-
 function add() {
-
-	var children_name = $('#children_name').val();
 	var school_addr = $('#school_addr').val();
 	var school_name = $('#school_name').val();
 
-	var newLine = '<tr>' + '<td name=\"children_name\">' + children_name
-			+ '</td>' + '<td  name=\"school_addr\">' + school_addr + '</td>'
-			+ '<td  name=\"school_name\">' + school_name + '</td>' + '</tr>';
+	var newLine = '<tr>' + '<td id=\"school_addr\" name=\"school_addr\">' + school_addr + '</td>'
+			+ '<td id=\"school_name\"name=\"school_name\">' + school_name + '</td>' + '</tr>';
 
+	
 	$('#list').append(newLine);
-
-	$('#insert').append(
-			'<input type=\"hidden\" name=\"children_name\" value=\"'
-					+ children_name + '\">');
-	$('#insert').append(
-			'<input type=\"hidden\" name=\"school_addr\" value=\"'
-					+ school_addr + '\">');
-	$('#insert').append(
-			'<input type=\"hidden\" name=\"school_name\" value=\"'
-					+ school_name + '\">');
+	$('#insert').append('<input type=\"hidden\" name=\"school_addr\" value=\"'+ school_addr +'\">');
+	$('#insert').append('<input type=\"hidden\" name=\"school_name\" value=\"'+ school_name +'\">');
 
 	$('#formModal').modal('hide');
 }
