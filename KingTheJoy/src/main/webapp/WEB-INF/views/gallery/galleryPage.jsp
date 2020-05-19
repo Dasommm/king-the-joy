@@ -33,7 +33,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${dto.classseq }반 갤러리</h1>
+<jsp:include page="../common/PrincipalHeader.jsp" />
+<div class="galleryBody">
+	<h1>☆유치원 갤러리</h1>
 	<div class="grid">
 		<c:forEach var="i" begin="1" end="9" step="1">
 			<div class="item">
@@ -49,6 +51,7 @@
 	<div class="bigPictureWrapper">
 		<div class="bigPicture"></div>
 	</div>
+</div>	
 <script src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
