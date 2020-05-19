@@ -75,7 +75,8 @@
 	</div>
 	<div class="prin_menu_bot">
 	 	<div class="image-container">
-	        <img src="/kingthejoy/resources/img/main/쪽지.png" style="width: 10em;">
+	        <img src="/kingthejoy/resources/img/main/쪽지.png" style="width: 10em; cursor: pointer;"
+	        	onclick="window.open('letterPage.do?currentpage=1&member_seq=1','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')">
 	        <span>쪽지함</span>
 	    </div>
 	 	<div class="image-container">
@@ -97,8 +98,12 @@
 		<button onclick="#">결제 관리</button>
 		<button onclick="#">쪽지함</button>
 		<button onclick="#">채팅</button>
-		<button onclick="'">선생님 관리</button>
 		<button onclick="#">원생관리</button>
+		
+	<button onclick="window.open('letterPage.do?currentpage=1&member_seq=1','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes');">쪽지함(관리자:admin)</button>
+	<button onclick="window.open('letterPage.do?currentpage=1&member_seq=6','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes');">쪽지함(원장님:wonjang)</button>(임시)
+	<button onclick="window.open('letterSendPage.do?currentpage=1&member_seq=1','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes');">보낸쪽지함(관리자)</button>(임시)
+	<br>member_seq = ${member_seq }
     
 </div>
 </body>
