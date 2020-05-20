@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="notification.do">asdf</a>
+	<h4>사진 업로드</h4>
+	<input type="file">
 </body>
 </html>
