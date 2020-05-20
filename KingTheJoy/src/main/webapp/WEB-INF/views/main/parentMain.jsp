@@ -183,9 +183,22 @@ h1 {
 	font-weight: bold;
 }
 
-#mainNotice{
- text-align: center;
+#noticeImg img{
+	width: 30px;
+	height: 30px;
+	top: 212px;
+	left:353px;
+	position: absolute;
+	}
+
+#notice{
+	height:50px;
+	display:block;
+	top: 0px;
+	left: -180px;
+	position: relative;
 }
+
 </style>
 </head>
 <body>
@@ -197,12 +210,12 @@ h1 {
 <%@include file="../parent/weatherApi.jsp" %>
 
    <!-- 공지사항 -->
-   <div id="mainNotice">
-   		<a>공지사항 부분</a>
+   <div id="noticeImg">
+   		<img src="./resources/img/speaker.png">
    </div>
    <div id="notice">
 			<ul class="rolling" id="notification">
-			<li>TEXT</li>
+				<li>TEXT</li>
 			</ul>
 	</div>
 
@@ -210,27 +223,7 @@ h1 {
    <!-- 식단표 -->
       <div id='calendar' style="width: 800px; margin-left:350px;"></div>
 
-</section>
-<%@include file="../common/footer.jsp" %>
 
-
-
-	<section>
-	
-
-		<h1>오늘의 식단</h1>
-
-		
-		<input type="button" value="선생님용식단페이지"
-			onclick="location='menuteacher.do?'">
-
-		<div>
-			<!-- 식단표 -->
-			<div id='calendar' style="width: 800px; margin-left: 350px;" ></div>
-			<div id='background'>
-				<img alt="" src="./resources/img/parentMain.jpg">
-			</div>
-		</div>
 	</section>
 	<%@include file="../common/footer.jsp"%>
 </body>

@@ -36,6 +36,7 @@ public class MemberController<dataList> {
 
 		return "common/home";
 	}
+	
 
 	@RequestMapping(value = "/naverLoginResult.do")
 	public String naverLoginCallback() {
