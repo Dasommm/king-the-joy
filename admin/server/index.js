@@ -1,60 +1,18 @@
-let http = require('http');
+const express = require('express')          // 웹서버 모듈
+const cors = require('cors')                // 자바스크립트 객체를 MongoDB 객체로 매핑
+const bodyParser = require('body-parser')   // http요청 데이터를 파싱하는 미들웨어
 
-let express = require('express');
+var memberRouter = require('./routes/member-router')
 
-let bodyParser = require('body-parser');
+const app = express()
+const port = process.env.PORT || 3001;
 
-app = express();
+app.use(bodyParser.json());                            // Json 형식의 데이터를 받겠다, form에 입력한 데이터가 bodyParser를 통해 form으로 입력받은 데이터를 사용 가능
+app.use(bodyParser.urlencoded({ extended: true }));    // unlencoded data를 extended 알고리즘을 사용하여 분석한다는 설정
+app.use(cors())
 
+app.use('/admin', memberRouter)
 
-let inputData = { data1: 'node to tomcat testdata1', data2: 'node to tomcat testdata2' };
-// 전달하고자 하는 데이터 생성
-
-let opts = {
-    host: '127.0.0.1',
-    port: 8090,
-    method: 'POST',
-    path: '/kingthejoy/start',
-    headers: { 'Content-type': 'application/json' },
-    body: inputData
-};
-
-
-// 포트 81 에서는 톰캣 서버가 대기하고 있다.
-// 스프링 컨트롤러에서 '/start' URI 에 매핑하는 메소드를 두었다.
-// 전달 방식은 json 형태로 하였다.
-let resData = '';
-let req = http.request(opts, function (res) {
-    res.on('end', function () {
-        console.log(resData);
-    });
-});
-
-opts.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-req.data = opts;
-opts.headers['Content-Length'] = req.data.length;
-
-req.on('error', function (err) {
-    console.log("에러 발생 : " + err.message);
-});
-
-
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(bodyParser.json());
-
-app.use(function (req, res, next) {
-    res.writeHead('200', { 'Content-Type': 'text/html;charset=utf8' });
-    res.end('<h1>ㅎㅎ</h1>');
-
-    console.log(req.body);
-});
-
-// 요청 전송
-req.write(JSON.stringify(req.data.body));
-
-req.end();
-
-http.createServer(app).listen(1516, function () {
-    console.log('Server is running...');
+app.listen(port, function () {
+    console.log('server on! ' + port);
 });

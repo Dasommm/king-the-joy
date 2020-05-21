@@ -40,6 +40,7 @@ public class URLConn {
 				String str = sc.nextLine();
 				System.out.println((line++) + ":" + str);
 			}
+
 			sc.close();
 		} catch (IOException e) {
 			e.printStackTrace();

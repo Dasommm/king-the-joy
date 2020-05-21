@@ -127,5 +127,10 @@ public class MemberBizImpl implements MemberBiz {
 		
 	}
 
+	@Override
+	public List<MemberDto> adminSelectMember() {
+		return dao.adminSelectMember();
+	}
+
 
 }

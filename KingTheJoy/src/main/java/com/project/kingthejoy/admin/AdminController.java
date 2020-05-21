@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.kingthejoy.member.biz.MemberBiz;
-import com.project.kingthejoy.notification.biz.NotificationBiz;
-import com.project.kingthejoy.notification.dto.NotificationDto;
+import com.project.kingthejoy.member.dto.MemberDto;
+
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -35,31 +35,17 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired
-	private NotificationBiz notificationBiz;
+	private MemberBiz mBiz;
 	
 	@RequestMapping("/admin.do")
 	@ResponseBody
-	public String admin() {
+	public String admin() throws IOException {
 		JSONObject child = new JSONObject();
 		JSONObject parent = new JSONObject();
-		URLConn conn = new URLConn("http://127.0.0.1", 1516);
 		
-		List<NotificationDto> nList = notificationBiz.selectNotificationList(1);
-		for(int i=0; i<nList.size(); i++) {
-			child.put("title", nList.get(i).getNotification_title());
-			child.put("content", nList.get(i).getNotification_content());
-			child.put("writer", nList.get(i).getNotification_writer());
-			parent.put(i+"번째글",child);
-		}
-		conn.urlPost(parent);
+		
+		URLConn conn = new URLConn("http://127.0.0.1", 1516);
 		return parent.toString();
-	}
-	
-	@RequestMapping(value = "/start", method = RequestMethod.POST, consumes = "application/json")
-	@ResponseBody
-	public String startApp(@RequestBody String body) {
-		log.info("start info = {}", body);
-		return "/";
 	}
 
 	@RequestMapping(value = "/doA", method = RequestMethod.GET)
@@ -67,11 +53,7 @@ public class AdminController {
 		JSONObject cred = new JSONObject();
 		JSONObject auth = new JSONObject();
 		JSONObject parent = new JSONObject();
-		cred.put("username", "adm");
-		cred.put("password", "pwd");
-		auth.put("tenantName", "adm");
-		auth.put("passwordCredentials", cred);
-		parent.put("auth", auth);
+
 		
 
 		URLConn conn = new URLConn("http://127.0.0.1", 1516);
