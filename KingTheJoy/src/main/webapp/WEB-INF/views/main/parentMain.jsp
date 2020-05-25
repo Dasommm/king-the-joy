@@ -17,7 +17,7 @@
 	<script src='resources/fullcalendar/core/main.js'></script>
 <script src='resources/fullcalendar/daygrid/main.js'></script>
 <script src='resources/fullcalendar/interaction/main.js'></script>
-
+<style type="text/css">
 /* 캘린더 */
 /* h1 */
 h1 {
@@ -55,8 +55,6 @@ h1 {
 	<img src="./resources/img/parentMain.jpg">
 </div>
 
-<h1><a href="rolling.do">rolling</a> </h1>
-<h1><a href="chatgo.do">chat</a></h1>
 
 
 <%@include file="../common/parentHeader.jsp" %>
@@ -69,12 +67,8 @@ h1 {
    </div>
    <div id="notice">
 			<ul class="rolling" id="notification">
-				<li>TEXT</li>
 			</ul>
-			
-	
- 
-
+	</div>
 
 <h1>오늘의 식단</h1>
 
