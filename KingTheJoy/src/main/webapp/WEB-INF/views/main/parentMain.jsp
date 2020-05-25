@@ -205,14 +205,12 @@ h1 {
    <div id="noticeImg">
    		<img src="./resources/img/speaker.png">
    </div>
-   <div id="notice">
+	<div id="notice">
 			<ul class="rolling" id="notification">
 				<li>TEXT</li>
 			</ul>
-			
-	</div>		
-   <div id="mainNotice">
-   </div>
+	</div>
+   
  
 
  

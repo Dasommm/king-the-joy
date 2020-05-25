@@ -8,19 +8,29 @@
 </head>
 <body>
 
-
 <div>
-        <input type="text" id="sender" value="${sessionScope.memberDto.member_id }" style="display: none;">
-    </div>
-    <div id="messages"></div>
-        <input type="text" id="messageinput">
-    <div>
-        <button type="button" onclick="openSocket();">Open</button>
-        <button type="button" onclick="send();">Send</button>
-        <button type="button" onclick="closeSocket();">Close</button>
-    </div>
-    <!-- Server responses get written here -->
-    <!-- websocket javascript -->
+	<table>
+		<tr>
+			<th>
+				<textarea rows="5" cols="30"></textarea>
+			</th>
+		</tr>
+		<tr>
+			<td><input type="text" id="chatMsg"></td>
+			<td><input type="text" id="targetUser"></td>
+			<td><input type="button" value="전송" id="btnSend"></td>
+		</tr>
+	
+	</table>
+	<textarea rows="5" cols="30">
+	</textarea>
+	<input type="text" id="chatMsg">
+	<input type="text" id="targetUser">
+	<input type="button" value="전송" id="btnSend">
+</div>
+
+
+
     <script type="text/javascript">
         var ws;
         var messages=document.getElementById("messages");
