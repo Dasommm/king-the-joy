@@ -36,7 +36,7 @@
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-            	<a class="nav-link" href="#">선생 메인</a>
+            	<a class="nav-link" href="teacher.do">선생 메인</a>
             </li>
             <li class="nav-item">
             	<a class="nav-link" href="#">공지사항</a>

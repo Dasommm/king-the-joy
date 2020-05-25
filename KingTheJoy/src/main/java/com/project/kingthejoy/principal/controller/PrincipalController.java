@@ -36,11 +36,11 @@ public class PrincipalController {
 		return "main/principalMain";
 	}
 	
-	@RequestMapping(value = "/principalMain.do", method = RequestMethod.GET)
-	public String principalMain() {
-		log.info("into:principalMain");		
-		return "principal/principalMain";
-	}
+//	@RequestMapping(value = "/principalMain.do", method = RequestMethod.GET)
+//	public String principalMain() {
+//		log.info("into:principalMain");		
+//		return "principal/principalMain";
+//	}
 	
 	@RequestMapping(value = "/principalTeacherMgt.do", method = RequestMethod.GET)
 	public String principalTeacherMgt(Model model) {
