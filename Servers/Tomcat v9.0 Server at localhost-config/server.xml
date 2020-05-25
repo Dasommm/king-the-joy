@@ -17,7 +17,7 @@
 --><!-- Note:  A "Server" is not itself a "Container", so you may not
      define subcomponents such as "Valves" at this level.
      Documentation at /docs/config/server.html
- --><Server port="8787" shutdown="SHUTDOWN">
+ --><Server port="8005" shutdown="SHUTDOWN">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
@@ -58,29 +58,13 @@
          Java HTTP Connector: /docs/config/http.html
          Java AJP  Connector: /docs/config/ajp.html
          APR (HTTP/AJP) Connector: /docs/apr.html
-<<<<<<< HEAD
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8787
-=======
-<<<<<<< HEAD:Servers/Tomcat v9.0 Server at localhost-config/server.xml
-         Define a non-SSL/TLS HTTP/1.1 Connector on port 8090
-=======
-         Define a non-SSL/TLS HTTP/1.1 Connector on port 8787
->>>>>>> 4c9db7a383120e5fecedf83a9fe9e8b2be28e5bd:Servers/Tomcat v9.0 Server at localhost-config/server.xml
->>>>>>> kinderjoy2/master
     -->
-    <Connector connectionTimeout="20000" port="8090" protocol="HTTP/1.1" redirectPort="8443"/>
+    <Connector connectionTimeout="20000" port="8787" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
-<<<<<<< HEAD
                port="8787" protocol="HTTP/1.1"
-=======
-<<<<<<< HEAD:Servers/Tomcat v9.0 Server at localhost-config/server.xml
-               port="8090" protocol="HTTP/1.1"
-=======
-               port="8787" protocol="HTTP/1.1"
->>>>>>> 4c9db7a383120e5fecedf83a9fe9e8b2be28e5bd:Servers/Tomcat v9.0 Server at localhost-config/server.xml
->>>>>>> kinderjoy2/master
                connectionTimeout="20000"
                redirectPort="8443" />
     -->

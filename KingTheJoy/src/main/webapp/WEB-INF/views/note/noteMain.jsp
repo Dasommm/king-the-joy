@@ -8,18 +8,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <link rel="stylesheet" type="text/css" href="resources/css/note/noteForm.css">
+
+<script type="text/javascript" src="resources/js/note/noteForm.js"></script>
+
 </head>
 
 <!-- 팝업으로 띄우기 -->
 
 <body>
 
-	<h1>알림장 보내기</h1>
-	<form action="noteInsert.do?" method="post">
+	<form action="noteInsert.do?" method="post" id="msform">
 	<input type="hidden" name="member_seq" value="21">
 	<input type="hidden" name="children_seq" value="7">
+
+	 <!-- fieldSet 1 -->
         <fieldset>
-            <legend>기본입력</legend>
             <table>
                 <tr>
                     <th>기분</th>
@@ -43,25 +47,7 @@
                         <label for="bad_h">나쁨</label>
                     </td>
                 </tr>
-                <tr>
-                    <th>체온</th>
-                    <td>
-                        <input type="range" name="note_temp" min="35.0" max="39.0" step="0.5">
-                    </td>
-                </tr>
-                <tr>
-                    <th>식사여부</th>
-                    <td>
-                        <input type="text" name="note_meal">
-                    </td>
-                </tr>
-                <tr>
-                    <th>수면시간</th>
-                    <td>
-                        <input type="range" name="note_sleep" id="" min="0" max="10">
-                    </td>
-                </tr>
-                <tr>
+				<tr>
                     <th>배변</th>
                     <td>
                         <input type="radio" id="no_d" name="note_def" value="안했음">
@@ -72,15 +58,32 @@
                         <label for="bad_d">나쁨</label>
                     </td>
                 </tr>
+                <tr>
+                    <th>체온</th>
+                    <td>
+                        <input type="range" id="range_t" name="note_temp" min="35.0" max="39.0" step="0.5"
+                        onchange="handleMouseMove();">
+                    	<span><span id="range-value">36.5</span>도</span>
+                    </td>
+                </tr>                
+                <tr>
+                    <th>수면시간</th>
+                    <td>
+                        <input type="range" id="range_n" name="note_sleep" min="0" max="10" onchange="handleMouseMoveSleep();">
+                        <span><span id="range-value-sleep">5</span>시간</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>식사여부</th>
+                    <td>
+                        <input type="text" name="note_meal">
+                    </td>
+                </tr>
             </table>
+            <textarea name="note_spec" id="" cols="10" rows="10" style="margin: 5px; width: 280px; height: 104px;" placeholder="특이사항이 있다면 입력해주세요"></textarea>
+        <input type="submit" class="button" value="보내기">
+        <input type="button" class="button gray" class="gray" value="취소" onclick="self.close();">
         </fieldset>
-        <fieldset>
-            <legend>특이사항</legend>
-            <textarea name="note_spec" id="" cols="30" rows="10"></textarea>
-        </fieldset>
-        <input type="submit" value="보내기">
-        <input type="button" value="취소" onclick="self.close();">
-
     </form>
 
 </body>

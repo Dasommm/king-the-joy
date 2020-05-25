@@ -46,7 +46,15 @@ public class MenuBizImpl implements MenuBiz {
 	@Override
 	public MenuDto menuSelectOne(int menu_seq) {
 		System.out.println("menuSelectOne BizImpl!!!");
-		return menuDao.menuSelectOne(menu_seq);
+		
+		MenuDto editDate = menuDao.menuSelectOne(menu_seq);
+		String str = editDate.getStart();
+		String result = str.substring(0, 10);
+		System.out.println("substring:::::::::"+result);
+		editDate.setStart(result);
+		System.out.println("날짜 수정 ::::::::"+editDate.toString());
+		
+		return editDate;
 
 	}
 

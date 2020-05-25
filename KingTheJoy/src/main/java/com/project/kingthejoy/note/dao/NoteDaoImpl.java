@@ -70,4 +70,13 @@ public class NoteDaoImpl implements NoteDao {
 
 	}
 
+	@Override
+	public List<NoteDto> selectNote(String member_phone) {
+		List<NoteDto> selectNote = sqlSessionTemplate.selectList(NAMESPACE+"selectNoteAll", member_phone);
+		System.out.println(":::::::::selectNoteAll"+selectNote);		
+		
+		return selectNote;
+
+	}
+
 }

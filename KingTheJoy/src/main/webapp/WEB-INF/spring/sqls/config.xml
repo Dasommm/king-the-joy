@@ -9,6 +9,7 @@
 		<typeAlias type="com.project.kingthejoy.notification.dto.NotificationCheckDto" alias="notificationCheckDto"/>
 		<typeAlias type="com.project.kingthejoy.school.dto.SchoolDto" alias="schoolDto" />
 		<typeAlias type="com.project.kingthejoy.note.dto.NoteDto" alias="noteDto"/>
+		<typeAlias type="com.project.kingthejoy.schedule.dto.ScheduleDto" alias="scheduleDto"/>
 
 	</typeAliases>
 
@@ -17,6 +18,7 @@
 		<mapper resource="/mybatis/menu-mapper.xml" />
 		<mapper resource="/mybatis/notification-mapper.xml"/>
 		<mapper resource="/mybatis/note-mapper.xml"/>
+		<mapper resource="/mybatis/schedule-mapper.xml"/>
 	</mappers>
 	
 	<!-- resource : src/main/resources -->

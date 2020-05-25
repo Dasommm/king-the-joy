@@ -18,6 +18,8 @@ import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.note.biz.NoteBiz;
 import com.project.kingthejoy.note.dto.NoteDto;
 
+import lombok.val;
+
 @Controller
 public class NoteController {
 
@@ -28,19 +30,8 @@ public class NoteController {
 	
 	@RequestMapping(value = "/note.do")
 	public String noteForm(Model model, HttpSession session) {
-		logger.info("반 데려오기");
-		
-		//MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-		//int school_seq = memberDto.getSchool_seq();
-		//해당 유치원의 반
-		//Set<String> selectClass = notebiz.selectClass(school_seq);
-		//System.out.println("반::::::::::::"+selectClass.toString());
-		
-		//반 담기
-		//model.addAttribute("selectClass", selectClass);
-		
-		//해당 반의 아이들 이름 
-		//List<String> selectChildren = notebiz.selectChildren(children_class);		
+		logger.info("알림장 양식");
+			
 		return "/note/noteMain";
 	}
 	
@@ -50,13 +41,12 @@ public class NoteController {
 
 		System.out.println(noteDto.toString());
 		
-		int insertDbNoteSeq = notebiz.noteInsertDb(noteDto);	//저장한 알림장 번호
+		int insertDbNoteSeq = notebiz.noteInsertDb(noteDto);	//입력한 알림장 저장하고, 저장한 알림장 번호 가져옴
 		if(insertDbNoteSeq>0) {
-			NoteDto sendNote = notebiz.selectNoteInsert(insertDbNoteSeq);
+			NoteDto sendNote = notebiz.selectNoteInsert(insertDbNoteSeq);	//가져온 알림장 번호로 내용 가져와서 문자 보내기
 			// 부모님 전화번호 가져와서 값 넣기
 			sendNote.setNote_receiver("01050543568");
 			System.out.println("::::sendNote controller:::::"+sendNote.toString());
-			
 
 			// 문자보내기
 			int sendRes = notebiz.sendText(sendNote);
@@ -116,6 +106,23 @@ public class NoteController {
 			return "common/alert";			
 		}
 		
+	}
+	
+	@RequestMapping(value = "/parentNote.do")
+	public String parentNote(HttpSession session, Model model) {
+		//부모님용 알림장 확인
+		MemberDto noteMemDto = (MemberDto) session.getAttribute("memberDto");	
+		
+		//로그인 된(부모)의 번호를 가져와서 번호로 select해서 알림장 가져오기
+		String member_phone = noteMemDto.getMember_phone();
+				
+		//receiver에 저장되어있는 번호와 로그인 번호와 맞는 것 뽑기
+		//알림장 내용들 
+		List<NoteDto> selectAll = notebiz.selectNote(member_phone);
+		System.out.println("알림장 뿌리자~~~~~~~"+selectAll.toString());
+		model.addAttribute("noteSelect", selectAll);
+		
+		return "note/noteParent";
 	}
 	
 }

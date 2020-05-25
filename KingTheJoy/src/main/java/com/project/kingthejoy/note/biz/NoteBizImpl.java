@@ -144,6 +144,12 @@ public class NoteBizImpl implements NoteBiz {
 
 	}
 
+	@Override
+	public List<NoteDto> selectNote(String member_phone) {
+		return noteDao.selectNote(member_phone);
+
+	}
+
 
 
 }

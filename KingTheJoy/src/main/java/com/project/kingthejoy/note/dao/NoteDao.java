@@ -21,4 +21,7 @@ public interface NoteDao {
 
 	//반별 부모님 이메일 가져오기
 	public List<String> selectEmail(String mail_class);
+	
+	//내가 받은 알림장 조회하기
+	public List<NoteDto> selectNote(String member_phone);
 }

@@ -17,57 +17,9 @@
 	<script src='resources/fullcalendar/core/main.js'></script>
 <script src='resources/fullcalendar/daygrid/main.js'></script>
 <script src='resources/fullcalendar/interaction/main.js'></script>
-
-
 <!-- 캘린더 설정 -->
- <script>
-		document.addEventListener('DOMContentLoaded', function () {
-			console.log("캘린더!!!!!!");
-	      var calendarEl = document.getElementById('calendar');
+<script src="resources/fullcalendar/parentMenu.js"></script>
 
-	      var calendar = new FullCalendar.Calendar(calendarEl, {
-	          plugins: ['dayGrid'],
-	          defaultView: 'dayGridMonth',
-	          height : 800,
-	          locale : 'ko',
-	          displayEventTime : false,
-	          eventSources : [
-	        	  {
-	        		  url : '/kingthejoy/menuList.do',
-	        		  type : 'POST',
-	        		  error : function(){
-	        			  alert('menu load failure');
-	        		  },
-	        		  color : 'yellow'
-	        	  }
-
-	          ],
-	          eventRender : function(info){
-	        	  console.log(info);
-	        	  console.log(info.el);
-	        	  console.log(info.event.extendedProps.description);
-	        	 	
-	        	        
-	          }	          
-	      });
-	      calendar.render();
-	  });
-		
-
-</script>
-<style type="text/css">
-
-/* 캘린더 */
-/* h1 */
-h1 {
-	text-align: center;
-	font-weight: bold;
-}
-
-#mainNotice{
- text-align: center;
-}
-</style>
 </head>
 <body>
 
@@ -91,18 +43,8 @@ h1 {
 	<!-- 공지사항 -->
 	<div>공지사항 부분</div>
 	<input type="button" value="선생님용식단페이지" onclick="location='menuteacher.do?'">
-	<input type="button" value="학부모 알림장" onclick="location='note.do?'">
+	<input type="button" value="학부모 알림장" onclick="openNote();">
 	<input type="button" value="단체메일" onclick="location='mailform.do?'">
-
-	<div>
-	<!-- 식단표 -->
-		<div id='calendar' style="width: 800px; margin-left:350px;"></div>
-		<div id='background'>
-			<img alt="" src="./resources/img/parentMain.jpg">
-		</div>
-
-	</div>
-
  
    <!-- 식단표 -->
       <div id='calendar' style="width: 800px; margin-left:350px;"></div>

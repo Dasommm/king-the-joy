@@ -29,4 +29,7 @@ public interface NoteBiz {
 	//메일 보내기
 	public int sendEmail(List<String> selectEmail, String mail_title, String mail_body);
 	
+	//내가 받은 알림장 조회하기
+	public List<NoteDto> selectNote(String member_phone);
+	
 }
