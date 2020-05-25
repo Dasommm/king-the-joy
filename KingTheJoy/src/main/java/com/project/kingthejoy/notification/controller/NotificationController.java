@@ -20,7 +20,6 @@ import com.project.kingthejoy.member.controller.MemberController;
 import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.notification.biz.NotificationBiz;
 import com.project.kingthejoy.notification.dto.NotificationDto;
-import com.project.kingthejoy.notification.dto.PagingDto;
 
 @Controller
 public class NotificationController {
@@ -31,28 +30,10 @@ public class NotificationController {
 
 	// 공지사항 리스트 출력
 	@RequestMapping(value = "/notification.do")
-	public String notificationList(Model model, HttpSession session, PagingDto pagingDto,
-			@RequestParam(value = "nowPage", required = false) String nowPage,
-			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
+	public String notificationList(Model model, HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-		
-		
-		int total = notificationBiz.countList(memberDto.getSchool_seq());
-		// 처음 List.do 를 하면 nowPage와 cntPerPage의 값이 없을테니 현재페이지를 1, 페이지당 글 갯수를 10으로 설정
-		if (nowPage == null && cntPerPage == null) {
-			nowPage = "1";
-			cntPerPage = "5";
-		}
-
-		// 가져온 값들을 생성자 파라미터르 연산처리를 위해 보내준 후 dto에 대입
-		pagingDto = new PagingDto(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		pagingDto.setSchool_seq(memberDto.getSchool_seq());
-		model.addAttribute("paging", pagingDto);
-		
 		logger.info("notification List Open");
-		
-		model.addAttribute("notificationList", notificationBiz.selectNotificationList(pagingDto));
-		System.out.println("검색한 리스트 개수"+ notificationBiz.selectNotificationList(pagingDto).size());
+		model.addAttribute("notificationList", notificationBiz.selectNotificationList(memberDto.getSchool_seq()));
 		return "notification/notificationList";
 	}
 
@@ -191,10 +172,7 @@ public class NotificationController {
 	@ResponseBody
 	public List<NotificationDto> rollingNotification(HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-		
-		
-		List<NotificationDto> notificationList = notificationBiz.selectRollingNotificationList(memberDto.getSchool_seq());
-		return notificationList;
+		return notificationBiz.selectRollingNotificationList(memberDto.getSchool_seq());
 	}
 
 }

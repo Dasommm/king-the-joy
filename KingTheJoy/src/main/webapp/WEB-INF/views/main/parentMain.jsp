@@ -50,6 +50,14 @@ h1 {
 
 <section>
 
+<!-- 배경 사진 -->
+<div id="background">
+	<img src="./resources/img/parentMain.jpg">
+</div>
+
+
+
+
 <%@include file="../common/parentHeader.jsp" %>
 <%@include file="../parent/parentChatbot.jsp" %>
 <%@include file="../parent/weatherApi.jsp" %>
@@ -59,9 +67,9 @@ h1 {
          <img src="./resources/img/speaker.png">
    </div>
    <div id="notice">
-         <ul class="rolling" id="notification">
-         </ul>
-   </div>
+			<ul class="rolling" id="notification">
+			</ul>
+	</div>
 
 
    <!-- 공지사항 -->

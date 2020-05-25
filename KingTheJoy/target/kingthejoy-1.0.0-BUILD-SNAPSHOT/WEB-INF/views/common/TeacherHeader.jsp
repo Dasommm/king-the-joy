@@ -10,13 +10,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
+<style type="text/css">
+	.navbar-right .dropdown-menu {
+		right: 0;
+		left: auto;
+	}
+	.dropdown-menu{
+		top: auto;
+		padding: .5rem .5rem;
+		margin: 10px 10px;
+	}
+	.navbar-brand{
+		margin-right: 10rem;
+	}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-white navbar-white">
         <!-- Brand -->
-        <a class="navbar-brand header-logo" href="#"><img src="image/Logo.png"></a>
+        <a class="navbar-brand header-logo" href="#">
+        <img src="/kingthejoy/resources/img/Logo.png" style="width: 150px;"></a>
       
         <!-- Links -->
         <ul class="navbar-nav">
@@ -44,10 +59,19 @@
             </div>
           </li>
           </ul>
-          <div class="ml-auto">
-            <button type="button" class="btn btn-info btn-sm">마이페이지</button>
-            <button type="button" class="btn btn-info btn-sm">로그아웃</button>
-          </div>
+			<div class="navbar-right">
+			    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+			    	메뉴버튼
+			    <span class="caret"></span>
+			    </button>
+			    <ul class="dropdown-menu">
+			        <li><a class="dropdown-item" href="#">마이페이지</a></li>
+			        <li><a class="dropdown-item" href="#">로그아웃</a></li>
+			    </ul>
+			</div>
       </nav>
+<script type="text/javascript">
+	$('.dropdown-toggle').dropdown();
+</script>
 </body>
 </html>

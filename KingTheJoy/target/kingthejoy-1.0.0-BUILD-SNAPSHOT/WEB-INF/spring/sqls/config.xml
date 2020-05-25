@@ -10,6 +10,7 @@
 		<typeAlias type="com.project.kingthejoy.school.dto.SchoolDto" alias="schoolDto" />
 		<typeAlias type="com.project.kingthejoy.note.dto.NoteDto" alias="noteDto"/>
 		<typeAlias type="com.project.kingthejoy.children.dto.ChildrenDto" alias="childrenDto" />
+		<typeAlias type="com.project.kingthejoy.notification.dto.PagingDto" alias="pagingDto"/>
 	</typeAliases>
 
 	<mappers>

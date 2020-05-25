@@ -17,7 +17,7 @@
 <script src="<c:url value="/resources/js/login.js"/>"></script>
 <title>Insert title here</title>
 </head>
-<body> 
+<body>
 	<form name="loginForm" method="post">
 	<div class="row"> 	
 		<div class="home-img"><img src="${pageContext.request.contextPath}/resources/img/home.png" alt="homeLogo"></div>
@@ -49,9 +49,11 @@
 			<div class="col-12">
 				<button type="button" class="btn btn-info btn-md search-button">아이디/비밀번호 찾기</button>
 			</div> 
+			<a href="admin.do">admin</a>
 		</div>
 	</div>
 	</form>
+	
 	
 	<script>
     // 사용할 앱의 JavaScript 키 설정

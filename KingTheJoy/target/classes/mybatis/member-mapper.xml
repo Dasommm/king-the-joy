@@ -197,4 +197,10 @@
 		WHERE MEMBER_SEQ = #{member_seq}
 	</select>
 	
+	<select id="adminSelectMember" resultType="memberDto">
+		SELECT *
+		FROM MEMBER
+		ORDER BY MEMBER_SEQ DESC
+	</select>
+	
 </mapper>

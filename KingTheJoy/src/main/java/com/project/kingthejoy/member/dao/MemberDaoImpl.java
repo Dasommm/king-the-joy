@@ -124,4 +124,9 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<MemberDto> adminSelectMember() {
+		return sqlSession.selectList("member.adminSelectMember");
+	}
 }

@@ -27,7 +27,7 @@
 <%@include file="../common/parentHeader.jsp" %>
 <section id="mainbody">
 	<div class="container">
-		<div class=".col-xs-4 .col-md-offset-2">
+		<div class=".col-sm-4 .col-md-offset-2">
 			<div class="panel panel-default panel-info Profile">
 				<div class="panel-body">
 					<div class="form-horizontal">
