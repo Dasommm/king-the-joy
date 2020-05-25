@@ -99,4 +99,5 @@
 		SELECT * FROM notification where school_seq = #{school_seq}
 		ORDER BY notification_seq DESC
 	</select>
+
 </mapper>

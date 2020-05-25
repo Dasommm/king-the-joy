@@ -6,6 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+
+#noticeTable{
+	width: 800px;
+	height: 850px;
+}
+
+
+</style>
+
+
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
@@ -19,6 +31,14 @@ if(${memberDto.getMember_role()}<3){
 </head>
 <body>
 
+
+<section>	
+
+<%@include file="../common/parentHeader.jsp" %>
+<%@include file="../parent/parentChatbot.jsp" %>
+<%@include file="../parent/weatherApi.jsp" %>
+
+	<div id="noticeTable">
 	<table border="1">
 		<thead>
 			<tr>
@@ -47,9 +67,11 @@ if(${memberDto.getMember_role()}<3){
 			</c:choose>
 		</tbody>
 	</table>
-	
-	
-	<input type="button" value="공지사항 작성" onclick="location.href='notificationInsert.do'" id="insert" style="display: none;">
+	<input type="button" value="공지사항 작성" onclick="location.href='notificationInsert.do'" id="insert" style="display: none;">	
+	</div>
+</section>
+<%@include file="../common/footer.jsp" %>
+
     	
 	
 </body>

@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class MemberController<dataList> {
-	
+  
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	
@@ -42,7 +42,6 @@ public class MemberController<dataList> {
 		return "common/home";
 	}
 	
-	
 	@RequestMapping(value="/myPage.do" ,method = RequestMethod.GET)
 	public String mainPageForm(Model model, HttpSession session) {
 		
@@ -52,6 +51,7 @@ public class MemberController<dataList> {
 		
 		if(member_role == 3) {
 			model.addAttribute("childrenList", biz.childrenList(member_seq));
+
 
 		}else if(member_role == 2 || member_role == 1) {
 			

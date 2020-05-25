@@ -95,7 +95,6 @@
 	var state = naver_id_login.getUniqState();
 	
 	console.log(state);
-	
     naver_id_login.setButton("green", 3, 60);
     naver_id_login.setDomain("http://localhost:8181/kingthejoy/home.do");
     naver_id_login.setState(state);

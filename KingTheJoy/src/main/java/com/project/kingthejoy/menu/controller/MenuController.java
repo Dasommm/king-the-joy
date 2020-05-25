@@ -24,7 +24,7 @@ import com.project.kingthejoy.menu.dto.MenuDto;
 @Controller
 public class MenuController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
 	
 	@Autowired
 	MenuBiz menuBiz;	
@@ -36,9 +36,8 @@ public class MenuController {
 		// 학부모 메인  식단표 List - 유치원별 식단표(school_seq로 불러오기)
 		logger.info("menuList 컨트롤러");
 		
-		//MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
-		//int school_seq = memberDto.getSchool_seq;
-		int school_seq = 1;
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
+		int school_seq = memberDto.getSchool_seq();
 		List<MenuDto> menuList = menuBiz.selectAll(school_seq);
 
 		Gson gson = new Gson();
@@ -52,20 +51,13 @@ public class MenuController {
 	@RequestMapping(value = "/menuteacher.do")
 	public String menuTeacher() {
 		
-		return "parent/menuTeacher";
+		return "menu/menuTeacher";
 		
 	}
 	
-	@RequestMapping(value="/tooltip.do")
-	public String tollTipTest() {
-		
-		return "parent/tooltipTest";
-		
-	}
-	
-	@RequestMapping(value = "/menuInsertForm.do")	//식단입력 팝업 페이지로 이동
+	@RequestMapping(value = "/menuInsertForm.do")	//식단입력폼 팝업 페이지로 이동
 	public String menuInsert() {
-		return "parent/menuInsert";
+		return "menu/menuInsert";
 	}
 	
 	@RequestMapping(value = "/menuInsertDb.do", method = RequestMethod.POST)
@@ -73,8 +65,7 @@ public class MenuController {
 		// 식단 입력
 		logger.info("menuInsertDB 컨트롤러");
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
-		//int school_seq = memberDto.getSchool_seq();
-		int school_seq = 1;
+		int school_seq = memberDto.getSchool_seq();
 		int member_seq = memberDto.getMember_seq();
 		//받아온값 뽑아서 수정 후 다시 값 추가
 		System.out.println("start:::::::::::::"+start);
@@ -120,9 +111,61 @@ public class MenuController {
 			
 	}
 	
+	@RequestMapping(value = "/menuSelectOne.do")
+	public String menuSelect(int menu_seq, Model model) {	// 부모페이지에서 이벤트 클릭시 팝업 띄워주기
+		logger.info("menuSelect controller:::");
+		MenuDto menuUpdate = menuBiz.menuSelectOne(menu_seq);
+		model.addAttribute("menuClick", menuUpdate);
+		return "/menu/menuSelectPopup";
+	}
+	
+	@RequestMapping(value = "/menuUpdate.do")
+	public String menuUpdate(int menu_seq, Model model) {	// 선생님 식단 수정 시 selectOne 해서 뿌려주기
+		logger.info("menuUpdateForm controller:::");
+		MenuDto menuUpdate = menuBiz.menuSelectOne(menu_seq);
+		model.addAttribute("menuSelectOne", menuUpdate);
+		
+		return "/menu/menuUpdateForm";
+	}
+	
+	@RequestMapping(value = "/menuUpdateDb.do")
+	public String menuUpdateDb(Model model, MenuDto menuDto) {	//식단 수정
+		logger.info("menuUpdateDB controller:::::::::");
+		int updateRes = menuBiz.menuUpdate(menuDto);
+		if(updateRes>0) {
+			model.addAttribute("msg", "수정성공");
+			model.addAttribute("url", "alertClose.do");
+			return "/common/alert";
+		}else {
+			model.addAttribute("msg", "수정실패");
+			model.addAttribute("url", "menuUpdate.do"+menuDto.getMenu_seq());
+			return "/common/alert";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/menuDelete.do")
+	public String menuDelete(int menu_seq, Model model) {	//식단 삭제
+		logger.info("menuDeleteController");
+		int deleteRes = menuBiz.menuDelete(menu_seq);
+		if(deleteRes>0) {
+			model.addAttribute("msg", "삭제성공");
+			model.addAttribute("url", "alertClose.do");
+			return "/common/alert";
+		}else {
+			model.addAttribute("msg", "삭제실패");
+			model.addAttribute("url", "menuList.do");
+			return "/common/alert";
+		}
+		
+	}
+	
 	@RequestMapping(value = "/alertClose.do")
 	public String alertClose() {
-		return "/parent/menuAlertClose";
-	}
+		return "/menu/menuAlertClose";
+	}	
 
+		
+	
+	
 }

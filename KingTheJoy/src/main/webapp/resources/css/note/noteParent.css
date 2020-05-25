@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container-box{
+	margin : 0% 20% 6% 20%;
+}
+
+.item{
+  background: #eee;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(166, 168, 179, 0.2);
+  padding: 2rem;
+  place-content: start center;
+
+}
+
+.grid-container {
+  display: grid;
+  width : 100%;
+  grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+  grid-gap : 20px;
+}
+
+h1, h2, h3, h4 {
+  margin: .3em 0;
+}
+
+fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 0px 0px;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0 10%;
+	
+	/*stacking fieldsets above each other*/
+	position: relative;
+}
+table {
+	background: white;
+	border: 0 none;
+	padding: 0px 0px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 15px 22px;
+
+}
+
+th{
+	width : 80px;
+}
+
+td{
+	padding-bottom: 10px;
+}
