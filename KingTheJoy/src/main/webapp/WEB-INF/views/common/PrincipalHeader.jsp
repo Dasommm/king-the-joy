@@ -36,7 +36,7 @@
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-            	<a class="nav-link" href="principalMain.do">원장 메인</a>
+            	<a class="nav-link" href="principal.do">원장 메인</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">공지 사항</a>
