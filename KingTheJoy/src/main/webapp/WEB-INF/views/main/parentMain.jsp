@@ -50,16 +50,9 @@ h1 {
 
 <section>
 
-<!-- 배경 사진 -->
-<div id="background">
-   <img src="./resources/img/parentMain.jpg">
-</div>
-
-
-
 <%@include file="../common/parentHeader.jsp" %>
 <%@include file="../parent/parentChatbot.jsp" %>
-
+<%@include file="../parent/weatherApi.jsp" %>
 
    <!-- 공지사항 -->
    <div id="noticeImg">
@@ -70,7 +63,6 @@ h1 {
          </ul>
    </div>
 
-<h1>오늘의 식단</h1>
 
    <!-- 공지사항 -->
    <div>공지사항 부분</div>

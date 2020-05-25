@@ -117,7 +117,6 @@
 							</div>
 						</form>
 						
-						<button class="btn btn-primary">원비 결제</button>
 					
 					</div>
 					<!-- end form-horizontal -->
