@@ -47,5 +47,7 @@ public interface MemberDao {
 	// 유치원 정보
 	public void selectSchoolInfo(SchoolDto schoolDto);
 	
-	public List<MemberDto> adminSelectMember();
+	public boolean AndroidLoginCheck(MemberDto memberDto);
+	
+	
 } 

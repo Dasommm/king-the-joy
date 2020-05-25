@@ -61,14 +61,7 @@
 		});
 	});
 
-	//-비회원
-	$(function() {
-		$('#pNa02').click(function() {
-			$('#question01').hide();
-			$('.pNa').css('top', '550px');
-			$('#question03').show('slow');
-		});
-	});
+	
 
 	//회원 선택지들 클릭 답변
 	$(function() {
@@ -102,40 +95,15 @@
 			$('#answer02_04').show('slow');
 		});
 	});
-
-	//비회원 선택지들 클릭 답변
-
-	$(function() {
-		$('#pNa07').click(function() {
-			$('#question03').hide();
-			$('.pNa').css('top', '630px');
-			$('#answer03_01').show('slow');
+	
+	//채팅 연결
+	$(function(){
+		$('#answer02_01').click(function(){
+			window.open('chat.do');
 		});
 	});
-
-	$(function() {
-		$('#pNa08').click(function() {
-			$('#question03').hide();
-			$('.pNa').css('top', '630px');
-			$('#answer03_02').show('slow');
-		});
-	});
-
-	$(function() {
-		$('#pNa09').click(function() {
-			$('#question03').hide();
-			$('.pNa').css('top', '630px');
-			$('#answer03_03').show('slow');
-		});
-	});
-
-	$(function() {
-		$('#pNa10').click(function() {
-			$('#question03').hide();
-			$('.pNa').css('top', '630px');
-			$('#answer03_04').show('slow');
-		});
-	});
+	
+	
 </script>
 </head>
 <body>
@@ -168,8 +136,8 @@
    </div>
 
    <div id="answer02_01" class="pNa">
-      <p id="ans01" class="boder" style="background-color: #d8f5f5">회원의
-         1번 선택지 답변입니다.</p>
+      <p id="ans01" class="boder" style="background-color: #d8f5f5">
+         상담사 연결</p>
    </div>
    <div id="answer02_02" class="pNa">
       <p id="ans02" class="boder" style="background-color: #d8f5f5">회원의
@@ -184,22 +152,6 @@
          4번 선택지 답변입니다.</p>
    </div>
 
-   <div id="answer03_01" class="pNa">
-      <p id="ans05" class="boder" style="background-color: #d8f5f5">비회원의
-         1번 선택지 답변입니다.</p>
-   </div>
-   <div id="answer03_02" class="pNa">
-      <p id="ans06" class="boder" style="background-color: #d8f5f5">비회원의
-         2번 선택지 답변입니다.</p>
-   </div>
-   <div id="answer03_03" class="pNa">
-      <p id="ans07" class="boder" style="background-color: #d8f5f5">비회원의
-         3번 선택지 답변입니다.</p>
-   </div>
-   <div id="answer03_04" class="pNa">
-      <p id="ans08" class="boder" style="background-color: #d8f5f5">비회원의
-         4번 선택지 답변입니다.</p>
-   </div>
 
 </body>
 </html>

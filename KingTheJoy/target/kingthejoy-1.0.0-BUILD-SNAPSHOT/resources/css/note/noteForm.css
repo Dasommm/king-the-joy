@@ -45,19 +45,28 @@ body {
 	padding: 0px 0px;
 	box-sizing: border-box;
 	width: 80%;
-	margin: 0 10%;
+	margin: 15px 22px;
 
+}
+
+th{
+	width : 80px;
+}
+
+td{
+	padding-bottom: 10px;
 }
 
 span{
-	font-size: 12px;
+	font: 12px "Monoton", sans-serif;
+  	color: #ec7474;
 }
 
 /*inputs*/
-#msform input, #msform textarea {
+#msform input[type=text], #msform textarea {
 	padding: 15px;
 	border: 1px solid #ccc;
-	border-radius: 3px;
+	margin-top: 15px;
 	margin-bottom: 10px;
 	width: 100%;
 	box-sizing: border-box;
@@ -65,6 +74,18 @@ span{
 	color: #2C3E50;
 	font-size: 13px;
 }
+#msform input[type=submit]{
+	padding: 15px;
+	border: 1px solid #ccc;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
 #msform input[type=radio]{
 	padding: 15px;
 	border: 1px solid #ccc;
@@ -78,7 +99,7 @@ span{
 }
 
 /*buttons*/
-#msform .action-button {
+#msform input[type=button],#msform input[type=submit] {
 	width: 100px;
 	background: #27AE60;
 	font-weight: bold;
@@ -89,7 +110,7 @@ span{
 	padding: 10px 5px;
 	margin: 10px 5px;
 }
-#msform .action-button:hover, #msform .action-button:focus {
+#msform input[type=button]:hover, #msform input[type=submit]:hover {
 	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
 /*headings*/
@@ -167,9 +188,8 @@ label {
 
 input[type=range] {
   position: static;
-  z-index: 2;
-  width: 30vw;
-  height: 1rem;
+  width: 129px;
+  height: 8px;
   background: rgba(88,36,36,0.8);
   -webkit-appearance: none;
   -moz-appearance: none;

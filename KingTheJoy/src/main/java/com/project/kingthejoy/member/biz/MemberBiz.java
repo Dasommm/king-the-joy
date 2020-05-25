@@ -45,8 +45,8 @@ public interface MemberBiz {
 	
 	public void selectSchoolInfo(SchoolDto schoolDto);
 	
-	public List<MemberDto> adminSelectMember();
+	public boolean AndroidLoginCheck(MemberDto memberDto);
 	
-
+	
 }
  

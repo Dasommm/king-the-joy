@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="notification.do">asdf</a>
+	<script type="text/javascript">
+		location.href="principalMain.do";
+	</script>
 </body>
 </html>

@@ -34,6 +34,12 @@
 		WHERE MEMBER_ID = #{member_id} AND MEMBER_PW = #{member_pw}
 	</select>
 	
+	<!-- 안드로이드 로그인 확인 -->
+	<select id="androidLoginCheck" resultType="String">
+		SELECT MEMBER_NAME FROM MEMBER
+		WHERE MEMBER_ID = #{member_id} AND MEMBER_PW = #{member_pw}
+	</select>
+	
 	<select id="memberView" resultType="memberDto">
 		SELECT
 			 MEMBER_ID
@@ -46,8 +52,16 @@
 			,MEMBER_ADDR
 			,MEMBER_DETAILADDR
 			,MEMBER_DATE
+			,DECODE(MEMBER_ROLE	
+			,'1'
+			,'ROLE_ADMIN'
+			,'2'
+			,'ROLE_ADMIN'
+			,'3'
+			,'ROLE_ADMIN'
+			) AS AUTHORITIES
 		FROM MEMBER
-		WHERE MEMBER_ID = #{member_id} AND MEMBER_PW = #{member_pw}
+		WHERE MEMBER_ID = #{member_id} 
 	</select>
 	
 		<select id="snsMemberView" resultType="memberDto">
@@ -121,15 +135,10 @@
 	
 	<insert id="insertSchool" parameterType="Map">
 		INSERT INTO SCHOOL
-			(
-			CHILDREN_SEQ
-			,MEMBER_SEQ
-			,SCHOOL_SEQ
-			)
 		VALUES(
-			 #{children_seq}
-			,#{member_seq}
-			,#{school_seq}
+			 ${children_seq}
+			,${member_seq}
+			,${school_seq}
 		)
 	</insert>
 	
@@ -195,12 +204,6 @@
 		SELECT *
 		FROM CHILDREN
 		WHERE MEMBER_SEQ = #{member_seq}
-	</select>
-	
-	<select id="adminSelectMember" resultType="memberDto">
-		SELECT *
-		FROM MEMBER
-		ORDER BY MEMBER_SEQ DESC
 	</select>
 	
 </mapper>

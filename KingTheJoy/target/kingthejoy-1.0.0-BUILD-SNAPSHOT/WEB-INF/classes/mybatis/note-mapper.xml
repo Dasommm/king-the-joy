@@ -28,6 +28,13 @@ ON M.MEMBER_SEQ = C.MEMBER_SEQ
 WHERE CLASS_NAME =#{email_class}
 </select>
 
+<select id="selectNoteAll" parameterType="String" resultType="noteDto">
+SELECT NOTE_FEELING, NOTE_HEALTH, NOTE_TEMP, NOTE_MEAL, NOTE_SLEEP, NOTE_DEF, NOTE_SPEC, NOTE_DATE
+FROM MEMBER M FULL OUTER JOIN NOTE N
+ON M.MEMBER_SEQ = N.MEMBER_SEQ
+WHERE NOTE_RECEIVER = #{member_phone}
+</select>
+
 
 </mapper>
 
