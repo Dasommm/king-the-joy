@@ -5,16 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-	.principalBody{
-		margin: 4.5em 10em;
+	.teacherBody{
+		margin: 4.5em 5em;
 	}
-	.prin_menu_top, .prin_menu_bot{
-		margin: 25px;
+	.tea_menu_top, .tea_menu_bot{
 		/*background-color: #feeeef; */
 		display: flex;
 		justify-content: space-evenly;
 	}
-	.principalBody img{
+	.tea_menu_top{
+	    margin: 1em 5em;
+	}
+	.tea_menu_bot{
+     	margin: 1em 24em;
+    } 
+	.teacherBody img{
 		position: relative;
 		z-index: 1;
 		width: 12.5em;
@@ -42,38 +47,46 @@
 		position: absolute; 
 		
      }
-     .prin_menu_top span{
-     	top: 17.6em;
+     .tea_menu_top span{
+     	top: 17.2em;
      }     
-     .prin_menu_bot span{
-     	top: 28.3em;
-     }     
+     .tea_menu_bot span{
+     	top: 27.9em;
+     }  
+     h2{
+     	margin-left: 5em;
+     }   
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../common/PrincipalHeader.jsp" />
-<div class="principalBody">
-	<h2>원장 메인 페이지</h2>
-	<div class="prin_menu_top">
+<jsp:include page="../common/TeacherHeader.jsp" />
+<div class="teacherBody">
+	<h2>선생 메인 페이지</h2>
+	<div class="tea_menu_top">
+	 	<div class="image-container">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/abc.png" style="width: 9em;">
+	        <span>수업자료 등록</span>
+	    </div>
 	 	<div class="image-container">
 	        <img src="${pageContext.request.contextPath}/resources/img/main/location.png">
-	        <span>원아위치</span>
+	        <span>원아 위치 확인</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/mykindergarten.png">
-	        <span>내 어린이집</span>
+	        <img src="${pageContext.request.contextPath}/resources/img/main/childMgt.png">
+	        <span>원아관리</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/board.png">
-	        <span>관리자 게시판</span>
+	        <img src="${pageContext.request.contextPath}/resources/img/main/gallery.png" style="width: 15em;"
+	        	onclick="location.href='galleryUpload.do?school_seq=${memberDto.school_seq }'">
+	        <span>갤러리 등록</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/payment.png" style="width: 28em;">
-	        <span>결제관리</span>
+	        <img src="${pageContext.request.contextPath}/resources/img/main/menu.png" style="width: 9em;">
+	        <span>식단표 작성</span>
 	    </div>
 	</div>
-	<div class="prin_menu_bot">
+	<div class="tea_menu_bot">
 	 	<div class="image-container">
 	        <img src="${pageContext.request.contextPath}/resources/img/main/letter.png" style="width: 10em; cursor: pointer;"
 	        	onclick="window.open('letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')">
@@ -84,12 +97,8 @@
 	        <span>채팅</span>
 	    </div>
 	 	<div class="image-container">
-	        <a href="principalTeacherMgt.do"><img src="${pageContext.request.contextPath}/resources/img/main/teacherMgt.png"></a>
-	        <span>선생님관리</span>
-	    </div>
-	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/childMgt.png">
-	        <span>원생관리</span>
+	        <img src="${pageContext.request.contextPath}/resources/img/main/check.png" style="width: 8em;">
+	        <span>요청사항 확인</span>
 	    </div>
 	</div>  
     

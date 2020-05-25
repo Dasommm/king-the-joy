@@ -37,31 +37,31 @@ public class GalleryController {
 	}
 	
 	@RequestMapping(value = "/galleryUpload.do", method = RequestMethod.GET)
-	public String galleryUpload (int classseq, Model model, HttpServletRequest request) {
+	public String galleryUpload (int school_seq, Model model, HttpServletRequest request) {
 		log.info("into: galleryUpload");
 		//dto
 		GalleryDto galleryDto = new GalleryDto();
-		galleryDto.setClassseq(classseq);
-		log.info("original_class: "+classseq);
+		galleryDto.setSchool_seq(school_seq);
+		log.info("original_class: "+school_seq);
 		//make directory
-		String path = request.getSession().getServletContext().getRealPath("/resources/gallery/"+classseq+"/");
-		classMkdir(classseq, path);
+		String path = request.getSession().getServletContext().getRealPath("/resources/gallery/"+school_seq+"/");
+		classMkdir(school_seq, path);
 		//to client
 		model.addAttribute("dto", galleryDto);
 		return "gallery/galleryUpload";
 	}
 	
 	@RequestMapping(value = "/galleryPage.do", method = RequestMethod.GET)
-	public String galleryPage (int classseq, Model model) {
+	public String galleryPage (int school_seq, Model model) {
 		log.info("into: galleryPage");
 		GalleryDto galleryDto = new GalleryDto();
-		galleryDto.setClassseq(classseq);
+		galleryDto.setSchool_seq(school_seq);
 		model.addAttribute("dto", galleryDto);
 		return "gallery/galleryPage";
 	}
 	
 	//make class folder
-	private void classMkdir(int classseq, String path) {
+	private void classMkdir(int school_seq, String path) {
 		log.info("into: classMkdir");
 		File initFolder = new File(path);
 		if(!initFolder.exists()) {
@@ -107,12 +107,12 @@ public class GalleryController {
 		log.info("into: ajax");
 		
 		int imageNumber = Integer.parseInt(request.getParameter("imageNumber"));
-		int classseq = Integer.parseInt(request.getParameter("classseq"));
+		int school_seq = Integer.parseInt(request.getParameter("school_seq"));
 		log.info("imageNumber: "+imageNumber);
-		log.info("classseq: "+classseq);
+		log.info("school_seq: "+school_seq);
 		
 		//실제경로
-		String path = request.getSession().getServletContext().getRealPath("\\resources\\gallery\\"+classseq+"\\");
+		String path = request.getSession().getServletContext().getRealPath("\\resources\\gallery\\"+school_seq+"\\");
 		log.info("path: "+path);
 		
 		//파일생성
@@ -169,5 +169,5 @@ public class GalleryController {
 		}
 		return result;
 	}
-	
+
 }

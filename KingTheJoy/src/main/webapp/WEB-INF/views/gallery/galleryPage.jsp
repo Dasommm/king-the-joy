@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/galleryPage.css">
 <style type="text/css">
 	.bigPictureWrapper{
 		position: absolute;
@@ -29,29 +30,30 @@
 		height: auto; 
 	}
 </style>
-<link rel="stylesheet" href="/kingthejoy/resources/css/galleryPage.css">
 <title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="../common/PrincipalHeader.jsp" />
 <div class="galleryBody">
 	<h1>☆유치원 갤러리</h1>
+	<div class="galbox">
 	<div class="grid">
 		<c:forEach var="i" begin="1" end="9" step="1">
 			<div class="item">
 				<div class="item-content">
 					<a ondblclick="location.href='javascript:showImage(${i })';">
-					<img src="/kingthejoy/resources/gallery/${dto.classseq }/${i }.jpg"
-						onerror="this.src='/kingthejoy/resources/img/imageWarning.png'">
+					<img src="${pageContext.request.contextPath}/resources/gallery/${memberDto.school_seq }/${i }.jpg"
+						onerror="this.src='${pageContext.request.contextPath}/resources/img/imageWarning.png'">
 					</a>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
+	</div>
+</div>	
 	<div class="bigPictureWrapper">
 		<div class="bigPicture"></div>
 	</div>
-</div>	
 <script src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>

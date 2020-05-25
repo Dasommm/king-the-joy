@@ -30,23 +30,27 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-white navbar-white">
         <!-- Brand -->
-        <a class="navbar-brand header-logo" href="#">
-        <img src="/kingthejoy/resources/img/Logo.png" style="width: 150px;"></a>
+        <a class="navbar-brand header-logo" href="home.do">
+        <img src="${pageContext.request.contextPath}/resources/img/Logo.png" style="width: 150px;"></a>
       
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">공지 사항</a>
+            	<a class="nav-link" href="#">선생 메인</a>
+            </li>
+            <li class="nav-item">
+            	<a class="nav-link" href="#">공지사항</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">원아 위치</a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">원아 위치</a>
+          		<a class="nav-link" href="#">원아 관리</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">원아 관리</a>
+            	<a class="nav-link" href="#">수업자료</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">수업 자료</a>
-          </li>
+
           <!-- Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -54,7 +58,8 @@
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">요청사항 확인</a>
-              <a class="dropdown-item" href="#">갤러리 등록</a>
+              <a class="dropdown-item" href="galleryPage.do?school_seq=${memberDto.school_seq }">갤러리</a>
+              <a class="dropdown-item" href="galleryUpload.do?school_seq=${memberDto.school_seq }">갤러리 등록</a>
               <a class="dropdown-item" href="#">쪽지함</a>
             </div>
           </li>
@@ -66,12 +71,14 @@
 			    </button>
 			    <ul class="dropdown-menu">
 			        <li><a class="dropdown-item" href="#">마이페이지</a></li>
-			        <li><a class="dropdown-item" href="#">로그아웃</a></li>
+			        <li><a class="dropdown-item" href="logout.do">로그아웃</a></li>
 			    </ul>
 			</div>
       </nav>
 <script type="text/javascript">
+$(function() {
 	$('.dropdown-toggle').dropdown();
+});
 </script>
 </body>
 </html>
