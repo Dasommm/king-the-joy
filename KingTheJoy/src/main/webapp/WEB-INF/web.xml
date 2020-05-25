@@ -27,6 +27,11 @@
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported> <!-- 웹소켓을 위한 설정(비동기 지원) -->
 	</servlet>
+	
+	<welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
 
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>

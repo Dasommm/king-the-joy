@@ -26,7 +26,7 @@
 		<img src="<c:url value="/resources/img/home.png"/>" alt="homeLogo">
 	</div>
 	<!-- <form action="tableDataSend.do" method="post" role="form" id="submit"> -->
-	<input type="hidden" name="member_role" value="${member_role }">
+		<input type="hidden" name="member_role" value="${member_role }">
 	<form action="memberUpdate.do" method="post" id="insert">
 		<div class="home-div col-8 row">
 			<div class="image-center col-12">
@@ -46,7 +46,7 @@
 						<tr>
 							<td>자녀 이름</td>
 							<td>유치원 주소</td>
-							<td>유치원 이름</td>
+							<td>유치원 이름 </td>
 						</tr>
 					</thead>
 					<tbody id="list">
@@ -58,7 +58,6 @@
 			</div>
 		</div>
 	</form>
-
 	<!-- </form>  -->
 
 	<!-- Modal -->

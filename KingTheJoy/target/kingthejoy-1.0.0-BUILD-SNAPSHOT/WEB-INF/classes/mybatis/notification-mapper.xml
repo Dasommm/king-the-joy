@@ -63,8 +63,8 @@
 		set member_flag = 1
 		where member_seq = #{member_seq} and notification_seq = #{notification_seq}
 	</update>
-	
 	<select id="selectSchoolName" parameterType="int">
 		select school_name from schoolList where school_seq = #{school_seq} 
 	</select>
+
 </mapper>
