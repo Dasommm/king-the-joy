@@ -3,7 +3,7 @@
 <mapper namespace="menu">
 <resultMap type="menuDto" id="menuMap">
 	<result column="menu_seq" property="menu_seq"/>
-	<result column="member_seq" property="menu_seq"/>
+	<result column="member_seq" property="member_seq"/>
 	<result column="menu_start" property="start"/>
 	<result column="menu_type" property="title"/>
 	<result column="menu_info" property="description"/>
@@ -13,13 +13,28 @@
 
 
 <select id="menuList" parameterType="int" resultMap="menuMap">
-select menu_start, menu_end, menu_type, menu_info from menu where school_seq = #{school_seq}
+  select menu_seq, menu_start, menu_end, menu_type, menu_info from menu where school_seq = #{school_seq}
+</select>
 
+<select id="menuSelectOne" parameterType="int" resultMap="menuMap">
+  select menu_start, menu_end, menu_type, menu_info from menu where school_seq = #{school_seq}
 </select>
 
 <insert id="menuInsert">
 INSERT INTO MENU
 VALUES(MENUSEQ.NEXTVAL, #{member_seq}, #{start}, #{title}, #{description}, #{school_seq}, #{end})
 </insert>
+
+
+<update id="menuUpdate">
+UPDATE MENU
+SET MENU_TYPE=#{title}, MENU_INFO=#{description} 
+WHERE MENU_SEQ = #{menu_seq}
+</update>
+
+<delete id="menuDelete">
+DELETE FROM MENU WHERE MENU_SEQ = #{menu_seq}
+</delete>
+
 
 </mapper>

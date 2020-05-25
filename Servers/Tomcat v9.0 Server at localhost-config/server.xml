@@ -58,21 +58,13 @@
          Java HTTP Connector: /docs/config/http.html
          Java AJP  Connector: /docs/config/ajp.html
          APR (HTTP/AJP) Connector: /docs/apr.html
-<<<<<<< HEAD:Servers/Tomcat v9.0 Server at localhost-config/server.xml
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8090
-=======
-         Define a non-SSL/TLS HTTP/1.1 Connector on port 8787
->>>>>>> 4c9db7a383120e5fecedf83a9fe9e8b2be28e5bd:Servers/Tomcat v9.0 Server at localhost-config/server.xml
     -->
     <Connector connectionTimeout="20000" port="8090" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
-<<<<<<< HEAD:Servers/Tomcat v9.0 Server at localhost-config/server.xml
                port="8090" protocol="HTTP/1.1"
-=======
-               port="8787" protocol="HTTP/1.1"
->>>>>>> 4c9db7a383120e5fecedf83a9fe9e8b2be28e5bd:Servers/Tomcat v9.0 Server at localhost-config/server.xml
                connectionTimeout="20000"
                redirectPort="8443" />
     -->

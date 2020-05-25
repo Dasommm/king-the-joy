@@ -20,13 +20,7 @@
 			<td><input type="text" id="targetUser"></td>
 			<td><input type="button" value="전송" id="btnSend"></td>
 		</tr>
-	
 	</table>
-	<textarea rows="5" cols="30">
-	</textarea>
-	<input type="text" id="chatMsg">
-	<input type="text" id="targetUser">
-	<input type="button" value="전송" id="btnSend">
 </div>
 
 

@@ -15,6 +15,22 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- Gmail sender -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />	<!-- gmail사용 -->
+		<property name="port" value="587" />
+		<property name="username" value="dasomkwon39@gmail.com" />	<!-- gmail계정 -->
+		<property name="password" value="kinderjoy12" />			
+		<property name="javaMailProperties" >
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+			</props>
+		</property>
+	</bean>
+
 
 <!--  
 	<bean id="commonAop" class="com.project.kingthejoy.common.aop.CommonAop"></bean>
