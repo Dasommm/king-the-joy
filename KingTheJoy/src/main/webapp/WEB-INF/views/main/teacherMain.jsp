@@ -55,7 +55,10 @@
      }  
      h2{
      	margin-left: 5em;
-     }   
+     }  
+     img{
+     	cursor: pointer;
+     } 
 </style>
 <title>Insert title here</title>
 </head>
@@ -88,7 +91,7 @@
 	</div>
 	<div class="tea_menu_bot">
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/letter.png" style="width: 10em; cursor: pointer;"
+	        <img src="${pageContext.request.contextPath}/resources/img/main/letter.png" style="width: 10em;"
 	        	onclick="window.open('letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')">
 	        <span>쪽지함</span>
 	    </div>

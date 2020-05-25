@@ -16,7 +16,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../common/PrincipalHeader.jsp" />
+<c:if test="${memberDto.member_role ==1 }">
+	<jsp:include page="../common/PrincipalHeader.jsp" />
+</c:if>
+<c:if test="${memberDto.member_role ==2 }">
+	<jsp:include page="../common/TeacherHeader.jsp" />
+</c:if>
 <div class="galleryBody">
 	<h1>사진등록</h1>
 	<h4>사진을 드래그해서 올려주세요. jpg 파일만 가능합니다. (5MB이하)</h4>

@@ -33,7 +33,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../common/PrincipalHeader.jsp" />
+<c:if test="${memberDto.member_role ==1 }">
+	<jsp:include page="../common/PrincipalHeader.jsp" />
+</c:if>
+<c:if test="${memberDto.member_role ==2 }">
+	<jsp:include page="../common/TeacherHeader.jsp" />
+</c:if>
 <div class="galleryBody">
 	<h1>☆유치원 갤러리</h1>
 	<div class="galbox">

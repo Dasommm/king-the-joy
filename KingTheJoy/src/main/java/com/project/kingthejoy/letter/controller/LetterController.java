@@ -32,12 +32,6 @@ public class LetterController {
 	@Autowired
 	Paging paging;
 	
-	@RequestMapping(value = "/letter.do", method = RequestMethod.GET)
-	public String letterMain () {
-		log.info("into: letterMain");
-		return "letter/letterMain";
-	}
-	
 	@RequestMapping(value = "/letterPage.do", method = RequestMethod.GET)
 	public String letterPage (int currentpage, int member_seq, Model model) {
 		log.info("into: letterPage");
