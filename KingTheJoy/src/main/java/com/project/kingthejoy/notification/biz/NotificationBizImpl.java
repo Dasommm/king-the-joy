@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.project.kingthejoy.notification.dao.NotificationDao;
 import com.project.kingthejoy.notification.dto.NotificationCheckDto;
 import com.project.kingthejoy.notification.dto.NotificationDto;
+import com.project.kingthejoy.notification.dto.PagingDto;
 
 @Service
 public class NotificationBizImpl implements NotificationBiz {
@@ -16,9 +17,9 @@ public class NotificationBizImpl implements NotificationBiz {
 	private NotificationDao dao;
 	
 	@Override
-	public List<NotificationDto> selectNotificationList(int school_seq) {
+	public List<NotificationDto> selectNotificationList(PagingDto pagingDto) {
 		// TODO Auto-generated method stub
-		return dao.selectNotificationList(school_seq);
+		return dao.selectNotificationList(pagingDto);
 	}
 
 	@Override
@@ -74,6 +75,24 @@ public class NotificationBizImpl implements NotificationBiz {
 	public int updateWritten(NotificationCheckDto checkDto) {
 		// TODO Auto-generated method stub
 		return dao.updateWritten(checkDto);
+	}
+
+	@Override
+	public String selectSchoolName(int school_seq) {
+		// TODO Auto-generated method stub
+		return dao.selectSchoolName(school_seq);
+	}
+
+	@Override
+	public int countList(int school_seq) {
+		// TODO Auto-generated method stub
+		return dao.countList(school_seq);
+	}
+
+	@Override
+	public List<NotificationDto> selectRollingNotificationList(int school_seq) {
+		// TODO Auto-generated method stub
+		return dao.selectRollingNotificationList(school_seq);
 	}
 
 }

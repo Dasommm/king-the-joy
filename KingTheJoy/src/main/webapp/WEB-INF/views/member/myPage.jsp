@@ -14,8 +14,18 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/myPage.css"/>">
 
+<style type="text/css">
+
+	#mainbody{
+		height: 850px;
+	}
+
+</style>
+
 </head>
 <body>
+<%@include file="../common/parentHeader.jsp" %>
+<section id="mainbody">
 	<div class="container">
 		<div class=".col-sm-4 .col-md-offset-2">
 			<div class="panel panel-default panel-info Profile">
@@ -106,6 +116,9 @@
 								</div>
 							</div>
 						</form>
+						
+						<button class="btn btn-primary">원비 결제</button>
+					
 					</div>
 					<!-- end form-horizontal -->
 				</div>
@@ -137,6 +150,7 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
+          
           <button type="button" class="btn btn-danger" data-dismiss="modal">유치원 정보 수정</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
         </div>
@@ -144,6 +158,8 @@
       </div>
     </div>
   </div>
-
+</section>
+  
+<%@include file="../common/footer.jsp" %>
 </body>
 </html>

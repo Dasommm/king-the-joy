@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+
 	
 	<!-- 회원가입 -->
 	<insert id="join" parameterType="memberDto">
@@ -121,10 +122,15 @@
 	
 	<insert id="insertSchool" parameterType="Map">
 		INSERT INTO SCHOOL
+			(
+			CHILDREN_SEQ
+			,MEMBER_SEQ
+			,SCHOOL_SEQ
+			)
 		VALUES(
-			 ${children_seq}
-			,${member_seq}
-			,${school_seq}
+			 #{children_seq}
+			,#{member_seq}
+			,#{school_seq}
 		)
 	</insert>
 	
@@ -193,3 +199,4 @@
 	</select>
 	
 </mapper>
+

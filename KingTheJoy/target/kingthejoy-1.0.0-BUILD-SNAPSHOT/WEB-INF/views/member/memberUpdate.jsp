@@ -27,6 +27,7 @@
 	</div>
 	<!-- <form action="tableDataSend.do" method="post" role="form" id="submit"> -->
 		<input type="hidden" name="member_role" value="${member_role }">
+	<form action="memberUpdate.do" method="post" id="insert">
 		<div class="home-div col-8 row">
 			<div class="image-center col-12">
 				<img src="<c:url value="/resources/img/Logo.png"/>"
@@ -52,9 +53,11 @@
 					</tbody>
 				</table>
 			</div>
-			<div><button type="submit" id="submit" class="btn btn-success">회원가입하기</button></div> 
+			<div>
+				<button type="submit" id="submit" class="btn btn-success">회원가입하기</button>
+			</div>
 		</div>
-		
+	</form>
 	<!-- </form>  -->
 
 	<!-- Modal -->
@@ -67,7 +70,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Add item</h4> 
+					<h4 class="modal-title" id="myModalLabel">Add item</h4>
 				</div>
 				<div class="modal-body">
 

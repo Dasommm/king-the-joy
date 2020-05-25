@@ -1,0 +1,272 @@
+@charset "UTF-8";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: repeating-linear-gradient(135deg, #F29B91 0px, #F09290 30px, transparent 30px, transparent 50px, #83B3DB 50px, #84ADCB 80px, transparent 80px, transparent 100px);
+  padding: 23px;
+}
+.container .inner { background: white; width: 100%; height: 100%;}
+
+/*=============================
+* Slice by Joe Richardson
+* V1
+* Licensed under MIT
+=============================*/
+
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
+@import url(https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+
+* {
+  margin:0;
+  padding:0;
+  font-family: "Lato";
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-size:16px;
+}
+
+form {
+  width:38%;
+  max-width: 700px;
+  margin: 50px auto;
+}
+
+div_box{
+	
+}
+
+/* Clearfix */
+.cf:after {
+  content: "";
+  display: table;
+  clear: both
+}
+
+input,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 0;
+}
+
+textarea {
+  resize:none;
+  max-width:100%;
+  height:150px;
+}
+
+/* Reset for Input elements */
+select,
+button,
+input[type="submit"],
+input[type="button"] {
+  position: relative;
+  cursor: pointer;
+  border:0;
+  outline:none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* Default Inputs */
+.default-input {
+  padding:0.8em;
+  border:2px solid #ccc;
+  font-size:1em;
+  width:100%;
+  color:#999;
+  margin-bottom:15px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.default-input:focus {
+  border:2px solid #999;
+}
+
+/* Rounded Inputs */
+.rounded {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  overflow:hidden;
+}
+
+/* Placeholder */
+.default-input::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+.default-input:-moz-placeholder {
+  color: #ccc;
+}
+
+.default-input::-moz-placeholder {
+  color: #ccc;
+}
+
+.default-input:-ms-input-placeholder {
+  color: #ccc;
+}
+
+/* Label with Icons */
+.label-icon {
+  color:rgba(0,0,0,.6);
+  position:absolute;
+  bottom:-15px;
+  display:block;
+  font-size:1.5em;
+  padding:8px 15px;
+}
+
+.label-input {
+  padding-left:60px;
+}
+
+/* Option Menu / Select Menu */
+.option-menu {
+  background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAAAlCAYAAAD/Tp9wAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAdBJREFUeNrs2L1WwjAUAOCkeQEegbUbbo6wOZpHYHRk9BHcHB0Z3aqjk4xudHSEN8A38F4Nh2hPm7T5T3vPKQTapJfvpG24lHO+J4QsyBRy1AW8rLAxWVxQ0IRiC2bNDN7ep5nzi1JV1Ymev5lwLij4gcp7BA7ec+YjQznAdnVGwSjkvWIHh+00IpSf3yyjNGaMNHMW4rKajQAFL5/Gw4e29RgBTitKJ0zmOJ0ojXvM/xAd1xnOlnUXCgZTjfAJUZblEZq3GaE8qw5iOiOBTZ0JDqJsdQ5kuiNmgKON0gtGwvmC5k1iKBtAeerTgfU9A+B8AM48ob8OW0C579uJDTkT4LwmgoMog56qbOgZE8AZjGIEEzmOEYpy5asbsELG1fEyEpQdoKxMByksJcNJHFXAWuRiHNRWRhEUuv4UmqKBCYxjFcU6TCAc6yhOYDyXK5Tlg6hgPOE4Q3EK4xjHKYpzGEc4zlG8wAicpcCxEYiyc50z8wEDfx0Olmo5WFN58ZGzFxiBY1ro6lVoSgbGEMcrineYgTjeUYLASDj4lLpWHPoIKA8hcgwCI3DeFLUcrKnchcovGIzAaSt0GReakoZpwQmOElXAIrDCLZZ8vgUYANCa63k2/DsoAAAAAElFTkSuQmCC') no-repeat;
+  background-size:15px;
+  background-position:right 20px top 20px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  width:48.7%;
+  
+}
+
+/* Buttons */
+.btn {
+  border:0;
+  padding:10px;
+  color:#fff;
+  background:#ccc;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size:.7em;
+  margin-bottom:3px;
+}
+
+/* Main Colours */
+.blue         { background:#40b3df; }
+.green        { background:#1abc9c; }
+.red          { background:#c0392b; }
+.orange       { background:#e67e22; }
+.yellow       { background:#f1c40f; }
+.purple       { background:#8e44ad; }
+.dark         { background:#2c3e50; }
+
+.btn:hover    { background:#ddd; }
+.blue:hover   { background:#2980b9; }
+.green:hover  { background:#16a085; }
+.red:hover    { background:#e74c3c; }
+.orange:hover { background:#d35400; }
+.yellow:hover { background:#f39c12; }
+.purple:hover { background:#9b59b6; }
+.dark:hover   { background:#34495e; }
+
+.btn-icon {
+  font-size:1em;
+  padding:10px 15px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Legend */
+fieldset {
+  padding:20px;
+  border:1px solid rgba(0,0,0,.1);
+}
+
+legend {
+  margin:0 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size:.7em;
+  font-weight:bold;
+}
+
+
+/* Shortcuts / Helpers */
+.half {
+  width:48.7%;
+}
+
+.full {
+  width:100%;
+}
+
+.float-left {
+  float:left;
+}
+
+
+.float-right {
+  float:right;
+}
+
+.padding-big {
+  padding:10px;
+}
+
+.padding-bigger {
+  padding:20px;
+}
+
+.rounded {
+  border-radius:6px;
+}
+
+.full-rounded {
+  border-radius: 100px;
+}
+
+/* Typography */
+h1 {
+  font-size:3.3em;
+  margin-bottom:.3em;
+}
+
+h2 {
+  font-size:2.8em;
+  margin-bottom:.3em;
+}
+
+h3 {
+  font-size:2.4em;
+  margin-bottom:.3em;
+}
+
+h4 {
+  font-size:1.8em;
+  margin-bottom:.3em;
+}
+
+h5 {
+  font-size:1.4em;
+  margin-bottom:.3em;
+}
+
+h6 {
+  font-size:1.2em;
+  margin-bottom:.3em;
+}
+
+p {
+  font-size: 1em;
+  margin-bottom:3em;
+  line-height:1.4em;
+}

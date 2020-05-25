@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.project.kingthejoy.member.biz.MemberBiz;
 import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.school.dto.SchoolDto;
@@ -26,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class MemberController<dataList> {
-	
+  
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	
@@ -42,7 +43,6 @@ public class MemberController<dataList> {
 		return "common/home";
 	}
 	
-	
 	@RequestMapping(value="/myPage.do" ,method = RequestMethod.GET)
 	public String mainPageForm(Model model, HttpSession session) {
 		
@@ -52,6 +52,7 @@ public class MemberController<dataList> {
 		
 		if(member_role == 3) {
 			model.addAttribute("childrenList", biz.childrenList(member_seq));
+
 
 		}else if(member_role == 2 || member_role == 1) {
 			
@@ -307,8 +308,6 @@ public class MemberController<dataList> {
 		} else {
 			// 학부모 페이지 연결
 			log.info("학부모 페이지 연결");
-			
-			  
 			if (biz.selectChildrenSeqOfSchool(memberDto.getMember_seq()) > 0) {
 				memberDto.setSchool_seq(biz.selectSchoolSeqOfParent(memberDto.getMember_seq()));
 				session.setAttribute("memberDto", memberDto);
@@ -335,18 +334,23 @@ public class MemberController<dataList> {
 		SchoolDto schoolDto = new SchoolDto();
 		schoolDto.setSchool_addr(school_addr);
 		schoolDto.setSchool_name(school_name);
+		
 		Map<String, String> schoolListMap = new HashMap<String, String>();
 		schoolListMap.put("school_addr", school_addr);
 		schoolListMap.put("school_name", school_name);
-		System.out.println("school_addr : "+school_addr);
+		
 		if(biz.selectSchool(schoolDto)==null) {
 			biz.insertSchoolInfo(schoolListMap);
 		}
+		
 		int school_seq = biz.selectSchoolSeq(schoolListMap);
+		
 		schoolMap.put("school_seq", school_seq);
 		schoolMap.put("member_seq", memberDto.getMember_seq());
+		
 		biz.insertSchool(schoolMap);
 		log.info("session value = {}", memberDto.getMember_seq());
+		
 		model.addAttribute("msg", "유치원 정보입력을 성공하였습니다");
 		model.addAttribute("url", "roleCheck.do");
 		return "common/alert";
