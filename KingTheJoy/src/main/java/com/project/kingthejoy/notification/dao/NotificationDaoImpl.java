@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.kingthejoy.notification.dto.NotificationCheckDto;
 import com.project.kingthejoy.notification.dto.NotificationDto;
-import com.project.kingthejoy.notification.dto.PagingDto;
+
 
 @Repository
 public class NotificationDaoImpl implements NotificationDao {
@@ -18,8 +18,8 @@ public class NotificationDaoImpl implements NotificationDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<NotificationDto> selectNotificationList(PagingDto pagingDto) {
-		return sqlSession.selectList(NAMESPACE + "selectList", pagingDto);
+	public List<NotificationDto> selectNotificationList(int school_seq) {
+		return sqlSession.selectList(NAMESPACE + "selectList", school_seq);
 	}
 
 	@Override

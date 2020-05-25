@@ -46,4 +46,6 @@ public interface MemberDao {
 	public List<ChildrenDto> childrenList(int member_seq);
 	// 유치원 정보
 	public void selectSchoolInfo(SchoolDto schoolDto);
+	
+	public List<MemberDto> adminSelectMember();
 } 
