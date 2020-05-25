@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,7 +42,6 @@ public class MemberController<dataList> {
 		return "common/home";
 	}
 	
-	
 	@RequestMapping(value="/myPage.do" ,method = RequestMethod.GET)
 	public String mainPageForm(Model model, HttpSession session) {
 		
@@ -53,6 +51,7 @@ public class MemberController<dataList> {
 		
 		if(member_role == 3) {
 			model.addAttribute("childrenList", biz.childrenList(member_seq));
+
 
 		}else if(member_role == 2 || member_role == 1) {
 			

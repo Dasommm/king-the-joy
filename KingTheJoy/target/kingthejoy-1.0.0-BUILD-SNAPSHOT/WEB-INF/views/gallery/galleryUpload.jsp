@@ -16,7 +16,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${dto.classseq }반 사진등록</h1>
+<jsp:include page="../common/PrincipalHeader.jsp" />
+<div class="galleryBody">
+	<h1>사진등록</h1>
 	<h4>사진을 드래그해서 올려주세요. jpg 파일만 가능합니다. (5MB이하)</h4>
 	<div class="grid">
 		<c:forEach var="i" begin="1" end="9" step="1">
@@ -28,6 +30,7 @@
 			</div>
 		</c:forEach>
 	</div>
+</div>	
 <script src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>

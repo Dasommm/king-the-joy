@@ -6,38 +6,39 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+
+#noticeTable{
+	width: 800px;
+	height: 850px;
+}
+
+
+</style>
+
+
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
-function selChange(){
-	var sel = document.getElementById('cntPerPage').value;
-	location.href="list.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
-}
-var asd = ${memberDto.getMember_role()};
-if(asd<3){
+
+
+if(${memberDto.getMember_role()}<3){
 	$("insert").css("display","");
 }
 
 </script>
 </head>
 <body>
-	<div>
-		<select id="cntPerPage" name="sel" onchange="selChange()">
-			<option value="5"
-				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
-				보기</option>
-			<option value="10"
-				<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄
-				보기</option>
-			<option value="15"
-				<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄
-				보기</option>
-			<option value="20"
-				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄
-				보기</option>
-		</select>
-	</div>
-	<!-- 옵션선택 끝 -->
+
+
+<section>	
+
+<%@include file="../common/parentHeader.jsp" %>
+<%@include file="../parent/parentChatbot.jsp" %>
+<%@include file="../parent/weatherApi.jsp" %>
+
+	<div id="noticeTable">
 	<table border="1">
 		<thead>
 			<tr>
@@ -66,15 +67,11 @@ if(asd<3){
 			</c:choose>
 		</tbody>
 	</table>
-	<div id ="pageGroup" style="display: block; text-align: center;">
-			<a>&lt;</a>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-					<a class="pageNum" href="notification.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-		</c:forEach> 
-			<a href="list.do?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a> 
+	<input type="button" value="공지사항 작성" onclick="location.href='notificationInsert.do'" id="insert" style="display: none;">	
 	</div>
-	
-	<input type="button" value="공지사항 작성" onclick="location.href='notificationInsert.do'" id="insert">
+</section>
+<%@include file="../common/footer.jsp" %>
+
     	
 	
 </body>

@@ -33,7 +33,7 @@
     <nav>
     
  
-        <a class="logo" href="#">
+        <a class="logo" href="roleCheck.do">
         	<img src="./resources/img/kinderJoyLogo.png">
        	</a>
        	
