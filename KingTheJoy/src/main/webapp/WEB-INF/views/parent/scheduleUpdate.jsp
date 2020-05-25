@@ -18,10 +18,75 @@
          $(this).css("background","#2C3E50");
       });
    });
+   
+   onload=function(){
+	   var frm = document.form(0);
+	   var color = ${updateform.color};
+	   if(color == "red"){
+		   frm.color(0).checked = true;
+	   }else if(color == "yellow"){
+		   frm.color(1).checked = true;
+	   }else if(color == "green"){
+		   frm.color(2).checked = true;
+	   }else{
+		   frm.color(3).checked = true;
+	   }
+	 }
 </script>
 
 </head>
 <body>
+<div class="container">
+  
+  <h2>행사 수정<small>Event Update</small></h2>
+  
+  <form name="updateresform" action="scheduleUpdateDb.do" method="post">
+    <input type="hidden" name="schedule_seq" value="${updateform.schedule_seq }"/>
+    <div class="group">
+			<input type="date" name="start" value="${updateform.start }" required="required"> 
+			<span class="highlight"></span> 
+			<span class="bar"></span> 
+			<label style="top: -17px">시작일</label>
+		</div>
+		
+		<div class="group">
+			<input type="date" name="end" value="${updateform.end }" required="required"> 
+			<span class="highlight"></span> 
+			<span class="bar"></span> 
+			<label style="top: -17px">종료일</label>
+		</div>
+
+		<div class="group">
+			<input type="radio" id="red" name="color" value="red" required="required">
+			<label for="red">Red</label>
+			<input type="radio" id="yellow" name="color" value="yellow" required="required">
+			<label for="yellow">Yellow</label>
+			<input type="radio" id="green" name="color" value="green" required="required">
+			<label for="green">Green</label>
+			<input type="radio" id="blue" name="color" value="blue" required="required">
+			<label for="blue">Blue</label>
+			<span class="highlight"></span> 
+			<span class="bar"></span> 
+			<label style="top:-25px">컬러선택</label>
+		</div>
+		
+		<div class="group">
+			<input type="text" name="title" value="${updateform.title }" required="required"> 
+			<span class="highlight"></span> 
+			<span class="bar"></span> 
+			<label style="top: -17px">제목</label>
+		</div>
+		
+		<div>
+			<textarea name="description" rows="10" cols="30" style="margin: 0px; width: 300px; height: 85px;" required="required"
+			placeholder="일정을 입력해주세요">${updateform.description }"</textarea>
+		</div>
+
+		<input type="submit" value="등록" class="submitbtn"> 
+		<input type="button" value="닫기" onclick="window.close()">
+  </form>
+  
+</div>
 
 
 

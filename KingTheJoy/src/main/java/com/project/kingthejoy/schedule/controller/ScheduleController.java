@@ -113,6 +113,12 @@ public class ScheduleController {
 		return "parent/scheduleUpdate";
 	}
 	
+	@RequestMapping("/scheduleUpdateDb.do")
+	public String scheduleUpdateDb() {
+		
+		return "";
+	}
+	
 	@RequestMapping("/scheduleDelete.do")
 	public String deleteSchedule(int schedule_seq, Model model) {		
 		int deleteRes = schedulebiz.scheduleDelete(schedule_seq);
