@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="/kingthejoy/resources/css/letterPage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/letterPage.css">
 <title>Letter Box</title> 
 </head>
 <body>
@@ -44,7 +44,7 @@
 				<c:choose>
 					<c:when test="${dto.letter_status == 0 }">
 						<td class="title" style="color: blue; text-align: left; cursor:pointer; ">
-						<img src="/kingthejoy/resources/img/new_icon.png" style="width:20px;">
+						<img src="${pageContext.request.contextPath}/resources/img/new_icon.png" style="width:20px;">
 						${dto.letter_title }</td>
 					</c:when>
 					<c:otherwise>

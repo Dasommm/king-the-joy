@@ -30,8 +30,8 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-white navbar-white">
         <!-- Brand -->
-        <a class="navbar-brand header-logo" href="#">
-        <img src="/kingthejoy/resources/img/Logo.png" style="width: 150px;"></a>
+        <a class="navbar-brand header-logo" href="home.do">
+        <img src="${pageContext.request.contextPath}/resources/img/Logo.png" style="width: 150px;"></a>
       
         <!-- Links -->
         <ul class="navbar-nav">
@@ -45,7 +45,7 @@
           		<a class="nav-link" href="#">원생 현황</a>
           </li>
           <li class="nav-item">
-            	<a class="nav-link" href="#">직원 관리</a>
+            	<a class="nav-link" href="principalTeacherMgt.do">직원 관리</a>
           </li>
 
           <!-- Dropdown -->
@@ -55,8 +55,8 @@
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">요청사항 확인</a>
-              <a class="dropdown-item" href="galleryPage.do?classseq=1">갤러리</a>
-              <a class="dropdown-item" href="galleryUpload.do?classseq=1">갤러리 등록</a>
+              <a class="dropdown-item" href="galleryPage.do?school_seq=${memberDto.school_seq }">갤러리</a>
+              <a class="dropdown-item" href="galleryUpload.do?school_seq=${memberDto.school_seq }">갤러리 등록</a>
               <a class="dropdown-item" href="#">쪽지함</a>
             </div>
           </li>
@@ -68,7 +68,7 @@
 			    </button>
 			    <ul class="dropdown-menu">
 			        <li><a class="dropdown-item" href="#">마이페이지</a></li>
-			        <li><a class="dropdown-item" href="#">로그아웃</a></li>
+			        <li><a class="dropdown-item" href="/member/logout.do">로그아웃</a></li>
 			    </ul>
 			</div>
       </nav>
