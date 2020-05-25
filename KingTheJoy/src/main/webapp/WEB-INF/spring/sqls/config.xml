@@ -8,7 +8,8 @@
 		<typeAlias type="com.project.kingthejoy.notification.dto.NotificationDto" alias="notificationDto"/>
 		<typeAlias type="com.project.kingthejoy.notification.dto.NotificationCheckDto" alias="notificationCheckDto"/>
 		<typeAlias type="com.project.kingthejoy.school.dto.SchoolDto" alias="schoolDto" />
-
+		<typeAlias type="com.project.kingthejoy.children.dto.ChildrenDto" alias="childrenDto" />
+		<typeAlias type="com.project.kingthejoy.notification.dto.PagingDto" alias="pagingDto"/>
 	</typeAliases>
 
 	<mappers>

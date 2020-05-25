@@ -33,12 +33,12 @@
     <nav>
     
  
-        <a class="logo" href="#">
+        <a class="logo" href="roleCheck.do">
         	<img src="./resources/img/kinderJoyLogo.png">
        	</a>
        	
      	<div class="MyMenu">
-          	<a href="#" class="mymenu-link">마이페이지</a>
+          	<a href="myPage.do" class="mymenu-link">마이페이지</a>
           	<a href="logout.do" class="mymenu-link">로그아웃</a>
         </div>
         

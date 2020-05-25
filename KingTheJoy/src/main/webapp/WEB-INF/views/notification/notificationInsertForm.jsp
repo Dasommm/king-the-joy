@@ -11,7 +11,7 @@
 		<table border="1">
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="notification_title"></td>
+				<td><input type="text" name="notification_title" value="[${school_name}]"></td>
 			</tr>
 			<tr>
 				<td>내용</td>

@@ -5,16 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	
-	#messages{
-		width: 300px;
-		height: 500px;
-	}
-
-
-
-</style>
 </head>
 <body>
 

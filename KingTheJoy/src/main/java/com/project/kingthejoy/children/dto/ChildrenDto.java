@@ -9,5 +9,4 @@ public class ChildrenDto {
 	private int member_seq;
 	private String children_name;
 	private String riding_quit;
-
 }

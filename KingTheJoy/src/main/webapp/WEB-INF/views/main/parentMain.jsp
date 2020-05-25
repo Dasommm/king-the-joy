@@ -168,14 +168,6 @@
 </script>
 <style type="text/css">
 
-/* 배경 이미지 사이즈 */
-#background img {
-	z-index: -1;
-	bottom: 0px;
-	left: 0px;
-	position: absolute;
-	top: 430px;
-}
 /* 캘린더 */
 /* h1 */
 h1 {
@@ -217,15 +209,20 @@ h1 {
 			<ul class="rolling" id="notification">
 				<li>TEXT</li>
 			</ul>
-	</div>
+			
+	</div>		
+   <div id="mainNotice">
+   </div>
+ 
 
  
    <!-- 식단표 -->
       <div id='calendar' style="width: 800px; margin-left:350px;"></div>
 
 
-	</section>
-	<%@include file="../common/footer.jsp"%>
+</section>
+<%@include file="../common/footer.jsp" %>
+
 </body>
 
 </html>
