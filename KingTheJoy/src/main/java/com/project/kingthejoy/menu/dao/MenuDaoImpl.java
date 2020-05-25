@@ -37,14 +37,28 @@ public class MenuDaoImpl implements MenuDao {
 
 	@Override
 	public int menuUpdate(MenuDto menuDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("menuUpdate DaoImpl:::::");
+		int updateRes = sqlSessionTemplate.update(NAMESPACE+"menuUpdate",menuDto);
+		System.out.println("updateRes"+updateRes);
+		return updateRes;
+
 	}
 
 	@Override
-	public int menuDelete(MenuDto menuDto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int menuDelete(int menu_seq) {
+		System.out.println("menuDelete DaoImpl:::::");
+		int deleteRes = sqlSessionTemplate.delete(NAMESPACE+"menuDelete",menu_seq);
+		System.out.println("deleteRes"+deleteRes);
+		return deleteRes;
+
+	}
+
+	@Override
+	public MenuDto menuSelectOne(int menu_seq) {
+		System.out.println("menuUpdate DaoImpl!!!!");
+		MenuDto menuSelectOne = sqlSessionTemplate.selectOne(NAMESPACE+"menuSelectOne",menu_seq);
+		System.out.println(menuSelectOne);
+		return menuSelectOne;
 	}
 
 }
