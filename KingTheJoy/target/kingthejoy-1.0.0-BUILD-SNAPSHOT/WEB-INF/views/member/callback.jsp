@@ -44,6 +44,7 @@
 				alert("네이버 로그인 성공");
 					opener.document.location.href= msg+".do";
 					close();
+				
 			},
 			error : function() {
 				alert("네이버 로그인 실패");

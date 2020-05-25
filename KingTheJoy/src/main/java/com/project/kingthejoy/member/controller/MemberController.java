@@ -3,20 +3,22 @@ package com.project.kingthejoy.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.project.kingthejoy.common.security.service.impl.AuthenticationUserDetailsServiceImpl;
 import com.project.kingthejoy.member.biz.MemberBiz;
 import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.school.dto.SchoolDto;
@@ -25,17 +27,21 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping("member")
 public class MemberController<dataList> {
-  
+	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	
 	@Autowired
 	MemberBiz biz;
 	
+	@Autowired
+	AuthenticationUserDetailsServiceImpl sc;
+	
 	
 	@RequestMapping(value = "/home.do")
-	public String homepageForm() { 
+	public String homepageForm() {  
 		 
 		logger.info("home.jsp on");
 		
@@ -47,18 +53,17 @@ public class MemberController<dataList> {
 		
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
 		int member_seq = memberDto.getMember_seq();
-		int member_role = memberDto.getMember_role();
+		int member_role = memberDto.getMember_role(); 
 		
 		if(member_role == 3) {
 			model.addAttribute("childrenList", biz.childrenList(member_seq));
-
 
 		}else if(member_role == 2 || member_role == 1) {
 			
 		}
 		
 		return "member/myPage"; 
-	}
+	} 
 	
 	@RequestMapping(value="/naverLoginResult.do")
 	public String naverLoginCallback() {
@@ -140,54 +145,57 @@ public class MemberController<dataList> {
 		return "member/snsMemberUpdate";
 	}
 	
-	@RequestMapping(value="/memberUpdate.do") 
-	public String insertChildOrSchool(String data, HttpSession session, HttpServletResponse res, HttpServletRequest request) {
-		
-		String[] children_name = request.getParameterValues("children_name");
-		String[] school_addr = request.getParameterValues("school_addr");
-		String[] school_name = request.getParameterValues("school_name");
-		
+	@ResponseBody
+	@RequestMapping(value="/tableDataSend.do")
+	public String insertChildOrSchool(String data, HttpSession session) {
+		String[] dataArray = null;
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-
+		System.out.println(data);
+		dataArray = data.split(",");
+		System.out.println(dataArray[0]);
 		log.info("session value = {}", memberDto.getMember_seq());
-		for(int i=0; i<children_name.length; i++) {
+		log.info("dataArray Length = {}" ,dataArray[0]);
+		for(int i=0; i<dataArray.length; i++) {
 			SchoolDto schoolDto = new SchoolDto();
-			schoolDto.setSchool_addr(school_addr[i]);
-			schoolDto.setSchool_name(school_name[i]);
-			 
+			String[] temp = dataArray[i].split("/");
+			schoolDto.setSchool_addr(temp[1]);
+			schoolDto.setSchool_name(temp[2]);
+			
 			if(biz.selectSchool(schoolDto) == null) {
 				Map<String,String> childMap = new HashMap<String, String>();
 				Map<String,String> schoolListMap = new HashMap<String, String>();
 				Map<String,Integer> schoolMap = new HashMap<String, Integer>();
 
-				childMap.put("children_name", children_name[i]);
+				log.info("children_name = {}" , temp[0]);
+				childMap.put("children_name", temp[0]);
 				childMap.put("member_seq", Integer.toString(memberDto.getMember_seq()));
 				biz.insertChildInfo(childMap);
 				
-				schoolListMap.put("school_addr", school_addr[i]);
-				schoolListMap.put("school_name", school_name[i]);
+				schoolListMap.put("school_addr", temp[1]);
+				schoolListMap.put("school_name", temp[2]);
 				biz.insertSchoolInfo(schoolListMap);
 				int children_seq = biz.selectChildrenSeqOfSchool(memberDto.getMember_seq());
 				int school_seq = biz.selectSchoolSeq(schoolListMap);
-				
 				
 				schoolMap.put("children_seq", children_seq); 
 				schoolMap.put("school_seq", school_seq);
 				schoolMap.put("member_seq", memberDto.getMember_seq()); 
 				
 				biz.insertSchool(schoolMap);
-
+				
+				return "main/parentMain";
+				
 			}else {
 				Map<String,String> childMap = new HashMap<String, String>();
 				Map<String,Integer> schoolMap = new HashMap<String, Integer>();
 				Map<String,String> schoolListMap = new HashMap<String, String>();
 				
-				childMap.put("children_name", children_name[i]);
+				childMap.put("children_name", temp[0]);
 				childMap.put("member_seq", Integer.toString(memberDto.getMember_seq()));
 				biz.insertChildInfo(childMap);
 				
-				schoolListMap.put("school_addr", school_addr[i]);
-				schoolListMap.put("school_name", school_name[i]);
+				schoolListMap.put("school_addr", temp[1]);
+				schoolListMap.put("school_name", temp[2]);
 				
 				int children_seq = biz.selectChildrenSeqOfSchool(memberDto.getMember_seq());
 				int school_seq = biz.selectSchoolSeq(schoolListMap);
@@ -197,11 +205,13 @@ public class MemberController<dataList> {
 				schoolMap.put("member_seq", memberDto.getMember_seq());
 				
 				biz.insertSchool(schoolMap);
+				return "main/parentMain";
 			}		
 		}
-		return "main/parentMain";
-		
+		return data;
 	}
+	
+	
 	
 	@RequestMapping(value = "/selectResistForm.do")
 	public String selectResistForm() { 
@@ -244,9 +254,14 @@ public class MemberController<dataList> {
 	}
 	
 	@RequestMapping("/loginCheck.do")
-	public String loginCheck(MemberDto memberDto, HttpSession session, Model model) {
+	public String loginCheck(MemberDto memberDto, HttpSession session, Model model, String member_id, String member_pw) {
+		
+		
 		boolean result = biz.loginCheck(memberDto, session);
-		if (result == true) {
+		User user = sc.loadUserByUsername(member_id, member_pw );
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+
+		if (result) {
 			log.info("session value(member_role) = {}", memberDto.getMember_role());
 			model.addAttribute("msg", "킨더조이 로그인 성공");
 			model.addAttribute("url", "roleCheck.do");
@@ -274,7 +289,6 @@ public class MemberController<dataList> {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
 		log.info("로그인된 사용자 등급 = {} ", memberDto.getMember_role());
 		log.info("로그인된 사용자 번호 = {} ", memberDto.getMember_seq());
-
 		
 		if (memberDto.getMember_role() == 0) {
 			// 관리자 (node로 연결)
@@ -285,6 +299,7 @@ public class MemberController<dataList> {
 			log.info("원장님 페이지 연결");
 			if (biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()) > 0) {
 				memberDto.setSchool_seq(biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()));
+				
 				session.setAttribute("memberDto", memberDto);
 				return "main/masterMain";
 			} else {
@@ -297,6 +312,7 @@ public class MemberController<dataList> {
 			log.info("선생님 페이지 연결");
 			if (biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()) > 0) {
 				memberDto.setSchool_seq(biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()));
+				
 				session.setAttribute("memberDto", memberDto);
 				return "main/teacherMain";
 			} else {
@@ -307,6 +323,8 @@ public class MemberController<dataList> {
 		} else {
 			// 학부모 페이지 연결
 			log.info("학부모 페이지 연결");
+			
+			  
 			if (biz.selectChildrenSeqOfSchool(memberDto.getMember_seq()) > 0) {
 				memberDto.setSchool_seq(biz.selectSchoolSeqOfParent(memberDto.getMember_seq()));
 				session.setAttribute("memberDto", memberDto);
@@ -333,26 +351,52 @@ public class MemberController<dataList> {
 		SchoolDto schoolDto = new SchoolDto();
 		schoolDto.setSchool_addr(school_addr);
 		schoolDto.setSchool_name(school_name);
-		
 		Map<String, String> schoolListMap = new HashMap<String, String>();
 		schoolListMap.put("school_addr", school_addr);
 		schoolListMap.put("school_name", school_name);
-		
+		System.out.println("school_addr : "+school_addr);
 		if(biz.selectSchool(schoolDto)==null) {
 			biz.insertSchoolInfo(schoolListMap);
 		}
-		
 		int school_seq = biz.selectSchoolSeq(schoolListMap);
-		
 		schoolMap.put("school_seq", school_seq);
 		schoolMap.put("member_seq", memberDto.getMember_seq());
-		
 		biz.insertSchool(schoolMap);
 		log.info("session value = {}", memberDto.getMember_seq());
-		
 		model.addAttribute("msg", "유치원 정보입력을 성공하였습니다");
 		model.addAttribute("url", "roleCheck.do");
 		return "common/alert";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/androidLogin.do", produces="application/json; charset=utf-8")
+	public JSONObject androidLogin(String member_id, String member_pw) {
+		
+		JSONObject json = new JSONObject();
+		
+		MemberDto memberDto = new MemberDto();
+		memberDto.setMember_id(member_id);
+		memberDto.setMember_pw(member_pw);
+		
+		boolean androidNameCheck = biz.AndroidLoginCheck(memberDto);
+		
+		if( androidNameCheck == true ) {
+			
+			memberDto = biz.memberView(memberDto);
+			
+			json.put("message", memberDto.getMember_name() + "님 환영합니다.");
+			
+			json.put("member_id", memberDto.getMember_id());
+			json.put("member_name", memberDto.getMember_name());
+			json.put("member_email", memberDto.getMember_email());
+			json.put("member_phone", memberDto.getMember_phone());
+			
+		} else {
+			json.put("message", "아이디 패스워드를 다시 확인해주세요");
+		}
+		
+		return json;
+		
 	}
 
 }

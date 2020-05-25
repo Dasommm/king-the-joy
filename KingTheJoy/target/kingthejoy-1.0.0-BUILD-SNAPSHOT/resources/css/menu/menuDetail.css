@@ -127,3 +127,18 @@ form{
     border-color: #2C3E50;
     cursor: pointer;
 }
+/* Style Select Field */
+select {
+  font-family: inherit;
+  background-color: transparent;
+  width: 15%;
+  padding: 0px;
+  border: none;
+  border-bottom:1px solid #757575;
+  font-size:14px;
+  color:#5264AE;
+}
+
+/* Remove focus */
+select:focus {
+  outline: none}

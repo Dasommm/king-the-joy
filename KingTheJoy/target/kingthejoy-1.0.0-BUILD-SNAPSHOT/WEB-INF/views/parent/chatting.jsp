@@ -1,24 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-    <div>
-        <input type="text" id="sender" value="${sessionScope.member.m_id }" style="display: none;">
-        <input type="text" id="messageinput">
+
+
+<div>
+        <input type="text" id="sender" value="${sessionScope.memberDto.member_id }" style="display: none;">
     </div>
+    <div id="messages"></div>
+        <input type="text" id="messageinput">
     <div>
         <button type="button" onclick="openSocket();">Open</button>
         <button type="button" onclick="send();">Send</button>
         <button type="button" onclick="closeSocket();">Close</button>
     </div>
     <!-- Server responses get written here -->
-    <div id="messages"></div>
     <!-- websocket javascript -->
     <script type="text/javascript">
         var ws;
@@ -29,19 +30,19 @@
                 writeResponse("WebSocket is already opened.");
                 return;
             }
-            //À¥¼ÒÄÏ °´Ã¼ ¸¸µå´Â ÄÚµå
-            ws=new WebSocket("ws://localhost:8787/kingthejoy/chat.do");
+            //ì›¹ì†Œì¼“ ê°ì²´ ë§Œë“œëŠ” ì½”ë“œ
+            ws=new WebSocket("ws://localhost:8090/kingthejoy/echo.do");
             
             ws.onopen=function(event){
                 if(event.data===undefined) return;
                 
-                writeResponse(event.data);
+                writeResponse(event.data); 
             };
             ws.onmessage=function(event){
                 writeResponse(event.data);
             };
             ws.onclose=function(event){
-                writeResponse("Connection closed");
+                writeResponse("ì±„íŒ…ì´ ì¢…ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤");
             }
         }
         
@@ -54,12 +55,11 @@
         function closeSocket(){
             ws.close();
         }
+        
         function writeResponse(text){
             messages.innerHTML+="<br/>"+text;
         }
   </script>
+
 </body>
 </html>
-
-
-ÃâÃ³: https://coding-start.tistory.com/27 [ÄÚµù½ºÅ¸Æ®]

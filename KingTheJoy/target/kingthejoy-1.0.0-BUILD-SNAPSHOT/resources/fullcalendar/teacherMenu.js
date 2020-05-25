@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	          locale : 'ko',
 	          displayEventTime : false,
 	          dateClick : function(){
-	        	  window.open("/kingthejoy/menuInsertForm.do?","menuInsert","width=400, height=415, left=100, top=50");
+	        	  window.open("/kingthejoy/menuInsertForm.do?","menuInsert","width=560, height=700, left=100, top=50");
 	          },
 	          
 	          eventRender : function(info){

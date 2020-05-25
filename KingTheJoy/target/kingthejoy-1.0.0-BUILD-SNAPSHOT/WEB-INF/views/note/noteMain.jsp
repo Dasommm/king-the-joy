@@ -8,8 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
  <link rel="stylesheet" type="text/css" href="resources/css/note/noteForm.css">
+
 <script type="text/javascript" src="resources/js/note/noteForm.js"></script>
 
 </head>
@@ -70,7 +70,7 @@
                     <th>수면시간</th>
                     <td>
                         <input type="range" id="range_n" name="note_sleep" min="0" max="10" onchange="handleMouseMoveSleep();">
-                        <span id="range-value-sleep">5</span>시간
+                        <span><span id="range-value-sleep">5</span>시간</span>
                     </td>
                 </tr>
                 <tr>

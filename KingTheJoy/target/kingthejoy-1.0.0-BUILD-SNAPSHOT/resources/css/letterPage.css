@@ -1,0 +1,44 @@
+h1, h2, h3, h4{
+    margin: 15px;
+}
+.table {
+	width: 95%;
+	table-layout: fixed;
+}
+.table th {
+	background-color: #cecece;
+	color: #333333;
+	text-align: center;
+	vertical-align: middle;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.table td {
+	margin: 10px;
+	text-align: center;
+	vertical-align: middle;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+p{
+	text-align: right;
+	width: 410px;
+}
+.table>tbody>tr>td, 
+.table>tbody>tr>th, 
+.table>tfoot>tr>td, 
+.table>tfoot>tr>th, 
+.table>thead>tr>td, 
+.table>thead>tr>th {
+    padding: 3px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+select{
+	position: relative;
+	z-index: 1; 
+	top:-10px;
+}

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="notification">
 	<select id="selectList" resultType="notificationDto"
-		parameterType="pagingDto">
+		parameterType="int">
 		SELECT * FROM NOTIFICATION 
 		WHERE SCHOOL_SEQ = #{school_seq}
 		ORDER BY NOTIFICATION_SEQ DESC
@@ -99,5 +99,4 @@
 		SELECT * FROM notification where school_seq = #{school_seq}
 		ORDER BY notification_seq DESC
 	</select>
-
 </mapper>
