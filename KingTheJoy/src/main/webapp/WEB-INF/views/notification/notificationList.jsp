@@ -31,6 +31,7 @@ if(${memberDto.getMember_role()}<3){
 </head>
 <body>
 
+
 <section>	
 
 <%@include file="../common/parentHeader.jsp" %>
@@ -66,13 +67,11 @@ if(${memberDto.getMember_role()}<3){
 			</c:choose>
 		</tbody>
 	</table>
-	
-	<input type="button" value="공지사항 작성" onclick="location.href='notificationInsert.do'" id="insert" style="display: none;">
-	
+	<input type="button" value="공지사항 작성" onclick="location.href='notificationInsert.do'" id="insert" style="display: none;">	
 	</div>
-
 </section>
 <%@include file="../common/footer.jsp" %>
+
     	
 	
 </body>
