@@ -114,7 +114,7 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping("/scheduleUpdateDb.do")
-	public String scheduleUpdateDb() {
+	public String scheduleUpdateDb(ScheduleDto scheduleDto, Model model ) {
 		
 		return "";
 	}

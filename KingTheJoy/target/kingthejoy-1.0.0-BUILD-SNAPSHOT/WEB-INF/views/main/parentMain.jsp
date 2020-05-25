@@ -20,19 +20,6 @@
 <!-- 캘린더 설정 -->
 <script src="resources/fullcalendar/parentMenu.js"></script>
 
-<style type="text/css">
-
-/* 캘린더 */
-/* h1 */
-h1 {
-	text-align: center;
-	font-weight: bold;
-}
-
-#mainNotice{
- text-align: center;
-}
-</style>
 </head>
 <body>
 
@@ -58,16 +45,6 @@ h1 {
 	<input type="button" value="선생님용식단페이지" onclick="location='menuteacher.do?'">
 	<input type="button" value="학부모 알림장" onclick="openNote();">
 	<input type="button" value="단체메일" onclick="location='mailform.do?'">
-
-	<div>
-	<!-- 식단표 -->
-		<div id='calendar' style="width: 800px; margin-left:350px;"></div>
-		<div id='background'>
-			<img alt="" src="./resources/img/parentMain.jpg">
-		</div>
-
-	</div>
-
  
    <!-- 식단표 -->
       <div id='calendar' style="width: 800px; margin-left:350px;"></div>

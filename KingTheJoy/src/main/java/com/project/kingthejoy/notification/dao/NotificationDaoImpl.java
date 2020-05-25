@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.kingthejoy.notification.dto.NotificationCheckDto;
 import com.project.kingthejoy.notification.dto.NotificationDto;
+import com.project.kingthejoy.notification.dto.PagingDto;
 
 @Repository
 public class NotificationDaoImpl implements NotificationDao {
@@ -17,14 +18,8 @@ public class NotificationDaoImpl implements NotificationDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<NotificationDto> selectNotificationList(int school_seq) {
-		List<NotificationDto> list = new ArrayList<NotificationDto>();
-		try {
-			list = sqlSession.selectList(NAMESPACE + "selectList",school_seq);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
+	public List<NotificationDto> selectNotificationList(PagingDto pagingDto) {
+		return sqlSession.selectList(NAMESPACE + "selectList", pagingDto);
 	}
 
 	@Override
@@ -130,6 +125,27 @@ public class NotificationDaoImpl implements NotificationDao {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	@Override
+	public String selectSchoolName(int school_seq) {
+		String school_name= null;
+		try {
+			school_name = sqlSession.selectOne(NAMESPACE + "selectSchoolName", school_seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return school_name;
+	}
+
+	@Override
+	public int countList(int school_seq) {
+		return sqlSession.selectOne(NAMESPACE+ "countList", school_seq);
+	}
+
+	@Override
+	public List<NotificationDto> selectRollingNotificationList(int school_seq) {
+		return sqlSession.selectList(NAMESPACE+"selectRollingNotificationList", school_seq);
 	}
 
 }

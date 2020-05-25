@@ -20,7 +20,7 @@
    });
    
    onload=function(){
-	   var frm = document.form(0);
+	   var frm = document.getElemetByName("scheduleform");
 	   var color = ${updateform.color};
 	   if(color == "red"){
 		   frm.color(0).checked = true;

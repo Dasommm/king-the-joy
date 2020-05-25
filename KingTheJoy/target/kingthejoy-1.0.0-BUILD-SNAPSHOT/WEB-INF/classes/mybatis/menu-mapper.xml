@@ -13,17 +13,18 @@
 
 
 <select id="menuList" parameterType="int" resultMap="menuMap">
-select menu_seq, menu_start, menu_end, menu_type, menu_info from menu where school_seq = #{school_seq}
+  select menu_seq, menu_start, menu_end, menu_type, menu_info from menu where school_seq = #{school_seq}
 </select>
 
 <select id="menuSelectOne" parameterType="int" resultMap="menuMap">
-select menu_seq, menu_start, menu_end, menu_type, menu_info from menu where menu_seq = #{menu_seq}
+  select menu_start, menu_end, menu_type, menu_info from menu where school_seq = #{school_seq}
 </select>
 
 <insert id="menuInsert">
 INSERT INTO MENU
 VALUES(MENUSEQ.NEXTVAL, #{member_seq}, #{start}, #{title}, #{description}, #{school_seq}, #{end})
 </insert>
+
 
 <update id="menuUpdate">
 UPDATE MENU
@@ -34,5 +35,6 @@ WHERE MENU_SEQ = #{menu_seq}
 <delete id="menuDelete">
 DELETE FROM MENU WHERE MENU_SEQ = #{menu_seq}
 </delete>
+
 
 </mapper>
