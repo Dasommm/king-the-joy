@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -22,6 +21,7 @@ import com.project.kingthejoy.notification.biz.NotificationBiz;
 import com.project.kingthejoy.notification.dto.NotificationDto;
 
 @Controller
+@RequestMapping("member")
 public class NotificationController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
@@ -121,7 +121,7 @@ public class NotificationController {
 
 	// 공지사항 수정하기
 	// session 연결하면 회원번호, 아이디 추가할것
-	@RequestMapping(value = "notificationUpdateRes.do")
+	@RequestMapping(value = "/notificationUpdateRes.do")
 	public String notificationUpdateRes(Model model, String notification_title, String notification_content,
 			int notification_seq) {
 		NotificationDto notificationDto = new NotificationDto();

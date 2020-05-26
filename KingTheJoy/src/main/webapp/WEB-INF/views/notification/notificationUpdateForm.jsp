@@ -5,11 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link
+	href="${pageContext.request.contextPath}/resources/css/notification.css"
+	rel="stylesheet">
 </head>
 <body>
 	<form action="notificationUpdateRes.do" method="post">
 		<input type="hidden" name="notification_seq" value="${notificationDto.notification_seq}">
-		<table border="1">
+		<div class="tbl-title">
+	<table cellpadding="0" cellspacing="0" border="0">
 		<tr>
 			<td>제목</td>
 			<td><input type="text" name="notification_title" value="${notificationDto.notification_title}"></td> 
@@ -20,11 +24,12 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="submit" value="수정하기">
-				<input type="button" value="돌아가기" onclick="location.href='notificationDetail.do?notification_seq=${notificationDto.notification_seq}'">
+				<input type="submit" value="수정하기" class="btn striped-shadow dark">
+				<input type="button" value="돌아가기" onclick="location.href='notificationDetail.do?notification_seq=${notificationDto.notification_seq}'" class="btn striped-shadow dark">
 			</td>
 		</tr>
 	</table>
+	</div>
 	</form>
 </body>
 </html>

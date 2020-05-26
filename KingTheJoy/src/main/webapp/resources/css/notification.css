@@ -1,0 +1,186 @@
+h1 {
+	font-size: 30px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 300;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+table {
+	width: 100%;
+	table-layout: fixed;
+}
+
+.tbl-header {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.tbl-content {
+	height: 300px;
+	overflow-x: auto;
+	margin-top: 0px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+th {
+	padding: 20px 15px;
+	text-align: left;
+	font-weight: 500;
+	font-size: 12px;
+	color: black;
+	text-transform: uppercase;
+}
+
+td {
+	padding: 15px;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: 300;
+	font-weight: bolder;
+	font-size: 12px;
+	color: black;
+	border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+}
+
+a:link {
+	color: black;
+	text-decoration: none;
+}
+
+a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+/* demo styles */
+@import
+	url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
+body {
+	background: -webkit-linear-gradient(left, white, #FAFAFA);
+	background: linear-gradient(to right, white, #FAFAFA);
+	font-family: 'Roboto', sans-serif;
+}
+
+
+
+/* for custom scrollbar for webkit browser*/
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+@import 'https://fonts.googleapis.com/css?family=Bungee+Shade';
+
+button {
+  overflow: visible;
+  border: 0;
+  padding: 0;
+  margin: 1.8rem;
+}
+.btn.striped-shadow span {
+  display: block;
+  position: relative;
+  z-index: 2;
+  border: 5px solid;
+}
+.btn.striped-shadow.dark span {
+  border-color: #393939;
+  background: #77bfa1;
+  color: #393939;
+}
+
+.btn {
+  font-family: 'Bungee Shade', sans-serif;
+  height: 80px;
+  line-height: 65px;
+  display: inline-block;
+  letter-spacing: 1px;
+  position: relative;
+  font-size: 0.6rem;
+  transition: opacity .3s, z-index .3s step-end, -webkit-transform .3s;
+  transition: opacity .3s, z-index .3s step-end, transform .3s;
+  transition: opacity .3s,
+    z-index .3s step-end,
+    transform .3s,
+    -webkit-transform .3s;
+  z-index: 1;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn {
+  width: 69px;
+  height: 33px;
+  line-height: 38px;
+}
+
+
+button.btn.striped-shadow.dark:after, button.btn.striped-shadow.dark:before {
+  background-image: linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 5px,
+    #393939 5px,
+    #393939 10px,
+    transparent 10px
+  );
+}
+
+button.btn.striped-shadow:hover:before {
+  max-height: calc(100% - 10px);
+}
+
+button.btn.striped-shadow:after {
+  width: calc(100% - 4px);
+  height: 8px;
+  left: -10px;
+  bottom: -9px;
+  background-size: 15px 8px;
+  background-repeat: repeat-x;
+}
+button.btn.striped-shadow:after, button.btn.striped-shadow:before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 1;
+  transition: max-height .3s, width .3s, -webkit-transform .3s;
+  transition: transform .3s, max-height .3s, width .3s;
+  transition: transform .3s, max-height .3s, width .3s, -webkit-transform .3s;
+}
+
+.btn.striped-shadow:hover {
+  -webkit-transform: translate(-12px, 12px);
+  -ms-transform: translate(-12px, 12px);
+  transform: translate(-12px, 12px);
+  z-index: 3;
+}
+
+button.btn.striped-shadow:hover:after, button.btn.striped-shadow:hover:before {
+  -webkit-transform: translate(12px, -12px);
+  -ms-transform: translate(12px, -12px);
+  transform: translate(12px, -12px);
+}
+button.btn.striped-shadow:before {
+  width: 8px;
+  max-height: calc(100% - 5px);
+  height: 100%;
+  left: -12px;
+  bottom: -5px;
+  background-size: 8px 15px;
+  background-repeat: repeat-y;
+  background-position: 0 100%;
+}
