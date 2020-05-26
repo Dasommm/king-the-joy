@@ -10,13 +10,13 @@
 <link href='resources/fullcalendar/daygrid/main.css' rel='stylesheet' />
 <link rel="stylesheet"
    href="<c:url value="/resources/css/rollingNotice.css"/>">
-
-
+   <script src="<c:url value="/resources/js/rollingNotice.js"/>"> </script>
 <script type="text/javascript"
    src="https://code.jquery.com/jquery-3.5.1.js"></script>
    <script src='resources/fullcalendar/core/main.js'></script>
 <script src='resources/fullcalendar/daygrid/main.js'></script>
 <script src='resources/fullcalendar/interaction/main.js'></script>
+
 <style type="text/css">
 /* 캘린더 */
 /* h1 */

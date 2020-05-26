@@ -29,7 +29,7 @@ public class NotificationController {
 	private NotificationBiz notificationBiz;
 
 	// 공지사항 리스트 출력
-	@RequestMapping(value = "/notification.do")
+	@RequestMapping(value = "/member/notification.do")
 	public String notificationList(Model model, HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
 		logger.info("notification List Open");
@@ -38,7 +38,7 @@ public class NotificationController {
 	}
 
 	// 공지사항 세부내용
-	@RequestMapping(value = "/notificationDetail.do")
+	@RequestMapping(value = "/member/notificationDetail.do")
 	public String notificationOne(HttpSession session, Model model, int notification_seq) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
 		int res = notificationBiz.selectWritten(memberDto.getMember_seq(), notification_seq);
@@ -50,7 +50,7 @@ public class NotificationController {
 	}
 
 	// 공지사항 글쓰기 폼 열기
-	@RequestMapping(value = "/notificationInsert.do")
+	@RequestMapping(value = "/member/notificationInsert.do")
 	public String notificationInsert(HttpSession session, Model model) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
 		String school_name = notificationBiz.selectSchoolName(memberDto.getSchool_seq());
@@ -67,7 +67,7 @@ public class NotificationController {
 
 	// 공지사항 글 쓰기
 	// session 연결하면 회원 번호, 아이디 추가할것
-	@RequestMapping(value = "/notificationInsertRes.do")
+	@RequestMapping(value = "/member/notificationInsertRes.do")
 	public String notificationInsertRes(HttpSession session, Model model, String notification_title,
 			String notification_content) {
 		logger.info("notification insert res");
@@ -104,7 +104,7 @@ public class NotificationController {
 	}
 
 	// 공지사항 수정폼 열기
-	@RequestMapping(value = "/notificationUpdate.do")
+	@RequestMapping(value = "/member/notificationUpdate.do")
 	public String notificationUpdate(HttpSession session, Model model, int notification_seq) {
 		logger.info("notification updateForm notification_seq : " + notification_seq + " Open");
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
@@ -121,7 +121,7 @@ public class NotificationController {
 
 	// 공지사항 수정하기
 	// session 연결하면 회원번호, 아이디 추가할것
-	@RequestMapping(value = "notificationUpdateRes.do")
+	@RequestMapping(value = "/member/notificationUpdateRes.do")
 	public String notificationUpdateRes(Model model, String notification_title, String notification_content,
 			int notification_seq) {
 		NotificationDto notificationDto = new NotificationDto();
@@ -144,7 +144,7 @@ public class NotificationController {
 	}
 
 	// 공지사항 삭제
-	@RequestMapping(value = "/notificationDelete.do")
+	@RequestMapping(value = "/member/notificationDelete.do")
 	public String notificationDelete(Model model, int notification_seq, HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
 		if (memberDto.getMember_role() == 3) {
@@ -168,7 +168,7 @@ public class NotificationController {
 		}
 	}
 
-	@RequestMapping(value = "/rollingtest.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/rollingtest.do", method = RequestMethod.GET)
 	@ResponseBody
 	public List<NotificationDto> rollingNotification(HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
