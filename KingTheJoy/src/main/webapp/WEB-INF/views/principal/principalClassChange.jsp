@@ -23,17 +23,18 @@
 	});
 	function send() {
 		var content = $("input[type=text]").val();
-		location.href="principalClassChangeRes.do?member_seq="+${member_seq }+"&content="+content;
-		opener.parent.location.reload();
-		//opener.parent.location='principalTeacherMgt.do';
-		//window.opener.parent.location.href='principalTeacherMgt.do';
-		//window.opener.document.location.href=window.opener.document.URL;
-		//opener.location.replace("principalTeacherMgt.do");
-		//window.opener = self;
-   		setTimeout(function() {
-			self.close();
-			//window.close();
-		}, 1000);
+		$.ajax({
+			url:"${pageContext.request.contextPath}/principal/principalClassChangeRes.do?member_seq="+${member_seq }+"&content="+content,
+			type:'GET',
+			success: function(result) {
+				opener.parent.location.reload();
+		   		setTimeout(function() {
+					self.close();
+				}, 1000);
+			}
+		});
+		//location.href="${pageContext.request.contextPath}/principal/principalClassChangeRes.do?member_seq="+${member_seq }+"&content="+content;
+
 	}
 	
 

@@ -82,7 +82,7 @@ $(document).ready(function () {
 		}
 		
 		$.ajax({
-			url: 'uploadAjaxAction.do?imageNumber='+imageNumber+"&school_seq="+school_seq,
+			url: '${pageContext.request.contextPath}/gallery/uploadAjaxAction.do?imageNumber='+imageNumber+"&school_seq="+school_seq,
 			processData: false,
 			contentType: false,
 			data: formData,

@@ -72,7 +72,7 @@
 		//alert("fileNum: "+fileNum);
  		$(".bigPictureWrapper").css("display","flex").show();
 		$(".bigPicture")
-		.html("<img src='display.do?fileName="+fileNum+".jpg'>")
+		.html("<img src='${pageContext.request.contextPath}/gallery/display.do?fileName="+fileNum+".jpg'>")
 		.animate({width:'600px', height:'600px'}, 1000); // size를 %로 하면 떨림현상
 	}
 

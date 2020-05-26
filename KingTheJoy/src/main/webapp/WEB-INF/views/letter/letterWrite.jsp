@@ -14,7 +14,7 @@
 </head>
 <body>
 	<h2>쪽지쓰기</h2>
-	<form class="form" action="letterWriteRes.do" method="post">
+	<form class="form" action="${pageContext.request.contextPath}/letter/letterWriteRes.do" method="post">
 		<input type="hidden" name="member_seq" value="${member_seq }" />
 		<p type="받는사람:">
 			<input name="member_id" placeholder="받는사람(user ID )" style="width: 155px;">

@@ -22,6 +22,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 
 @Slf4j
 @Controller
+@RequestMapping("gallery")
 public class GalleryController {
 	
 	@RequestMapping(value = "/galleryForm.do", method = RequestMethod.GET)

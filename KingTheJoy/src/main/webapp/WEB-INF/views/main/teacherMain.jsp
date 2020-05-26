@@ -68,43 +68,51 @@
 	<h2>선생 메인 페이지</h2>
 	<div class="tea_menu_top">
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/abc.png" style="width: 9em;">
+	        <a href="#">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/abc.png" style="width: 9em;"></a>
 	        <span>수업자료 등록</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/location.png">
+	        <a href="#">
+	       	<img src="${pageContext.request.contextPath}/resources/img/main/location.png"></a>
 	        <span>원아 위치 확인</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/childMgt.png">
+	        <a href="#">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/childMgt.png"></a>
 	        <span>원아관리</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/gallery.png" style="width: 15em;"
-	        	onclick="location.href='galleryUpload.do?school_seq=${memberDto.school_seq }'">
+	        <a href="${pageContext.request.contextPath}/gallery/galleryUpload.do?school_seq=${memberDto.school_seq }">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/gallery.png" style="width: 15em;"></a>
 	        <span>갤러리 등록</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/menu.png" style="width: 9em;">
+	        <a href="#">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/menu.png" style="width: 9em;"></a>
 	        <span>식단표 작성</span>
 	    </div>
 	</div>
 	<div class="tea_menu_bot">
 	 	<div class="image-container">
+	        <a href="#">
 	        <img src="${pageContext.request.contextPath}/resources/img/main/letter.png" style="width: 10em;"
-	        	onclick="window.open('letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')">
+	        	onclick="window.open('${pageContext.request.contextPath}/letter/letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')"></a>
 	        <span>쪽지함</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/chat.png" style="width: 10em;">
+	        <a href="#">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/chat.png" style="width: 10em;"></a>
 	        <span>채팅</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/check.png" style="width: 8em;">
+	        <a href="#">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/check.png" style="width: 8em;"></a>
 	        <span>요청사항 확인</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/calendar.png" style="width: 8em;">
+	 		<a href="#">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/calendar.png" style="width: 8em;"></a>
 	        <span>행사일정</span>
 	    </div>
 	</div>  

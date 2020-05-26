@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping("teacher")
 public class TeacherController {
 
 	@RequestMapping(value = "/teacher.do", method = RequestMethod.GET)

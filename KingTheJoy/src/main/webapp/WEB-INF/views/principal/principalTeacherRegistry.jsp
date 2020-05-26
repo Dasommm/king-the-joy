@@ -15,7 +15,7 @@
 <body>
 	<h3> 선생님 등록하기 </h3>
 
-	<form class="form-horizontal" action="principalTeacherRegistryRes.do" method="post">
+	<form class="form-horizontal" action="${pageContext.request.contextPath}/principal/principalTeacherRegistryRes.do" method="post">
 		
 		<div class="form-group">
 			<input type="hidden" name="school_seq" value="${memberDto.school_seq }">

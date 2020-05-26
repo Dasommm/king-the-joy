@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping("principal")
 public class PrincipalController {
 
 	@Autowired
@@ -75,13 +76,14 @@ public class PrincipalController {
 	}
 	
 	@RequestMapping(value = "/principalClassChangeRes.do", method = RequestMethod.GET)
-	public void principalClassChangeRes(int member_seq, String content, Model model) {
+	public String principalClassChangeRes(int member_seq, String content, Model model) {
 		log.info("into:principalClassChangeRes");	
 		log.info("내용: "+content);
 		int res = dao.teacherClassChange(member_seq, content);
 		if(res>0) {
 			log.info("반 변경 완료");	
 		}
+		return "principal/principalClassChange";
 	}
 	
 	@RequestMapping(value = "/principalTeacherRegistry.do", method = RequestMethod.GET)
