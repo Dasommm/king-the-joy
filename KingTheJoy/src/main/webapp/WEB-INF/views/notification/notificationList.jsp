@@ -19,9 +19,8 @@
 	    var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
 	    $('.tbl-header').css({ 'padding-right': scrollWidth });
 	}).resize();
-		if (${ memberDto.getMember_role() }< 3) {
-			$("#insert").css("display", "");
-		}
+		
+	
 	</script>
 </head>
 
@@ -74,9 +73,16 @@
 					</c:choose>
 				</tbody>
 			</table>
-			<input type="button" value="공지사항 작성"
-				onclick="location.href='notificationInsert.do'" id="insert"
-				style="display: none;">
+			<c:choose>
+
+				<c:when test="${memberDto.getMember_role() <3 }">
+					<input type="button" value="공지사항 작성" onclick="location.href='notificationInsert.do'">
+				</c:when>
+				<c:when test="${memberDto.getMember_role() eq 3 }">
+					<input type="button" value="공지사항 작성" onclick="location.href='notificationInsert.do'" style="display: none;">
+				</c:when>
+				
+			</c:choose>
 		</div>
 	</section>
 	<%@include file="../common/footer.jsp"%>

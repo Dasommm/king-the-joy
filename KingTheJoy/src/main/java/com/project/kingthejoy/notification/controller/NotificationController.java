@@ -2,7 +2,7 @@ package com.project.kingthejoy.notification.controller;
 
 import java.util.List;
 
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.kingthejoy.member.controller.MemberController;
 import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.notification.biz.NotificationBiz;
+import com.project.kingthejoy.notification.dto.GetNewNotificationDto;
 import com.project.kingthejoy.notification.dto.NotificationDto;
 
 @Controller
@@ -81,15 +82,15 @@ public class NotificationController {
 		int res = notificationBiz.insertNotification(notificationDto);
 		if (res > 0) {
 			System.out.println("공지사항 등록성공");
-			int notification_seq = notificationBiz.newNotification();
-			int checkres = notificationBiz.insertNotificationCheck(notification_seq, memberDto.getSchool_seq());
+			GetNewNotificationDto nDto = notificationBiz.newNotification();
+			int checkres = notificationBiz.insertNotificationCheck(nDto.getNotification_seq(), memberDto.getSchool_seq(), nDto.getNotification_title());
 			if (checkres > 0) {
 				System.out.println("공지사항 열람여부 등록성공");
 				model.addAttribute("msg", "공지사항 작성에 성공하셨습니다.");
 				model.addAttribute("url", "notification.do");
 				return "common/alert";
 			} else {
-				notificationBiz.deleteNotification(notification_seq);
+				notificationBiz.deleteNotification(nDto.getNotification_seq());
 				System.out.println("공지사항 열람여부 등록실패");
 				model.addAttribute("msg", "공지사항 작성에 실패하셨습니다.");
 				model.addAttribute("url", "notificationInsert.do");
@@ -167,7 +168,6 @@ public class NotificationController {
 			}
 		}
 	}
-
 	@RequestMapping(value = "/rollingtest.do", method = RequestMethod.GET)
 	@ResponseBody
 	public List<NotificationDto> rollingNotification(HttpSession session) {
@@ -175,4 +175,13 @@ public class NotificationController {
 		return notificationBiz.selectRollingNotificationList(memberDto.getSchool_seq());
 	}
 
+	@RequestMapping(value = "/notificationMailSend.do")
+	@ResponseBody
+	public void notificationMailSend(HttpServletRequest request) {
+		logger.info(":::::::::메일보내기");
+		notificationBiz.mailSend(Integer.parseInt(request.getParameter("seq")));
+		
+		
+		
+	}
 }

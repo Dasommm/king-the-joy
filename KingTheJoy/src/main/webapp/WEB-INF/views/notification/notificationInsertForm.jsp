@@ -8,6 +8,7 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/notification.css"
 	rel="stylesheet">
+	<%@include file="../common/PrincipalHeader.jsp"%>
 </head>
 <body>
 	<form action="notificationInsertRes.do" method="post">
@@ -31,4 +32,5 @@
 
 	</form>
 </body>
+<%@include file="../common/footer.jsp"%>
 </html>

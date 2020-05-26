@@ -3,6 +3,8 @@ package com.project.kingthejoy.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.kingthejoy.common.security.service.impl.AuthenticationUserDetailsServiceImpl;
 import com.project.kingthejoy.member.biz.MemberBiz;
 import com.project.kingthejoy.member.dto.MemberDto;
+import com.project.kingthejoy.notification.biz.NotificationBiz;
 import com.project.kingthejoy.school.dto.SchoolDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +40,8 @@ public class MemberController<dataList> {
    MemberBiz biz;
    @Autowired
    AuthenticationUserDetailsServiceImpl sc;
+   @Autowired
+   NotificationBiz notificationBiz;
    
    
    @RequestMapping(value = "/home.do")
@@ -49,16 +54,14 @@ public class MemberController<dataList> {
    
    @RequestMapping(value="/myPage.do" ,method = RequestMethod.GET)
    public String mainPageForm(Model model, HttpSession session) {
-      
       MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
       int member_seq = memberDto.getMember_seq();
       int member_role = memberDto.getMember_role(); 
       
       if(member_role == 3) {
          model.addAttribute("childrenList", biz.childrenList(member_seq));
-
       }else if(member_role == 2 || member_role == 1) {
-         
+         model.addAttribute("notificationList", notificationBiz.selectNotificationList(memberDto.getSchool_seq()));
       }
       
       return "member/myPage"; 
@@ -144,73 +147,68 @@ public class MemberController<dataList> {
       return "member/snsMemberUpdate";
    }
    
-   @ResponseBody
-   @RequestMapping(value="/tableDataSend.do")
-   public String insertChildOrSchool(String data, HttpSession session) {
-      String[] dataArray = null;
-      MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-      System.out.println(data);
-      dataArray = data.split(",");
-      System.out.println(dataArray[0]);
-      log.info("session value = {}", memberDto.getMember_seq());
-      log.info("dataArray Length = {}" ,dataArray[0]);
-      for(int i=0; i<dataArray.length; i++) {
-         SchoolDto schoolDto = new SchoolDto();
-         String[] temp = dataArray[i].split("/");
-         schoolDto.setSchool_addr(temp[1]);
-         schoolDto.setSchool_name(temp[2]);
-         
-         if(biz.selectSchool(schoolDto) == null) {
-            Map<String,String> childMap = new HashMap<String, String>();
-            Map<String,String> schoolListMap = new HashMap<String, String>();
-            Map<String,Integer> schoolMap = new HashMap<String, Integer>();
+	@RequestMapping(value="/memberUpdate.do") 
+	public String insertChildOrSchool(String data, HttpSession session, HttpServletResponse res, HttpServletRequest request) {
+		
+		String[] children_name = request.getParameterValues("children_name");
+		String[] school_addr = request.getParameterValues("school_addr");
+		String[] school_name = request.getParameterValues("school_name");
+		
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
 
-            log.info("children_name = {}" , temp[0]);
-            childMap.put("children_name", temp[0]);
-            childMap.put("member_seq", Integer.toString(memberDto.getMember_seq()));
-            biz.insertChildInfo(childMap);
-            
-            schoolListMap.put("school_addr", temp[1]);
-            schoolListMap.put("school_name", temp[2]);
-            biz.insertSchoolInfo(schoolListMap);
-            int children_seq = biz.selectChildrenSeqOfSchool(memberDto.getMember_seq());
-            int school_seq = biz.selectSchoolSeq(schoolListMap);
-            
-            schoolMap.put("children_seq", children_seq); 
-            schoolMap.put("school_seq", school_seq);
-            schoolMap.put("member_seq", memberDto.getMember_seq()); 
-            
-            biz.insertSchool(schoolMap);
-            
-            return "main/parentMain";
-            
-         }else {
-            Map<String,String> childMap = new HashMap<String, String>();
-            Map<String,Integer> schoolMap = new HashMap<String, Integer>();
-            Map<String,String> schoolListMap = new HashMap<String, String>();
-            
-            childMap.put("children_name", temp[0]);
-            childMap.put("member_seq", Integer.toString(memberDto.getMember_seq()));
-            biz.insertChildInfo(childMap);
-            
-            schoolListMap.put("school_addr", temp[1]);
-            schoolListMap.put("school_name", temp[2]);
-            
-            int children_seq = biz.selectChildrenSeqOfSchool(memberDto.getMember_seq());
-            int school_seq = biz.selectSchoolSeq(schoolListMap);
-            
-            schoolMap.put("children_seq", children_seq);
-            schoolMap.put("school_seq", school_seq);
-            schoolMap.put("member_seq", memberDto.getMember_seq());
-            
-            biz.insertSchool(schoolMap);
-            return "main/parentMain";
-         }      
-      }
-      return data;
-   }
-   
-   
+		log.info("session value = {}", memberDto.getMember_seq());
+		for(int i=0; i<children_name.length; i++) {
+			SchoolDto schoolDto = new SchoolDto();
+			schoolDto.setSchool_addr(school_addr[i]);
+			schoolDto.setSchool_name(school_name[i]);
+			 
+			if(biz.selectSchool(schoolDto) == null) {
+				Map<String,String> childMap = new HashMap<String, String>();
+				Map<String,String> schoolListMap = new HashMap<String, String>();
+				Map<String,Integer> schoolMap = new HashMap<String, Integer>();
+
+				childMap.put("children_name", children_name[i]);
+				childMap.put("member_seq", Integer.toString(memberDto.getMember_seq()));
+				biz.insertChildInfo(childMap);
+				
+				schoolListMap.put("school_addr", school_addr[i]);
+				schoolListMap.put("school_name", school_name[i]);
+				biz.insertSchoolInfo(schoolListMap);
+				int children_seq = biz.selectChildrenSeqOfSchool(memberDto.getMember_seq());
+				int school_seq = biz.selectSchoolSeq(schoolListMap);
+				
+				
+				schoolMap.put("children_seq", children_seq); 
+				schoolMap.put("school_seq", school_seq);
+				schoolMap.put("member_seq", memberDto.getMember_seq()); 
+				
+				biz.insertSchool(schoolMap);
+
+			}else {
+				Map<String,String> childMap = new HashMap<String, String>();
+				Map<String,Integer> schoolMap = new HashMap<String, Integer>();
+				Map<String,String> schoolListMap = new HashMap<String, String>();
+				
+				childMap.put("children_name", children_name[i]);
+				childMap.put("member_seq", Integer.toString(memberDto.getMember_seq()));
+				biz.insertChildInfo(childMap);
+				
+				schoolListMap.put("school_addr", school_addr[i]);
+				schoolListMap.put("school_name", school_name[i]);
+				
+				int children_seq = biz.selectChildrenSeqOfSchool(memberDto.getMember_seq());
+				int school_seq = biz.selectSchoolSeq(schoolListMap);
+				
+				schoolMap.put("children_seq", children_seq);
+				schoolMap.put("school_seq", school_seq);
+				schoolMap.put("member_seq", memberDto.getMember_seq());
+				
+				biz.insertSchool(schoolMap);
+			}		
+		}
+		return "main/parentMain";
+		
+	}
    
    @RequestMapping(value = "/selectResistForm.do")
    public String selectResistForm() { 
@@ -300,7 +298,7 @@ public class MemberController<dataList> {
             memberDto.setSchool_seq(biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()));
             
             session.setAttribute("memberDto", memberDto);
-            return "main/masterMain";
+            return "main/principalMain";
          } else {
             model.addAttribute("msg", "소속된 유치원 정보를 입력해주세요");
             model.addAttribute("url", "schoolInfoUpdate.do");
@@ -353,7 +351,7 @@ public class MemberController<dataList> {
       Map<String, String> schoolListMap = new HashMap<String, String>();
       schoolListMap.put("school_addr", school_addr);
       schoolListMap.put("school_name", school_name);
-      System.out.println("school_addr : "+school_addr);
+      System.out.println("school_name : "+school_name);
       if(biz.selectSchool(schoolDto)==null) {
          biz.insertSchoolInfo(schoolListMap);
       }

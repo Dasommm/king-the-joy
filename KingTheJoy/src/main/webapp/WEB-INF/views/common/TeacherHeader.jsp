@@ -70,7 +70,7 @@
 			    <span class="caret"></span>
 			    </button>
 			    <ul class="dropdown-menu">
-			        <li><a class="dropdown-item" href="#">마이페이지</a></li>
+			        <li><a class="dropdown-item" href="myPage.do">마이페이지</a></li>
 			        <li><a class="dropdown-item" href="logout.do">로그아웃</a></li>
 			    </ul>
 			</div>
