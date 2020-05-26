@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping(value = "member")
 public class PrincipalController {
 
 	@Autowired
@@ -36,11 +37,11 @@ public class PrincipalController {
 		return "main/principalMain";
 	}
 	
-//	@RequestMapping(value = "/principalMain.do", method = RequestMethod.GET)
-//	public String principalMain() {
-//		log.info("into:principalMain");		
-//		return "principal/principalMain";
-//	}
+	@RequestMapping(value = "/principalMain.do", method = RequestMethod.GET)
+	public String principalMain() {
+		log.info("into:principalMain");		
+		return "principal/principalMain";
+	}
 	
 	@RequestMapping(value = "/principalTeacherMgt.do", method = RequestMethod.GET)
 	public String principalTeacherMgt(Model model) {

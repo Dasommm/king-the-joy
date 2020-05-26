@@ -30,7 +30,7 @@
 	<table cellpadding="0" cellspacing="0" border="0">
 		<tr>
 			<td style="font-size: 20px; text-align: center;">${notificationDto.notification_title}</td>
-			<td width="150" style="font-size: 20px;">${notificationDto.notification_date}</td>
+			<td width="200" style="font-size: 20px;">${notificationDto.notification_date}</td>
 			<td width="150" style="font-size: 20px;">${notificationDto.notification_writer}</td>
 		</tr>
 		<tr>
@@ -52,5 +52,6 @@
 		</tr>
 	</table>
 	</div>
+	<%@include file="../common/footer.jsp"%>
 </body>
 </html>

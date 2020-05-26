@@ -14,6 +14,7 @@
 		<typeAlias type="com.project.kingthejoy.letter.dto.LetterDto" alias="letterDto" />
 		<typeAlias type="com.project.kingthejoy.paging.PagingDto" alias="pagingDto" />
 		<typeAlias type="com.project.kingthejoy.principal.dto.PrincipalDto" alias="principalDto" />
+		<typeAlias type="com.project.kingthejoy.notification.dto.GetNewNotificationDto" alias="getNewNotification"/>
 	</typeAliases>
 
 	<mappers>
