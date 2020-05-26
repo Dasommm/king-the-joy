@@ -39,6 +39,9 @@
 <c:if test="${memberDto.member_role ==2 }">
 	<jsp:include page="../common/TeacherHeader.jsp" />
 </c:if>
+<c:if test="${memberDto.member_role ==3 }">
+	<jsp:include page="../common/parentHeader.jsp" />
+</c:if>
 <div class="galleryBody">
 	<h1>☆유치원 갤러리</h1>
 	<div class="galbox">
