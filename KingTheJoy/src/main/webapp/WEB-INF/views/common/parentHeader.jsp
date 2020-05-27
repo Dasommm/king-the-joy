@@ -60,7 +60,7 @@
           </li>
           <li class="menu_li">
           	<div class="menu-css" id="req">
-            <a class="menu-link" href="#">요청 사항</a>
+            <a class="menu-link" href="translate.do">요청 사항</a>
             </div> 
           </li>
           <li class="menu_li">

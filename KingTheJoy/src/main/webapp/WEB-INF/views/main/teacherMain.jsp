@@ -60,6 +60,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<a href="childrenlist.do?page=1">childlist</a><br>
+<a href="pillList.do?page=1">pillList</a><br>
+
+
+
 <jsp:include page="../common/TeacherHeader.jsp" />
 <div class="teacherBody">
 	<h2>선생 메인 페이지</h2>

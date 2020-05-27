@@ -1,3 +1,4 @@
+
 package com.project.kingthejoy.member.biz;
 
 import java.util.List;
@@ -49,4 +50,5 @@ public interface MemberBiz {
 	
 	
 }
+
  

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="children">
+
+
+	<select id="childrenselectlist" parameterType="int" resultType="childDto">
+		SELECT
+		CHILDREN_NAME,
+		CHILDREN_SEQ,
+		MEMBER_SEQ,
+		CLASS_NAME,
+		SCHOOL_SEQ,
+		CLASS_SEQ
+		FROM CHILDREN
+		JOIN SCHOOL USING(CHILDREN_SEQ,
+		MEMBER_SEQ)
+		JOIN CLASS USING(CHILDREN_SEQ, MEMBER_SEQ,SCHOOL_SEQ)
+		WHERE SCHOOL_SEQ = #{school_seq}
+		ORDER
+		BY CLASS_NAME,CHILDREN_SEQ DESC
+	</select>
+	
+	<insert id="insert" parameterType="childDto">
+	INSERT INTO CHILDREN
+	</insert>
+	
+	<delete id="childrendelete" parameterType="int">
+	DELETE FROM CHILDREN WHERE CHILDREN_SEQ = #{children_seq}
+	</delete>
+	
+</mapper>
