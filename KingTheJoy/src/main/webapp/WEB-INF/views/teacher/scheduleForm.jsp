@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"	href="resources/css/menu/scheduleForm.css">
+<link rel="stylesheet" type="text/css"	href="/resources/css/menu/scheduleForm.css">
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 	<!-- 제목, 내용, 시작일, 종료일, 컬러 -->
   <h2>행사 등록<small>Event Insert</small></h2>
 
-	<form action="scheduleInsertDb.do?" method="post">
+	<form action="/schedule/scheduleInsertDb.do?" method="post">
 
 		<div class="group">
 			<input type="date" name="start" required="required"> 

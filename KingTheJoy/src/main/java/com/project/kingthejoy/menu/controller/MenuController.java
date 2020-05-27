@@ -100,13 +100,13 @@ public class MenuController {
 			//입력성공
 			logger.info("식단입력 성공");
 			model.addAttribute("msg", "입력 성공");
-			model.addAttribute("url", "alertClose.do");
+			model.addAttribute("url", "/menu/alertClose.do");
 			return "/common/alert";
 		}else {
 			//입력실패
 			logger.info("식단입력 실패");
 			model.addAttribute("msg", "입력 실패");
-			model.addAttribute("url", "menuInsertForm.do");
+			model.addAttribute("url", "/menu/menuInsertForm.do");
 			return "/common/alert";
 		}
 			
@@ -135,11 +135,11 @@ public class MenuController {
 		int updateRes = menuBiz.menuUpdate(menuDto);
 		if(updateRes>0) {
 			model.addAttribute("msg", "수정성공");
-			model.addAttribute("url", "alertClose.do");
+			model.addAttribute("url", "/menu/alertClose.do");
 			return "/common/alert";
 		}else {
 			model.addAttribute("msg", "수정실패");
-			model.addAttribute("url", "menuUpdate.do"+menuDto.getMenu_seq());
+			model.addAttribute("url", "/menu/menuUpdate.do"+menuDto.getMenu_seq());
 			return "/common/alert";
 		}
 		
@@ -151,11 +151,11 @@ public class MenuController {
 		int deleteRes = menuBiz.menuDelete(menu_seq);
 		if(deleteRes>0) {
 			model.addAttribute("msg", "삭제성공");
-			model.addAttribute("url", "alertClose.do");
+			model.addAttribute("url", "/menu/alertClose.do");
 			return "/common/alert";
 		}else {
 			model.addAttribute("msg", "삭제실패");
-			model.addAttribute("url", "menuList.do");
+			model.addAttribute("url", "/menu/menuList.do");
 			return "/common/alert";
 		}
 		

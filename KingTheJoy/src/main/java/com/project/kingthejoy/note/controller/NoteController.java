@@ -21,6 +21,7 @@ import com.project.kingthejoy.note.dto.NoteDto;
 import lombok.val;
 
 @Controller
+@RequestMapping("note")
 public class NoteController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -53,17 +54,17 @@ public class NoteController {
 			if(sendRes>0) {
 				// 전송완료 알림띄우기
 				model.addAttribute("msg", "전송 완료");
-				model.addAttribute("url", "note.do");
+				model.addAttribute("url", "/note/note.do");
 				return "common/alert";				
 			}else {
 				//전송실패 알림띄우기
 				model.addAttribute("msg", "전송실패");
-				model.addAttribute("url", "note.do");
+				model.addAttribute("url", "/note/note.do");
 				return "common/alert";
 			}
 		}else {
 			model.addAttribute("msg", "전송에 실패했습니다.");
-			model.addAttribute("url", "note.do");
+			model.addAttribute("url", "/note/note.do");
 			return "common/alert";
 		}
 		
@@ -95,13 +96,13 @@ public class NoteController {
 		if(res >0) {
 			//메일 보내기 성공
 			model.addAttribute("msg", "메일 발송 성공");
-			model.addAttribute("url", "mailform.do");
+			model.addAttribute("url", "/note/mailform.do");
 			
 			return "common/alert";
 		}else {
 			//메일 보내기 실패
 			model.addAttribute("msg", "메일 발송 실패");
-			model.addAttribute("url", "mailform.do");
+			model.addAttribute("url", "/note/mailform.do");
 			
 			return "common/alert";			
 		}

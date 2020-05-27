@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="resources/css/note/mailForm.css">
+	href="/resources/css/note/mailForm.css">
 </head>
 <body>
 
@@ -15,7 +15,7 @@
 		<div class="inner">
 			<h1>단체메일 보내기</h1>
 			<div class="div_box">
-				<form action="sendMail.do?" method="post">
+				<form action="/note/sendMail.do?" method="post">
 					<!-- 반 선택  -->
 					<select name="mail_class" class="default-input option-menu">
 						<c:forEach var="claz" items="${clazz }">
@@ -34,7 +34,7 @@
 						</tr>
 					</table>
 					<input type="submit" value="전송하기" class="btn blue float-right">
-					<input type="button" value="취소" onclick="location='mailform.do?'"
+					<input type="button" value="취소" onclick="location='/note/mailform.do?'"
 						class="btn dark float-right">
 				</form>
 			</div>

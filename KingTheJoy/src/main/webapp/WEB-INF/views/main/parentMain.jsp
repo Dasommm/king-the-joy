@@ -75,7 +75,7 @@ h1 {
 	<!-- 공지사항 -->
 	<div>공지사항 부분</div>
 	<input type="button" value="학부모 알림장" onclick="openNote();">
-	<input type="button" value="단체메일" onclick="location='mailform.do?'">
+	<input type="button" value="단체메일" onclick="location='/note/mailform.do?'">
  
    <!-- 식단표 -->
       <div id='calendar' style="width: 800px; margin-left:350px;"></div>

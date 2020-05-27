@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	          locale : 'ko',
 	          displayEventTime : false,
 	          dateClick : function(){
-	        	  window.open("/kingthejoy/menuInsertForm.do?","menuInsert","width=560, height=700, left=100, top=50");
+	        	  window.open("/menu/menuInsertForm.do?","menuInsert","width=560, height=700, left=100, top=50");
 	          },
 	          
 	          eventRender : function(info){
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	        				
 	        				var openWin;
 	        				
-	        				var popUrl = "menuUpdate.do?menu_seq="+menu_seq;
+	        				var popUrl = "/menu/menuUpdate.do?menu_seq="+menu_seq;
 	        				var popOption = "width=770, height=860, left=100, top=50";
 	        				window.name="menuParentForm";
 	        				openWin = window.open(popUrl,"menuUpdate",popOption);
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	        			menu_seq = info.event.extendedProps.menu_seq;
 	        			if(confirm("삭제하시겠습니까?")==true){
 	        				$.ajax({
-	        					url : "menuDelete.do",
+	        					url : "/menu/menuDelete.do",
 	        					type: "POST",
 	        					data : {"menu_seq": menu_seq},
 	        					success : function(data){
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	          },
 	          eventSources : [
 	        	  {
-	        		  url : '/kingthejoy/menuList.do',
+	        		  url : '/menu/menuList.do',
 	        		  type : 'POST',
 	        		  error : function(){
 	        			  alert('menu load failure');

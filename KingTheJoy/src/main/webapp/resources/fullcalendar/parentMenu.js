@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function openNote(){
 	var openWin;
-	var popUrl = "note.do?";
+	var popUrl = "/note/note.do?";
 	var popOption = "width=725px, height=800px, left=100, top=50";
 	openWin = window.open(popUrl, "NoteForm", popOption);
 }

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="resources/css/menu/scheduleForm.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/menu/scheduleForm.css">
 
 
 <script type="text/javascript">
@@ -39,7 +39,7 @@
   
   <h2>행사 수정<small>Event Update</small></h2>
   
-  <form id="scheduleform" action="scheduleUpdateDb.do" method="post">
+  <form id="scheduleform" action="/schedule/scheduleUpdateDb.do" method="post">
     <input type="hidden" name="schedule_seq" value="${updateform.schedule_seq }"/>
     <div class="group">
 			<input type="date" name="start" value="${updateform.start }" required="required"> 

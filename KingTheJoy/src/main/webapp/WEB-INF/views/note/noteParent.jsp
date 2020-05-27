@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="resources/css/note/noteParent.css">
+	href="/resources/css/note/noteParent.css">
 </head>
 <body>
 

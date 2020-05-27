@@ -5,16 +5,16 @@
 <head>
 <meta charset='utf-8' />
 
-<link href='resources/fullcalendar/core/main.css' rel='stylesheet' />
-<link href='resources/fullcalendar/daygrid/main.css' rel='stylesheet' />
-<link href='resources/fullcalendar/timegrid/main.css' rel='stylesheet' />
+<link href='/resources/fullcalendar/core/main.css' rel='stylesheet' />
+<link href='/resources/fullcalendar/daygrid/main.css' rel='stylesheet' />
+<link href='/resources/fullcalendar/timegrid/main.css' rel='stylesheet' />
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src='resources/fullcalendar/core/main.js'></script>
-<script src='resources/fullcalendar/daygrid/main.js'></script>
-<script src='resources/fullcalendar/interaction/main.js'></script>
-<script src='resources/fullcalendar/timegrid/main.js'></script>
-<script src="resources/fullcalendar/teacherMenu.js"></script>
+<script src='/resources/fullcalendar/core/main.js'></script>
+<script src='/resources/fullcalendar/daygrid/main.js'></script>
+<script src='/resources/fullcalendar/interaction/main.js'></script>
+<script src='/resources/fullcalendar/timegrid/main.js'></script>
+<script src="/resources/fullcalendar/teacherMenu.js"></script>
 
 <style type="text/css">
 #subtitle {

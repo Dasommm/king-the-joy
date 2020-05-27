@@ -23,6 +23,7 @@ import com.project.kingthejoy.schedule.biz.ScheduleBiz;
 import com.project.kingthejoy.schedule.dto.ScheduleDto;
 
 @Controller
+@RequestMapping("schedule")
 public class ScheduleController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ScheduleController.class); 
@@ -97,11 +98,11 @@ public class ScheduleController {
 		int insertRes = schedulebiz.scheduleInsert(scheduleInsert);
 		if(insertRes>0) {
 			model.addAttribute("msg", "입력성공");
-			model.addAttribute("url", "alertClose.do");
+			model.addAttribute("url", "/menu/alertClose.do");
 			return "common/alert";
 		}else {
 			model.addAttribute("msg", "입력실패");
-			model.addAttribute("url", "teacherSchedule.do");
+			model.addAttribute("url", "/schedule/teacherSchedule.do");
 			return "common/alert";
 		}
 	}
@@ -127,11 +128,11 @@ public class ScheduleController {
 		
 		if(updateDb>0) {
 			model.addAttribute("msg","수정성공");
-			model.addAttribute("url","alertClose.do");
+			model.addAttribute("url","/menu/alertClose.do");
 			return "common/alert";
 		}else {
 			model.addAttribute("msg","수정실패");
-			model.addAttribute("url","alertClose.do");
+			model.addAttribute("url","/menu/alertClose.do");
 			return "common/alert";
 		}
 		
@@ -142,11 +143,11 @@ public class ScheduleController {
 		int deleteRes = schedulebiz.scheduleDelete(schedule_seq);
 		if(deleteRes>0) {
 			model.addAttribute("msg", "삭제성공");
-			model.addAttribute("url", "parentSchedule.do");
+			model.addAttribute("url", "/schedule/parentSchedule.do");
 			return "common/alert";
 		}else {
 			model.addAttribute("msg", "삭제실패");
-			model.addAttribute("url", "parentSchedule.do");
+			model.addAttribute("url", "/schedule/parentSchedule.do");
 			return "common/alert";			
 		}
 		

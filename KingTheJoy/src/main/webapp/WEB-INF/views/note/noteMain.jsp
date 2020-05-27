@@ -8,9 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <link rel="stylesheet" type="text/css" href="resources/css/note/noteForm.css">
+ <link rel="stylesheet" type="text/css" href="/resources/css/note/noteForm.css">
 
-<script type="text/javascript" src="resources/js/note/noteForm.js"></script>
+<script type="text/javascript" src="/resources/js/note/noteForm.js"></script>
 
 </head>
 
@@ -18,7 +18,7 @@
 
 <body>
 
-	<form action="noteInsert.do?" method="post" id="msform">
+	<form action="/note/noteInsert.do?" method="post" id="msform">
 	<input type="hidden" name="member_seq" value="21">
 	<input type="hidden" name="children_seq" value="7">
 

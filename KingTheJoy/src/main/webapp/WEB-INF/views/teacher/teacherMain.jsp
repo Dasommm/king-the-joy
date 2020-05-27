@@ -83,7 +83,7 @@
 	    </div>
 	 	<div class="image-container">
 	        <img src="${pageContext.request.contextPath}/resources/img/main/menu.png" style="width: 9em;"
-	        onclick="location='menuteacher.do?'">
+	        onclick="location='menu/menuteacher.do?'">
 	        <span>식단표 작성</span>
 	    </div>
 	</div>
