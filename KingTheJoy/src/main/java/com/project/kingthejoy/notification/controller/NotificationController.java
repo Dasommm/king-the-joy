@@ -42,8 +42,11 @@ public class NotificationController {
 	@RequestMapping(value = "/notificationDetail.do")
 	public String notificationOne(HttpSession session, Model model, int notification_seq) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-		int res = notificationBiz.selectWritten(memberDto.getMember_seq(), notification_seq);
-		System.out.println("공지사항 열람여부 " + res);
+		if(memberDto.getMember_role()==3) {
+			int res = notificationBiz.selectWritten(memberDto.getMember_seq(), notification_seq);
+			System.out.println("공지사항 열람여부 " + res);
+			
+		}
 		logger.info("notification Detail notification_seq : " + notification_seq + " Open");
 		NotificationDto notificationDto = notificationBiz.selectNotificationOne(notification_seq);
 		model.addAttribute("notificationDto", notificationDto);

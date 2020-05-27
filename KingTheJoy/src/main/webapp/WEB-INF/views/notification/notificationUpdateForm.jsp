@@ -11,22 +11,20 @@
 	<%@include file="../common/PrincipalHeader.jsp"%>
 </head>
 <body>
-	<form action="notificationUpdateRes.do" method="post">
+	<form action="notificationUpdateRes.do" method="post" id="update">
 		<input type="hidden" name="notification_seq" value="${notificationDto.notification_seq}">
 		<div class="tbl-title">
 	<table cellpadding="0" cellspacing="0" border="0">
 		<tr>
-			<td>제목</td>
-			<td><input type="text" name="notification_title" value="${notificationDto.notification_title}"></td> 
+			<td><input type="text" name="notification_title" value="${notificationDto.notification_title}" style="width: 100%"></td> 
 		</tr>
 		<tr>
-			<td>내용</td>
-			<td><input type="text" name="notification_content" value="${notificationDto.notification_content}"></td>
+			<td><textarea rows="30" cols="200" name="notification_content" form="update" >${notificationDto.notification_content}</textarea>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="submit" value="수정하기" class="btn striped-shadow dark">
-				<input type="button" value="돌아가기" onclick="location.href='notificationDetail.do?notification_seq=${notificationDto.notification_seq}'" class="btn striped-shadow dark">
+				<input type="submit" value="수정하기">
+				<input type="button" value="돌아가기" onclick="location.href='notificationDetail.do?notification_seq=${notificationDto.notification_seq}'" >
 			</td>
 		</tr>
 	</table>

@@ -39,13 +39,13 @@
 		<tr>
 			<td colspan="2" style="text-align:right ;">
 				<c:choose>
-    				<c:when test="${notificationDto.notification_writer} eq ${memberDto.getMember_name()}">
-        				<input type="button" value="수정" onclick="location.href='notificationUpdate.do?notification_seq=${notificationDto.notification_seq}'" class="btn striped-shadow dark">
-        				<input type="button" value="삭제" onclick="location.href='notificationDelete.do?notification_seq=${notificationDto.notification_seq}'" class="btn striped-shadow dark"> 
-						<input type="button" value="목록으로" onclick="location.href='notification.do'" class="btn striped-shadow dark">
+    				<c:when test="${notificationDto.notification_writer eq memberDto.getMember_name()}">
+        				<input type="button" value="수정" onclick="location.href='notificationUpdate.do?notification_seq=${notificationDto.notification_seq}'" >
+        				<input type="button" value="삭제" onclick="location.href='notificationDelete.do?notification_seq=${notificationDto.notification_seq}'" > 
+						<input type="button" value="목록으로" onclick="location.href='notification.do'" >
     				</c:when>
     				<c:otherwise>
-    					<input type="button" value="목록으로" onclick="location.href='notification.do'" class="btn striped-shadow dark">
+    					<input type="button" value="목록으로" onclick="location.href='notification.do'" >
     				</c:otherwise>
 				</c:choose>
 			</td>
