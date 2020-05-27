@@ -99,7 +99,7 @@
 	//채팅 연결
 	$(function(){
 		$('#answer02_01').click(function(){
-			window.open('chat.do');
+			window.open('/chat/chat.do');
 		});
 	});
 	

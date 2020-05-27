@@ -79,7 +79,7 @@
 	        <span>쪽지함</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="/kingthejoy/resources/img/main/채팅.png" style="width: 10em;">
+	        <a href="/chat/chattingRoom.do"><img src="/kingthejoy/resources/img/main/채팅.png" style="width: 10em;"></a>
 	        <span>채팅</span>
 	    </div>
 	 	<div class="image-container">
@@ -96,7 +96,7 @@
 		<button onclick="#">관리자 게시판</button>
 		<button onclick="#">결제 관리</button>
 		<button onclick="#">쪽지함</button>
-		<button onclick="#">채팅</button>
+		<button onclick="location.href='/chat/chattingRoom.do'">채팅</button>
 		<button onclick="'">선생님 관리</button>
 		<button onclick="#">원생관리</button>
     

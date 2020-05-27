@@ -299,7 +299,7 @@ public class MemberController<dataList> {
 			if (biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()) > 0) {
 				memberDto.setSchool_seq(biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()));
 				session.setAttribute("memberDto", memberDto);
-				return "main/teacherMain";
+				return "main/principalMain";
 			} else {
 				model.addAttribute("msg", "소속된 유치원 정보를 입력해주세요");
 				model.addAttribute("url", "schoolInfoUpdate.do");
