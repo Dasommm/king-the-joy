@@ -15,16 +15,14 @@
 		<div class="tbl-title">
 		<table cellpadding="0" cellspacing="0" border="0">
 			<tr>
-				<td>제목</td>
-				<td><input type="text" name="notification_title" value="[${school_name}]"></td>
+				<td><input type="text" name="notification_title" value="[${school_name}]" style="width: 100%"></td>
 			</tr>
 			<tr>
-				<td>내용</td>
-				<td><textarea rows="10" cols="30" name="notification_content"></textarea></td>
+				<td><textarea rows="30" cols="200" name="notification_content" placeholder="내용을 입력해주세요"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="글 작성" class="btn striped-shadow dark"> <input
-					type="button" value="취소" onclick="location.href='notification.do'" class="btn striped-shadow dark">
+				<td colspan="2"><input type="submit" value="글 작성" > <input
+					type="button" value="취소" onclick="location.href='notification.do'">
 				</td>
 			</tr>
 		</table>
