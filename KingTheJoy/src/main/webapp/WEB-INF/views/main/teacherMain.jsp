@@ -8,5 +8,9 @@
 </head>
 <body>
 
+<a href="childrenlist.do?page=1">childlist</a><br>
+<a href="pillList.do?page=1">pillList</a><br>
+
+
 </body>
 </html>

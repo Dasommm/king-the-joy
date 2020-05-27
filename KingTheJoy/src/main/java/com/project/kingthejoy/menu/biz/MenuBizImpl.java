@@ -31,13 +31,13 @@ public class MenuBizImpl implements MenuBiz {
 
 	@Override
 	public int menuUpdate(MenuDto menuDto) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	@Override
 	public int menuDelete(MenuDto menuDto) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
