@@ -13,6 +13,7 @@
 <div class="container">
   
   <h2>행사<small>Event</small></h2>
+  <div class=groupbox style="margin-left: 17%;">
     <div class="group">      
       <input type="text" name="title" value="${scheduleOne.title }" readonly="readonly">
       <span class="highlight"></span>
@@ -37,7 +38,7 @@
     </div>
     
     <input type="button" onclick="self.close();" value="닫기"/>
-  
+  </div>
 </div>
 
 

@@ -22,6 +22,7 @@ import com.project.kingthejoy.menu.biz.MenuBiz;
 import com.project.kingthejoy.menu.dto.MenuDto;
 
 @Controller
+@RequestMapping("menu")
 public class MenuController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
@@ -51,7 +52,7 @@ public class MenuController {
 	@RequestMapping(value = "/menuteacher.do")
 	public String menuTeacher() {
 		
-		return "menu/menuTeacher";
+		return "teacher/menuTeacher";
 		
 	}
 	

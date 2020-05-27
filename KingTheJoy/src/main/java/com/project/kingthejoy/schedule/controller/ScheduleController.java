@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jaxen.function.SubstringAfterFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,8 @@ public class ScheduleController {
 	public String scheduleOne(int schedule_seq, Model model) {
 		logger.info("행사 조회하기");
 		ScheduleDto scheduleOne = schedulebiz.selectOne(schedule_seq);
+		scheduleOne.setStart(scheduleOne.getStart().substring(0,10));
+		scheduleOne.setEnd(scheduleOne.getEnd().substring(0,10));
 		model.addAttribute("scheduleOne", scheduleOne);
 		System.out.println("이벤트 클릭 ::::::::::::"+scheduleOne.toString());
 		
@@ -65,13 +68,13 @@ public class ScheduleController {
 	@RequestMapping("/teacherSchedule.do")
 	public String teacherSchedule() {
 		logger.info("선생님용 행사페이지");
-		return "parent/teacherSchedule";
+		return "teacher/teacherSchedule";
 	}
 	
 	@RequestMapping("/scheduleInsertForm.do")
 	public String scheduleInsertForm() {
 		logger.info("스케쥴 입력 폼");
-		return "parent/scheduleForm";
+		return "teacher/scheduleForm";
 	}
 	
 	@RequestMapping("/scheduleInsertDb.do")
@@ -98,7 +101,7 @@ public class ScheduleController {
 			return "common/alert";
 		}else {
 			model.addAttribute("msg", "입력실패");
-			model.addAttribute("url", "parentSchedule.do");
+			model.addAttribute("url", "teacherSchedule.do");
 			return "common/alert";
 		}
 	}
@@ -108,15 +111,30 @@ public class ScheduleController {
 		logger.info("스케쥴 업뎃 폼");
 		//하나 뽑아서 뿌리기
 		ScheduleDto updateform = schedulebiz.selectOne(schedule_seq);
+		updateform.setStart(updateform.getStart().substring(0,10));
+		updateform.setEnd(updateform.getEnd().substring(0,10));
 		model.addAttribute("updateform", updateform);
 				
-		return "parent/scheduleUpdate";
+		return "teacher/scheduleUpdate";
 	}
 	
 	@RequestMapping("/scheduleUpdateDb.do")
 	public String scheduleUpdateDb(ScheduleDto scheduleDto, Model model ) {
+		scheduleDto.setStart(scheduleDto.getStart()+"T09:00:00");
+		scheduleDto.setEnd(scheduleDto.getEnd()+"T10:00:00");
+		int updateDb = schedulebiz.scheduleUpdate(scheduleDto);
 		
-		return "";
+		
+		if(updateDb>0) {
+			model.addAttribute("msg","수정성공");
+			model.addAttribute("url","alertClose.do");
+			return "common/alert";
+		}else {
+			model.addAttribute("msg","수정실패");
+			model.addAttribute("url","alertClose.do");
+			return "common/alert";
+		}
+		
 	}
 	
 	@RequestMapping("/scheduleDelete.do")

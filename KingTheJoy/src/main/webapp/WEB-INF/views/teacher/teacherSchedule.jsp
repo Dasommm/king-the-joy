@@ -16,20 +16,9 @@
 <script src="resources/fullcalendar/teacherSchedule.js"></script>
 
 <style type="text/css">
-
-/* 배경 이미지 사이즈 */
-#background img{
-	z-index : -1;
-	bottom: 0px;
-	left: 0px;
-	position : absolute;
-	top : 430px;
-}
-/* 캘린더 */
-/* h1 */
-h1{
-	text-align: center;
-}
+#subtitle {
+  text-align: center;
+  margin: 10px;
 </style>
 <title>Insert title here</title>
 </head>
@@ -38,18 +27,15 @@ h1{
 
 <section>
 
-<!-- header -->
-
-
-<h1>선생님용 행사페이지</h1>
-
+<%@include file="../common/TeacherHeader.jsp" %>
 
 	<div>
+	<!-- 사용방법 -->
+	<p id="subtitle">
+	<strong>※행사등록 페이지입니다. 날짜 클릭시 새로운 행사 등록, 이벤트 클릭시 상세내용 확인 및 수정, 더블클릭시 삭제가 가능합니다※</strong>
+	</p>
 	<!-- 식단표 -->
-		<div id='calendar' style="width: 800px; margin-left:350px;"></div>
-		<div id='background'>
-			<img alt="" src="./resources/img/parentMain.jpg">
-		</div>
+		<div id='calendar' style="width: 800px; margin-left:350px; margin-top: 20px; margin-bottom: 20px;"></div>
 	</div>
 
 

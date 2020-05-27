@@ -18,6 +18,11 @@
 <script src="resources/fullcalendar/parentSchedule.js"></script>
 
 
+<style type="text/css">
+#subtitle {
+  text-align: center;
+  margin: 10px;
+</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -30,12 +35,16 @@
 
 <%@include file="../common/parentHeader.jsp" %>
 <%@include file="../parent/parentChatbot.jsp" %>
-<h1>행사일정!</h1>
 
 <input type="button" value="선생님용 스케쥴" onclick="location.href='teacherSchedule.do?'">
 
+	<!-- 사용방법 -->
+	<p id="subtitle">
+	<strong>※행사 일정 페이지입니다. 상세내용 확인은 이벤트를 클릭해주세요※</strong>
+	</p>
 	<!-- 식단표 -->
 		<div id='calendar' style="width: 800px; margin-left:350px;"></div>
+		
 
 </section>
 
