@@ -31,9 +31,12 @@
 		</property>
 	</bean>
 
+
+<!--  
 	<bean id="commonAop" class="com.project.kingthejoy.common.aop.CommonAop"></bean>
 	<aop:aspectj-autoproxy/>
-
+	
+-->	
 	<!-- dataSource -->
 
 	<bean id="dataSource"
@@ -57,7 +60,12 @@
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSession" />
 	</bean>
+	
+	<!-- MultipartResolver 설정 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  <property name="maxUploadSize" value="100000000" />
+	  <property name="maxInMemorySize" value="100000000" />
+	</bean>
 
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 	
 </beans>

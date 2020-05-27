@@ -25,11 +25,14 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-		<async-supported>true</async-supported>
+		<async-supported>true</async-supported> <!-- 웹소켓을 위한 설정(비동기 지원) -->
 	</servlet>
+	
 	<welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
+
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>

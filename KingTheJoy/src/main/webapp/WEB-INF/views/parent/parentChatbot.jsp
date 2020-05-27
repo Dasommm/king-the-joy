@@ -109,7 +109,7 @@
 <body>
    <!-- 챗봇 -->
    <div id="chatBot">
-      <img src="./resources/img/chatIcon.png">
+      <img src="/resources/img/chatIcon.png">
    </div>
    <div id="question01" class="pNa">
       <p id="pNa01" class="boder" style="background-color: #f5c2c2">도움이 필요하세요?</p>

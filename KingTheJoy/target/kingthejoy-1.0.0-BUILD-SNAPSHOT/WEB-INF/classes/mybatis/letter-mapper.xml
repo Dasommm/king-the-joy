@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="letter">
+
+	<select id="letterTotalrows" parameterType="int" resultType="int">
+		SELECT COUNT(*) AS TOTALROWS FROM
+		(SELECT * FROM LETTER
+		WHERE MEMBER_SEQ=#{member_seq})
+	</select>
+
+	<select id="letterList" parameterType="letterDto" resultType="letterDto">
+		SELECT B.*
+		FROM (SELECT A.*, ROWNUM AS RNUM
+		FROM (SELECT * FROM LETTER JOIN MEMBER USING(MEMBER_SEQ)
+		WHERE MEMBER_SEQ=${member_seq}
+		ORDER BY LETTER_SEQ DESC) A) B
+		WHERE RNUM BETWEEN ${from} AND ${to}
+	</select>
+	
+	<select id="selectSendList" parameterType="letterDto" resultType="letterDto">
+		SELECT B.*
+		FROM (SELECT A.*, ROWNUM AS RNUM
+		FROM (SELECT * FROM LETTER JOIN MEMBER USING(MEMBER_SEQ)
+		WHERE LETTER_SENDER=#{letter_sender}
+		ORDER BY LETTER_SEQ DESC) A) B
+		WHERE RNUM BETWEEN ${from} AND ${to}
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="letterDto">
+		SELECT *
+		FROM LETTER
+		WHERE LETTER_SEQ = #{letter_seq}
+	</select>
+
+	<delete id="letterDelete" parameterType="map">
+		DELETE FROM LETTER
+		WHERE LETTER_SEQ IN
+		<foreach collection="letter_seqs" item="letter_seq" open="(" separator="," close=")">
+			#{letter_seq}
+		</foreach>
+	</delete>
+
+	<delete id="letterDeleteOne" parameterType="int">
+		DELETE FROM LETTER
+		WHERE LETTER_SEQ = #{letter_seq}
+	</delete>
+	
+	<select id="senderMemberOne" parameterType="int" resultType="memberDto">
+		SELECT * 
+		FROM MEMBER
+		WHERE MEMBER_SEQ = #{member_seq}
+	</select>
+	
+	<select id="receiverMemberOne" parameterType="String" resultType="memberDto">
+		SELECT * 
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id}
+	</select>
+	
+	<insert id="letterInsert" parameterType="letterDto">
+		INSERT INTO LETTER
+		VALUES(LETTER_SEQ.NEXTVAL, #{member_seq}, #{letter_sender}, #{letter_title}, #{letter_content}, SYSDATE, 0)
+	</insert>
+	
+	<select id="isIdSelectOne" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id}
+	</select>
+	
+	<update id="letterCheck" parameterType="int">
+		UPDATE LETTER
+		SET LETTER_STATUS = 1
+		WHERE LETTER_SEQ =#{letter_seq}
+	</update>
+
+</mapper>

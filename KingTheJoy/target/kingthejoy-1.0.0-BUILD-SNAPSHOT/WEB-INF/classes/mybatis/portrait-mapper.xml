@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="portrait">
+
+	<update id="imagePathInsert" parameterType="principalDto">
+		UPDATE MEMBER SET MEMBER_IMAGE = #{member_image} WHERE member_seq = #{member_seq}
+	</update>
+	
+	<select id="imgPath" parameterType="int" resultType="String">
+		SELECT MEMBER_IMAGE FROM MEMBER WHERE MEMBER_SEQ = #{member_seq}
+	</select>
+	
+	<update id="imageChildPathInsert" parameterType="principalDto">
+		UPDATE CHILDREN SET CHILDREN_IMAGE = #{children_image} WHERE CHILDREN_SEQ = #{children_seq}
+	</update>
+	
+	<select id="imgChildPath" parameterType="int" resultType="String">
+		SELECT CHILDREN_IMAGE FROM CHILDREN WHERE CHILDREN_SEQ = #{children_seq}
+	</select>
+
+</mapper>

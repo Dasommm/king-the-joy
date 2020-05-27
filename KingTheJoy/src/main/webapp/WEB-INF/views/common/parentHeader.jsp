@@ -34,7 +34,7 @@
     
  
         <a class="logo" href="roleCheck.do">
-        	<img src="./resources/img/kinderJoyLogo.png">
+        	<img src="/resources/img/kinderJoyLogo.png">
        	</a>
        	
      	<div class="MyMenu">

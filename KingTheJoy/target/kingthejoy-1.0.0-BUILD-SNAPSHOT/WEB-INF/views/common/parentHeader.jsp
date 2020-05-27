@@ -33,7 +33,7 @@
     <nav>
     
  
-        <a class="logo" href="#">
+        <a class="logo" href="roleCheck.do">
         	<img src="./resources/img/kinderJoyLogo.png">
        	</a>
        	
@@ -50,12 +50,12 @@
             </li>
           <li class="menu_li">
           	<div class="menu-css" id="cal">
-            <a class="menu-link" href="#">행사일정</a>
+            <a class="menu-link" href="parentSchedule.do">행사일정</a>
             </div> 
           </li>
           <li class="menu_li">
           	<div class="menu-css" id="note">
-            <a class="menu-link" href="#">알림장</a>
+            <a class="menu-link" href="parentNote.do">알림장</a>
             </div> 
           </li>
           <li class="menu_li">

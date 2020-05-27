@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class GalleryDto {
 	private int galleSeq;
-	private int classseq;
+	private int school_seq;
 	private String galleImage;
 	private String galleTitle;
 }

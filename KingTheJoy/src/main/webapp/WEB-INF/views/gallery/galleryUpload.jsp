@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/galleryPage.css">
 <style type="text/css">
 .uploadDragDiv{
 	width: 200px;
@@ -12,7 +13,6 @@
 	border: 1px solid gray;
 }
 </style>
-<link rel="stylesheet" href="/kingthejoy/resources/css/galleryPage.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,15 +20,17 @@
 <div class="galleryBody">
 	<h1>사진등록</h1>
 	<h4>사진을 드래그해서 올려주세요. jpg 파일만 가능합니다. (5MB이하)</h4>
+	<div class="galbox">
 	<div class="grid">
 		<c:forEach var="i" begin="1" end="9" step="1">
 			<div class="item">
 				<div class="item-content">
-					<img src="/kingthejoy/resources/gallery/${dto.classseq }/${i }.jpg"
-						onerror="this.src='/kingthejoy/resources/img/dropicon.png'">
+					<img src="${pageContext.request.contextPath}/resources/gallery/${memberDto.school_seq }/${i }.jpg"
+						onerror="this.src='${pageContext.request.contextPath}/resources/img/dropicon.png'">
 				</div>
 			</div>
 		</c:forEach>
+	</div>
 	</div>
 </div>	
 <script src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
@@ -40,8 +42,8 @@ const grid = new Muuri('.grid', {
 	dragEnabled: true,
 });
 $(document).ready(function () { 
-	//반번호
-	var classseq = ${dto.classseq};
+	//유치원번호
+	var school_seq = ${memberDto.school_seq};
 	
 	//파일 제한
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
@@ -59,7 +61,7 @@ $(document).ready(function () {
 	}
 	
 	//ajax file upload
-	function upload(imageNumber, files, classseq) {
+	function upload(imageNumber, files, school_seq) {
 		var formData = new FormData();
 		console.log("drop>>", files);
 		//var inputFile = $("input[name='uploadFile"+imageNumber+"']");
@@ -75,15 +77,14 @@ $(document).ready(function () {
 		}
 		
 		$.ajax({
-			url: 'uploadAjaxAction.do?imageNumber='+imageNumber+"&classseq="+classseq,
+			url: 'uploadAjaxAction.do?imageNumber='+imageNumber+"&school_seq="+school_seq,
 			processData: false,
 			contentType: false,
 			data: formData,
 			type: 'POST',
 				success: function(result){
 					console.log(result);
-					//showUploadedFile(result);
-					//$(".uploadDiv").html(cloneObj.html());
+					location.reload();
 				}
 			}); // end ajax
 	}		
@@ -105,7 +106,7 @@ $(document).ready(function () {
 		    //console.log("drop>>", files);
 		    $(".item-content:eq("+i+")").css("border", "none");
 		    var imageNum = i+1;
-		    upload(imageNum, files, classseq);
+		    upload(imageNum, files, school_seq);
 		    setTimeout(function() { showUploadedFile(i) }, 300);
 		});
 	});
@@ -117,7 +118,7 @@ $(document).ready(function () {
 		console.log("num: "+num+"/ imageNum: "+imageNum); 
 		var uploadAppend = $(".item-content:eq("+num+")");
 		$(".item-content:eq("+num+") img").remove();
-		str += "<img src='/kingthejoy/resources/gallery/"+classseq+"/"+imageNum+".jpg' style='border: 2px solid #222222; border-radius: 4px 4px 4px 4px; box-sizing: border-box;'>"
+		str += "<img src='/resources/gallery/"+school_seq+"/"+imageNum+".jpg' style='border: 2px solid #222222; border-radius: 4px 4px 4px 4px; box-sizing: border-box;'>"
 		uploadAppend.append(str);
 	}
 	

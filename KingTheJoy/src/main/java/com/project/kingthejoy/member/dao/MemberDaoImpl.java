@@ -77,8 +77,8 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insertSchool(Map<String, Integer> schoolMap) {
-		System.out.println("여긴다오다 애새기"+schoolMap.get("children_seq"));
-		if(schoolMap.get("children_seq")==null) {
+		System.out.println(schoolMap.get("childresn_seq"));
+		if(schoolMap.get("childresn_seq")==null) {
 			return sqlSession.insert("member.teacherMasterInsertSchool", schoolMap);
 		}else {
 			return sqlSession.insert("member.insertSchool", schoolMap);
@@ -114,6 +114,7 @@ public class MemberDaoImpl implements MemberDao {
 			return sqlSession.selectOne("member.selectSchoolSeqOfMasterAndTeacher", member_seq);
 		}
 	}
+
 	@Override
 	public List<ChildrenDto> childrenList(int member_seq) {
 		return sqlSession.selectList("member.childrenList", member_seq);
@@ -124,4 +125,11 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean AndroidLoginCheck(MemberDto memberDto) {
+		String name = sqlSession.selectOne("member.AndroidLoginCheck", memberDto);
+		return (name == null) ? false : true;
+	}
+
 }

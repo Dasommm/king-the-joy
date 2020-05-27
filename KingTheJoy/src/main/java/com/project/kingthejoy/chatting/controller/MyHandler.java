@@ -21,13 +21,11 @@ public class MyHandler extends TextWebSocketHandler {
 	
 		private List<WebSocketSession> users;
 		private Map<String, Object> userMap;
-		private Map<String, Object> chatRoomMap;
 		
 		
 		public MyHandler() {
 			users = new ArrayList<WebSocketSession>();
 			userMap = new HashMap<String, Object>();
-			chatRoomMap = new HashMap<String, Object>();
 			
 		}
 		
