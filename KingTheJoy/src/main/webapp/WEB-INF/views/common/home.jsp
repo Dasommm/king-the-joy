@@ -17,7 +17,7 @@
 <script src="<c:url value="/resources/js/login.js"/>"></script>
 <title>Insert title here</title>
 </head>
-<body> 
+<body>
 	<form name="loginForm" method="post">
 	<div class="row"> 	
 		<div class="home-img"><img src="${pageContext.request.contextPath}/resources/img/home.png" alt="homeLogo"></div>
@@ -49,10 +49,10 @@
 			<div class="col-12">
 				<button type="button" class="btn btn-info btn-md search-button">아이디/비밀번호 찾기</button>
 			</div> 
-			<a href="s.do">school</a>
 		</div>
 	</div>
 	</form>
+	
 	
 	<script>
     // 사용할 앱의 JavaScript 키 설정
@@ -74,9 +74,9 @@
 	    		  		  kakao_nickname : res.properties.nickname,
 	    		  		  kakao_email : res.kakao_account.email
 	    		  	  },
-	    		  	  success : function(){
+	    		  	  success : function(msg){
 	    		  		  alert('카카오 로그인 성공');
-	    					window.location.href="snsLoginUpdatePage.do";
+	    					window.location.href=msg+".do";
 	    		  	  },
 	    		  	  error : function(){
 	    		  		  alert('에러');
@@ -96,7 +96,6 @@
 	var state = naver_id_login.getUniqState();
 	
 	console.log(state);
-	
 	
     naver_id_login.setButton("green", 3, 60);
     naver_id_login.setDomain("http://localhost:8181/kingthejoy/home.do");

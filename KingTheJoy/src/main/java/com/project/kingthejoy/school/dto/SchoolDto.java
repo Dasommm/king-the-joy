@@ -10,3 +10,4 @@ public class SchoolDto {
 	private String school_addr;
 
 }
+ 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="schedule">
+<resultMap type="scheduleDto" id="scheduleMap">
+	<result column="schedule_seq" property="schedule_seq"/>
+	<result column="member_seq" property="member_seq"/>
+	<result column="schedule_title" property="title"/>
+	<result column="schedule_start" property="start"/>
+	<result column="schedule_end" property="end"/>
+	<result column="schedule_description" property="description"/>
+	<result column="schedule_color" property="color"/>
+	<result column="school_seq" property="school_seq"/>
+</resultMap>
+
+<select id="selectAll" parameterType="int" resultMap="scheduleMap">
+SELECT * FROM SCHEDULE WHERE SCHOOL_SEQ = #{SCHOOL_SEQ}
+</select>
+
+<select id="selectOne" parameterType="int" resultMap="scheduleMap">
+SELECT * FROM SCHEDULE WHERE SCHEDULE_SEQ = #{SCHEDULE_SEQ}
+</select>
+
+<insert id="insert" parameterType="scheduleDto" >
+INSERT INTO SCHEDULE
+VALUES(SCHEDULESEQ.NEXTVAL, #{member_seq}, #{title},#{start}, #{end},#{description},#{color},#{school_seq})
+</insert>
+
+<delete id="delete" parameterType="int">
+DELETE FROM SCHEDULE WHERE SCHEDULE_SEQ = #{SCHEDULE_SEQ}
+</delete>
+</mapper>

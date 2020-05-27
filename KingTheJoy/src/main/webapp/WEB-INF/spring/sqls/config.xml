@@ -12,7 +12,13 @@
 		<typeAlias type="com.project.kingthejoy.children.dto.ChildrenPagingDto" alias="childPagingDto"/>
 		<typeAlias type="com.project.kingthejoy.pill.dto.PillDto" alias="pillDto"/>
         <typeAlias type="com.project.kingthejoy.pill.dto.PillPagingDto" alias="pillPagingDto"/>
-        
+		<typeAlias type="com.project.kingthejoy.note.dto.NoteDto" alias="noteDto"/>
+		<typeAlias type="com.project.kingthejoy.schedule.dto.ScheduleDto" alias="scheduleDto"/>
+		<typeAlias type="com.project.kingthejoy.children.dto.ChildrenDto" alias="childrenDto" />
+		<typeAlias type="com.project.kingthejoy.letter.dto.LetterDto" alias="letterDto" />
+		<typeAlias type="com.project.kingthejoy.principal.dto.PrincipalDto" alias="principalDto" />
+		<typeAlias type="com.project.kingthejoy.notification.dto.GetNewNotificationDto" alias="getNewNotification"/>
+		
 	</typeAliases>
 
 	<mappers>
@@ -21,6 +27,11 @@
 		<mapper resource="/mybatis/notification-mapper.xml"/>
 		<mapper resource="/mybatis/children-mapper.xml"/>
 		<mapper resource="/mybatis/pill-mapper.xml"/>
+		<mapper resource="/mybatis/letter-mapper.xml" />
+		<mapper resource="/mybatis/principal-mapper.xml" />
+		<mapper resource="/mybatis/portrait-mapper.xml" />
+		<mapper resource="/mybatis/note-mapper.xml"/>
+		<mapper resource="/mybatis/schedule-mapper.xml"/>
 	</mappers>
 	
 	<!-- resource : src/main/resources -->

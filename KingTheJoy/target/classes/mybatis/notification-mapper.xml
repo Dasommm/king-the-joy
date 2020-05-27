@@ -1,66 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="notification">
-	<select id="selectList" resultType="notificationDto" parameterType="int">
-		select * from notification
-		where school_seq = #{school_seq}
-		order by notification_seq desc
+	<select id="selectList" resultType="notificationDto"
+		parameterType="int">
+		SELECT * FROM NOTIFICATION
+		WHERE SCHOOL_SEQ =
+		#{school_seq}
+		ORDER BY NOTIFICATION_SEQ DESC
 	</select>
 	<select id="selectOne" parameterType="int"
 		resultType="notificationDto">
-		select * 
-		from notification 
-		where notification_seq = #{notification_seq}
+		select *
+		from notification
+		where notification_seq =
+		#{notification_seq}
 	</select>
 
 	<insert id="insert" parameterType="notificationDto">
-		INSERT INTO NOTIFICATION
+		INSERT INTO NOTIFICATION(
+		notification_Seq,
+		notification_title,
+		notification_content,
+		notification_date,
+		notification_writer,
+		member_seq,
+		school_seq
+		)
 		values(
 		notificationSeq.nextval,
 		#{notification_title},
 		#{notification_content},
 		sysdate,
 		#{notification_writer},
-		#{member_seq}
+		#{member_seq},
+		#{school_seq}
 		)
 	</insert>
 
 	<update id="update" parameterType="notificationDto">
 		UPDATE notification
-		SET 
+		SET
 		notification_title = #{notification_title},
-		notification_content = #{notification_content}
+		notification_content =
+		#{notification_content}
 		WHERE notification_seq = #{notification_seq}
 	</update>
 
 	<delete id="delete" parameterType="int">
-		delete from notification 
-		where notification_seq = #{notification_seq}
+		delete from notification
+		where
+		notification_seq = #{notification_seq}
 	</delete>
-	
+
 	<select id="selectMember" resultType="int" parameterType="int">
-		SELECT member_seq FROM MEMBER WHERE MEMBER_ROLE = 0
+		SELECT
+		member_seq FROM school WHERE children_seq IS NOT NULL AND school_seq =
+		#{school_seq} order by member_seq desc
 	</select>
-	
-	<select id="selectLastNotification" resultType="int">
-		SELECT notification_seq FROM (SELECT * FROM notification ORDER BY notification_seq) WHERE rownum = 1
+
+	<select id="selectLastNotification"
+		resultType="getNewNotification">
+		SELECT
+		notification_seq, notification_title FROM (SELECT *
+		FROM notification ORDER BY
+		notification_seq) WHERE rownum = 1
 	</select>
-	
+
 	<insert id="insertCheck" parameterType="java.util.List">
-		<foreach collection="list" item="item" separator=" " open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
-		into notificationcheck 
-		values
-        (#{item.notification_seq},#{item.member_flag},#{item.member_seq},#{item.school_seq})
-   		</foreach>
+		<foreach collection="list" item="item" separator=" "
+			open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
+			into notificationcheck(notification_seq,
+			member_flag, member_seq, school_seq, notification_title)
+			values
+			(#{item.notification_seq}, #{item.member_flag}, #{item.member_seq},
+			#{item.school_seq}, #{item.notification_title})
+		</foreach>
 	</insert>
-	
-	<select id="selectWritten" parameterType="notificationCheckDto" resultType="int">
-		select member_flag from notificationcheck where member_seq = #{member_seq} and notification_seq = #{notification_seq}
+
+
+	<select id="selectWritten" parameterType="notificationCheckDto"
+		resultType="int">
+		select member_flag from notificationcheck where member_seq
+		= #{member_seq} and notification_seq = #{notification_seq}
 	</select>
-	
+
 	<update id="updateWritten" parameterType="notificationCheckDto">
-		update notificationcheck
+		update
+		notificationcheck
 		set member_flag = 1
-		where member_seq = #{member_seq} and notification_seq = #{notification_seq}
+		where member_seq = #{member_seq}
+		and notification_seq = #{notification_seq}
 	</update>
+
+	<select id="selectSchoolName" parameterType="int"
+		resultType="string">
+		select school_name from school_List where school_seq =
+		#{school_seq}
+	</select>
+
+	<select id="countList" resultType="int" parameterType="int">
+		SELECT
+		COUNT(*) FROM NOTIFICATION WHERE SCHOOL_SEQ = #{SCHOOL_SEQ}
+	</select>
+
+	<select id="selectRollingNotificationList"
+		resultType="notificationDto">
+		SELECT * FROM notification where school_seq = #{school_seq}
+		ORDER BY notification_seq DESC
+	</select>
+
+	<select id="selectNotificationCheckList"
+		resultType="notificationCheckDto" parameterType="int">
+		SELECT * FROM
+		NOTIFICATIONCHECK
+		WHERE SCHOOL_SEQ = #{school_seq} AND MEMBER_FLAR = 0
+		ORDER BY NOTIFICATION_SEQ
+	</select>
+
+	<select id="selectMailAddress" parameterType="int"
+		resultType="String">
+		SELECT Member_email
+		FROM MEMBER WHERE member_seq IN (
+		SELECT member_seq
+		FROM NOTIFICATIONCHECK
+		WHERE NOTIFICATION_SEQ = #{notification_seq}
+		AND member_flag=0)
+	</select>
+
+
 </mapper>
