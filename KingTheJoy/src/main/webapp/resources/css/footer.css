@@ -1,5 +1,7 @@
 .outFooter{
-    background: rgba(240, 240, 240, 0.6);
+	position: relative;
+	left:0px; 
+ 	bottom:0px; 
     display: table-cell;
     vertical-align: middle;
     height: 200px;
@@ -7,4 +9,5 @@
 }
 .footer{
     text-align: center;
+    
 } 

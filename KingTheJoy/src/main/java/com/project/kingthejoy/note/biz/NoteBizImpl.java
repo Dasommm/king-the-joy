@@ -141,7 +141,6 @@ public class NoteBizImpl implements NoteBiz {
 		System.out.println(emailRes);
 		
 		return emailRes;
-
 	}
 
 	@Override

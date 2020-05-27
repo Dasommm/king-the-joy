@@ -36,10 +36,10 @@
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-            	<a class="nav-link" href="principalMain.do">원장 메인</a>
+            	<a class="nav-link" href="principal.do">원장 메인</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">공지 사항</a>
+                <a class="nav-link" href="notification.do">공지 사항</a>
             </li>
           <li class="nav-item">
           		<a class="nav-link" href="#">원생 현황</a>
@@ -67,7 +67,7 @@
 			    <span class="caret"></span>
 			    </button>
 			    <ul class="dropdown-menu">
-			        <li><a class="dropdown-item" href="#">마이페이지</a></li>
+			        <li><a class="dropdown-item" href="myPage.do">마이페이지</a></li>
 			        <li><a class="dropdown-item" href="/member/logout.do">로그아웃</a></li>
 			    </ul>
 			</div>

@@ -1,0 +1,13 @@
+	${memberDto.member_seq }
+	${memberDto.member_id }
+	${memberDto.member_pw }
+	${memberDto.member_name }
+	${memberDto.member_phone }
+	${memberDto.member_email }
+	${memberDto.member_role }
+	${memberDto.member_delflag }
+	${memberDto.member_oaddr }
+	${memberDto.member_addr }
+	${memberDto.member_detailaddr }
+	${memberDto.member_date }
+	${memberDto.school_seq }

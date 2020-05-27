@@ -8,12 +8,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.project.kingthejoy.children.dto.ChildrenDto;
 import com.project.kingthejoy.member.dao.MemberDao;
 import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.school.dto.SchoolDto;
-
 
 @Service
 public class MemberBizImpl implements MemberBiz {
@@ -32,7 +30,6 @@ public class MemberBizImpl implements MemberBiz {
 		boolean result = dao.loginCheck(memberDto);
 		if(result) {
 			MemberDto dto = memberView(memberDto);
-			dto.setSchool_seq(selectSchoolSeqOfParent(dto.getMember_seq()));
 			session.setAttribute("memberDto", dto);
 		}
 		return result; 
@@ -94,12 +91,11 @@ public class MemberBizImpl implements MemberBiz {
 		
 		boolean result = dao.snsMemberCheck(snsMap);
 		memberDto.setMember_id((String)session.getAttribute("member_id"));
-		
+		 
 		if(result == true) {
 			memberDto = snsMemberView(memberDto);
 			
 			session.setAttribute("memberDto", memberDto);
-			
 			return result;
 		}else {
 			return false;
@@ -117,7 +113,6 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.selectSchoolSeqOfMasterAndTeacher(member_seq);
 	}
 
-
 	@Override
 	public List<ChildrenDto> childrenList(int member_seq) {
 		return dao.childrenList(member_seq);
@@ -129,9 +124,9 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
-	public List<MemberDto> adminSelectMember() {
-		return dao.adminSelectMember();
+	public boolean AndroidLoginCheck(MemberDto memberDto) {
+		
+		return dao.AndroidLoginCheck(memberDto);
 	}
-
 
 }

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.kingthejoy.notification.dto.GetNewNotificationDto;
 import com.project.kingthejoy.notification.dto.NotificationCheckDto;
 import com.project.kingthejoy.notification.dto.NotificationDto;
 
@@ -19,6 +20,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
 	@Override
 	public List<NotificationDto> selectNotificationList(int school_seq) {
+		System.out.println(school_seq);
 		return sqlSession.selectList(NAMESPACE + "selectList", school_seq);
 	}
 
@@ -68,14 +70,22 @@ public class NotificationDaoImpl implements NotificationDao {
 	}
 
 	@Override
-	public int insertNotificationCheck(int notification_seq, int school_seq) {
+	public int insertNotificationCheck(int notification_seq, int school_seq, String notification_title) {
 		List<Integer> list = new ArrayList<Integer>();
 		int res = 0;
-		try {
-			list = sqlSession.selectList(NAMESPACE + "selectMember", school_seq);
-		} catch (Exception e) {
-			e.printStackTrace();
+		list = sqlSession.selectList(NAMESPACE + "selectMember", school_seq);
+		if(list.size()>2) {
+			for(int i=list.size()-1; i>0; i--) {
+				if(list.get(i)==list.get(i-1)) {
+					list.remove(i);
+				}
+			}
+		}else {
+			if(list.get(0)!=list.get(1)) {
+				list.remove(1);
+			}
 		}
+		
 		List<NotificationCheckDto> checkList = new ArrayList<NotificationCheckDto>();
 		for (int i = 0; i < list.size(); i++) {
 			NotificationCheckDto dto = new NotificationCheckDto();
@@ -83,6 +93,7 @@ public class NotificationDaoImpl implements NotificationDao {
 			dto.setMember_flag(0);
 			dto.setMember_seq(list.get(i));
 			dto.setSchool_seq(school_seq);
+			dto.setNotification_title(notification_title);
 			checkList.add(dto);
 		}
 		try {
@@ -94,14 +105,8 @@ public class NotificationDaoImpl implements NotificationDao {
 	}
 
 	@Override
-	public int newNotification() {
-		int res = 0;
-		try {
-			res = sqlSession.selectOne(NAMESPACE + "selectLastNotification");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return res;
+	public GetNewNotificationDto newNotification() {
+		return sqlSession.selectOne(NAMESPACE + "selectLastNotification");
 	}
 
 	@Override
@@ -146,6 +151,16 @@ public class NotificationDaoImpl implements NotificationDao {
 	@Override
 	public List<NotificationDto> selectRollingNotificationList(int school_seq) {
 		return sqlSession.selectList(NAMESPACE+"selectRollingNotificationList", school_seq);
+	}
+
+	@Override
+	public List<NotificationCheckDto> selectNotificationCheckList(int school_seq) {
+		return sqlSession.selectList(NAMESPACE+"selectNotificationCheckList",school_seq);
+	}
+
+	@Override
+	public List<String> selectMailAddress(int notification_seq) {
+		return sqlSession.selectList(NAMESPACE+"selectMailAddress",notification_seq);
 	}
 
 }

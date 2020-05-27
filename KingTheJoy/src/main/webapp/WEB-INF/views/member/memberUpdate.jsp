@@ -27,7 +27,7 @@
 	</div>
 	<!-- <form action="tableDataSend.do" method="post" role="form" id="submit"> -->
 	<input type="hidden" name="member_role" value="${member_role }">
-	<form action="memberUpdate.do" method="post" id="insert">
+	<form action="/member/memberUpdate.do" method="post" id="insert">
 		<div class="home-div col-8 row">
 			<div class="image-center col-12">
 				<img src="<c:url value="/resources/img/Logo.png"/>"

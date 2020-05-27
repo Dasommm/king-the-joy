@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping("member")
 public class TeacherController {
 
 	@RequestMapping(value = "/teacher.do", method = RequestMethod.GET)
@@ -16,10 +17,10 @@ public class TeacherController {
 		return "main/teacherMain";
 	}
 	
-	@RequestMapping(value = "/teacherMain.do", method = RequestMethod.GET)
-	public String teacherMain() {
-		log.info("into: teacherMain");		
-		return "teacher/teacherMain";
-	}
+//	@RequestMapping(value = "/teacherMain.do", method = RequestMethod.GET)
+//	public String teacherMain() {
+//		log.info("into: teacherMain");		
+//		return "teacher/teacherMain";
+//	}
 	
 }

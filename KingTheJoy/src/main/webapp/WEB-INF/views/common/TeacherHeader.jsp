@@ -36,10 +36,10 @@
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-            	<a class="nav-link" href="#">선생 메인</a>
+            	<a class="nav-link" href="teacher.do">선생 메인</a>
             </li>
             <li class="nav-item">
-            	<a class="nav-link" href="#">공지사항</a>
+            	<a class="nav-link" href="notification.do">공지사항</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">원아 위치</a>
@@ -70,7 +70,7 @@
 			    <span class="caret"></span>
 			    </button>
 			    <ul class="dropdown-menu">
-			        <li><a class="dropdown-item" href="#">마이페이지</a></li>
+			        <li><a class="dropdown-item" href="myPage.do">마이페이지</a></li>
 			        <li><a class="dropdown-item" href="logout.do">로그아웃</a></li>
 			    </ul>
 			</div>

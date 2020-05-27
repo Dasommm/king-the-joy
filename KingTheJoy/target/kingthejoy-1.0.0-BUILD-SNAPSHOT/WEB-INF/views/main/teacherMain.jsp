@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<script type="text/javascript">
+		location.href="teacherMain.do";
+	</script>
 </body>
 </html>
