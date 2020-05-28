@@ -40,7 +40,8 @@
 
 .login-button{
     margin-top: 30px;
-}
+    margin-bottom:20px;
+} 
 
 .reset-button{
     margin-left:30px;
@@ -59,4 +60,170 @@
 
 .marginTop{
 	padding-top:5px;
+}
+
+#mobileContainer {
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	background-color: #EEE;
+	width: 282px;
+	border: 1px solid #CCCCCC;
+	padding: 12px 12px 12px 12px;
+  -moz-border-radius-topleft: 4px;
+		-moz-border-radius-topright: 4px;
+		-moz-border-radius-bottomright: 4px;
+		-moz-border-radius-bottomleft: 4px;
+		-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+#mobileContent {
+	display: inline-block;
+	width: 100%;
+	margin-top: 5px;
+	font-family: "Lucida Grande", "Lucida", Verdana, Arial, sans-serif;
+	font-size: 12px;
+}
+
+h2 {
+    font-family:"Lucida Grande", "Lucida", Verdana, Arial, sans-serif;
+    font-size: 24px; 
+    color: #2d84af;
+    /* padding: -10px; */
+    margin: 0 5px;
+}
+
+.loginform_hint, .required_notification {font-size: 11px;}
+
+.loginform ul {
+  list-style-type: none;
+	list-style-position: outside;
+	margin:0px;
+	padding:0px;
+}
+
+.loginform li{
+	padding: 6px; 
+	position: relative;
+} 
+
+.loginform li:first-child, .loginform li:last-child {
+}
+
+*:focus {outline: none;}
+
+
+.loginform label {
+  float: left;
+  text-align: left;
+  font-family:"Lucida Grande", "Lucida", Verdana, Arial, sans-serif;
+  font-weight:bold;
+  font-size:12px;
+  margin-top: 5px; /* vertically centers text with field */
+  margin-right: 15px;
+  width: 250px;
+	/* border: 1px solid #ccc; */
+  }
+
+.loginform input[type="text"]{
+	height:20px; 
+	width:248px;
+	padding-left:4px;
+}
+
+.loginform input[type="password"] {
+	height:20px;
+	width: 248px;
+	padding-left:4px; 
+}
+
+
+	/* form element visual styles */
+	.loginform input[type="text"], 
+	.loginform input[type="password"]{ 
+		border:1px solid #707070;
+	}
+	.loginform input[type="text"]:focus, 
+	.loginform input[type="password"]:focus 
+		background: #fff; 
+		border:1px solid #555; 
+		box-shadow: 0 0 3px #aaa; 
+	}
+
+.loginform input:required {
+	background: url(../images/form/red_asterisk.png) no-repeat 98% center;
+}
+.loginform input:required:valid {
+	background: url(../images/form/valid.png) no-repeat 98% center;
+	box-shadow: #5cd053;
+	border-color: #28921f;
+}
+.loginform input:focus:invalid {
+	background: url(../images/form/invalid.png) no-repeat 98% center;
+	box-shadow: #d45252;
+	border-color: #fd0202;
+}
+ 
+.loginform_hint {
+	background-color: #d45252;
+	border-radius: 3px 3px 3px 3px;
+  color: white;
+	width: 250px;
+	margin-top: 10px;
+	/*  margin-left: -265px; */
+	padding: 4px 6px;
+	z-index: 999; /* hints stay above all other elements */
+	position: absolute; /* allows proper formatting if hint is two lines */
+	display: none;
+}
+.loginform_hint::before {
+	/* content: "\25C0"; */  /* left point triangle in escaped unicode */
+	content: "\25b2";  /* bottom point triangle in escaped unicode */
+	color:#d45252;
+	position: absolute;
+	top:-10px;
+	left:30px; /* right position of arrow */
+}
+.loginform input:focus + .loginform_hint {display: block;}
+.loginform input:required:valid + .loginform_hint {background: #28921f;} /* change form hint color when valid */
+.loginform input:required:valid + .loginform_hint::before {color:#28921f;} /* change form hint arrow color when valid */
+
+
+#loginformBtn {  
+  display: inline-block;
+  margin-top:10px;
+  margin-left: 4px;
+}
+
+.loginformBtn {
+	background: #144e74;  /* tab color Dark Blue */
+  	color: #FFFFFF;
+	border: none;
+  	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+  	line-height: 1.4;
+  	/* padding: 3px 7px; */ /* classic site bttn size */
+	padding: 6px 15px; /* mobile site bttn size */
+		-webkit-font-smoothing: subpixel-antialiased;
+  	 	-webkit-transition: 0.25s linear;
+  	transition: 0.25s linear;
+	/* mobile bttn site borders */
+	 	-moz-border-radius-topleft: 4px;
+		-moz-border-radius-topright: 4px;
+		-moz-border-radius-bottomright: 4px;
+		-moz-border-radius-bottomleft: 4px;
+		-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.loginformBtn:hover {
+  	background: #00927e; /* tab color Riverside Green */
+	cursor: pointer; 
+}
+
+.checkbox{
+	text-align:center;
+	margin-bottom:10px;
+	font-size:11pt;
 }
