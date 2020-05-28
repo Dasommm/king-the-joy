@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="글 작성" > <input
-					type="button" value="취소" onclick="location.href='notification.do'">
+					type="button" value="취소" onclick="location.href='/notification/notification.do'">
 				</td>
 			</tr>
 		</table>

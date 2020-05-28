@@ -14,5 +14,7 @@ public interface StudyBiz {
 	
 	public StudyDto selectBookOne(int book_seq);
 	
+	public int studyBookDelete(int book_seq);
+	
 	
 }

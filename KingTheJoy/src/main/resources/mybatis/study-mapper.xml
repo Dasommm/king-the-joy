@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="study">
+	
+	<!-- 로그인 확인 -->
+	<select id="checkSeq" resultType="Int">
+		SELECT STUDYBOOK_SEQ.NEXTVAL
+		FROM DUAL
+	</select>
+	
+	<insert id="studyBookInsert" parameterType="studyDto">
+		INSERT INTO STUDYBOOK(
+				BOOK_SEQ
+				,MEMBER_SEQ
+				,SCHOOL_SEQ
+				,BOOK_NAME
+				,BOOK_CONTENT
+				,BOOK_IMG_LASTNUMBER
+				,BOOK_FOLDER_NUMBER)
+		VALUES
+			(	studybook_seq.nextval
+				,#{member_seq}
+				,#{school_seq}
+				,#{book_name}
+				,#{book_content}
+				,#{book_img_lastnumber}
+				,#{book_folder_number})
+	</insert>
+	
+	<select id="selectStudyBooks" resultType="studyDto" parameterType="int">
+		SELECT * FROM STUDYBOOK
+		WHERE SCHOOL_SEQ = #{school_seq}
+		ORDER BY BOOK_SEQ ASC
+	</select>
+	
+	<select id="selectBookOne" resultType="studyDto" parameterType="int"> 
+		SELECT * FROM STUDYBOOK
+		WHERE BOOK_SEQ = #{school_seq}
+	</select>
+	
+	<delete id="studyBookDelete" parameterType="int">
+		DELETE FROM STUDYBOOK
+		WHERE BOOK_SEQ = #{book_seq}
+	</delete>
+	
+	
+</mapper>

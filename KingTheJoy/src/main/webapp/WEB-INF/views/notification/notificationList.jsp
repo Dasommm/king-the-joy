@@ -63,7 +63,7 @@
 							<c:forEach items="${notificationList}" var="dto">
 								<tr>
 									<td><strong><a
-											href="notificationDetail.do?notification_seq=${dto.notification_seq}">${dto.notification_title}</a></strong>
+											href="notificationDetail.do?/notification/notification_seq=${dto.notification_seq}">${dto.notification_title}</a></strong>
 									</td>
 									<td width="150">${dto.notification_writer}</td>
 									<td width="150">${dto.notification_date}</td>
@@ -76,10 +76,10 @@
 			<c:choose>
 
 				<c:when test="${memberDto.getMember_role() <3 }">
-					<input type="button" value="공지사항 작성" onclick="location.href='notificationInsert.do'">
+					<input type="button" value="공지사항 작성" onclick="location.href='/notification/notificationInsert.do'">
 				</c:when>
 				<c:when test="${memberDto.getMember_role() eq 3 }">
-					<input type="button" value="공지사항 작성" onclick="location.href='notificationInsert.do'" style="display: none;">
+					<input type="button" value="공지사항 작성" onclick="location.href='/notification/notificationInsert.do'" style="display: none;">
 				</c:when>
 				
 			</c:choose>

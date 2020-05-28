@@ -34,5 +34,10 @@ public class StudyBizImpl implements StudyBiz {
 	public StudyDto selectBookOne(int book_seq) {
 		return dao.selectBookOne(book_seq);
 	}
+	
+	@Override
+	public int studyBookDelete(int book_seq) {
+		return dao.studyBookDelete(book_seq);
+	}
 
 }

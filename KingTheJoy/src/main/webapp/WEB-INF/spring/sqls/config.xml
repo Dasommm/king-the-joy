@@ -15,6 +15,7 @@
 		<typeAlias type="com.project.kingthejoy.paging.PagingDto" alias="pagingDto" />
 		<typeAlias type="com.project.kingthejoy.principal.dto.PrincipalDto" alias="principalDto" />
 		<typeAlias type="com.project.kingthejoy.notification.dto.GetNewNotificationDto" alias="getNewNotification"/>
+		<typeAlias type="com.project.kingthejoy.study.dto.StudyDto" alias="studyDto" />
 	</typeAliases>
 
 	<mappers>
@@ -26,6 +27,7 @@
 		<mapper resource="/mybatis/portrait-mapper.xml" />
 		<mapper resource="/mybatis/note-mapper.xml"/>
 		<mapper resource="/mybatis/schedule-mapper.xml"/>
+		<mapper resource="/mybatis/study-mapper.xml" />
 	</mappers>
 	
 	<!-- resource : src/main/resources -->

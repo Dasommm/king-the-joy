@@ -22,7 +22,7 @@ import com.project.kingthejoy.notification.dto.GetNewNotificationDto;
 import com.project.kingthejoy.notification.dto.NotificationDto;
 
 @Controller
-@RequestMapping("member")
+@RequestMapping("notification")
 public class NotificationController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
