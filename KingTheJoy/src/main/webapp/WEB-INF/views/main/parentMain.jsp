@@ -6,16 +6,16 @@
 <head>
 <meta charset='utf-8' />
 
-<link href='resources/fullcalendar/core/main.css' rel='stylesheet' />
-<link href='resources/fullcalendar/daygrid/main.css' rel='stylesheet' />
+<link href='/resources/fullcalendar/core/main.css' rel='stylesheet' />
+<link href='/resources/fullcalendar/daygrid/main.css' rel='stylesheet' />
 <link rel="stylesheet"
    href="<c:url value="/resources/css/rollingNotice.css"/>">
    <script src="<c:url value="/resources/js/rollingNotice.js"/>"> </script>
 <script type="text/javascript"
    src="https://code.jquery.com/jquery-3.5.1.js"></script>
-   <script src='resources/fullcalendar/core/main.js'></script>
-<script src='resources/fullcalendar/daygrid/main.js'></script>
-<script src='resources/fullcalendar/interaction/main.js'></script>
+   <script src='/resources/fullcalendar/core/main.js'></script>
+<script src='/resources/fullcalendar/daygrid/main.js'></script>
+<script src='/resources/fullcalendar/interaction/main.js'></script>
 
 <style type="text/css">
 /* 캘린더 */
@@ -44,7 +44,7 @@ h1 {
 </style>
 
 <!-- 캘린더 설정 -->
-  <script src="resources/fullcalendar/parentMenu.js"></script>
+  <script src="/resources/fullcalendar/parentMenu.js"></script>
 </head>
 <body>
 
@@ -52,7 +52,7 @@ h1 {
 
 <!-- 배경 사진 -->
 <div id="background">
-	<img src="./resources/img/parentMain.jpg">
+	<img src="/resources/img/parentMain.jpg">
 </div>
 
 
@@ -64,7 +64,7 @@ h1 {
 
    <!-- 공지사항 -->
    <div id="noticeImg">
-         <img src="./resources/img/speaker.png">
+         <img src="/resources/img/speaker.png">
    </div>
    <div id="notice">
 			<ul class="rolling" id="notification">
