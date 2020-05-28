@@ -17,8 +17,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.kingthejoy.common.security.service.impl.AuthenticationUserDetailsServiceImpl;
@@ -42,6 +44,72 @@ public class MemberController<dataList> {
 	AuthenticationUserDetailsServiceImpl sc;
 	@Autowired
 	NotificationBiz notificationBiz;
+	
+	@RequestMapping("/memberUpdate.do")
+	public String memberUpdate(Model model, String member_oaddr, String member_addr, String member_detailaddr, String member_phone, String member_email, HttpSession session) {
+		
+		MemberDto memberDto = new MemberDto();
+		
+		MemberDto memberVO = (MemberDto)session.getAttribute("memberDto");
+		int member_seq = memberVO.getMember_seq();
+		
+		memberDto.setMember_seq(member_seq);
+		memberDto.setMember_oaddr(member_oaddr);
+		memberDto.setMember_addr(member_addr);
+		memberDto.setMember_detailaddr(member_detailaddr);
+		memberDto.setMember_email(member_email);
+		memberDto.setMember_phone(member_phone);
+		
+		int res = biz.memberUpdate(memberDto);
+		 
+		if(res>0) { 
+			logger.info("회원수정 완료");
+			model.addAttribute("msg","회원 수정 완료");
+			model.addAttribute("url","/member/myPage.do");
+			return "common/alert";
+		}else {
+			model.addAttribute("msg","회원 수정 실패");
+			model.addAttribute("url","/member/myPage.do");
+			return "commom/alert";
+		}
+	}
+	
+	@RequestMapping("/searchId.do")
+	public String searchId (@RequestParam Map<String, Object> paramMap, Model model) {
+		
+		System.out.println(paramMap.get("member_name"));
+		
+		String id = biz.getId(paramMap);
+		
+		
+		if (id != null) {
+			model.addAttribute("msg", "아이디는 " + id + " 입니다.");
+			model.addAttribute("url", "/member/home.do");
+			return "common/alert";
+		} else {
+			model.addAttribute("msg", "이름과 이메일을확인해주세요");
+			model.addAttribute("url", "/member/home.do");
+			return "common/alert";
+		}
+	} 
+	
+	@RequestMapping("/searchPw.do")
+	public String sendEmailAction (@RequestParam Map<String, Object> paramMap, ModelMap model) {
+
+		String pw = biz.getPw(paramMap);
+		
+		
+		if (pw != null) {
+			model.addAttribute("msg", "비밀번호는 " + pw + " 입니다.");
+			model.addAttribute("url", "/member/home.do");
+			return "common/alert";
+		} else {
+			model.addAttribute("msg", "아이디와 이메일을확인해주세요");
+			model.addAttribute("url", "/member/home.do");
+			return "common/alert";
+		}
+		
+	}
 
 	@RequestMapping(value = "/home.do")
 	public String homepageForm() {
@@ -60,6 +128,7 @@ public class MemberController<dataList> {
 		if (member_role == 3) {
 			model.addAttribute("childrenList", biz.childrenList(member_seq));
 		} else if (member_role == 2 || member_role == 1) {
+			model.addAttribute("school_name", biz.selectSchoolInfo(memberDto.getSchool_seq()));
 			if (member_role == 1) {
 				model.addAttribute("notificationList",
 						notificationBiz.selectNotificationList(memberDto.getSchool_seq()));
@@ -149,7 +218,7 @@ public class MemberController<dataList> {
 		return "member/snsMemberUpdate";
 	}
 
-	@RequestMapping(value = "/memberUpdate.do")
+	@RequestMapping(value = "/memberParentUpdate.do")
 	public String insertChildOrSchool(String data, HttpSession session, HttpServletResponse res,
 			HttpServletRequest request) {
 

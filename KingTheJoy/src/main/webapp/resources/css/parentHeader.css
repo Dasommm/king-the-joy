@@ -1,9 +1,9 @@
 
 
 nav{
-	height:200px;
-	text-align: center;
-	margin: 0px auto;
+   height:200px;
+   text-align: center;
+   margin: 0px auto;
 }
 
 
@@ -20,82 +20,85 @@ nav{
 
 
 .menu_ul{
-	position:relative;
-	list-style: none;
-	display: block;
-	margin-left: 15%;
+   position:relative;
+   list-style: none;
+   display: block;
+   margin-left: 15%;
 }
 
 .menu_li{
-	width : 200px;
-	float: left;
-	font-weigh: 400;
-	font-size: 18px;
-	text-decoration: none;
-	font-weight: bold;
-	align-items: center;
+   width : 200px;
+   float: left;
+   font-weigh: 400;
+   font-size: 18px;
+   text-decoration: none;
+   font-weight: bold;
+   align-items: center;
 }
 
 .menu-link{
-	color: white;
-	display:inline-block;
-	text-decoration: none;
+   color: white;
+   display:inline-block;
+   text-decoration: none;
 }
 
 .menu-link:hover{
-	text-decoration: none;
-	color: #525252;
+   text-decoration: none;
+   color: #525252;
 }
 
 
 .MyMenu{
-	width : 200px;
-	height:30px;
-	position: absolute;
-	top: 20px;
-	right: 10px;
-	text-decoration: none;
+   width : 200px;
+   height:30px;
+   position: absolute;
+   top: 20px;
+   right: 10px;
+   text-decoration: none;
 }
 
 .mymenu-link{
-	text-decoration: none;
-	color: gray;
+   text-decoration: none;
+   color: gray;
 }
 
 .mymenu-link:hover{
-	text-decoration: none;
-	color: black;
+   text-decoration: none;
+   color: black;
 }
 
 
 
 .menu-css{
-	margin-top:10px;
-	top : 30px;
-	width: 190px;
-	height: 30px;
-	border-radius: 10px;
-	
+   margin-top:10px;
+   top : 30px;
+   width: 190px;
+   height: 30px;
+   border-radius: 10px;
+   
 }
 
 #not{
-	background-color: #f59178;
+   background-color: #f59178;
 }
 
 #cal{
-	background-color: #6cc765;
+   background-color: #6cc765;
 }
 
 #note{
-	background-color: #4e7ccc;
+   background-color: #4e7ccc;
 }
 
 #req{
-	background-color: #a889cc;
+   background-color: #a889cc;
 }
 
 #photo{
-	background-color: orange;
+   background-color: orange;
+}
+#studybook{
+   background-color: grey;
 }
 
 
@@ -103,6 +106,5 @@ nav{
     position: relative;
     margin-right: 20px;
 }
-
 
 

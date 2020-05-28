@@ -40,12 +40,53 @@ public class StudyController {
 		return "teacher/pptUpload";
 	};
 	
+	@RequestMapping(value="/teacherStudyBookList.do")
+	public String teacherStudyBookList(StudyDto studyDto, HttpSession session, Model model) {
+		
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
+		int school_seq = memberDto.getSchool_seq();
+		
+		model.addAttribute("studyBookList",biz.selectStudyBooks(school_seq));
+		
+		return "teacher/studyBookList";
+	};
+	
 	@RequestMapping(value="/studyBookOne.do")
 	public String studyBookOne(int book_seq, Model model) {
 		
-		biz.selectBookOne(book_seq);
+		model.addAttribute("studyBook", biz.selectBookOne(book_seq));
 		
 		return "parent/studyBookOne";
+	}
+	
+	@RequestMapping(value="/studyBookDelete.do")
+	public String studyBookDelete(int book_seq, Model model) {
+		
+		StudyDto studyDto = biz.selectBookOne(book_seq);
+		int folderNumber = studyDto.getBook_folder_number();
+		
+		String imgLocation = "C:\\Final\\KingTheJoy\\src\\main\\webapp\\resources\\img\\ppt"+folderNumber;
+		
+		File deleteFolder = new File(imgLocation);
+		
+		File[] deleteFolderList = deleteFolder.listFiles();
+		
+		for ( int i = 0 ; i < deleteFolderList.length; i++ ) {
+			deleteFolderList[i].delete();
+		}
+		
+		deleteFolder.delete();
+		
+		int res = biz.studyBookDelete(book_seq);
+		if(res>0) { 
+			model.addAttribute("msg","수업자료 삭제 완료");
+			model.addAttribute("url","/study/teacherStudyBookList.do");
+			return "common/alert";
+		}else {
+			model.addAttribute("msg","수업자료 삭제 실패");
+			model.addAttribute("url","/study/teacherStudyBookList.do");
+			return "common/alert";
+		}
 	}
 	
 	@RequestMapping(value="/pptUpload.do" )
@@ -62,7 +103,7 @@ public class StudyController {
 		try {
 		    file.transferTo(new File(filePath + fileName));
 		} catch(Exception e) {
-		    System.out.println("�뾽濡쒕뱶 �삤瑜�");
+		    System.out.println("파일 업로드 에러");
 		}
 		
 		File dir = new File(filePath);
@@ -132,12 +173,12 @@ public class StudyController {
 		int res = biz.studyBookInsert(studyDto);
 		
 		if(res>0) { 
-			model.addAttribute("msg","�씠誘몄� �벑濡앹씠 �셿猷뚮릺�뿀�뒿�땲�떎.");
-			model.addAttribute("url","home.do");
+			model.addAttribute("msg","수업자료 등록 완료");
+			model.addAttribute("url","/study/teacherStudyBookList.do");
 			return "common/alert";
 		}else { 
-			model.addAttribute("msg","�쉶�썝媛��엯�씠 �떎�뙣�븯���뒿�땲�떎. �떎�떆 �떆�룄�빐二쇱꽭�슂.");
-			model.addAttribute("url","selectResistForm.do");
+			model.addAttribute("msg","수업자료 등록 실패");
+			model.addAttribute("url","/study/selectResistForm.do");
 			return "commom/alert";
 		}
 		
