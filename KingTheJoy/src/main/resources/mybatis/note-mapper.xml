@@ -9,7 +9,7 @@ WHERE SCHOOL_SEQ = #{school_seq}
 
 <insert id="noteInsert" parameterType="noteDto">
 INSERT INTO NOTE
-VALUES(NOTESEQ.NEXTVAL, #{member_seq}, #{children_seq}, NULL, NULL, SYSDATE, #{note_feeling}, #{note_health}, #{note_temp}, #{note_meal}, 
+VALUES(NOTESEQ.NEXTVAL, #{member_seq}, #{children_seq}, #{note_receiver}, #{children_name}, SYSDATE, #{note_feeling}, #{note_health}, #{note_temp}, #{note_meal}, 
 #{note_sleep}, #{note_def}, #{note_spec})
 	<selectKey keyProperty="note_seq" resultType="int" order="AFTER">
 		select noteseq.currval as note_seq from dual
@@ -35,6 +35,12 @@ ON M.MEMBER_SEQ = N.MEMBER_SEQ
 WHERE NOTE_RECEIVER = #{member_phone}
 </select>
 
+<select id="selectParentNum" parameterType="noteDto" resultType="noteDto">
+SELECT MEMBER_PHONE, CHILDREN_NAME 
+FROM MEMBER M FULL OUTER JOIN CHILDREN C
+ON M.MEMBER_SEQ = C.MEMBER_SEQ
+WHERE M.MEMBER_SEQ = #{member_seq} AND CHILDREN_SEQ = #{children_seq}
+</select>
 
 </mapper>
 

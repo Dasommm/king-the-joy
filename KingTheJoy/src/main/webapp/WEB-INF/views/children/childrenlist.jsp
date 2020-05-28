@@ -135,11 +135,7 @@ img {
 </style>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
 
-
-	
-</script>
 </head>
 
 <body>
@@ -196,7 +192,19 @@ img {
 									<p id="name">${dto.class_name}</p>
 									<p style="text-align: center;">${dto.children_name }어린이</p>
 									<!-- <input type="submit" value="삭제" class="delete">  -->
-									<input type="button" value="알림장" onclick="#" class="notice">
+									<input type="button" value="알림장" onclick="openNote();" class="notice">
+									
+									<script type="text/javascript">
+									//알림장 팝업띄우기
+									function openNote(){
+										var openWin;
+										var popUrl = "/note/note.do?member_seq="+${dto.member_seq}+"&children_seq="+${dto.children_seq};
+										var popOption = "width=725px, height=800px, left=100, top=50";
+										openWin = window.open(popUrl, "NoteForm", popOption);
+									}
+										
+									</script>
+									
 								</div>
 							</form>
 						</div>
@@ -219,12 +227,6 @@ img {
 
 	<!-- </div> -->
 	<!-- body -->
-
-
-
-
-
-
 
 </body>
 </html>

@@ -19,8 +19,8 @@
 <body>
 
 	<form action="/note/noteInsert.do?" method="post" id="msform">
-	<input type="hidden" name="member_seq" value="21">
-	<input type="hidden" name="children_seq" value="7">
+	<input type="hidden" name="member_seq" value="${member_seq }">
+	<input type="hidden" name="children_seq" value="${children_seq }">
 
 	 <!-- fieldSet 1 -->
         <fieldset>
