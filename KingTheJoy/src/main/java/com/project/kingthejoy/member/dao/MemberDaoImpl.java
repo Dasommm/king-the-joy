@@ -121,14 +121,39 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void selectSchoolInfo(SchoolDto schoolDto) {
-		
+	public String selectSchoolInfo(int school_seq) {
+		return sqlSession.selectOne("member.selectSchoolInfo", school_seq);
+	}
+
+
+	@Override
+	public List<MemberDto> selectMemberAddress(int school_seq) {
+		return sqlSession.selectList("member.selectMemberAddress", school_seq);
 	}
 
 	@Override
-	public boolean AndroidLoginCheck(MemberDto memberDto) {
-		String name = sqlSession.selectOne("member.AndroidLoginCheck", memberDto);
-		return (name == null) ? false : true;
+	public String selectSchoolAddress(int school_seq) {
+		return sqlSession.selectOne("member.selectSchoolAddress", school_seq);
+	}
+	
+	@Override
+	public String getPw(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("member.getPw", paramMap);
+	}
+
+	@Override
+	public String getId(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("member.getId", paramMap);
+	}
+
+	@Override
+	public ChildrenDto getChildren(Map<String, Integer> childrenMap) {
+		return sqlSession.selectOne("member.getChildren", childrenMap);
+	}
+
+	@Override
+	public int memberUpdate(MemberDto memberDto) {
+		return sqlSession.update("member.memberUpdate", memberDto);
 	}
 
 }

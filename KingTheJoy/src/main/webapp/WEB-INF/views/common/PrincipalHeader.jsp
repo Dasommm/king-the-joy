@@ -39,10 +39,10 @@
             	<a class="nav-link" href="principal.do">원장 메인</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="notification.do">공지 사항</a>
+                <a class="nav-link" href="/notification/notification.do">공지 사항</a>
             </li>
           <li class="nav-item">
-          		<a class="nav-link" href="#">원생 현황</a>
+          		<a class="nav-link" href="childrenMap.do">원생 현황</a>
           </li>
           <li class="nav-item">
             	<a class="nav-link" href="principalTeacherMgt.do">직원 관리</a>

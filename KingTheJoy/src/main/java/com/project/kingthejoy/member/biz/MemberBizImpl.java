@@ -119,14 +119,40 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
-	public void selectSchoolInfo(SchoolDto schoolDto) {
-		
+	public String selectSchoolInfo(int school_seq) {
+		return dao.selectSchoolInfo(school_seq);
+	}
+
+
+	@Override
+	public List<MemberDto> selectMemberAddress(int school_seq) {
+		return dao.selectMemberAddress(school_seq);
 	}
 
 	@Override
-	public boolean AndroidLoginCheck(MemberDto memberDto) {
-		
-		return dao.AndroidLoginCheck(memberDto);
+	public String selectSchoolAddress(int school_seq) {
+		// TODO Auto-generated method stub
+		return dao.selectSchoolAddress(school_seq);
+	}
+	
+	@Override
+	public String getPw(Map<String, Object> paramMap) {
+		return dao.getPw(paramMap);
+	}
+
+	@Override
+	public String getId(Map<String, Object> paramMap) {
+		return dao.getId(paramMap);
+	}
+
+	@Override
+	public ChildrenDto getChildren(Map<String, Integer> childrenMap) {
+		return dao.getChildren(childrenMap);
+	}
+
+	@Override
+	public int memberUpdate(MemberDto memberDto) {
+		return dao.memberUpdate(memberDto);
 	}
 
 }

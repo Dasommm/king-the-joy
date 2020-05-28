@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +17,7 @@
 </head>
 <body>
 	    <div class="home-img"><img src="<c:url value="/resources/img/home.png"/>" alt="homeLogo"></div>
-	    <form action = "memberJoin.do" method="post" role="form" id="usercheck" name="member">
+	    <form action = "/member/memberJoin.do" method="post" role="form" id="usercheck" name="member">
 	    <input type="hidden" name="member_role" value="${member_role }">
         <div class="home-div col-8 row">
             <div class="image-center col-12"><img src="<c:url value="/resources/img/Logo.png"/>" class="img-responsive center-block"></div>
@@ -48,7 +48,7 @@
                 <input type="tel" class="form-control" id="member_phone" name="member_phone" placeholder="Phone Number">
                 <div class="eheck_font" id="phone_check"></div>
             </div> 
-            <div><button type="submit" class="btn btn-success">회원가입하기</button></div> 
+            <div class="btn-right"><button type="submit" class="btn btn-success">회원가입하기</button></div> 
     </div>
     </form>
 </body>

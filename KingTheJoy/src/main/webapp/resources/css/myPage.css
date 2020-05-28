@@ -1,3 +1,13 @@
 .right{
 	float:right;
 }
+
+.myPageInfo img{
+	width:220px;
+	height:200px;
+}
+
+.myPageInfo span{
+	font-size:20px;	
+	margin-left:30px;
+} 

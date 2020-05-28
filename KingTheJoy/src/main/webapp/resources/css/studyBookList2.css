@@ -1,0 +1,57 @@
+header {
+  padding: 30px 0;
+  background-color: #eee;
+}
+nav {
+  background-color: #404040;
+  color: white;
+}
+
+
+/* Panel Styles */
+.simple-panel {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top:50px;
+}
+.panel-head {
+  color: white;
+  background: #404040;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+}
+
+
+/* Table Related */
+
+.table input[type="checkbox"] {
+  position: relative !important;
+  margin-top: 0;
+  margin-left: 0 !important;
+  line-height: normal;
+}
+.table .checkbox {
+  padding-top: 10px;
+}
+.table p {
+  padding-top: 8px;
+  margin: 0;
+}
+
+.table .add-btn {
+  height: 100%;
+  background: #0395CE;
+  cursor: pointer;
+  margin: -8px;
+  
+}
+
+.form-control { border-radius: 0 !important; }
+
+/* Utility Classes */
+
+.u-upper { text-transform: uppercase; }
+.u-left { text-align: left; }
+.u-center { text-align: center; }
+.u-right { text-align: right; }
+.u-bottom { position: absolute; bottom: 1; margin: 0;  }

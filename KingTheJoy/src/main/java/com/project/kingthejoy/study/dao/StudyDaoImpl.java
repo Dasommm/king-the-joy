@@ -39,5 +39,11 @@ public class StudyDaoImpl implements StudyDao {
 	public StudyDto selectBookOne(int book_seq) {
 		return sqlSession.selectOne("study.selectBookOne", book_seq);
 	}
+	
+	@Override
+	public int studyBookDelete(int book_seq) {
+		return sqlSession.delete("study.studyBookDelete", book_seq);
+	}
+
 
 }

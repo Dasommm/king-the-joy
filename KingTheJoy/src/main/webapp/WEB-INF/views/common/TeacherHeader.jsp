@@ -39,16 +39,16 @@
             	<a class="nav-link" href="teacher.do">선생 메인</a>
             </li>
             <li class="nav-item">
-            	<a class="nav-link" href="notification.do">공지사항</a>
+            	<a class="nav-link" href="/notification/notification.do">공지사항</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">원아 위치</a>
+                <a class="nav-link" href="childrenMap.do">원아 위치</a>
             </li>
           <li class="nav-item">
           		<a class="nav-link" href="#">원아 관리</a>
           </li>
           <li class="nav-item">
-            	<a class="nav-link" href="#">수업자료</a>
+               <a class="nav-link" href="/study/studyBookForm.do">수업자료 등록</a>
           </li>
 
           <!-- Dropdown -->
@@ -61,6 +61,7 @@
               <a class="dropdown-item" href="galleryPage.do?school_seq=${memberDto.school_seq }">갤러리</a>
               <a class="dropdown-item" href="galleryUpload.do?school_seq=${memberDto.school_seq }">갤러리 등록</a>
               <a class="dropdown-item" href="#">쪽지함</a>
+              <a class="dropdown-item" href="/study/teacherStudyBookList.do">올린 수업자료</a>
             </div>
           </li>
           </ul>

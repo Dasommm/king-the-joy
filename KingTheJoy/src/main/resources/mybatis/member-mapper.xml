@@ -206,4 +206,47 @@
 		WHERE MEMBER_SEQ = #{member_seq}
 	</select>
 	
+	<select id="selectMemberAddress" resultType="memberDto" parameterType="int">
+		SELECT MEMBER_ADDR, MEMBER_NAME 
+		FROM MEMBER
+		WHERE MEMBER_SEQ IN 
+						(SELECT MEMBER_SEQ 
+						FROM SCHOOL 
+						WHERE SCHOOL_SEQ = #{school_seq} AND CHILDREN_SEQ IS NOT NULL)
+	</select>
+	
+	<select id="selectSchoolAddress" resultType="string" parameterType="int">
+		SELECT SCHOOL_ADDR
+		FROM SCHOOL_LIST
+		WHERE SCHOOL_SEQ = #{school_seq}
+	</select>
+	
+	<select id="getPw" parameterType="Map" resultType="String">
+		SELECT MEMBER_PW
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id} AND MEMBER_EMAIL = #{member_email}
+	</select>
+	
+	<select id="getId" parameterType="Map" resultType="String">
+		SELECT MEMBER_ID
+		FROM MEMBER
+		WHERE MEMBER_NAME = #{member_name} AND MEMBER_EMAIL = #{member_email}
+	</select>
+	
+	<update id="memberUpdate" parameterType="memberDto">
+		UPDATE MEMBER
+		SET
+			MEMBER_EMAIL = #{member_email}
+			,MEMBER_PHONE = #{member_phone}
+			,MEMBER_OADDR = #{member_oaddr}
+			,MEMBER_ADDR = #{member_addr}
+			,MEMBER_DETAILADDR = #{member_detailaddr}
+		WHERE MEMBER_SEQ = #{member_seq}
+	</update>
+	
+	<select id="selectSchoolInfo" parameterType="int" resultType="String">
+		SELECT SCHOOL_NAME
+		FROM SCHOOL_LIST
+		WHERE SCHOOL_SEQ = #{school_seq}
+	</select>
 </mapper>
