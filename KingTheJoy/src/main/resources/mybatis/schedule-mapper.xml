@@ -25,6 +25,13 @@ INSERT INTO SCHEDULE
 VALUES(SCHEDULESEQ.NEXTVAL, #{member_seq}, #{title},#{start}, #{end},#{description},#{color},#{school_seq})
 </insert>
 
+<update id="update" parameterType="scheduleDto">
+UPDATE SCHEDULE
+SET SCHEDULE_START=#{start}, SCHEDULE_END = #{end}, SCHEDULE_TITLE = #{title}, SCHEDULE_DESCRIPTION = #{description}, SCHEDULE_COLOR = #{color} 
+WHERE SCHEDULE_SEQ = #{schedule_seq}
+
+</update>
+
 <delete id="delete" parameterType="int">
 DELETE FROM SCHEDULE WHERE SCHEDULE_SEQ = #{SCHEDULE_SEQ}
 </delete>

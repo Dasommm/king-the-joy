@@ -42,8 +42,10 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
 	@Override
 	public int scheduleUpdate(ScheduleDto scheduleDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int updateRes = sqlSessionTemplate.update(NAMESPACE+"update",scheduleDto);
+		System.out.println("수정결과"+updateRes);
+		return updateRes;
+
 	}
 
 	@Override

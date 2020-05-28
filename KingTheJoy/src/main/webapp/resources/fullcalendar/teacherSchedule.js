@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	          locale : 'ko',
 	          displayEventTime : false,
 	          dateClick : function(){
-	        	  window.open("/kingthejoy/scheduleInsertForm.do?","scheduleInsert","width=560, height=700, left=100, top=50");
+	        	  window.open("/schedule/scheduleInsertForm.do?","scheduleInsert","width=560, height=820, left=100, top=50");
 	          },
 	          
 	          eventRender : function(info){
@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	        				
 	        				var openWin;
 	        				
-	        				var popUrl = "scheduleUpdate.do?schedule_seq="+schedule_seq;
-	        				var popOption = "width=770, height=860, left=100, top=50";
+	        				var popUrl = "/schedule/scheduleUpdate.do?schedule_seq="+schedule_seq;
+	        				var popOption = "width=560, height=820, left=100, top=50";
 	        				window.name="scheduleUpdateForm";
 	        				openWin = window.open(popUrl,"scheduleUpdate",popOption);
 	        			}, 400);
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	        			schedule_seq = info.event.extendedProps.schedule_seq;
 	        			if(confirm("삭제하시겠습니까?")==true){
 	        				$.ajax({
-	        					url : "scheduleDelete.do",
+	        					url : "/schedule/scheduleDelete.do",
 	        					type: "POST",
 	        					data : {"schedule_seq": schedule_seq},
 	        					success : function(data){
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	          },
 	          eventSources : [
 	        	  {
-	        		  url : '/kingthejoy/scheduleSelect.do',
+	        		  url : '/schedule/scheduleSelect.do',
 	        		  type : 'POST',
 	        		  error : function(){
 	        			  alert('menu load failure');

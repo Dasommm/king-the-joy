@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"	href="resources/css/menu/menuDetail.css">
+<link rel="stylesheet" type="text/css"	href="/resources/css/menu/scheduleForm.css">
 </head>
 <body>
 
@@ -13,41 +13,40 @@
 	<!-- 제목, 내용, 시작일, 종료일, 컬러 -->
   <h2>행사 등록<small>Event Insert</small></h2>
 
-	<form action="scheduleInsertDb.do?" method="post">
+	<form action="/schedule/scheduleInsertDb.do?" method="post">
 
 		<div class="group">
 			<input type="date" name="start" required="required"> 
 			<span class="highlight"></span> 
 			<span class="bar"></span> 
-			<label style="top: -17px">시작일</label>
+			<label class="label-style" style="top: -17px">시작일</label>
 		</div>
 		
 		<div class="group">
 			<input type="date" name="end" required="required"> 
 			<span class="highlight"></span> 
 			<span class="bar"></span> 
-			<label style="top: -17px">종료일</label>
+			<label class="label-style" style="top: -17px">종료일</label>
 		</div>
 
 		<div class="group">
 			<input type="radio" id="red" name="color" value="red" required="required">
-			<label for="red">Red</label>
+			<label class="radio-label" for="red">Red</label>
 			<input type="radio" id="yellow" name="color" value="yellow" required="required">
-			<label for="yellow">Yellow</label>
+			<label class="radio-label" for="yellow">Yellow</label>
 			<input type="radio" id="green" name="color" value="green" required="required">
-			<label for="green">Green</label>
+			<label class="radio-label" for="green">Green</label>
 			<input type="radio" id="blue" name="color" value="blue" required="required">
-			<label for="blue">Blue</label>
-			<span class="highlight"></span> 
-			<span class="bar"></span> 
-			<label style="top:-25px">컬러선택</label>
+			<label class="radio-label" for="blue">Blue</label>
+			
+			<label class="label-style" style="top:-25px">컬러선택</label>
 		</div>
 		
 		<div class="group">
 			<input type="text" name="title" required="required"> 
 			<span class="highlight"></span> 
 			<span class="bar"></span> 
-			<label style="top: -17px">제목</label>
+			<label class="label-style" style="top: -17px">제목</label>
 		</div>
 		
 		<div>

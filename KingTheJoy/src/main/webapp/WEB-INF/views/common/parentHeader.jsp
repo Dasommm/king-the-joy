@@ -51,7 +51,7 @@
             </li>
           <li class="menu_li">
           	<div class="menu-css" id="cal">
-            <a class="menu-link" href="parentSchedule.do">행사일정</a>
+            <a class="menu-link" href="/schedule/parentSchedule.do">행사일정</a>
             </div> 
           </li>
           <li class="menu_li">

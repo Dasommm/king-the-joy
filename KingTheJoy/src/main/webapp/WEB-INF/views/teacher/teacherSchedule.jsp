@@ -4,19 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <link href='/resources/fullcalendar/core/main.css' rel='stylesheet' />
 <link href='/resources/fullcalendar/daygrid/main.css' rel='stylesheet' />
-
+<link href='/resources/fullcalendar/timegrid/main.css' rel='stylesheet' />
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src='/resources/fullcalendar/core/main.js'></script>
 <script src='/resources/fullcalendar/daygrid/main.js'></script>
 <script src='/resources/fullcalendar/interaction/main.js'></script>
-
-<!-- 캘린더 설정 -->
-<script src="/resources/fullcalendar/parentSchedule.js"></script>
-
+<script src='/resources/fullcalendar/timegrid/main.js'></script>
+<script src="/resources/fullcalendar/teacherSchedule.js"></script>
 
 <style type="text/css">
 #subtitle {
@@ -27,28 +24,24 @@
 </head>
 <body>
 
+
 <section>
-<!-- 배경 사진 -->
-<div id="background">
-	<img src="/resources/img/parentMain.jpg">
-</div>
 
-<%@include file="../common/parentHeader.jsp" %>
-<%@include file="../parent/parentChatbot.jsp" %>
+<%@include file="../common/TeacherHeader.jsp" %>
 
-<input type="button" value="선생님용 스케쥴" onclick="location.href='teacherSchedule.do?'">
-
+	<div>
 	<!-- 사용방법 -->
 	<p id="subtitle">
-	<strong>※행사 일정 페이지입니다. 상세내용 확인은 이벤트를 클릭해주세요※</strong>
+	<strong>※행사등록 페이지입니다. 날짜 클릭시 새로운 행사 등록, 이벤트 클릭시 상세내용 확인 및 수정, 더블클릭시 삭제가 가능합니다※</strong>
 	</p>
 	<!-- 식단표 -->
-		<div id='calendar' style="width: 800px; margin-left:350px;"></div>
-		
+		<div id='calendar' style="width: 800px; margin-left:350px; margin-top: 20px; margin-bottom: 20px;"></div>
+	</div>
+
 
 </section>
-
 <%@include file="../common/footer.jsp" %>
+
 
 </body>
 </html>
