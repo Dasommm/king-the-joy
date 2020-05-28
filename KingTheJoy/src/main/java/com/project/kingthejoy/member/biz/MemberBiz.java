@@ -1,4 +1,5 @@
 
+
 package com.project.kingthejoy.member.biz;
 
 import java.util.List;
@@ -47,6 +48,10 @@ public interface MemberBiz {
 	public void selectSchoolInfo(SchoolDto schoolDto);
 	
 	public boolean AndroidLoginCheck(MemberDto memberDto);
+	
+	public List<MemberDto> selectMemberAddress(int school_seq);
+	
+	public String selectSchoolAddress(int school_seq);
 	
 	
 }

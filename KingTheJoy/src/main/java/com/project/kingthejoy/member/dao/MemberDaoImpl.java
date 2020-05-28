@@ -131,4 +131,14 @@ public class MemberDaoImpl implements MemberDao {
 		return (name == null) ? false : true;
 	}
 
+	@Override
+	public List<MemberDto> selectMemberAddress(int school_seq) {
+		return sqlSession.selectList("member.selectMemberAddress", school_seq);
+	}
+
+	@Override
+	public String selectSchoolAddress(int school_seq) {
+		return sqlSession.selectOne("member.selectSchoolAddress", school_seq);
+	}
+
 }

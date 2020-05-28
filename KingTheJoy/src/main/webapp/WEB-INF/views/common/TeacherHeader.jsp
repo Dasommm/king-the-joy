@@ -42,7 +42,7 @@
             	<a class="nav-link" href="notification.do">공지사항</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">원아 위치</a>
+                <a class="nav-link" href="childrenMap.do">원아 위치</a>
             </li>
           <li class="nav-item">
           		<a class="nav-link" href="#">원아 관리</a>
