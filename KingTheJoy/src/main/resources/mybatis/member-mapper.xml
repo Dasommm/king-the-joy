@@ -206,4 +206,18 @@
 		WHERE MEMBER_SEQ = #{member_seq}
 	</select>
 	
+	<select id="selectMemberAddress" resultType="memberDto" parameterType="int">
+		SELECT MEMBER_ADDR, MEMBER_NAME 
+		FROM MEMBER
+		WHERE MEMBER_SEQ IN 
+						(SELECT MEMBER_SEQ 
+						FROM SCHOOL 
+						WHERE SCHOOL_SEQ = #{school_seq} AND CHILDREN_SEQ IS NOT NULL)
+	</select>
+	
+	<select id="selectSchoolAddress" resultType="string" parameterType="int">
+		SELECT SCHOOL_ADDR
+		FROM SCHOOL_LIST
+		WHERE SCHOOL_SEQ = #{school_seq}
+	</select>
 </mapper>

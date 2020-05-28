@@ -47,6 +47,10 @@ public interface MemberBiz {
 	
 	public boolean AndroidLoginCheck(MemberDto memberDto);
 	
+	public List<MemberDto> selectMemberAddress(int school_seq);
+	
+	public String selectSchoolAddress(int school_seq);
+	
 	
 }
  

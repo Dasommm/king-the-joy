@@ -27,17 +27,17 @@
 </head>
 <body>
 	<c:choose>
-			<c:when test="${memberDto.getMember_role() == 3}">
-				<%@include file="../common/parentHeader.jsp"%>
-				<%@include file="../parent/parentChatbot.jsp"%>
-			</c:when>
-			<c:when test="${memberDto.getMember_role() == 2}">
-				<%@include file="../common/TeacherHeader.jsp"%>
-			</c:when>
-			<c:when test="${memberDto.getMember_role() == 1}">
-				<%@include file="../common/PrincipalHeader.jsp"%>
-			</c:when>
-		</c:choose>
+		<c:when test="${memberDto.getMember_role() == 3}">
+			<%@include file="../common/parentHeader.jsp"%>
+			<%@include file="../parent/parentChatbot.jsp"%>
+		</c:when>
+		<c:when test="${memberDto.getMember_role() == 2}">
+			<%@include file="../common/TeacherHeader.jsp"%>
+		</c:when>
+		<c:when test="${memberDto.getMember_role() == 1}">
+			<%@include file="../common/PrincipalHeader.jsp"%>
+		</c:when>
+	</c:choose>
 	<section id="mainbody">
 		<div class="container">
 			<div class=".col-sm-4 .col-md-offset-2">
@@ -74,15 +74,18 @@
 										</c:when>
 										<c:when test="${sessionScope.memberDto.getMember_role() eq 1}">
 											<div class="col-sm-6 right">
-											<h1>작성한 공지사항</h1>
-												<c:forEach items="${notificationList }" var="notificationList">
+												<h1>작성한 공지사항</h1>
+												<c:forEach items="${notificationList }"
+													var="notificationList">
 													<table>
 														<tr>
-															<td> <c:out value="${notificationList.notification_title} "/></td>
-															<td><input type="button" value="열람 요청 메일보내기" onclick="sendMail(${notificationList.notification_seq})"></td>
+															<td><c:out
+																	value="${notificationList.notification_title} " /></td>
+															<td><input type="button" value="열람 요청 메일보내기"
+																onclick="sendMail(${notificationList.notification_seq})"></td>
 														</tr>
 													</table>
-												</c:forEach>												
+												</c:forEach>
 											</div>
 										</c:when>
 									</c:choose>

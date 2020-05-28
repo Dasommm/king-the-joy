@@ -129,4 +129,15 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.AndroidLoginCheck(memberDto);
 	}
 
+	@Override
+	public List<MemberDto> selectMemberAddress(int school_seq) {
+		return dao.selectMemberAddress(school_seq);
+	}
+
+	@Override
+	public String selectSchoolAddress(int school_seq) {
+		// TODO Auto-generated method stub
+		return dao.selectSchoolAddress(school_seq);
+	}
+
 }
