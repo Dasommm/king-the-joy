@@ -36,8 +36,6 @@
 <%@include file="../common/parentHeader.jsp" %>
 <%@include file="../parent/parentChatbot.jsp" %>
 
-<input type="button" value="선생님용 스케쥴" onclick="location.href='teacherSchedule.do?'">
-
 	<!-- 사용방법 -->
 	<p id="subtitle">
 	<strong>※행사 일정 페이지입니다. 상세내용 확인은 이벤트를 클릭해주세요※</strong>

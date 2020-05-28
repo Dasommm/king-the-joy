@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	          eventClick : function(info){
 	        	  menu_seq = info.event.extendedProps.menu_seq;
 	        	  var openWin;
-	        	  var popUrl = "menu/menuSelectOne.do?menu_seq="+menu_seq;
+	        	  var popUrl = "/menu/menuSelectOne.do?menu_seq="+menu_seq;
 	        	  var popOption = "width=770, height=860, left=100, top=50";
 	        	  openWin = window.open(popUrl, "menuSelect", popOption);
 	          },

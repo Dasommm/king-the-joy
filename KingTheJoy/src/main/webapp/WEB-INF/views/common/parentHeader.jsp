@@ -35,7 +35,7 @@
 <body>
     <nav>
         <a class="logo" href="roleCheck.do">
-        	<img src="./resources/img/kinderJoyLogo.png">
+        	<img src="/resources/img/kinderJoyLogo.png">
        	</a>
        	
      	<div class="MyMenu">
@@ -56,7 +56,7 @@
           </li>
           <li class="menu_li">
           	<div class="menu-css" id="note">
-            <a class="menu-link" href="parentNote.do">알림장</a>
+            <a class="menu-link" href="/note/parentNote.do">알림장</a>
             </div> 
           </li>
           <li class="menu_li">
@@ -80,7 +80,7 @@
       
       
       <div id='background'>
-         <img alt="" src="./resources/img/parentMain.jpg">
+         <img alt="" src="/resources/img/parentMain.jpg">
       </div>
       
       

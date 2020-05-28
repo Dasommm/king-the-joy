@@ -13,6 +13,8 @@
 <body>
 
 	<%@include file="../common/parentHeader.jsp"%>
+	<%@include file="../parent/parentChatbot.jsp" %>
+	
 	<div class="container-box">
 		<section class="grid-container">
 			<c:choose>
