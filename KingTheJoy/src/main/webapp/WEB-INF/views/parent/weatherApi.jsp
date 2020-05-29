@@ -66,29 +66,29 @@
         		var imgURL = "http://openweathermap.org/img/wn/" + resp.weather[0].icon + ".png";
             	
         		if(resp.weather[0].description == 'clear sky'){
-        			$("#weatherImg").append($("<img src='./resources/img/sun.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/sun.png'/>"));
         		}else if(resp.weather[0].description == 'few clouds'){
-        			$("#weatherImg").append($("<img src='./resources/img/sunCloud.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/sunCloud.png'/>"));
         		}else if(resp.weather[0].description == 'scattered clouds'){
-        			$("#weatherImg").append($("<img src='./resources/img/cloud.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/cloud.png'/>"));
         		}else if(resp.weather[0].description == 'broken clouds'){
-        			$("#weatherImg").append($("<img src='./resources/img/cloud.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/cloud.png'/>"));
         		}else if(resp.weather[0].description == 'shower rain'){
-        			$("#weatherImg").append($("<img src='./resources/img/rain.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/rain.png'/>"));
         		}else if(resp.weather[0].description == 'rain'){
-        			$("#weatherImg").append($("<img src='./resources/img/rain.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/rain.png'/>"));
         		}else if(resp.weather[0].description == 'light rain'){
-        			$("#weatherImg").append($("<img src='./resources/img/rain.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/rain.png'/>"));
         		}else if(resp.weather[0].description == 'thunderstorm'){
-        			$("#weatherImg").append($("<img src='./resources/img/thunderCloud.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/thunderCloud.png'/>"));
         		}else if(resp.weather[0].description == 'snow'){
-        			$("#weatherImg").append($("<img src='./resources/img/snow.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/snow.png'/>"));
         		}else if(resp.weather[0].description == 'mist'){
-        			$("#weatherImg").append($("<img src='./resources/img/windy.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/windy.png'/>"));
         		}else if(resp.weather[0].description == 'haze'){
-        			$("#weatherImg").append($("<img src='./resources/img/thunder.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/thunder.png'/>"));
         		}else if(resp.weather[0].description == 'overcast clouds'){
-        			$("#weatherImg").append($("<img src='./resources/img/overcast clouds.png'/>"));
+        			$("#weatherImg").append($("<img src='/resources/img/overcast clouds.png'/>"));
         		}
         		
         		$("#weatherTem").append($("<p id='tem'>"+resp.main.temp+"˚</p>"));

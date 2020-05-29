@@ -34,12 +34,6 @@ public class NoteBizImpl implements NoteBiz {
 		System.out.println("noteBIzImpl!!!!!!!!!!");
 		return noteDao.selectClass(school_seq);
 	}
-
-	@Override
-	public Set<String> selectChildren(String children_class) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public int noteInsertDb(NoteDto noteDto) {
@@ -75,7 +69,7 @@ public class NoteBizImpl implements NoteBiz {
 	    params.put("from", "01030046470");	//발신자 : 선생님 번호 -- api에서 등록한 번호로 고정 
 	    params.put("type", "LMS");
 	    params.put("text", "<알림장>\r\n" + 
-	    		noteDto.getChildren_seq()+"어린이 알림장입니다\r\n" + 
+	    		noteDto.getChildren_name()+"어린이 알림장입니다\r\n" + 
 	    		"기분 : "+ noteDto.getNote_feeling() +"\r\n" + 
 	    		"건강 : "+ noteDto.getNote_health() +"\r\n" + 
 	    		"체온 : "+ noteDto.getNote_temp() +"도\r\n" + 
@@ -149,6 +143,13 @@ public class NoteBizImpl implements NoteBiz {
 
 	}
 
+	@Override
+	public NoteDto selectParentNum(NoteDto noteDto) {
+		return noteDao.selectParentNum(noteDto);
+
+	}
+
 
 
 }
+

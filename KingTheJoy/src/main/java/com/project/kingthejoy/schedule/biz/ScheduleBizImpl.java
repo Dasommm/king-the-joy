@@ -1,3 +1,4 @@
+
 package com.project.kingthejoy.schedule.biz;
 
 import java.util.List;
@@ -34,8 +35,8 @@ public class ScheduleBizImpl implements ScheduleBiz {
 
 	@Override
 	public int scheduleUpdate(ScheduleDto scheduleDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return scheduleDao.scheduleUpdate(scheduleDto);
+
 	}
 
 	@Override

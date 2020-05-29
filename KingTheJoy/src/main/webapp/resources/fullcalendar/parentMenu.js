@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	          eventClick : function(info){
 	        	  menu_seq = info.event.extendedProps.menu_seq;
 	        	  var openWin;
-	        	  var popUrl = "menuSelectOne.do?menu_seq="+menu_seq;
+	        	  var popUrl = "/menu/menuSelectOne.do?menu_seq="+menu_seq;
 	        	  var popOption = "width=770, height=860, left=100, top=50";
 	        	  openWin = window.open(popUrl, "menuSelect", popOption);
 	          },
 	          eventSources : [
 	        	  {
-	        		  url : '/kingthejoy/menuList.do',
+	        		  url : '/menu/menuList.do',
 	        		  type : 'POST',
 	        		  error : function(){
 	        			  alert('menu load failure');
@@ -34,9 +34,5 @@ document.addEventListener('DOMContentLoaded', function () {
 	      calendar.render();
 	  });
 
-function openNote(){
-	var openWin;
-	var popUrl = "note.do?";
-	var popOption = "width=725px, height=800px, left=100, top=50";
-	openWin = window.open(popUrl, "NoteForm", popOption);
-}
+
+

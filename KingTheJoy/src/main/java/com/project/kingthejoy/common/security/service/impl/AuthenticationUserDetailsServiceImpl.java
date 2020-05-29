@@ -19,25 +19,28 @@ public class AuthenticationUserDetailsServiceImpl implements AuthenticationUserD
 	MemberBiz biz;
 	
 	@Override
-    public User loadUserByUsername(String userId, String password) throws UsernameNotFoundException {
+    public User loadUserByUsername(String member_id, String member_pw) throws UsernameNotFoundException {
 		
 		MemberDto usersVo = new MemberDto();
 		MemberDto memberDto = new MemberDto();
-		memberDto.setMember_id(userId);
+		memberDto.setMember_id(member_id);
 		
 	    usersVo = biz.memberView(memberDto);
+	    
+	    
+	    
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-	
-		if (usersVo.getMember_role() == 1 ||
-				usersVo.getMember_role() == 0 ||
-				usersVo.getMember_role() == 2 ) { 
-		    authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-//		    authorities.add(new SimpleGrantedAuthority("ROLE_USER"));                            
-		} else { // �Ϲ�
-		    authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		int roleNo = usersVo.getMember_role();
+		System.out.println(roleNo);
+		if (roleNo == 0) { 
+		    authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));                                   
+		} else if(roleNo == 1 || roleNo == 2) { 
+		    authorities.add(new SimpleGrantedAuthority("ROLE_MANAGER"));   
+		}else {
+			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 		}
 	
-		User user = new User(userId, password, true, true, true, true, authorities);
+		User user = new User(member_id, member_pw, true, true, true, true, authorities);
 	
 		return user;
     }

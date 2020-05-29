@@ -34,7 +34,7 @@ body {
 }
 
 form {
-  width:38%;
+  width:53%;
   max-width: 700px;
   margin: 50px auto;
 }
@@ -236,8 +236,9 @@ legend {
 
 /* Typography */
 h1 {
-  font-size:3.3em;
+  font-size:34pt;
   margin-bottom:.3em;
+  text-align: center;
 }
 
 h2 {
@@ -266,7 +267,9 @@ h6 {
 }
 
 p {
-  font-size: 1em;
+  font-size: 10pt;
   margin-bottom:3em;
   line-height:1.4em;
+  text-align: center;
+
 }

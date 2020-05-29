@@ -60,6 +60,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<a href="childrenlist.do?page=1">childlist</a><br>
+<a href="pillList.do?page=1">pillList</a><br>
+
+
+
 <jsp:include page="../common/TeacherHeader.jsp" />
 <div class="teacherBody">
 	<h2>선생 메인 페이지</h2>
@@ -82,7 +88,8 @@
 	        <span>갤러리 등록</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/menu.png" style="width: 9em;">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/menu.png" style="width: 9em;"
+	        	onclick="location.href='/menu/menuteacher.do?'">
 	        <span>식단표 작성</span>
 	    </div>
 	</div>
@@ -101,11 +108,13 @@
 	        <span>요청사항 확인</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/calendar.png" style="width: 8em;">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/calendar.png" style="width: 8em;"
+	        	onclick="location.href='/schedule/teacherSchedule.do?'">
 	        <span>행사일정</span>
 	    </div>
 	</div>  
     
 </div>
 </body>
+
 </html>

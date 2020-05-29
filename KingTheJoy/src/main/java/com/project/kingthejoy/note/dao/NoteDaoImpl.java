@@ -1,3 +1,4 @@
+
 package com.project.kingthejoy.note.dao;
 
 import java.util.ArrayList;
@@ -37,12 +38,6 @@ public class NoteDaoImpl implements NoteDao {
 	}
 
 	@Override
-	public Set<String> selectChildren(String children_class) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int noteInsertDb(NoteDto noteDto) {
 		System.out.println("noteDaoImpl :::::: noteInsertDB");
 		int res = sqlSessionTemplate.insert(NAMESPACE+"noteInsert",noteDto);
@@ -76,6 +71,14 @@ public class NoteDaoImpl implements NoteDao {
 		System.out.println(":::::::::selectNoteAll"+selectNote);		
 		
 		return selectNote;
+
+	}
+
+	@Override
+	public NoteDto selectParentNum(NoteDto noteDto) {
+		NoteDto parentNum = sqlSessionTemplate.selectOne(NAMESPACE+"selectParentNum",noteDto);
+		System.out.println("부모 전화번호"+parentNum.toString());
+		return parentNum;
 
 	}
 

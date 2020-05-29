@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="resources/css/menu/menuDetail.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/menu/menuDetail.css">
 
 <script type="text/javascript">
    $(function(){
@@ -26,7 +26,7 @@
   
   <h2>식단<small>Menu</small></h2>
   
-  <form name="updateresform" action="menuUpdateDb.do" method="post">
+  <form name="updateresform" action="/menu/menuUpdateDb.do" method="post">
     <input type="hidden" name="menu_seq" value="${menuSelectOne.menu_seq }"/>
     <div class="group">      
       <input type="text" name="title" value="${menuSelectOne.title }" required="required">
@@ -51,4 +51,5 @@
   
 </div>
 </body>
+
 </html>

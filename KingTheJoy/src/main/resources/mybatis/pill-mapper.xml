@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pill">
+
+	<insert id="pillInsert" parameterType="pillDto">
+	INSERT INTO PILL 
+	       VALUES(
+	       pill_seq.nextval,
+	       #{member_seq},
+	       #{pill_title},
+	       #{pill_symptom},
+	       #{pill_type},
+	       #{pill_special},
+	       #{school_seq},
+	       #{member_name},
+	       #{children_name},
+	       sysdate)
+	</insert>
+	
+	
+	<select id="pillSelectList" parameterType="map" resultType="pillDto">
+	SELECT B.* FROM (SELECT A.*, ROWNUM AS RNUM FROM (SELECT * FROM PILL ORDER BY PILL_SEQ DESC)A)B
+		WHERE SCHOOL_SEQ = #{school_seq} AND RNUM BETWEEN #{to} AND #{from}
+		
+	</select>
+	
+	<select id="pillSelectOne" parameterType="int" resultType="pillDto">
+		SELECT * FROM PILL WHERE PILL_SEQ = #{pill_seq}
+	</select>
+	
+	<delete id="pillDelete" parameterType="int">
+	DELETE FROM PILL WHERE PILL_SEQ = #{pill_seq}
+	</delete>
+	
+	<delete id="pillMulDelete" parameterType="map">
+	DELETE FROM PILL
+	WHERE PILL_SEQ IN
+	<foreach collection="pill_seqs" item="pill_seq" open="(" separator="," close=")">
+	#{pill_seq}
+	</foreach>
+	</delete>
+	
+	<select id="totalPaging" resultType="int">
+	SELECT COUNT(*) AS TOTALPAGE FROM PILL
+	</select>
+	
+	
+	
+	
+	
+
+</mapper>

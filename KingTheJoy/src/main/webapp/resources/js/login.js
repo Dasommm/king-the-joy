@@ -13,7 +13,7 @@ $(document).ready(function(){
 			return;
 		}
 		
-		document.loginForm.action='loginCheck.do'
+		document.loginForm.action='/member/loginCheck.do'
 		document.loginForm.submit();
 	})
 })
