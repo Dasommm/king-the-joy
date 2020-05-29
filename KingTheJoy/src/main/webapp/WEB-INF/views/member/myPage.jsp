@@ -19,6 +19,14 @@
 	#mainbody{
 		height: 850px;
 	}
+	
+	#paymentDiv{
+		position: relative;
+		top: -300px;
+		left: 774px;
+		height: 500px;
+		width: 500px;
+	}
 
 </style>
 
@@ -54,6 +62,8 @@
 											</c:forEach>
 										</table>
 								</div>
+								
+								
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">이름</label>
@@ -129,6 +139,10 @@
 
 		</div>
 		<!-- end size -->
+	</div>
+	
+	<div id="paymentDiv">
+		<%@ include file="../member/payment.jsp" %>
 	</div>
 	
 	  <!-- The Modal -->

@@ -15,7 +15,7 @@
    bottom: 0px;
    left: 0px;
    top : 491px;
-   opacity : 0.7;
+   opacity : 0.6;
    height:559px;
    width: 777px;
    position: absolute;
@@ -73,8 +73,8 @@
       </nav>
       
       
-      <div id='background'>
-         <img alt="" src="./resources/img/parentMain.jpg">
+      <div id="background">
+         <img alt="" src="/resources/img/parentMain.jpg">
       </div>
       
       

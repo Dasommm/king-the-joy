@@ -56,7 +56,58 @@
      h2{
      	margin-left: 5em;
      }   
+     
+     /*모달css*/
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal_content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 19%; /* Could be more or less, depending on screen size */                          
+        }
+        
+        .closeButton{
+        	display: block;
+        	text-align: center;
+        }
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+//채팅 연결
+$(function(){
+	$('#chatting').click(function(){
+		$('.modal').show();
+		//window.open('/chat/chat.do','채팅','width=270,height=230,left=1100,top=400');
+	});
+});
+
+//채팅 끄기
+$(function(){
+	$('#chat_close').click(function(){
+		$('.modal').hide();
+	})
+})
+	
+
+</script>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -92,7 +143,7 @@
 	        	onclick="window.open('letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')">
 	        <span>쪽지함</span>
 	    </div>
-	 	<div class="image-container">
+	 	<div class="image-container" id="chatting">
 	        <img src="${pageContext.request.contextPath}/resources/img/main/chat.png" style="width: 10em;">
 	        <span>채팅</span>
 	    </div>
@@ -107,5 +158,17 @@
 	</div>  
     
 </div>
+	
+	<div id="chatmodal" class="modal">
+		<div class="modal_content">
+			<%@ include file="../parent/chatting.jsp" %>
+		<br>
+		<div class="closeButton">
+			<input type="button" value="닫기" id="chat_close">
+		</div>
+	</div>
+	
+</div>
+
 </body>
 </html>

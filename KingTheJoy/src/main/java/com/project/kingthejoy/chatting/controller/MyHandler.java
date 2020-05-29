@@ -22,7 +22,6 @@ public class MyHandler extends TextWebSocketHandler {
 		private List<WebSocketSession> users;
 		private Map<String, Object> userMap;
 		
-		
 		public MyHandler() {
 			users = new ArrayList<WebSocketSession>();
 			userMap = new HashMap<String, Object>();
@@ -30,14 +29,13 @@ public class MyHandler extends TextWebSocketHandler {
 		}
 		
 		
-		
 	    
 	
 		@Override
 		public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 			System.out.println("TextWebSocketHandler : 연결 생성!");
-			
 			users.add(session);
+			
 		}
 		
 		
@@ -50,7 +48,7 @@ public class MyHandler extends TextWebSocketHandler {
 			System.out.println("메시지 : "+ message.getPayload());
 			JSONObject object = new JSONObject(message.getPayload());
 			String type = object.getString("type");
-			
+
 			if(type != null && type.equals("register")) {
 				
 				String user = object.getString("userid");

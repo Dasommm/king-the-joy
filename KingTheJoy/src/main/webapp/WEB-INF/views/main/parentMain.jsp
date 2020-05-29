@@ -50,13 +50,6 @@ h1 {
 
 <section>
 
-<!-- 배경 사진 -->
-<div id="background">
-	<img src="/resources/img/parentMain.jpg">
-</div>
-
-
-
 
 <%@include file="../common/parentHeader.jsp" %>
 <%@include file="../parent/parentChatbot.jsp" %>
@@ -72,11 +65,6 @@ h1 {
 	</div>
 
 
-   <!-- 공지사항 -->
-   <div>공지사항 부분</div>
-   <input type="button" value="학부모 알림장" onclick="openNote();">
-   <input type="button" value="단체메일" onclick="location='mailform.do?'">
- 
    <!-- 식단표 -->
       <div id='calendar' style="width: 800px; margin-left:350px;"></div>
 

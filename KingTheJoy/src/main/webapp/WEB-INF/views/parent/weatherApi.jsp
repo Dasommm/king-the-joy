@@ -9,7 +9,7 @@
 
 .weather{
 	position:fixed;
-   	top: 460px;
+   	top: 60.5%;
    	right: 20px;
 	font-weight: bold;
 }
@@ -22,12 +22,12 @@
 }
 
 #weatherTem{
-	top: 562px;
+	top: 74.5%;
 	right: 46px;
 }
 
 #weatherTem_maxmin{
-	top: 580px;
+	top: 77%;
 	right: 40px;
 }
 
