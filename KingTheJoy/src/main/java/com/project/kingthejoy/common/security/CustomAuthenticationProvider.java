@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 
 import com.project.kingthejoy.common.security.service.AuthenticationUserDetailsService;
 
+
+
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider{
 	
@@ -31,8 +33,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		try {
 			
 			userDetails = this.retrieveUser(userId, (UsernamePasswordAuthenticationToken)authentication) ;
+			
 		} catch (AuthenticationException ex) {
-			throw ex;
+			ex.getStackTrace();
 		}
 		return createSuccessAuthentication(authentication.getName(), (String)authentication.getCredentials(), (UsernamePasswordAuthenticationToken)authentication, userDetails);
 	  }

@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="loginForm" method="post">
+	<form name="loginForm" method="post" action="loginProcess">
 	<div class="row"> 	
 		<div class="home-img"><img src="${pageContext.request.contextPath}/resources/img/home.png" alt="homeLogo"></div>
 		<div class="home-div col-4">
@@ -32,9 +32,9 @@
 				비밀번호
 				<input type="password" name="member_pw" id="member_pw" placeholder="비밀번호를 입력해주세요">
 			</div>
-			
+			 
 			<div class="login-button col-12">
-				<button type="button" id="btnLogin" class="btn btn-info btn-md">로그인</button>
+				<button type="submit" id="btnLogin" class="btn btn-info btn-md">로그인</button>
 				<button type="button" class="btn btn-info btn-md reset-button" onclick="location='selectResistForm.do'">회원가입</button>
 			</div>
 			<c:if test="${msg == 'failure'}">
