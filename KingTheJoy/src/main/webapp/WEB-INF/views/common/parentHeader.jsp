@@ -21,6 +21,9 @@
    position: absolute;
 }
 
+ul{
+list-style: none;
+}
 
 </style>
 
@@ -60,7 +63,11 @@
           </li>
           <li class="menu_li">
           	<div class="menu-css" id="req">
-            <a class="menu-link" href="translate.do">요청 사항</a>
+            <a class="menu-link" href="">요청 사항</a>
+            	<ul class="req">
+            		<li><a href="/translate/translate.do">번역</a></li>
+            		<li><a href="/pill/pillList.do">투약 요청서</a></li>
+            	</ul>
             </div> 
           </li>
           <li class="menu_li">

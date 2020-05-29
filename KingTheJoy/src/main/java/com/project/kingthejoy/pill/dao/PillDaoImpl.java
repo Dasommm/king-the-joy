@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.pill.dto.PillDto;
 import com.project.kingthejoy.pill.dto.PillPagingDto;
 
@@ -35,7 +37,7 @@ public class PillDaoImpl implements PillDao {
 	}
 
 	@Override
-	public List<PillDto> selectList(int school_seq,int to, int from) {
+	public List<PillDto> selectList(int school_seq,int from, int to) {
 
 		//System.out.println("school_seq->>"+school_seq);
 		//System.out.println("to->>"+to);
@@ -48,7 +50,7 @@ public class PillDaoImpl implements PillDao {
 		
 		try {
 			list=sqlsession.selectList("pill.pillSelectList", map);
-			System.out.println("daoimpl/list->>"+list);
+			
 		} catch (Exception e) {
 			System.out.println("error:selectList");
 			e.printStackTrace();
@@ -75,11 +77,12 @@ public class PillDaoImpl implements PillDao {
 	}
 
 	@Override
-	public int totalPage() {
+	public int totalPage(HttpSession session) {
 		int res = 0;
-
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+		int school_seq = memberDto.getSchool_seq();
 		try {
-			res = sqlsession.selectOne("pill.totalPaging");
+			res = sqlsession.selectOne("pill.totalPaging",school_seq);
 		} catch (Exception e) {
 			System.out.println("error:totalpage");
 			e.printStackTrace();
@@ -94,7 +97,7 @@ public class PillDaoImpl implements PillDao {
 		PillDto dto = null;
 		try {
 			dto = sqlsession.selectOne("pill.pillSelectOne", pill_seq);
-			System.out.println("daoimpl-pillselectone-dto->>" + dto);
+			
 		} catch (Exception e) {
 			System.out.println("error:pillSelectOne");
 			e.printStackTrace();

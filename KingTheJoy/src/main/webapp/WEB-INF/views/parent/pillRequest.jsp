@@ -8,35 +8,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.table {
+.table01 {
 	border-collapse: collapse;
 	border-top: 3px solid #168;
 }
 
-.table th {
+.table01 th {
 	color: #168;
 	background: #f0f6f9;
 	text-align: center;
 }
 
-.table th, .table td {
+.table01 th, .table td {
 	padding: 10px;
 	border: 1px solid #ddd;
 }
 
-.table th:first-child, .table td:first-child {
+.table01 th:first-child, .table td:first-child {
 	border-left: 0;
 }
 
-.table th:last-child, .table td:last-child {
+.table01 th:last-child, .table td:last-child {
 	border-right: 0;
 }
 
-.table tr td:first-child {
+.table01 tr td:first-child {
 	text-align: center;
 }
 
-.table caption {
+.table01 caption {
 	caption-side: bottom;
 	display: none;
 }
@@ -56,8 +56,8 @@
 	<%@include file="../common/parentHeader.jsp"%>
 		<h1 align="center">투약 요청서</h1>
 		<form action="pillInsert.do" method="post">
-			<table border="1" class="table"
-				style="margin-left: auto; margin-right: auto;">
+			<table border="1" class="table01"
+				style="margin-left: auto; margin-right: auto; margin-top: 100px" >
 				<tr>
 					<th>제목</th>
 					<td><input type="text" name="pill_title"></td>

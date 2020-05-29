@@ -1,6 +1,6 @@
 package com.project.kingthejoy.pill.controller;
 
-
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.kingthejoy.children.dto.ChildrenDto;
 import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.pill.biz.PillBiz;
 import com.project.kingthejoy.pill.dto.PillDto;
 import com.project.kingthejoy.pill.dto.PillPagingDto;
 
 @Controller
+@RequestMapping(value = "pill")
 public class PillController {
 	@Autowired
 	private PillBiz biz;
@@ -65,25 +67,39 @@ public class PillController {
 	}
 
 	@RequestMapping("/pillList.do")
-	public String pillList(Model model, HttpSession session, HttpServletRequest request) {
-		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+	public String pillList(Model model, HttpSession session, HttpServletRequest request, Integer page) {
 
 		logger.info("pillList");
-		int page = Integer.parseInt(request.getParameter("page"));
-		System.out.println("controller.page->>" + page);
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+		int school_seq = memberDto.getSchool_seq();
+		
 		PillPagingDto pdto = new PillPagingDto();
 		pdto.setPage(page);
 		pdto.setRows(10);
-		pdto.setPagescale(5);
-		pdto.setTotalpage(biz.totalPage(pdto.getRows()));
+	    pdto.setPagescale(5);
+		pdto.setTotalpage(biz.totalPage(pdto.getRows(), session));
 
-		// 변경해라
-		int school_seq = 1;// memberDto.getSchool_seq()
 		model.addAttribute("list", biz.selectList(school_seq, pdto));
-		// System.out.println("cotrollermodel->>"+model);
-		model.addAttribute("pdto", pdto);
-
+        model.addAttribute("pdto", pdto);
 		return "parent/pillList";
+	}
+	
+	@RequestMapping(value = "/pilllistajax.do", method = RequestMethod.POST)
+	public @ResponseBody List<PillDto> selectListAjax(@RequestParam("page") Integer page, Model model,
+			HttpSession session, HttpServletRequest request) {
+		
+		logger.info("controller->>pilllistdown");
+		
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+		int school_seq = memberDto.getSchool_seq();
+
+		PillPagingDto pdto = new PillPagingDto();
+		pdto.setRows(10);
+		pdto.setPage(page);
+		pdto.setTotalpage(biz.totalPage(pdto.getRows(), session));
+		
+		return biz.selectList(school_seq, pdto);
+
 	}
 
 	@RequestMapping("/pillDetail.do")
@@ -124,7 +140,7 @@ public class PillController {
 		} else {
 			int res = biz.mulDelete(pill_seq);
 			if (res > 0) {
-				model.addAttribute("msg", "삭제를 성공.");
+				model.addAttribute("msg", "삭제 성공.");
 				model.addAttribute("url", "pillList.do?page=1");
 				return "common/alert";
 

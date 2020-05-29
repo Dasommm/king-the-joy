@@ -15,13 +15,14 @@
 		$("#translate").click(function() {
 			var objParams = {
 				"lang" : $("#language").val(),
-				"bef" : $("#before").val()
+				"bef" :  $("#before").val()
 			}
 			$.ajax({
 				url : 'transResponse.do',
 				data : objParams,
 				type : 'POST',
 				success : function(msg) {
+					console.log("msgType->>"+typeof msg);
 					if (msg != 0) {
 						jsonObj = JSON.parse(msg);
 						var content = jsonObj['translated_text'];

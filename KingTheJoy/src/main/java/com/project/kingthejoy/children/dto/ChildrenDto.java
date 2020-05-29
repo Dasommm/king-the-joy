@@ -7,13 +7,11 @@ import lombok.Data;
 public class ChildrenDto {
 	//CHILDREN TABLE
 	private int children_seq;//자녀 번호
+	private int member_seq;//회원번호 ->어느 회원의 아이가 2명일 경우
 	private String children_name;//아이 이름
 	private String riding_quit;//승하차 여부
 	//private String children_img;
 	
-	//MEMBER TABLE
-	private int member_seq;//회원번호 ->어느 회원의 아이가 2명일 경우
-
 	// 변경사항 확인//
 	//selectList를 뽑기 위해서
 	//MEMBER TABLE

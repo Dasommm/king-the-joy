@@ -22,5 +22,5 @@ public class PrincipalDto {
 	private String class_name;
 	private int school_seq;
 	private int children_seq;
-	private String children_image;
+	private String children_img;
 }

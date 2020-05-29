@@ -3,7 +3,18 @@
 <mapper namespace="children">
 
 
-	<select id="childrenselectlist" parameterType="int" resultType="childDto">
+	<select id="childrenselectlist" parameterType="map" resultType="childDto">
+		SELECT B.CHILDREN_NAME,
+		CHILDREN_SEQ,
+		MEMBER_SEQ,
+		CLASS_NAME,
+		SCHOOL_SEQ,
+		CLASS_SEQ FROM(SELECT A.CHILDREN_NAME,
+		CHILDREN_SEQ,
+		MEMBER_SEQ,
+		CLASS_NAME,
+		SCHOOL_SEQ,
+		CLASS_SEQ,ROWNUM AS RNUM FROM(
 		SELECT
 		CHILDREN_NAME,
 		CHILDREN_SEQ,
@@ -15,17 +26,35 @@
 		JOIN SCHOOL USING(CHILDREN_SEQ,
 		MEMBER_SEQ)
 		JOIN CLASS USING(CHILDREN_SEQ, MEMBER_SEQ,SCHOOL_SEQ)
-		WHERE SCHOOL_SEQ = #{school_seq}
 		ORDER
-		BY CLASS_NAME,CHILDREN_SEQ DESC
+		BY CLASS_NAME,CHILDREN_SEQ DESC)A)B
+		WHERE SCHOOL_SEQ = #{school_seq}
+		AND RNUM BETWEEN #{from} AND #{to}
 	</select>
 	
+	
+	
 	<insert id="insert" parameterType="childDto">
-	INSERT INTO CHILDREN
+	
 	</insert>
 	
-	<delete id="childrendelete" parameterType="int">
-	DELETE FROM CHILDREN WHERE CHILDREN_SEQ = #{children_seq}
-	</delete>
+	<select id="totalpage" resultType="int" parameterType="int">
+	SELECT COUNT(*) AS TOTALPAGE        
+        FROM(SELECT  CHILDREN_NAME,
+		CHILDREN_SEQ,
+		MEMBER_SEQ,
+		CLASS_NAME,
+		SCHOOL_SEQ,
+		CLASS_SEQ
+		FROM CHILDREN
+		JOIN SCHOOL USING(CHILDREN_SEQ, MEMBER_SEQ)
+		JOIN CLASS USING(CHILDREN_SEQ, MEMBER_SEQ, SCHOOL_SEQ)
+		)WHERE SCHOOL_SEQ = #{school_seq}
+		
+	</select>
+	
+	
+	
+	
 	
 </mapper>

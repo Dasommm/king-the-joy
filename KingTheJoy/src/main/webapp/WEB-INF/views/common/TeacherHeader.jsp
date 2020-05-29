@@ -45,7 +45,7 @@
                 <a class="nav-link" href="#">원아 위치</a>
             </li>
           <li class="nav-item">
-          		<a class="nav-link" href="#">원아 관리</a>
+          		<a class="nav-link" href="/children/childrenlist.do?page=1">원아 관리</a>
           </li>
           <li class="nav-item">
             	<a class="nav-link" href="#">수업자료</a>
@@ -57,7 +57,7 @@
               기타
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">요청사항 확인</a>
+              <a class="dropdown-item" href="/pill/pillList.do?page=1">요청사항 확인(투약)</a>
               <a class="dropdown-item" href="galleryPage.do?school_seq=${memberDto.school_seq }">갤러리</a>
               <a class="dropdown-item" href="galleryUpload.do?school_seq=${memberDto.school_seq }">갤러리 등록</a>
               <a class="dropdown-item" href="#">쪽지함</a>

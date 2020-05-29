@@ -3,6 +3,7 @@ package com.project.kingthejoy.pill.biz;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.project.kingthejoy.pill.dto.PillDto;
 import com.project.kingthejoy.pill.dto.PillPagingDto;
@@ -13,12 +14,7 @@ public interface PillBiz {
 
 	public List<PillDto> selectList(int school_seq,PillPagingDto pdto);
 	
-	public List<PillDto> selectList01(PillPagingDto pdto);
-	public List<PillPagingDto> selectPaging(int to ,int from );
-
-	
-	
-	public int totalPage(int rows);
+	public int totalPage(int rows,HttpSession session);
 	
 	public PillDto selectOne(int pill_seq);
 
