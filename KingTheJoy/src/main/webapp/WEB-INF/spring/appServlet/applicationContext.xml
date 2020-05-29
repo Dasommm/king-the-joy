@@ -17,7 +17,6 @@
 			</list>
 		</property>
 	</bean>
-	
 	<!-- Gmail sender -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />	<!-- gmail사용 -->

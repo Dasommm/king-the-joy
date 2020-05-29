@@ -36,3 +36,4 @@ WHERE SCHEDULE_SEQ = #{schedule_seq}
 DELETE FROM SCHEDULE WHERE SCHEDULE_SEQ = #{SCHEDULE_SEQ}
 </delete>
 </mapper>
+

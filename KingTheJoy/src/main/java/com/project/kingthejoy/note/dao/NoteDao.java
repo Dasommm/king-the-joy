@@ -25,3 +25,4 @@ public interface NoteDao {
 	//부모 전화번호 가져오기
 	public NoteDto selectParentNum(NoteDto noteDto);
 }
+

@@ -156,7 +156,6 @@
 								</div> 
 							</div>
 						</form>  
-						<button class="btn btn-primary" onClick="location.href='/member/member_bye.do'">회원 탈퇴하기</button>
 					</div>
 				</div>
 			</div>

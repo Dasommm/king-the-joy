@@ -324,11 +324,13 @@ public class MemberController<dataList> {
 	@RequestMapping("/loginCheck.do")
 	public String loginCheck(MemberDto memberDto, HttpSession session, Model model, String member_id,
 			String member_pw) {
-
+		
 		boolean result = biz.loginCheck(memberDto, session);
-		User user = sc.loadUserByUsername(member_id, member_pw);
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
+		User user = sc.loadUserByUsername(member_id, member_pw );
+		
+		System.out.println(user);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+		
 		if (result) {
 			log.info("session value(member_role) = {}", memberDto.getMember_role());
 			model.addAttribute("msg", "킨더조이 로그인 성공");
@@ -442,6 +444,15 @@ public class MemberController<dataList> {
 		model.addAttribute("memberAddressList", biz.selectMemberAddress(memberDto.getSchool_seq()));
 		model.addAttribute("listSize", biz.selectMemberAddress(memberDto.getSchool_seq()).size());
 		return "principal/teacherPrincipalChildrenMap";
+	}
+	@RequestMapping(value = "noRole.do")
+	public String noRole(Model model, HttpServletRequest request) {
+			
+			String referer = request.getHeader("Referer");
+			model.addAttribute("msg", "권한이 없습니다.");
+			model.addAttribute("url", "redirect:" + referer );
+			return "common/alert";
+		
 	}
 
 }

@@ -43,5 +43,3 @@ WHERE M.MEMBER_SEQ = #{member_seq} AND CHILDREN_SEQ = #{children_seq}
 </select>
 
 </mapper>
-
-
