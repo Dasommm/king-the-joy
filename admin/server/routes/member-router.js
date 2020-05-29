@@ -5,7 +5,7 @@ var config = require('../db/dbconfig.js');
 
 const router = express.Router()
 
-router.post('/selectList', function (request, response) {
+router.get('/selectList', function (request, response) {
     oracledb.getConnection(config, (err, conn) => {
         if (err) {
             console.error(err.message);
