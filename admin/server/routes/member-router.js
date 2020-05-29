@@ -41,12 +41,12 @@ router.post('/selectOne', function (request, response) {
     })
 })
 
-router.post('/updateDelflagY', function (request, response) {
+router.post('/memberUpdate', function (request, response) {
     oracledb.getConnection(config, (err, conn) => {
         if (err) {
             console.error(err.message);
         }
-        var query = "UPDATE MEMBER SET member_delflag = Y WHERE member_seq = :memberSeq";
+        var query = "UPDATE MEMBER SET member_delflag = Y WHERE member_seq = :MEMBER_SEQ";
         var bindData = [Number(request.body.memberSeq)];
         conn.execute(query, bindData, { outFormat: oracledb.OBJECT }, function (err, result) {
             if (err) {

@@ -25,7 +25,7 @@ class Links extends Component {
                     <List>
                         <Item>
                             <Link to="/admin/selectList" className="nav-link">
-                                주소록 목록
+                                회원 목록
                             </Link>
                         </Item>
                     </List>

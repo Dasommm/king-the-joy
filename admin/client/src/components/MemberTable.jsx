@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+import Axios from 'axios';
+import apis from '../api';
 
 
 
 export default class MemberTable extends Component {
     constructor(props) {
         super(props);
+        this.memberUpdate = this.memberUpdate.bind(this);
+    }
+
+    memberUpdate = async () => {
+        await apis.memberUpdate(this.props.data.MEMBER_SEQ).then(res => {
+            window.alert('수정 성공')
+        })
     }
 
     render() {
@@ -22,6 +32,9 @@ export default class MemberTable extends Component {
                 <td>{this.props.data.MEMBER_ADDR}</td>
                 <td>{this.props.data.MEMBER_DETAILADDR}</td>
                 <td>{this.props.data.MEMBER_DATE}</td>
+                <td>
+                    <Button onClick={this.memberUpdate} size="sm" variant="danger">회원추방</Button>
+                </td>
             </tr>
         )
     }
