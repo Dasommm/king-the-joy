@@ -1,3 +1,4 @@
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,7 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!-- <script type="text/javascript"src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
@@ -20,4 +21,5 @@
         </div>
     </div>
 </body>
+>>>>>>> translate
 </html>

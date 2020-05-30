@@ -5,10 +5,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
-<link rel="stylesheet" href="<c:url value="/resources/css/parentHeader.css"/>">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<c:url value="/resources/css/parentHeader.css"/>">
 <style type="text/css">
 
 
@@ -24,6 +21,9 @@
    position: absolute;
 }
 
+ul{
+list-style: none;
+}
 
 </style>
 
@@ -34,44 +34,45 @@
 
 <body>
     <nav>
+    
+ 
         <a class="logo" href="roleCheck.do">
-        	<img src="/resources/img/kinderJoyLogo.png">
+        	<img src="./resources/img/kinderJoyLogo.png">
        	</a>
        	
      	<div class="MyMenu">
           	<a href="myPage.do" class="mymenu-link">마이페이지</a>
-          	<a href="member/logout.do" class="mymenu-link">로그아웃</a>
+          	<a href="logout.do" class="mymenu-link">로그아웃</a>
         </div>
         
         <ul class="menu_ul">
             <li class="menu_li" >
             	<div class="menu-css" id="not">
-                <a class="menu-link" href="/notification/notification.do">공지 사항</a>
+                <a class="menu-link" href="notification.do">공지 사항</a>
             	</div>   
             </li>
           <li class="menu_li">
           	<div class="menu-css" id="cal">
-            <a class="menu-link" href="/schedule/parentSchedule.do">행사일정</a>
+            <a class="menu-link" href="parentSchedule.do">행사일정</a>
             </div> 
           </li>
           <li class="menu_li">
           	<div class="menu-css" id="note">
-            <a class="menu-link" href="/note/parentNote.do">알림장</a>
+            <a class="menu-link" href="parentNote.do">알림장</a>
             </div> 
           </li>
           <li class="menu_li">
           	<div class="menu-css" id="req">
-            <a class="menu-link" href="translate.do">요청 사항</a>
+            <a class="menu-link" href="">요청 사항</a>
+            	<ul class="request">
+            		<li><a href="/translate/translate.do">번역</a></li>
+            		<li><a href="/pill/pillList.do">투약 요청서</a></li>
+            	</ul>
             </div> 
           </li>
           <li class="menu_li">
           	<div class="menu-css" id="photo">
             <a class="menu-link" href="#">포토갤러리</a>
-            </div> 
-          </li>
-          <li class="menu_li">
-             <div class="menu-css" id="studybook">
-            <a class="menu-link" href="/study/selectStudyBooks.do">수업자료</a>
             </div> 
           </li>
           </ul>
@@ -80,10 +81,9 @@
       
       
       <div id='background'>
-         <img alt="" src="/resources/img/parentMain.jpg">
+         <img alt="" src="./resources/img/parentMain.jpg">
       </div>
       
       
 </body>
-
 </html>

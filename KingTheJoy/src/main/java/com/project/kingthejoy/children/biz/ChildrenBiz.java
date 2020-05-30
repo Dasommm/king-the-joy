@@ -1,3 +1,4 @@
+
 package com.project.kingthejoy.children.biz;
 
 import java.util.List;
@@ -10,11 +11,14 @@ import com.project.kingthejoy.pill.dto.PillPagingDto;
 
 public interface ChildrenBiz {
 	
-	public List<ChildrenDto> selectList(int school_seq);
+	public List<ChildrenDto> selectList(int school_seq,PillPagingDto pdto);
+	
+	public int totalpage (int rows,HttpSession session);
 	
 	public int insert(ChildrenDto dto);
 	
-    public int delete(int children_seq);
+    
 	
 
 }
+

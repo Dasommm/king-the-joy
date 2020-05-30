@@ -1,8 +1,10 @@
+
 package com.project.kingthejoy.pill.biz;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,39 +29,19 @@ public class PillBizImpl implements PillBiz {
 	@Override
 	public List<PillDto> selectList(int school_seq, PillPagingDto pdto) {
 
-		/*
-		 * int page = Integer.parseInt(request.getParameter("page"));
-		 * System.out.println("bizimplpage->>"+page); pdto.setPage(page);
-		 * pdto.setRows(10); pdto.setPagescale(5);
-		 * pdto.setTotalpage(this.totalPage(pdto.getRows()));
-		 */
 		int page = pdto.getPage();
 		int rows = pdto.getRows();
 
-		int to = rows * (page - 1) + 1;
-		int from = rows * page;
+		int from = rows * (page - 1) + 1;
+		int to = rows * page;
 
-		return dao.selectList(school_seq, to, from);
+		return dao.selectList(school_seq, from, to);
 	}
 
-	/*
-	 * @Override public List<PillDto> selectList01(PillPagingDto pdto) {
-	 * 
-	 * int page = pdto.getPage(); int rows = pdto.getRows();
-	 * 
-	 * int to = rows*(page-1)+1; int from = rows*page; return dao.selectPaging(to,
-	 * from); }
-	 */
-
-	/*
-	 * @Override public List<PillPagingDto> selectPaging(int to, int from) {
-	 * 
-	 * 
-	 * return dao.selectPaging(to, from); }
-	 */
+	
 	@Override
-	public int totalPage(int rows) {
-		int totalpage = (int) Math.ceil((double) dao.totalPage() / rows);
+	public int totalPage(int rows,HttpSession session) {
+		int totalpage = (int) Math.ceil((double) dao.totalPage(session) / rows);
 
 		return totalpage;
 
@@ -83,16 +65,7 @@ public class PillBizImpl implements PillBiz {
 		return dao.mulDelete(pill_seq);
 	}
 
-	@Override
-	public List<PillDto> selectList01(PillPagingDto pdto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<PillPagingDto> selectPaging(int to, int from) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
+

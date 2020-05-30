@@ -1,3 +1,4 @@
+
 package com.project.kingthejoy.portraitUpload;
 
 import java.io.File;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping("portrait")
 public class PortraitController {
 	
 	@Autowired
@@ -171,8 +173,8 @@ public class PortraitController {
 		PrincipalDto principalDto = new PrincipalDto();
 		principalDto.setChildren_seq(children_seq);
 		principalDto.setSchool_seq(school_seq);
-		principalDto.setChildren_image("/kingthejoy/resources/portrait/"+school_seq+"/"+fullName);
-		System.out.println(principalDto.getChildren_image());
+		principalDto.setChildren_img("/kingthejoy/resources/portrait/"+school_seq+"/"+fullName);
+		System.out.println(principalDto.getChildren_img());
 		int res = dao.imageChildPathUpdate(principalDto);
 		if(res>0) {
 			log.info("DB 이미지 경로 추가 완료!");
@@ -191,3 +193,4 @@ public class PortraitController {
 	
 	
 }
+

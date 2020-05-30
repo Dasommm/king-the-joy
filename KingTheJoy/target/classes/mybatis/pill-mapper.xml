@@ -20,7 +20,7 @@
 	
 	<select id="pillSelectList" parameterType="map" resultType="pillDto">
 	SELECT B.* FROM (SELECT A.*, ROWNUM AS RNUM FROM (SELECT * FROM PILL ORDER BY PILL_SEQ DESC)A)B
-		WHERE SCHOOL_SEQ = #{school_seq} AND RNUM BETWEEN #{to} AND #{from}
+		WHERE SCHOOL_SEQ = #{school_seq} AND RNUM BETWEEN #{from} AND #{to}
 		
 	</select>
 	
@@ -40,8 +40,8 @@
 	</foreach>
 	</delete>
 	
-	<select id="totalPaging" resultType="int">
-	SELECT COUNT(*) AS TOTALPAGE FROM PILL
+	<select id="totalPaging" resultType="int" parameterType="int">
+	SELECT COUNT(*) AS TOTALPAGE FROM PILL WHERE SCHOOL_SEQ = #{school_seq}
 	</select>
 	
 	
@@ -50,3 +50,4 @@
 	
 
 </mapper>
+

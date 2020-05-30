@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ $(document).ready(function () {
 		formData.append("uploadFile", files[0]);
 
 		$.ajax({
-			url: 'portraitAction.do?school_seq='+${school_seq}+'&member_seq='+${member_seq},
+			url: 'portraitAction.do?school_seq='+ ${school_seq}+'&member_seq='+${member_seq},
 			processData: false,
 			contentType: false,
 			data: formData,
@@ -79,4 +80,5 @@ $(document).ready(function () {
 });
 </script>	
 </body>
+
 </html>

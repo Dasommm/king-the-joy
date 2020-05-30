@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ $(document).ready(function () {
 		formData.append("uploadFile", files[0]);
 
 		$.ajax({
-			url: 'portraitChildAction.do?school_seq='+${school_seq}+'&children_seq='+${children_seq},
+			url: '/portrait/portraitChildAction.do?school_seq='+${school_seq}+'&children_seq='+${children_seq},
 			processData: false,
 			contentType: false,
 			data: formData,
@@ -75,4 +76,5 @@ $(document).ready(function () {
 });
 </script>	
 </body>
+>>>>>>> translate
 </html>
