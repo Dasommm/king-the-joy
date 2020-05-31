@@ -42,7 +42,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	
 	private UserDetails retrieveUser(String userId, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException{
 		return this.authenticationUserDetailsService.loadUserByUsername(userId, (String)authentication.getCredentials());
-	}
+	} 
 	
 	private Authentication createSuccessAuthentication(String principal, String credentials, 
 			UsernamePasswordAuthenticationToken authentication, UserDetails userDetails) {

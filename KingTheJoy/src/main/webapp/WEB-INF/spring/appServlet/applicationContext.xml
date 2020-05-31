@@ -17,7 +17,7 @@
 			</list>
 		</property>
 	</bean>
-	<!-- Gmail sender -->
+	<!-- Gmail sender --> 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />	<!-- gmail사용 -->
 		<property name="port" value="587" />
@@ -28,7 +28,7 @@
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>
 				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
-			</props>
+			</props> 
 		</property>
 	</bean>
 
@@ -67,6 +67,9 @@
 	  <property name="maxUploadSize" value="100000000" />
 	  <property name="maxInMemorySize" value="100000000" />
 	</bean>
+
+	<bean id="loginSuccessHandler" class="com.project.kingthejoy.common.security.LoginSuccessHandler" />
+	
 
 	
 </beans>

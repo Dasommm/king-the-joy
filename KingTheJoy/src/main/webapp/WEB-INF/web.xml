@@ -56,7 +56,7 @@
        </init-param> 
        <init-param> 
           <param-name>forceEncoding</param-name> 
-          <param-value>true</param-value> 
+          <param-value>true</param-value>  
        </init-param> 
     </filter> 
     <filter-mapping> 
