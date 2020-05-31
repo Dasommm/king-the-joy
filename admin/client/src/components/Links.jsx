@@ -28,6 +28,16 @@ class Links extends Component {
                                 회원 목록
                             </Link>
                         </Item>
+                        <Item>
+                            <Link to="/admin/kibanaPage" className="nav-link">
+                                키바나
+                            </Link>
+                        </Item>
+                        <Item>
+                            <Link to="/admin/chartPage" className="nav-link">
+                                차트
+                            </Link>
+                        </Item>
                     </List>
                 </Collapse>
             </React.Fragment>

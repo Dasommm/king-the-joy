@@ -50,7 +50,6 @@ class memberList extends Component {
                             <th>주소</th>
                             <th>상세주소</th>
                             <th>가입일</th>
-                            <th>회원탈퇴유무</th>
                         </tr>
                     </thead>
                     <tbody>

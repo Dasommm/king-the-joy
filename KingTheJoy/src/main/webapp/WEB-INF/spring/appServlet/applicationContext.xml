@@ -33,11 +33,10 @@
 	</bean>
 
 
-<!--  
+
 	<bean id="commonAop" class="com.project.kingthejoy.common.aop.CommonAop"></bean>
-	<aop:aspectj-autoproxy/>
-	
--->	
+	<aop:aspectj-autoproxy/>	
+
 	<!-- dataSource -->
 
 	<bean id="dataSource"
