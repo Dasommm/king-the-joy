@@ -11,11 +11,11 @@
 	</select>
 	
 	<update id="imageChildPathInsert" parameterType="principalDto">
-		UPDATE CHILDREN SET CHILDREN_IMAGE = #{children_image} WHERE CHILDREN_SEQ = #{children_seq}
+		UPDATE CHILDREN SET CHILDREN_IMG = #{children_image} WHERE CHILDREN_SEQ = #{children_seq}
 	</update>
 	
 	<select id="imgChildPath" parameterType="int" resultType="String">
-		SELECT CHILDREN_IMAGE FROM CHILDREN WHERE CHILDREN_SEQ = #{children_seq}
+		SELECT CHILDREN_IMG FROM CHILDREN WHERE CHILDREN_SEQ = #{children_seq}
 	</select>
 
 </mapper>

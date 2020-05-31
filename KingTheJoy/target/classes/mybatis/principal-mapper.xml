@@ -4,9 +4,8 @@
 
 	<select id="teacherList" resultType="principalDto">
 		SELECT *
-		FROM MEMBER JOIN CLASS USING(MEMBER_SEQ)
+		FROM MEMBER
 		WHERE MEMBER_ROLE = 2
-		AND MEMBER_DELFLAG = 'N'
 		ORDER BY MEMBER_SEQ DESC
 	</select>
 	
@@ -34,5 +33,8 @@
 		 VALUES(CLASS_SEQ.NEXTVAL, '미정', 0, #{member_seq}, #{school_seq} )
 	</insert>
 
+	<select id="isClass" resultType="int">
+		SELECT COUNT(*) FROM CLASS WHERE MEMBER_SEQ = #{member_seq }
+	</select>
 
 </mapper>

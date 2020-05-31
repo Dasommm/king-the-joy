@@ -60,7 +60,7 @@
               <a class="dropdown-item" href="#">요청사항 확인</a>
               <a class="dropdown-item" href="${pageContext.request.contextPath}/gallery/galleryPage.do?school_seq=${memberDto.school_seq }">갤러리</a>
               <a class="dropdown-item" href="${pageContext.request.contextPath}/gallery/galleryUpload.do?school_seq=${memberDto.school_seq }">갤러리 등록</a>
-              <a class="dropdown-item" href="window.open('${pageContext.request.contextPath}/letter/letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')">쪽지함</a>
+              <a class="dropdown-item" onclick="window.open('${pageContext.request.contextPath}/letter/letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')">쪽지함</a>
             </div>
           </li>
           </ul>

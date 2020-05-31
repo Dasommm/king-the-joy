@@ -89,6 +89,17 @@ public class PrincipalDao {
 		}
 		return res;
 	}
+
+	public int isClass(int member_seq) {
+		int res = 0;
+		try {
+			res = sqlSession.selectOne("principal.isClass",member_seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.warn("----->ERROR: PrincipalDao - isClass()");
+		}
+		return res;
+	}
 	
 	
 }

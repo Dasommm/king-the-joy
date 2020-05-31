@@ -21,10 +21,11 @@
 			send();
 		}
 	});
+	var school_seq = ${memberDto.school_seq };
 	function send() {
 		var content = $("input[type=text]").val();
 		$.ajax({
-			url:"${pageContext.request.contextPath}/principal/principalClassChangeRes.do?member_seq="+${member_seq }+"&content="+content,
+			url:"${pageContext.request.contextPath}/principal/principalClassChangeRes.do?member_seq="+${member_seq }+"&content="+content+"&school_seq="+school_seq,
 			type:'GET',
 			success: function(result) {
 				opener.parent.location.reload();
