@@ -3,6 +3,8 @@ package com.project.kingthejoy.common.security.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,10 +25,10 @@ public class AuthenticationUserDetailsServiceImpl implements AuthenticationUserD
 		
 		MemberDto usersVo = new MemberDto();
 		MemberDto memberDto = new MemberDto();
+		
 		memberDto.setMember_id(member_id);
 		
 	    usersVo = biz.memberView(memberDto);
-	    
 	    
 	    
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -44,4 +46,5 @@ public class AuthenticationUserDetailsServiceImpl implements AuthenticationUserD
 	
 		return user;
     }
+
 }

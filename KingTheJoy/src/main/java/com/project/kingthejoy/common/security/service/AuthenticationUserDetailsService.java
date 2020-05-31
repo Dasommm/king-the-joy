@@ -1,5 +1,7 @@
 package com.project.kingthejoy.common.security.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
