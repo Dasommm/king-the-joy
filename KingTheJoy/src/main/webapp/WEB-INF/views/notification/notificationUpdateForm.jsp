@@ -24,7 +24,7 @@
 		<tr>
 			<td colspan="2">
 				<input type="submit" value="수정하기">
-				<input type="button" value="돌아가기" onclick="location.href='notificationDetail.do?notification_seq=${notificationDto.notification_seq}'" >
+				<input type="button" value="돌아가기" onclick="location.href='/notification/notificationDetail.do?notification_seq=${notificationDto.notification_seq}'" >
 			</td>
 		</tr>
 	</table>

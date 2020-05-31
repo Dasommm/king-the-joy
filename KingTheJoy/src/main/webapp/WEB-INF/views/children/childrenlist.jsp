@@ -77,16 +77,11 @@ img {
 	height: 120px;
 }
 
-[type*=checkbox] {
-	top: 10px;
-	float: right;
-}
-
 #classbar {
 	list-style: none;
 	width: 65%;
 	height: 30px;
-	border: 1px dotted black;
+	/* border: 1px dotted black; */
 	margin-left: 150px;
 	/* margin-right: auto; */
 	margin-top: 10px;
@@ -102,6 +97,7 @@ img {
 	display: inline;
 	margin-left: 5px;
 }
+
 .class-item02 {
 	display: inline;
 	margin-left: 5px;
@@ -120,8 +116,8 @@ img {
 
 .notice {
 	position: relative;
-	left: 50px;
-	top:1px
+	left: 30px;
+	top: 1px
 }
 
 #name {
@@ -133,98 +129,142 @@ img {
 	
 }
 </style>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
+var lastScrollTop = 0;
+var page =1;
 
+$(window).scroll(function() {//1
+
+					var currentScrollTop = $(window).scrollTop();
+
+					if (currentScrollTop - lastScrollTop > 0) {//2
+						//downscroll
+
+						if ($(window).scrollTop() >= ($(document).height() - $(window).height())) {//3 현재 스크롤의 위치가 화면의 보이는 위치보다 크다면
+							 page++; 
+			                  getList(page);
+                             
+                             
+							}//3
+                   }//2
+	})//1
+				
+				function getList(page){
+	                     console.log("page->>"+page);
+	                     var page = {"page" : page}
+	                     
+					$.ajax({//4
+								type : 'post',
+								url : '/children/childlistajaxdown.do',
+								dataType:'json',
+								data : page,//
+								success : function(data) {//5
+									console.log("data->>"+data);
+									var str = "";
+									
+									if (data != "") {//6
+										
+										
+										$(data).each(//7
+					                                        function(){//8
+																	
+					                                        	str +=   "<div class="+'"child"'+">"
+																		+"<input type="+'"hidden"' + "name="+'"children_seq"'+" value="+this.children_seq+"/>" 
+																		+"<input type="+'"hidden"'+ "name="+'"class_seq"'+" value="+this.class_seq+"/>"
+																		+"<div class="+'"section01"'+" style="+'"text-align: center;"'+">"
+																		+"</div>"
+																		+"<div class="+'"section02"'+">"
+																		+"<p id="+'"name"'+">"+this.class_name+"</p>"
+																		+"<p style="+'"text-align: center;"'+">"+this.children_name +"어린이"+"</p>"
+																		+"<input type="+'"button"' + "value="+'"사진Up"'+" class="+'"img"'+ "onclick="+"location.href="+'"/portrait/portraitChildUpload.do?school_seq="'+this.school_seq+"&children_seq="+this.children_seq+"/>"
+																		+"<input type="+'"button"' + "value="+'"알림장"'+" onclick="+'"#"'+" class="+'"notice"'+"/>"
+																		+"</div>"
+																		+"</div>";
+																	 	} 
+								                                     )}
+									
+										//이전까지 뿌려졌던 데이터를 비워주고 <th>헤더 바로 밑에 위에서 만든 str을 뿌려준다.
+				                        /* $(".listToChange").empty();//셀렉터 태그 안의 모든 텍스트를 지운다. */
+										$(".child:last").after(str);
+				                         }//6
+									}//5
+							)}//4 ajax
 	
+							
 </script>
+
 </head>
 
 <body>
 
-	<div id="header">
-		<h1>asdfasf</h1>
-		<div>
-			<span><a href="#">1</a></span> <span><a href="#">2</a></span> <span><a
-				href="#">3</a></span> <span><a href="#">4</a></span>
-		</div>
-	</div>
+	<section>
+		<jsp:include page="../common/TeacherHeader.jsp" />
+		<div id="body">
+			<div class="titlebar">
+				<ul id="classbar">
+					<li class="class-item"><a href="#"></a></li>
+					<li class="class-item"><a href="#"></a></li>
+					<li class="class-item"><a href="#"></a></li>
+				</ul>
+				<ul id="classbar02">
 
-	<div id="body">
-		<div class="titlebar">
-			<ul id="classbar">
-				<li class="class-item"><a href="#"></a></li>
-				<li class="class-item"><a href="#"></a></li>
-				<li class="class-item"><a href="#"></a></li>
-			</ul>
-			<ul id="classbar02">
-				<li class="class-item01"><a href="childreninsert.do"style="text-decoration: none">원아등록</a></li>
-				<!-- <li class="class-item02"><a href="childrendelete.do"style="text-decoration: none">원아삭제</a></li>  -->
-			</ul>
-			<!-- <div id="button">
-				
-				<button class="class-item02">출석확인</button>
-			</div> -->
-		</div>
+				</ul>
+
+			</div>
 
 
-		<div class="up">
+			<div class="up">
 
-			<c:choose>
-				<c:when test="${empty list }">
-					<p>no child</p>
-				</c:when>
-				<c:otherwise>
-					<c:forEach items="${list }" var="dto" begin="${dto.children_seq }"
-						step="1">
-
-						<%-- <c:if test=${dto.children_seq % 5 == 0} > --%>
-						<div class="child">
-							<form action="childrendelete.do" method="post">
-								<input type="hidden" name="children_seq" value="${dto.children_seq}">
+				<c:choose>
+					<c:when test="${empty list }">
+						<p>no child</p>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${list }" var="dto" begin="${dto.children_seq }" step="1">
+							<div class="child">
+								
+							<input type="hidden" name="children_seq" value="${dto.children_seq}"> 
 								<input type="hidden" name="class_seq" value="${dto.class_seq }">
-
-								<div class="section01" style="text-align: center;">
-									<img alt=""
-										<%-- src="reource/${dto.children_image }" --%> src="resources/img/image01.png">
-									<%-- <input type="checkbox" name="children_seq" value="value="${dto.children_seq}" id="checkbox"> --%>
+                                <div class="section01" style="text-align: center;">
+						        <img alt="" src="" >
 								</div>
-
-								<div class="section02">
+                                <div class="section02">
 									<p id="name">${dto.class_name}</p>
 									<p style="text-align: center;">${dto.children_name }어린이</p>
-									<!-- <input type="submit" value="삭제" class="delete">  -->
-									<input type="button" value="알림장" onclick="#" class="notice">
+
+									<input type="button" value="사진Up" class="img" onclick="location.href='/portrait/portraitChildUpload.do?school_seq=${dto.school_seq }&children_seq=${dto.children_seq }'">
+									<input type="button" value="알림장" onclick="openNote();" class="notice">
+									
+									<script type="text/javascript">
+									//알림장 팝업띄우기
+									function openNote(){
+										var openWin;
+										var popUrl = "/note/note.do?member_seq="+${dto.member_seq}+"&children_seq="+${dto.children_seq};
+										var popOption = "width=725px, height=800px, left=100, top=50";
+										openWin = window.open(popUrl, "NoteForm", popOption);
+									}
+										
+									</script>
+					
 								</div>
-							</form>
-						</div>
+							
+							</div>
+							
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 
-
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-
-
-
+			</div>
 
 		</div>
+		<jsp:include page="../common/footer.jsp" />
 
 
-
-	</div>
-
-
-
-	<!-- </div> -->
-	<!-- body -->
-
-
-
-
-
-
+	</section>
 
 </body>
 </html>

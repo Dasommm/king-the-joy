@@ -22,4 +22,7 @@ public class NoteDto {
 	private String note_spec;
 
 	private String class_name;
+	private String children_name;
+	private String member_phone;
 }
+

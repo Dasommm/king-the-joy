@@ -58,6 +58,7 @@
               <a class="dropdown-item" href="galleryPage.do?school_seq=${memberDto.school_seq }">갤러리</a>
               <a class="dropdown-item" href="galleryUpload.do?school_seq=${memberDto.school_seq }">갤러리 등록</a>
               <a class="dropdown-item" href="#">쪽지함</a>
+              <a class="dropdown-item" href="javascript:openMail();">단체메일 발송</a>              
             </div>
           </li>
           </ul>
@@ -76,6 +77,16 @@
 $(function() {
 	$('.dropdown-toggle').dropdown();
 });
+
+//메일 발송 팝업띄우기
+function openMail(){
+	var openWin;
+	var popUrl = "/note/mailform.do?";
+	var popOption = "width=725px, height=800px, left=100, top=50";
+	openWin = window.open(popUrl, "MailForm", popOption);
+}
+
 </script>
 </body>
+
 </html>

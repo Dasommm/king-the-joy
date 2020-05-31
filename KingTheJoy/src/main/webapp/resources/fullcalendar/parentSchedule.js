@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	        	  console.log(info);
 	        	  schedule_seq = info.event.extendedProps.schedule_seq;
 	        	  var openWin;
-	        	  var popUrl = "scheduleOne.do?schedule_seq="+schedule_seq;
+	        	  var popUrl = "/schedule/scheduleOne.do?schedule_seq="+schedule_seq;
 	        	  var popOption = "width=770, height=860, left=100, top=50";
 	        	  openWin = window.open(popUrl, "scheduleOne", popOption);
 	          },
 	          eventSources : [
 	        	  {
-	        		  url : '/kingthejoy/selectSchedule.do',
+	        		  url : '/schedule/selectSchedule.do',
 	        		  type : 'POST',
 	        		  error : function(){
 	        			  alert('schedule load failure');
@@ -33,5 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	      });
 	      calendar.render();
 	  });
+
 
 

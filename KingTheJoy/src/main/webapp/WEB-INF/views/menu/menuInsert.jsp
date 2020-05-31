@@ -6,14 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="resources/css/menu/menuDetail.css">
+	href="/resources/css/menu/menuDetail.css">
 
 </head>
 <body>
 
   <h2>식단 등록<small>Menu Insert</small></h2>
 
-	<form action="menuInsertDb.do?" method="post">
+	<form action="/menu/menuInsertDb.do?" method="post">
 
 		<div class="group">
 			<input type="date" name="start" required="required"> 

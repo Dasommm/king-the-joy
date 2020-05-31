@@ -1,3 +1,4 @@
+
 package com.project.kingthejoy.translate.controller;
 
 import java.io.BufferedReader;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(value = "member")
+@RequestMapping(value = "translate")
 public class TraslateController {
 	
 	@RequestMapping("/translate.do")
@@ -77,3 +78,4 @@ public class TraslateController {
 
 
 }
+
