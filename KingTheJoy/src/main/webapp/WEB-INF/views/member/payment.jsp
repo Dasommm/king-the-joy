@@ -43,7 +43,7 @@
 				if (rsp.success) {
 					//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 					jQuery.ajax({
-						url : "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+						url : "/payments/complete",
 						type : 'POST',
 						dataType : 'json',
 						data : {
@@ -51,7 +51,7 @@
 						//기타 필요한 데이터가 있으면 추가 전달
 						}
 					}).done(function(data) {
-						//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+						//[2] 서버에서 REST API로 결제정보확인 및 서비스 정상적인 경우
 						if (everythings_fine) {
 							msg = '결제가 완료되었습니다.';
 							msg += '\n고유ID : ' + rsp.imp_uid;
@@ -69,7 +69,7 @@
 					if (rsp.imp_uid != null) {
 						alert('결제 완료');
 						$('#payment').hide();
-						$('#payResult').append($("<span>결제완료</span>"));
+						$('#payResult').attr({"type":"button"});
 						
 					}
 
@@ -91,16 +91,39 @@
 
 	<div id="pay">
 		<h1>결제하기</h1>
-		<span>6월 학원비 : 140,000원</span> 
-		<select id="selectCount" class="btn btn-outline-dark dropdown-toggle">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-			<option>5</option>
-		</select> <input type="button" value="결제" id="payment" class="btn btn-primary">
-
-		<span id="payResult"></span>
+		<br>
+		<table>
+			<colgroup>
+				<col width="100px;">
+				<col width="100px;">
+				<col width="100px;">
+				<col width="100px;">
+			</colgroup>
+		
+			<tr>
+				<th>항목</th>
+				<th>금액</th>
+				<th>개수</th>
+				<th>결과</th>
+			</tr>
+			<tr>
+				<td>6월 학원비</td>
+				<td>140,000원</td>
+				<td>
+					<select id="selectCount" class="btn btn-outline-dark dropdown-toggle">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</td>
+				<td>
+					<input type="button" value="결제" id="payment" class="btn btn-primary">
+					<input type="hidden" id="payResult" value="결제완료">
+				</td>
+			</tr>
+		</table>
 	</div>
 
 </body>

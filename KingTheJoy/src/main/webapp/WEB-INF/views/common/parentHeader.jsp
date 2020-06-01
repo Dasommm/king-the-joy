@@ -65,7 +65,7 @@
           </li>
           <li class="menu_li">
           	<div class="menu-css" id="photo">
-            <a class="menu-link" href="#">포토갤러리</a>
+            <a class="menu-link" href="${pageContext.request.contextPath}/gallery/galleryPage.do?school_seq=${memberDto.school_seq }">포토갤러리</a>
             </div> 
           </li>
           </ul>

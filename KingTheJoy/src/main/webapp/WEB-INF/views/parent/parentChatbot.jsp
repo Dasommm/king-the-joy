@@ -136,6 +136,14 @@
 		});
 	});
 	
+	//쪽지 연결
+	$(function(){
+		$('#answer02_03').click(function(){
+			$('#answer02_03').hide();
+			window.open('${pageContext.request.contextPath}/letter/letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes');
+		});
+	});
+	
 	//채팅 연결
 	$(function(){
 		$('#answer02_01').click(function(){
@@ -166,6 +174,7 @@
    <div id="question02" class="pNa">
       <p id="pNa03" class="boder" style="background-color: #f5f189">실시간 채팅 문의</p>
       <p id="pNa04" class="boder" style="background-color: #a8f58c">투약의뢰는 어떻게 하나요?</p>
+      <p id="pNa05" class="boder" style="background-color: #f5f189">쪽지 보내기</p>
       <p id="pNa06" class="boder" style="background-color: #ffe8ff">아이들의 사진은 어디서 보나요?</p>
    </div>
 
@@ -174,6 +183,9 @@
    </div>
    <div id="answer02_02" class="pNa">
       <p id="ans02" class="boder" style="background-color: #d8f5f5">상단 메뉴의 요청사항으로 들어가세요!</p>
+   </div>
+    <div id="answer02_03" class="pNa">
+      <p id="ans04" class="boder" style="background-color: #d8f5f5">쪽지 보내기</p>
    </div>
    <div id="answer02_04" class="pNa">
       <p id="ans04" class="boder" style="background-color: #d8f5f5">포토갤러리로 들어가시면 됩니다!</p>
