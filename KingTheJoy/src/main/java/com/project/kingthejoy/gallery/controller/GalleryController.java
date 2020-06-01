@@ -22,13 +22,8 @@ import net.coobird.thumbnailator.Thumbnailator;
 
 @Slf4j
 @Controller
+@RequestMapping("gallery")
 public class GalleryController {
-	
-	@RequestMapping(value = "/gallery.do", method = RequestMethod.GET)
-	public String galleryMain () {
-		log.info("into: galleryMain");
-		return "gallery/galleryMain";
-	}
 	
 	@RequestMapping(value = "/galleryForm.do", method = RequestMethod.GET)
 	public String galleryForm () {
@@ -42,7 +37,7 @@ public class GalleryController {
 		//dto
 		GalleryDto galleryDto = new GalleryDto();
 		galleryDto.setSchool_seq(school_seq);
-		log.info("original_class: "+school_seq);
+		log.info("school_seq: "+school_seq);
 		//make directory
 		String path = request.getSession().getServletContext().getRealPath("/resources/gallery/"+school_seq+"/");
 		classMkdir(school_seq, path);

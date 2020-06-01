@@ -163,9 +163,8 @@ $( function() {
       icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
       icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
     });
-
 	$.ajax({
-		url: 'principalHeader.do',
+		url: '${pageContext.request.contextPath}/principal/principalHeader.do',
 		type: 'GET',
 		dataType: 'html',
 			success: function(result){
@@ -174,9 +173,8 @@ $( function() {
 		}); // end ajax
 		
 	$("input[name=button_register]").on("click", function(){
-		window.open('principalTeacherRegistry.do','선생님등록','width=460,height=530');
+		window.open('${pageContext.request.contextPath}/principal/principalTeacherRegistry.do','선생님등록','width=460,height=530');
 	});
-
 	var portletView = $(".portlet-content");
  	$("input[name=button_open]").on("click", function(){
 		portletView.css("display", "block")
@@ -189,14 +187,14 @@ $( function() {
  	$("input[value=변경]").each(function(i){
 		$(this).click(function(e){
 			var member_seq = $("input[name=member_seq]:eq("+i+")").val();
-			window.open('principalClassChange.do?member_seq='+member_seq+'','반변경','width=360,height=60');
+			window.open('${pageContext.request.contextPath}/principal/principalClassChange.do?member_seq='+member_seq+'','반변경','width=360,height=60');
 		})
 	});	
  	
  	$("input[value=사진수정]").each(function(i){
 		$(this).click(function(e){
 			var member_seq = $("input[name=member_seq]:eq("+i+")").val();
-			window.open('portraitUpload.do?school_seq='+school_seq+'&member_seq='+member_seq+'','이미지업로드','width=430,height=140,location=no,scrollbars=yes');
+			window.open('${pageContext.request.contextPath}/portrait/portraitUpload.do?school_seq='+school_seq+'&member_seq='+member_seq+'','이미지업로드','width=430,height=140,location=no,scrollbars=yes');
 		})
 	});	
 		
@@ -204,7 +202,7 @@ $( function() {
 		$(this).click(function(e){
 			var member_seq = $("input[name=member_seq]:eq("+i+")").val();
 			if(confirm("탈퇴 처리를 진행하시겠습니까?") == true){
-				location.href="principalFlag.do?member_seq="+member_seq;
+				location.href="${pageContext.request.contextPath}/principal/principalFlag.do?member_seq="+member_seq;
 			}else { return; }
 		})
 	});		

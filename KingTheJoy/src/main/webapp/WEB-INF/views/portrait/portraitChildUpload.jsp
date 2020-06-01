@@ -34,7 +34,7 @@ $(document).ready(function () {
 		formData.append("uploadFile", files[0]);
 
 		$.ajax({
-			url: '/portrait/portraitChildAction.do?school_seq='+${school_seq}+'&children_seq='+${children_seq},
+			url: '${pageContext.request.contextPath}/portrait/portraitChildAction.do?school_seq='+${school_seq}+'&children_seq='+${children_seq},
 			processData: false,
 			contentType: false,
 			data: formData,
@@ -76,5 +76,4 @@ $(document).ready(function () {
 });
 </script>	
 </body>
->>>>>>> translate
 </html>

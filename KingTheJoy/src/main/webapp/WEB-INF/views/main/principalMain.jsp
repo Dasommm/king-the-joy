@@ -34,7 +34,7 @@
         border-radius: 50%;
      }
      .image-container img{
-     	top: -20px;
+     	top: -12px;
      }
      .image-container span{
      	font-size: 1.5em; 
@@ -57,38 +57,37 @@
 	<h2>원장 메인 페이지</h2>
 	<div class="prin_menu_top">
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/location.png">
+	 		<a href="#">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/location.png"></a>
 	        <span>원아위치</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/mykindergarten.png">
+	 		<a href="#">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/mykindergarten.png"></a>
 	        <span>내 어린이집</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/board.png">
+	 		<a href="#">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/board.png"></a>
 	        <span>관리자 게시판</span>
-	    </div>
-	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/payment.png" style="width: 28em;">
-	        <span>결제관리</span>
 	    </div>
 	</div>
 	<div class="prin_menu_bot">
 	 	<div class="image-container">
+	        <a href="#">
 	        <img src="${pageContext.request.contextPath}/resources/img/main/letter.png" style="width: 10em; cursor: pointer;"
-	        	onclick="window.open('letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')">
+	        	onclick="window.open('${pageContext.request.contextPath}/letter/letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')"></a>
 	        <span>쪽지함</span>
 	    </div>
+
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/chat.png" style="width: 10em;">
-	        <span>채팅</span>
-	    </div>
-	 	<div class="image-container">
-	        <a href="principalTeacherMgt.do"><img src="${pageContext.request.contextPath}/resources/img/main/teacherMgt.png"></a>
+	        <a href="${pageContext.request.contextPath}/principal/principalTeacherMgt.do">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/teacherMgt.png"></a>
 	        <span>선생님관리</span>
 	    </div>
 	 	<div class="image-container">
-	        <img src="${pageContext.request.contextPath}/resources/img/main/childMgt.png">
+	        <a href="#">
+	        <img src="${pageContext.request.contextPath}/resources/img/main/childMgt.png"></a>
 	        <span>원생관리</span>
 	    </div>
 	</div>  

@@ -11,7 +11,7 @@
 	</select>
 	
 	<update id="imageChildPathInsert" parameterType="principalDto">
-		UPDATE CHILDREN SET CHILDREN_IMG = #{children_img} WHERE CHILDREN_SEQ = #{children_seq}
+		UPDATE CHILDREN SET CHILDREN_IMG = #{children_image} WHERE CHILDREN_SEQ = #{children_seq}
 	</update>
 	
 	<select id="imgChildPath" parameterType="int" resultType="String">

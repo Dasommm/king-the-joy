@@ -8,7 +8,7 @@
 </head>
 <body>
 	<p>jpg 파일만 올려주세요. (5MB이하)</p>
-	<form action="uploadFormAction.do" method="post" enctype="multipart/form-data">
+	<form action="${pageContext.request.contextPath}/gallery/uploadFormAction.do" method="post" enctype="multipart/form-data">
 		<input type="file" name="uploadFile" multiple="multiple">
 		<button>Submit</button>
 	</form>

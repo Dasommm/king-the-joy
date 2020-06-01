@@ -64,12 +64,12 @@ public class MemberController<dataList> {
 		int res = biz.memberUpdate(memberDto);
 		 
 		if(res>0) { 
-			logger.info("�쉶�썝�닔�젙 �셿猷�");
-			model.addAttribute("msg","�쉶�썝 �닔�젙 �셿猷�");
+			logger.info("회원수정 완료");
+			model.addAttribute("msg","회원 수정 완료");
 			model.addAttribute("url","/member/myPage.do");
 			return "common/alert";
 		}else {
-			model.addAttribute("msg","�쉶�썝 �닔�젙 �떎�뙣");
+			model.addAttribute("msg","회원 수정 실패");
 			model.addAttribute("url","/member/myPage.do");
 			return "commom/alert";
 		}
@@ -84,11 +84,11 @@ public class MemberController<dataList> {
 		
 		
 		if (id != null) {
-			model.addAttribute("msg", "�븘�씠�뵒�뒗 " + id + " �엯�땲�떎.");
+			model.addAttribute("msg", "아이디는 " + id + " 입니다.");
 			model.addAttribute("url", "/member/home.do");
 			return "common/alert";
 		} else {
-			model.addAttribute("msg", "�씠由꾧낵 �씠硫붿씪�쓣�솗�씤�빐二쇱꽭�슂");
+			model.addAttribute("msg", "이름과 이메일을확인해주세요");
 			model.addAttribute("url", "/member/home.do");
 			return "common/alert";
 		}
@@ -101,11 +101,11 @@ public class MemberController<dataList> {
 		
 		
 		if (pw != null) {
-			model.addAttribute("msg", "鍮꾨�踰덊샇�뒗 " + pw + " �엯�땲�떎.");
+			model.addAttribute("msg", "비밀번호는 " + pw + " 입니다.");
 			model.addAttribute("url", "/member/home.do");
 			return "common/alert";
 		} else {
-			model.addAttribute("msg", "�븘�씠�뵒�� �씠硫붿씪�쓣�솗�씤�빐二쇱꽭�슂");
+			model.addAttribute("msg", "아이디와 이메일을확인해주세요");
 			model.addAttribute("url", "/member/home.do");
 			return "common/alert";
 		}
@@ -156,7 +156,7 @@ public class MemberController<dataList> {
 		snsMap.put("member_id", naver_email);
 		System.out.println(naver_name);
 		System.out.println(naver_email);
-		log.info("SNS check �꽆�뼱�삩 �뜲�씠�꽣 : {}", biz.snsMemberCheck(snsMap, session));
+		log.info("SNS check 넘어온 데이터 : {}", biz.snsMemberCheck(snsMap, session));
 
 		boolean result = biz.snsMemberCheck(snsMap, session);
 
@@ -175,12 +175,12 @@ public class MemberController<dataList> {
 		int res = biz.insertSnsInfo(memberDto);
 
 		if (res > 0) {
-			logger.info("�쉶�썝媛��엯 �셿猷�");
-			model.addAttribute("msg", "異붽��젙蹂� �엯�젰 �셿猷� > �옄��瑜� �벑濡앺빀�땲�떎.");
+			logger.info("회원가입 완료");
+			model.addAttribute("msg", "추가정보 입력 완료 > 자녀를 등록합니다.");
 			model.addAttribute("url", "memberUpdateForm.do");
 			return "common/alert";
 		} else {
-			model.addAttribute("msg", "�쉶�썝媛��엯�씠 �떎�뙣�븯���뒿�땲�떎. �떎�떆 �떆�룄�빐二쇱꽭�슂.");
+			model.addAttribute("msg", "회원가입이 실패하였습니다. 다시 시도해주세요.");
 			model.addAttribute("url", "selectResistForm.do");
 			return "commom/alert";
 		}
@@ -198,7 +198,7 @@ public class MemberController<dataList> {
 		Map<String, String> snsMap = new HashMap<String, String>();
 		snsMap.put("member_name", kakao_nickname);
 		snsMap.put("member_id", kakao_email);
-		log.info("SNS check �꽆�뼱�삩 �뜲�씠�꽣 : {}", biz.snsMemberCheck(snsMap, session));
+		log.info("SNS check 넘어온 데이터 : {}", biz.snsMemberCheck(snsMap, session));
 
 		boolean result = biz.snsMemberCheck(snsMap, session);
 
@@ -293,7 +293,7 @@ public class MemberController<dataList> {
 	@RequestMapping(value = "/resistForm.do")
 	public String resistForm(int member_role, Model model, HttpSession session) {
 
-		logger.info("Resist Form Open : " + member_role + "踰�");
+		logger.info("Resist Form Open : " + member_role + "번");
 
 		model.addAttribute("member_role", member_role);
 
@@ -311,17 +311,17 @@ public class MemberController<dataList> {
 		int res = biz.memberJoin(dto);
 
 		if (res > 0) {
-			logger.info("�쉶�썝媛��엯 �셿猷�");
-			model.addAttribute("msg", "�궓�뜑議곗씠�뿉 �삤�떊 寃껋쓣 �솚�쁺�빀�땲�떎.");
+			logger.info("회원가입 완료");
+			model.addAttribute("msg", "킨더조이에 오신 것을 환영합니다.");
 			model.addAttribute("url", "home.do");
 			return "common/alert";
 		} else {
-			model.addAttribute("msg", "�쉶�썝媛��엯�씠 �떎�뙣�븯���뒿�땲�떎. �떎�떆 �떆�룄�빐二쇱꽭�슂.");
+			model.addAttribute("msg", "회원가입이 실패하였습니다. 다시 시도해주세요.");
 			model.addAttribute("url", "selectResistForm.do");
 			return "commom/alert";
 		}
 	}
-
+	
 	@RequestMapping("/loginCheck.do")
 	public String loginCheck(MemberDto memberDto, HttpSession session, Model model, String member_id,
 			String member_pw, Principal principal) {
@@ -336,11 +336,11 @@ public class MemberController<dataList> {
 		
 		if (result) {
 			log.info("session value(member_role) = {}", memberDto.getMember_role());
-			model.addAttribute("msg", "�궓�뜑議곗씠 濡쒓렇�씤 �꽦怨�");
+			model.addAttribute("msg", "킨더조이 로그인 성공");
 			model.addAttribute("url", "roleCheck.do");
 			return "common/alert";
 		} else {
-			model.addAttribute("msg", "�궓�뜑議곗씠 濡쒓렇�씤 �떎�뙣"); 
+			model.addAttribute("msg", "킨더조이 로그인 실패");
 			model.addAttribute("url", "home.do");
 			return "common/alert";
 		}
@@ -350,7 +350,7 @@ public class MemberController<dataList> {
 	public String logout(HttpSession session, Model model) {
 
 		biz.logout(session);
-		model.addAttribute("msg", "�븞�뀞�엳媛��꽭�슂");
+		model.addAttribute("msg", "안녕히가세요");
 		model.addAttribute("url", "home.do");
 		return "common/alert";
 
@@ -358,51 +358,51 @@ public class MemberController<dataList> {
 
 	@RequestMapping("/roleCheck.do")
 	public String roleCheck(HttpSession session, Model model) {
-		// 0愿�由ъ옄, 1�썝�옣, 2�꽑�깮�떂, 3�븰遺�紐�
+		// 0관리자, 1원장, 2선생님, 3학부모
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-		log.info("濡쒓렇�씤�맂 �궗�슜�옄 �벑湲� = {} ", memberDto.getMember_role());
-		log.info("濡쒓렇�씤�맂 �궗�슜�옄 踰덊샇 = {} ", memberDto.getMember_seq());
+		log.info("로그인된 사용자 등급 = {} ", memberDto.getMember_role());
+		log.info("로그인된 사용자 번호 = {} ", memberDto.getMember_seq());
 
 		if (memberDto.getMember_role() == 0) {
-			// 愿�由ъ옄 (node濡� �뿰寃�)
-			log.info("愿�由ъ옄 �럹�씠吏� �뿰寃�");
-			return "common/home";
+			// 관리자 (node로 연결)
+			log.info("관리자 페이지 연결");
+			return "main/adminMain";
 		} else if (memberDto.getMember_role() == 1) {
-			// �썝�옣�떂 �럹�씠吏� �뿰寃�
-			log.info("�썝�옣�떂 �럹�씠吏� �뿰寃�");
+			// 원장님 페이지 연결
+			log.info("원장님 페이지 연결");
 			if (biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()) > 0) {
 				memberDto.setSchool_seq(biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()));
 
 				session.setAttribute("memberDto", memberDto);
 				return "main/principalMain";
 			} else {
-				model.addAttribute("msg", "�냼�냽�맂 �쑀移섏썝 �젙蹂대�� �엯�젰�빐二쇱꽭�슂");
+				model.addAttribute("msg", "소속된 유치원 정보를 입력해주세요");
 				model.addAttribute("url", "schoolInfoUpdate.do");
 				return "common/alert";
 			}
 		} else if (memberDto.getMember_role() == 2) {
-			// �꽑�깮�떂 �럹�씠吏� �뿰寃�
-			log.info("�꽑�깮�떂 �럹�씠吏� �뿰寃�");
+			// 선생님 페이지 연결
+			log.info("선생님 페이지 연결");
 			if (biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()) > 0) {
 				memberDto.setSchool_seq(biz.selectSchoolSeqOfMasterAndTeacher(memberDto.getMember_seq()));
 
 				session.setAttribute("memberDto", memberDto);
 				return "main/teacherMain";
 			} else {
-				model.addAttribute("msg", "�냼�냽�맂 �쑀移섏썝 �젙蹂대�� �엯�젰�빐二쇱꽭�슂");
+				model.addAttribute("msg", "소속된 유치원 정보를 입력해주세요");
 				model.addAttribute("url", "schoolInfoUpdate.do");
 				return "common/alert";
 			}
 		} else {
-			// �븰遺�紐� �럹�씠吏� �뿰寃�
-			log.info("�븰遺�紐� �럹�씠吏� �뿰寃�");
+			// 학부모 페이지 연결
+			log.info("학부모 페이지 연결");
 
 			if (biz.selectChildrenSeqOfSchool(memberDto.getMember_seq()) > 0) {
 				memberDto.setSchool_seq(biz.selectSchoolSeqOfParent(memberDto.getMember_seq()));
 				session.setAttribute("memberDto", memberDto);
 				return "main/parentMain";
 			} else {
-				model.addAttribute("msg", "�옄���젙蹂대�� 異붽�濡� �엯�젰�빐二쇱꽭�슂");
+				model.addAttribute("msg", "자녀정보를 추가로 입력해주세요");
 				model.addAttribute("url", "memberUpdateForm.do");
 				return "common/alert";
 			}
@@ -435,7 +435,7 @@ public class MemberController<dataList> {
 		schoolMap.put("member_seq", memberDto.getMember_seq());
 		biz.insertSchool(schoolMap);
 		log.info("session value = {}", memberDto.getMember_seq());
-		model.addAttribute("msg", "�쑀移섏썝 �젙蹂댁엯�젰�쓣 �꽦怨듯븯���뒿�땲�떎");
+		model.addAttribute("msg", "유치원 정보입력을 성공하였습니다");
 		model.addAttribute("url", "roleCheck.do");
 		return "common/alert";
 	}
@@ -452,7 +452,7 @@ public class MemberController<dataList> {
 	public String noRole(Model model, HttpServletRequest request) {
 			
 			String referer = request.getHeader("Referer");
-			model.addAttribute("msg", "沅뚰븳�씠 �뾾�뒿�땲�떎.");
+			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("url", "redirect:" + referer );
 			return "common/alert";
 		

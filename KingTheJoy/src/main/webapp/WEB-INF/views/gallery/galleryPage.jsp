@@ -33,7 +33,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../common/PrincipalHeader.jsp" />
+<c:if test="${memberDto.member_role ==1 }">
+	<jsp:include page="../common/PrincipalHeader.jsp" />
+</c:if>
+<c:if test="${memberDto.member_role ==2 }">
+	<jsp:include page="../common/TeacherHeader.jsp" />
+</c:if>
+<c:if test="${memberDto.member_role ==3 }">
+	<jsp:include page="../common/parentHeader.jsp" />
+</c:if>
 <div class="galleryBody">
 	<h1>☆유치원 갤러리</h1>
 	<div class="galbox">
@@ -67,7 +75,7 @@
 		//alert("fileNum: "+fileNum);
  		$(".bigPictureWrapper").css("display","flex").show();
 		$(".bigPicture")
-		.html("<img src='display.do?fileName="+fileNum+".jpg'>")
+		.html("<img src='${pageContext.request.contextPath}/gallery/display.do?fileName="+fileNum+".jpg'>")
 		.animate({width:'600px', height:'600px'}, 1000); // size를 %로 하면 떨림현상
 	}
 

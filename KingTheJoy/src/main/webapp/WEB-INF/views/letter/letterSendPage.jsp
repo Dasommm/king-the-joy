@@ -21,7 +21,7 @@
 		</select>
 	</div>
 	
-	<form action="letterDel.do" method="post">
+	<form action="${pageContext.request.contextPath}/letter/letterDel.do" method="post">
 	<div align="center">
 	<input type="hidden" name="member_seq" value=${member_seq }>
 	<table class="table table-striped table-bordered">
@@ -72,7 +72,7 @@
 	<c:choose>
 		<c:when test="${paging.blockgroup != 1 }">
 			<li class="page-item"><a class="page-link" aria-label="Previous"
-				href="letterPage.do?currentpage=${paging.blockstart-1 }&member_seq=${member_seq}" > 
+				href="${pageContext.request.contextPath}/letter/letterPage.do?currentpage=${paging.blockstart-1 }&member_seq=${member_seq}" > 
 			<span aria-hidden="true">&laquo;</span>
 			<span class="sr-only">Previous</span>
 			</a></li>
@@ -85,12 +85,12 @@
  	<c:choose>
 		<c:when test="${paging.blockend < paging.totalpage }">
 			<c:forEach var="i" begin="${paging.blockstart}" end="${paging.blockend}" step="1">
-				<li><a href="letterPage.do?currentpage=${i }&member_seq=${member_seq}">${i }</a></li>
+				<li><a href="${pageContext.request.contextPath}/letter/letterPage.do?currentpage=${i }&member_seq=${member_seq}">${i }</a></li>
 			</c:forEach>
 		</c:when>
 		<c:otherwise>
 			<c:forEach var="i" begin="${paging.blockstart}" end="${paging.totalpage}" step="1">
-				<li><a href="letterPage.do?currentpage=${i }&member_seq=${member_seq}">${i }</a></li>
+				<li><a href="${pageContext.request.contextPath}/letter/letterPage.do?currentpage=${i }&member_seq=${member_seq}">${i }</a></li>
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>	
@@ -98,7 +98,7 @@
 	<c:choose>
 		<c:when test="${paging.blockend < paging.totalpage }">
 			<li class="page-item"><a class="page-link" aria-label="Next"
-				href="letterPage.do?currentpage=${paging.blockend+1 }&member_seq=${member_seq}" > 
+				href="${pageContext.request.contextPath}/letter/letterPage.do?currentpage=${paging.blockend+1 }&member_seq=${member_seq}" > 
 			<span aria-hidden="true">&raquo;</span> 
 			<span class="sr-only">Next</span>
 			</a></li>
@@ -127,7 +127,7 @@
 	}
 	
 	function gowrite() {
-		location.href="letterWrite.do?member_seq="+${member_seq};
+		location.href="${pageContext.request.contextPath}/letter/letterWrite.do?member_seq="+${member_seq};
 	}
 	
 	$(function() {
@@ -140,25 +140,25 @@
 		})
 		// 지정 보내기
 		$(".sender").click(function() {
-			location.href="letterPickedWrite.do?member_seq="+${member_seq}+"&letter_sender="+$(this).text();
+			location.href="${pageContext.request.contextPath}/letter/letterPickedWrite.do?member_seq="+${member_seq}+"&letter_sender="+$(this).text();
 		})
 		// 자세히 보기
 		$(".title").each(function(i){
 			$(this).click(function(e){
 				var member_seq = $("input[name=member_seq]:eq(0)").val();
 				var letter_seq = $("input[name=chk]:eq("+i+")").val();
-				location.href="letterDetail.do?letter_seq="+letter_seq+"&member_seq="+member_seq;
+				location.href="${pageContext.request.contextPath}/letter/letterDetail.do?letter_seq="+letter_seq+"&member_seq="+member_seq;
 			})
 		})
 		$("select[name=letterPageType]").change(function(){
     		var type =  $(this).val();
-    		if(type=='send'){ location.href='letterSendPage.do?currentpage=1&member_seq='+${member_seq } }
-    		if(type=='receive'){ location.href='letterPage.do?currentpage=1&member_seq='+${member_seq } }
+    		if(type=='send'){ location.href='${pageContext.request.contextPath}/letter/letterSendPage.do?currentpage=1&member_seq='+${member_seq } }
+    		if(type=='receive'){ location.href='${pageContext.request.contextPath}/letter/letterPage.do?currentpage=1&member_seq='+${member_seq } }
 		})
 
-		/* if(${empty sessionScope.member_id}){
+/* 		if(${empty sessionScope.member_id}){
 			alert("로그인이 필요합니다");
-			location.href="/home.do";
+			location.href="${pageContext.request.contextPath}/member/home.do";
 		} */
 	});
 </script>
