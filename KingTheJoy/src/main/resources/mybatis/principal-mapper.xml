@@ -4,7 +4,7 @@
 
 	<select id="teacherList" resultType="principalDto">
 		SELECT *
-		FROM MEMBER
+		FROM MEMBER JOIN CLASS USING(MEMBER_SEQ)
 		WHERE MEMBER_ROLE = 2
 		ORDER BY MEMBER_SEQ DESC
 	</select>
