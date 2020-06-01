@@ -4,8 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/parentHeader.css"/>">
+     <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/parentHeader.css"/>">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 
 
@@ -15,17 +18,15 @@
    bottom: 0px;
    left: 0px;
    top : 491px;
-   opacity : 0.6;
+   opacity : 0.7;
    height:559px;
    width: 777px;
    position: absolute;
 }
 
-ul{
-list-style: none;
-}
 
 </style>
+
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -36,19 +37,19 @@ list-style: none;
     <nav>
     
  
-        <a class="logo" href="roleCheck.do">
-        	<img src="/resources/img/kinderJoyLogo.png">
+        <a class="logo" href="/member/roleCheck.do">
+        	<img src="../resources/img/kinderJoyLogo.png">
        	</a>
        	
      	<div class="MyMenu">
-          	<a href="myPage.do" class="mymenu-link">마이페이지</a>
-          	<a href="logout.do" class="mymenu-link">로그아웃</a>
+          	<a href="/member/myPage.do" class="mymenu-link">마이페이지</a>
+          	<a href="/member/logout.do" class="mymenu-link">로그아웃</a>
         </div>
         
         <ul class="menu_ul">
             <li class="menu_li" >
             	<div class="menu-css" id="not">
-                <a class="menu-link" href="notification.do">공지 사항</a>
+                <a class="menu-link" href="/notification/notification.do">공지 사항</a>
             	</div>   
             </li>
           <li class="menu_li">
@@ -72,16 +73,22 @@ list-style: none;
           </li>
           <li class="menu_li">
           	<div class="menu-css" id="photo">
-            <a class="menu-link" href="${pageContext.request.contextPath}/gallery/galleryPage.do?school_seq=${memberDto.school_seq }">포토갤러리</a>
+            	<a class="menu-link" href="/gallery/galleryPage.do?school_seq=${memberDto.school_seq }">포토갤러리</a>
             </div> 
           </li>
+          <li class="menu_li">
+             <div class="menu-css" id="studybook">
+            <a class="menu-link" href="/study/selectStudyBooks.do">수업자료</a>
+            </div> 
+          </li>	
+          
           </ul>
           
       </nav>
       
       
-      <div id="background">
-         <img alt="" src="/resources/img/parentMain.jpg">
+      <div id='background'>
+         <img alt="" src="../resources/img/parentMain.jpg">
       </div>
       
       

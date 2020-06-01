@@ -63,7 +63,7 @@
 							<c:forEach items="${notificationList}" var="dto">
 								<tr>
 									<td><strong><a
-											href="notificationDetail.do?/notification/notification_seq=${dto.notification_seq}">${dto.notification_title}</a></strong>
+											href="/notification/notificationDetail.do?notification_seq=${dto.notification_seq}">${dto.notification_title}</a></strong>
 									</td>
 									<td width="150">${dto.notification_writer}</td>
 									<td width="150">${dto.notification_date}</td>

@@ -34,7 +34,7 @@ public class StudyController {
 	@Autowired
 	private StudyBiz biz ;
 	
-	@RequestMapping(value="/studyBookForm.do" )
+	@RequestMapping(value="study/studyBookForm.do" )
 	public String StudyBookForm(HttpSession session) {
 		
 		return "teacher/pptUpload";
