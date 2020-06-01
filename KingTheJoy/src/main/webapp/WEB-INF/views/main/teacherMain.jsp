@@ -57,6 +57,31 @@ h2 {
 img {
 	cursor: pointer;
 }
+
+.modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+.modal_content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 19%; /* Could be more or less, depending on screen size */                          
+        }
+.closeButton{
+        	display: block;
+        	text-align: center;
+        }
 </style>
 <title>Insert title here</title>
 
@@ -107,10 +132,10 @@ img {
 				</a> <span>갤러리 등록</span>
 			</div>
 			<div class="image-container">
-				<a href="#"> <img
-					src="${pageContext.request.contextPath}/resources/img/main/menu.png"
-					style="width: 9em;"></a> <span>식단표 작성</span>
-			</div>
+           <img src="${pageContext.request.contextPath}/resources/img/main/menu.png" style="width: 9em;"
+              onclick="location.href='/menu/menuteacher.do?'">
+           <span>식단표 작성</span>
+       </div>
 		</div>
 		<div class="tea_menu_bot">
 			<div class="image-container">
@@ -130,11 +155,11 @@ img {
 					src="${pageContext.request.contextPath}/resources/img/main/check.png"
 					style="width: 8em;"></a> <span>요청사항 확인</span>
 			</div>
-			<div class="image-container">
-				<a href="#"> <img
-					src="${pageContext.request.contextPath}/resources/img/main/calendar.png"
-					style="width: 8em;"></a> <span>행사일정</span>
-			</div>
+       <div class="image-container">
+           <img src="${pageContext.request.contextPath}/resources/img/main/calendar.png" style="width: 8em;"
+              onclick="location.href='/schedule/teacherSchedule.do?'">
+           <span>행사일정</span>
+       </div>
 		</div>
 
 	</div>

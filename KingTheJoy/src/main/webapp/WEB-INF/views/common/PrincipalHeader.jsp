@@ -51,7 +51,7 @@
           <!-- Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-      				
+      			기타
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/gallery/galleryPage.do?school_seq=${memberDto.school_seq }">갤러리</a>
@@ -73,9 +73,9 @@
 			</div>
       </nav>
 <script type="text/javascript">
-$(function() {
+
 	$('.dropdown-toggle').dropdown();
-});
+
 //메일 발송 팝업띄우기
 function openMail(){
 	var openWin;

@@ -2,39 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="principal">
 
-	<select id="teacherList" resultType="principalDto">
-		SELECT *
-		FROM MEMBER
-		WHERE MEMBER_ROLE = 2
-		ORDER BY MEMBER_SEQ DESC
-	</select>
-	
-	<update id="teacherDrop" parameterType="int">
-		UPDATE MEMBER SET MEMBER_DELFLAG = 'Y' WHERE MEMBER_SEQ = #{member_seq }
-	</update>
-	
-	<update id="teacherClassChange" parameterType="hashMap">
-		UPDATE CLASS SET CLASS_NAME = #{content } WHERE MEMBER_SEQ = #{member_seq }
-	</update>
+   <select id="teacherList" resultType="principalDto">
+      SELECT *
+      FROM MEMBER JOIN CLASS USING(MEMBER_SEQ)
+      WHERE MEMBER_ROLE = 2
+      ORDER BY MEMBER_SEQ DESC
+   </select>
+   
+   <update id="teacherDrop" parameterType="int">
+      UPDATE MEMBER SET MEMBER_DELFLAG = 'Y' WHERE MEMBER_SEQ = #{member_seq }
+   </update>
+   
+   <update id="teacherClassChange" parameterType="hashMap">
+      UPDATE CLASS SET CLASS_NAME = #{content } WHERE MEMBER_SEQ = #{member_seq }
+   </update>
 
-	<insert id="insertTeacher" parameterType="principalDto">
-		INSERT INTO MEMBER VALUES
-		( member_seq.nextval, #{member_id}, #{member_pw}, #{member_name},
-			#{member_phone}, #{member_email}, 2, 'N', #{member_oaddr},
-			#{member_addr}, #{member_detailaddr}, SYSDATE, NULL	)
-	</insert>
-	
-	<select id="teacherGetMember_seq" parameterType="String" resultType="int">
-		SELECT member_seq FROM MEMBER WHERE MEMBER_ID = #{member_id }
-	</select>
-	
-	<insert id="insertClass" parameterType="principalDto">
-		INSERT INTO CLASS(CLASS_SEQ, CLASS_NAME, CHILDREN_SEQ, MEMBER_SEQ, SCHOOL_SEQ)
-		 VALUES(CLASS_SEQ.NEXTVAL, '미정', 0, #{member_seq}, #{school_seq} )
-	</insert>
+   <insert id="insertTeacher" parameterType="principalDto">
+      INSERT INTO MEMBER VALUES
+      ( member_seq.nextval, #{member_id}, #{member_pw}, #{member_name},
+         #{member_phone}, #{member_email}, 2, 'N', #{member_oaddr},
+         #{member_addr}, #{member_detailaddr}, SYSDATE, NULL   )
+   </insert>
+   
+   <select id="teacherGetMember_seq" parameterType="String" resultType="int">
+      SELECT member_seq FROM MEMBER WHERE MEMBER_ID = #{member_id }
+   </select>
+   
+   <insert id="insertClass" parameterType="principalDto">
+      INSERT INTO CLASS(CLASS_SEQ, CLASS_NAME, CHILDREN_SEQ, MEMBER_SEQ, SCHOOL_SEQ)
+       VALUES(CLASS_SEQ.NEXTVAL, '미정', 0, #{member_seq}, #{school_seq} )
+   </insert>
 
-	<select id="isClass" resultType="int">
-		SELECT COUNT(*) FROM CLASS WHERE MEMBER_SEQ = #{member_seq }
-	</select>
+   <select id="isClass" resultType="int">
+      SELECT COUNT(*) FROM CLASS WHERE MEMBER_SEQ = #{member_seq }
+   </select>
 
 </mapper>
