@@ -83,6 +83,7 @@
 												</c:forEach>
 											</table>
 										</div>
+										
 									</c:when> 
 								</c:choose>
 
@@ -147,6 +148,15 @@
 								</div>
 
 							</div>
+							<c:choose>
+								<c:when test="${memberDto.getMember_role() == 3}">
+								<div id="paymentDiv">
+													<%@ include file="../member/payment.jsp" %>
+										</div>
+								</c:when>
+							</c:choose>
+						
+	
 
 
 							<div class="form-group">
@@ -156,6 +166,7 @@
 								</div> 
 							</div>
 						</form>  
+						
 					</div>
 				</div>
 			</div>

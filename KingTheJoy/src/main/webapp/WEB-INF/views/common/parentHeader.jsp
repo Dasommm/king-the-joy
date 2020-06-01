@@ -15,7 +15,7 @@
    bottom: 0px;
    left: 0px;
    top : 491px;
-   opacity : 0.7;
+   opacity : 0.6;
    height:559px;
    width: 777px;
    position: absolute;
@@ -37,7 +37,7 @@ list-style: none;
     
  
         <a class="logo" href="roleCheck.do">
-        	<img src="./resources/img/kinderJoyLogo.png">
+        	<img src="/resources/img/kinderJoyLogo.png">
        	</a>
        	
      	<div class="MyMenu">
@@ -72,7 +72,7 @@ list-style: none;
           </li>
           <li class="menu_li">
           	<div class="menu-css" id="photo">
-            <a class="menu-link" href="#">포토갤러리</a>
+            <a class="menu-link" href="${pageContext.request.contextPath}/gallery/galleryPage.do?school_seq=${memberDto.school_seq }">포토갤러리</a>
             </div> 
           </li>
           </ul>
@@ -80,8 +80,8 @@ list-style: none;
       </nav>
       
       
-      <div id='background'>
-         <img alt="" src="./resources/img/parentMain.jpg">
+      <div id="background">
+         <img alt="" src="/resources/img/parentMain.jpg">
       </div>
       
       

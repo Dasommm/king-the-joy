@@ -188,6 +188,12 @@
 		</dependency>
 		
 		
+		 <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160810</version>
+		</dependency>
+		
 		<!-- WebSocket -->
 		<dependency>
 			<groupId>javax.websocket</groupId>
@@ -358,4 +364,3 @@
 	</build>
 
 </project>
-

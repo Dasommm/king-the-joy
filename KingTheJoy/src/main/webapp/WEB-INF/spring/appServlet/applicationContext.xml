@@ -70,6 +70,7 @@
 
 	<bean id="loginSuccessHandler" class="com.project.kingthejoy.common.security.LoginSuccessHandler" />
 	
-
+	<bean id="myHandle" class="com.project.kingthejoy.chatting.controller.MyHandler"></bean>
 	
 </beans>
+
