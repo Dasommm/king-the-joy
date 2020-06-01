@@ -1,5 +1,6 @@
 package com.project.kingthejoy.member.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,7 +128,6 @@ public class MemberController<dataList> {
 
 		if (member_role == 3) {
 			model.addAttribute("childrenList", biz.childrenList(member_seq));
-			
 		} else if (member_role == 2 || member_role == 1) {
 			model.addAttribute("school_name", biz.selectSchoolInfo(memberDto.getSchool_seq()));
 			if (member_role == 1) {
@@ -321,15 +321,17 @@ public class MemberController<dataList> {
 			return "commom/alert";
 		}
 	}
-
+	
 	@RequestMapping("/loginCheck.do")
 	public String loginCheck(MemberDto memberDto, HttpSession session, Model model, String member_id,
-			String member_pw) {
+			String member_pw, Principal principal) {
+		
+		System.out.println(principal.getName());
+		
+		memberDto.setMember_id(principal.getName());
 		
 		boolean result = biz.loginCheck(memberDto, session);
-		User user = sc.loadUserByUsername(member_id, member_pw );
 		
-		System.out.println(user);
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
 		
 		if (result) {
@@ -364,7 +366,7 @@ public class MemberController<dataList> {
 		if (memberDto.getMember_role() == 0) {
 			// 관리자 (node로 연결)
 			log.info("관리자 페이지 연결");
-			return "common/home";
+			return "main/adminMain";
 		} else if (memberDto.getMember_role() == 1) {
 			// 원장님 페이지 연결
 			log.info("원장님 페이지 연결");

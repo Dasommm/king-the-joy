@@ -24,9 +24,9 @@
 		<p type="내용:">
 			<textarea name="letter_content" style="width: 380px; height: 200px; border-radius: 10px;" readonly="readonly">${letterDto.letter_content }</textarea>
 		</p>
-		<button type="button" onclick="location.href='letterPickedWrite.do?member_seq=${member_seq}&letter_sender=${letterDto.letter_sender }'">답장</button>
-		<button type="button" onclick="location.href='letterDelOne.do?letter_seq=${letterDto.letter_seq }&member_seq=${member_seq }'">삭제</button>
-		<button type="button" onclick="location.href='letterPage.do?currentpage=1&member_seq=${member_seq }'">뒤로가기</button>
+		<button type="button" onclick="location.href='${pageContext.request.contextPath}/letter/letterPickedWrite.do?member_seq=${member_seq}&letter_sender=${letterDto.letter_sender }'">답장</button>
+		<button type="button" onclick="location.href='${pageContext.request.contextPath}/letter/letterDelOne.do?letter_seq=${letterDto.letter_seq }&member_seq=${member_seq }'">삭제</button>
+		<button type="button" onclick="location.href='${pageContext.request.contextPath}/letter/letterPage.do?currentpage=1&member_seq=${member_seq }'">뒤로가기</button>
 	</div>
 </body>
 </html>

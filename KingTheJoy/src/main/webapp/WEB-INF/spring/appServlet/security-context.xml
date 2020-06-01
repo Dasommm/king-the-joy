@@ -12,14 +12,22 @@
 						
 	<http auto-config='true'  use-expressions="true">
         <intercept-url pattern="/member/**"  access="permitAll" />
-		<intercept-url pattern="/study/**"  access="hasAuthority('ROLE_MANAGER')"/>
+		<intercept-url pattern="/study/studyBookForm.do"  access="hasAnyAuthority('ROLE_MANAGER','ROLE_ADMIN')"/>
+		<intercept-url pattern="/study/teacherStudyBookList.do"  access="hasAnyAuthority('ROLE_MANAGER','ROLE_ADMIN')"/>
+		<intercept-url pattern="/study/studyBookDelete.do"  access="hasAnyAuthority('ROLE_MANAGER','ROLE_ADMIN')"/>
+		<intercept-url pattern="/study/pptUpload.do"  access="hasAnyAuthority('ROLE_MANAGER','ROLE_ADMIN')"/>
+		
+		<intercept-url pattern="/study/selectStudyBooks.do"  access="hasAuthority('ROLE_USER')"/>
+		<intercept-url pattern="/study/studyBookOne.do"  access="hasAuthority('ROLE_USER')"/>
+		
         <form-login login-page="/member/home.do"
-                  username-parameter="member_id"
+                  username-parameter="member_id" 
                   password-parameter="member_pw"
-                  login-processing-url="loginProcess"
-	              default-target-url="/member/loginCheck.do"
+                  login-processing-url="/member/loginCheck.do"
+	              default-target-url="/member/loginCheck.do" 
                   always-use-default-target="true"
             />
+	         <!--      authentication-success-handler-ref="loginSuccessHandler" -->
 
 
         <csrf disabled="true"/> 

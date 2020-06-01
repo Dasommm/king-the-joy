@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping(value = "member")
+@RequestMapping("principal")
 public class PrincipalController {
 
 	@Autowired
@@ -37,11 +37,11 @@ public class PrincipalController {
 		return "main/principalMain";
 	}
 	
-	@RequestMapping(value = "/principalMain.do", method = RequestMethod.GET)
-	public String principalMain() {
-		log.info("into:principalMain");		
-		return "principal/principalMain";
-	}
+//	@RequestMapping(value = "/principalMain.do", method = RequestMethod.GET)
+//	public String principalMain() {
+//		log.info("into:principalMain");		
+//		return "principal/principalMain";
+//	}
 	
 	@RequestMapping(value = "/principalTeacherMgt.do", method = RequestMethod.GET)
 	public String principalTeacherMgt(Model model) {
@@ -76,13 +76,25 @@ public class PrincipalController {
 	}
 	
 	@RequestMapping(value = "/principalClassChangeRes.do", method = RequestMethod.GET)
-	public void principalClassChangeRes(int member_seq, String content, Model model) {
+	public String principalClassChangeRes(int member_seq, String content, int school_seq, Model model) {
 		log.info("into:principalClassChangeRes");	
+		log.info("선생번호: "+member_seq);
 		log.info("내용: "+content);
+		int isClass = dao.isClass(member_seq);
+		log.info("유치원번호?: "+school_seq);
+		log.info("선생님이 존재하나?: "+isClass);
+		if(isClass==0) {
+			PrincipalDto principalDto = new PrincipalDto();
+			principalDto.setMember_seq(member_seq);
+			principalDto.setSchool_seq(school_seq);
+			int res2 = dao.insertClass(principalDto);
+			if(res2>0) log.info("선생님 클래스 등록완료");
+		}
 		int res = dao.teacherClassChange(member_seq, content);
 		if(res>0) {
 			log.info("반 변경 완료");	
 		}
+		return "principal/principalClassChange";
 	}
 	
 	@RequestMapping(value = "/principalTeacherRegistry.do", method = RequestMethod.GET)

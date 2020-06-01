@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="loginForm" method="post" action="loginProcess">
+	<form name="loginForm" method="post" action="/member/loginCheck.do">
 	<div class="row"> 	
 		<div class="home-img"><img src="${pageContext.request.contextPath}/resources/img/home.png" alt="homeLogo"></div>
 		<div class="home-div col-4">
@@ -34,12 +34,12 @@
 			</div>
 			 
 			<div class="login-button col-12">
-				<button type="submit" id="btnLogin" class="btn btn-info btn-md">로그인</button>
+				<button type="submit" class="btn btn-info btn-md">로그인</button>
 				<button type="button" class="btn btn-info btn-md reset-button" onclick="location='selectResistForm.do'">회원가입</button>
 			</div>
 			<c:if test="${msg == 'failure'}">
 				<div style="color:red" align="center">
-					아이디 또는 비밀번호가 일치하지 않습니다.
+					아이디 또는 비밀번호가 일치하지 않습니다. 
 				</div>
 			</c:if>
 				<div class="col-12" class="marginTop"><a id="naver_id_login"></a></div>	

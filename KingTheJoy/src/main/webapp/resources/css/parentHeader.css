@@ -116,6 +116,7 @@ nav {
 .menu_ul ul li a{
 	color: white;
 
+<<<<<<< HEAD
   }
 
 .menu_ul li:hover ul {
@@ -123,3 +124,5 @@ nav {
 	list-style: none;
 	color: black;
 }
+=======
+>>>>>>> 34acad68a61c3abe33debb5610c0b8e269c34b41

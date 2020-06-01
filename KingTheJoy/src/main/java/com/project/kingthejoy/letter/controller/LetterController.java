@@ -3,7 +3,6 @@ package com.project.kingthejoy.letter.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,18 +24,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping("letter")
 public class LetterController {
 
 	@Autowired
 	LetterDao letterDao;
 	@Autowired
 	Paging paging;
-	
-	@RequestMapping(value = "/letter.do", method = RequestMethod.GET)
-	public String letterMain () {
-		log.info("into: letterMain");
-		return "letter/letterMain";
-	}
 	
 	@RequestMapping(value = "/letterPage.do", method = RequestMethod.GET)
 	public String letterPage (int currentpage, int member_seq, Model model) {

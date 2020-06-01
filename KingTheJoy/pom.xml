@@ -188,6 +188,12 @@
 		</dependency>
 		
 		
+		 <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160810</version>
+		</dependency>
+		
 		<!-- WebSocket -->
 		<dependency>
 			<groupId>javax.websocket</groupId>
@@ -340,7 +346,7 @@
 				<version>2.5.1</version>
 				<configuration>
 					<source>1.6</source>
-					<target>1.6</target>
+					<target>1.6</target> 
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
@@ -358,4 +364,3 @@
 	</build>
 
 </project>
-

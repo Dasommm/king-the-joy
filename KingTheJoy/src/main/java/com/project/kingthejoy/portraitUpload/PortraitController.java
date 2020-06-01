@@ -85,7 +85,7 @@ public class PortraitController {
 		PrincipalDto principalDto = new PrincipalDto();
 		principalDto.setMember_seq(member_seq);
 		principalDto.setSchool_seq(school_seq);
-		principalDto.setMember_image("/kingthejoy/resources/portrait/"+school_seq+"/"+fullName);
+		principalDto.setMember_image("/resources/portrait/"+school_seq+"/"+fullName);
 		System.out.println(principalDto.getMember_image());
 		int res = dao.imagePathUpdate(principalDto);
 		if(res>0) {

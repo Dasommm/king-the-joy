@@ -24,7 +24,6 @@ h1 {
    text-align: center;
    font-weight: bold;
 }
-
 #noticeImg img{
    width: 30px;
    height: 30px;
@@ -32,7 +31,6 @@ h1 {
    left:353px;
    position: absolute;
    }
-
 #notice{
    height:50px;
    display:block;
@@ -40,7 +38,6 @@ h1 {
    left: -180px;
    position: relative;
 }
-
 </style>
 
 <!-- 캘린더 설정 -->
@@ -49,11 +46,6 @@ h1 {
 <body>
 
 <section>
-
-<!-- 배경 사진 -->
-<div id="background">
-	<img src="/resources/img/parentMain.jpg">
-</div>
 
 
 

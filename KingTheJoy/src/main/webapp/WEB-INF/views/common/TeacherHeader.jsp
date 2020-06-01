@@ -31,37 +31,37 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-white navbar-white">
         <!-- Brand -->
-        <a class="navbar-brand header-logo" href="home.do">
+        <a class="navbar-brand header-logo" href="${pageContext.request.contextPath}/member/roleCheck.do">
         <img src="${pageContext.request.contextPath}/resources/img/Logo.png" style="width: 150px;"></a>
       
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-            	<a class="nav-link" href="teacher.do">선생 메인</a>
+            	<a class="nav-link" href="/teacher/teacher.do">선생 메인</a>
             </li>
             <li class="nav-item">
-            	<a class="nav-link" href="notification.do">공지사항</a>
+            	<a class="nav-link" href="/notification/notification.do">공지사항</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">원아 위치</a>
+                <a class="nav-link" href="/member/childrenMap.do">원아 위치</a>
             </li>
           <li class="nav-item">
           		<a class="nav-link" href="/children/childrenlist.do?page=1">원아 관리</a>
           </li>
           <li class="nav-item">
-            	<a class="nav-link" href="#">수업자료</a>
+            	<a class="nav-link" href="/study/studyBookForm.do">수업자료 등록</a>
           </li>
 
           <!-- Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              기타
+              	기타
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/pill/pillList.do?page=1">요청사항 확인(투약)</a>
-              <a class="dropdown-item" href="galleryPage.do?school_seq=${memberDto.school_seq }">갤러리</a>
-              <a class="dropdown-item" href="galleryUpload.do?school_seq=${memberDto.school_seq }">갤러리 등록</a>
-              <a class="dropdown-item" href="#">쪽지함</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/gallery/galleryPage.do?school_seq=${memberDto.school_seq }">갤러리</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/gallery/galleryUpload.do?school_seq=${memberDto.school_seq }">갤러리 등록</a>
+              <a class="dropdown-item" onclick="window.open('${pageContext.request.contextPath}/letter/letterPage.do?currentpage=1&member_seq=${memberDto.member_seq }','쪽지함','width=430,height=520,location=no,status=no,scrollbars=yes')">쪽지함</a>
             </div>
           </li>
           </ul>
@@ -71,8 +71,8 @@
 			    <span class="caret"></span>
 			    </button>
 			    <ul class="dropdown-menu">
-			        <li><a class="dropdown-item" href="myPage.do">마이페이지</a></li>
-			        <li><a class="dropdown-item" href="logout.do">로그아웃</a></li>
+			        <li><a class="dropdown-item" href="/member/myPage.do">마이페이지</a></li>
+			        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 			    </ul>
 			</div>
       </nav>
@@ -82,5 +82,4 @@ $(function() {
 });
 </script>
 </body>
-
 </html>

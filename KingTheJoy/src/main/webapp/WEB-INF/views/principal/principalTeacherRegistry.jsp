@@ -15,7 +15,7 @@
 <body>
 	<h3> 선생님 등록하기 </h3>
 
-	<form class="form-horizontal" action="principalTeacherRegistryRes.do" method="post">
+	<form class="form-horizontal" action="${pageContext.request.contextPath}/principal/principalTeacherRegistryRes.do" method="post">
 		
 		<div class="form-group">
 			<input type="hidden" name="school_seq" value="${memberDto.school_seq }">
@@ -105,7 +105,6 @@ function execPostCode() {
             if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
                 extraRoadAddr += data.bname;
             }
-
             // 건물명이 있고, 공동주택일 경우 추가한다.
             if(data.buildingName !== '' && data.apartment === 'Y'){
                 extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
@@ -118,11 +117,9 @@ function execPostCode() {
             if(fullRoadAddr !== ''){
                 fullRoadAddr += extraRoadAddr;
             }
-
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             console.log(data.zonecode);
             console.log(fullRoadAddr);
-
             $("[name=member_oaddr]").val(data.zonecode);
             $("[name=member_addr]").val(fullRoadAddr);
             document.getElementById('member_oaddr').value = data.zonecode; //5자리 새우편번호 사용
@@ -130,7 +127,6 @@ function execPostCode() {
         }
     }).open();
 }
-
 //빈값경고
 $(function() {
 	$("input").blur(function(i){
@@ -139,7 +135,6 @@ $(function() {
 		}
 	});	
 });
-
 //빈값확인
 $("button[type=submit]").on("click", function(e) {
 	$("input").each(function(i) {
@@ -153,7 +148,6 @@ $("button[type=submit]").on("click", function(e) {
 		}, 1000);
 	});
 });
-
 </script>	
 </body>
 </html>
