@@ -54,7 +54,7 @@
               기타
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">요청사항 확인</a>
+
               <a class="dropdown-item" href="galleryPage.do?school_seq=${memberDto.school_seq }">갤러리</a>
               <a class="dropdown-item" href="galleryUpload.do?school_seq=${memberDto.school_seq }">갤러리 등록</a>
               <a class="dropdown-item" href="#">쪽지함</a>

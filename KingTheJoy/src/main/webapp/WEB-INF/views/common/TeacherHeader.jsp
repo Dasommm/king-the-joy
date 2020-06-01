@@ -82,5 +82,5 @@ $(function() {
 });
 </script>
 </body>
->>>>>>> translate
+
 </html>

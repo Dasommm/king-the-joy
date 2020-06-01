@@ -127,6 +127,7 @@ public class MemberController<dataList> {
 
 		if (member_role == 3) {
 			model.addAttribute("childrenList", biz.childrenList(member_seq));
+			
 		} else if (member_role == 2 || member_role == 1) {
 			model.addAttribute("school_name", biz.selectSchoolInfo(memberDto.getSchool_seq()));
 			if (member_role == 1) {

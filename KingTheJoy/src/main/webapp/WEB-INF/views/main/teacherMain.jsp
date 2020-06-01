@@ -78,7 +78,7 @@
 	    </div>
 	 	<div class="image-container">
 	        <img src="${pageContext.request.contextPath}/resources/img/main/childMgt.png" 
-	        onclick="location.href='/children/childrenlist.do'">
+	        onclick="location.href='/children/childrenlist.do?page=1'">
 	        <span>원아관리</span>
 	    </div>
 	 	<div class="image-container">

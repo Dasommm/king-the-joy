@@ -6,64 +6,64 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.table {
+.table01 {
 	border-collapse: collapse;
 	border-top: 3px solid #168;
 }
 
-.table th {
+.table01 th {
 	color: #168;
 	background: #f0f6f9;
 	text-align: center;
 }
 
-.table th, .table td {
+.table01 th, .table td {
 	padding: 10px;
 	border: 1px solid #ddd;
 }
 
-.table th:first-child, .table td:first-child {
+.table01 th:first-child, .table td:first-child {
 	border-left: 0;
 }
 
-.table th:last-child, .table td:last-child {
+.table01 th:last-child, .table td:last-child {
 	border-right: 0;
 }
 
-.table tr td:first-child {
+.table01 tr td:first-child {
 	text-align: center;
 }
 
-<
-style>.table {
+
+style>.table01 {
 	border-collapse: collapse;
 	border-top: 3px solid #168;
 }
 
-.table th {
+.table01 th {
 	color: #168;
 	background: #f0f6f9;
 	text-align: center;
 }
 
-.table th, .table td {
+.table01 th, .table td {
 	padding: 10px;
 	border: 1px solid #ddd;
 }
 
-.table th:first-child, .table td:first-child {
+.table01 th:first-child, .table td:first-child {
 	border-left: 0;
 }
 
-.table th:last-child, .table td:last-child {
+.table01 th:last-child, .table td:last-child {
 	border-right: 0;
 }
 
-.table tr td:first-child {
+.table01 tr td:first-child {
 	text-align: center;
 }
 
-.table caption {
+.table01 caption {
 	caption-side: bottom;
 	display: none;
 }
@@ -73,9 +73,9 @@ style>.table {
 <body>
 	<section>
 	<jsp:include page="../common/TeacherHeader.jsp" />
-		<h1 align="center">투약 의뢰함</h1>
-		<table border="1" style="margin-left: auto; margin-right: auto;"
-			class="table">
+		<h1 align="center" style="margin-top: 50px"> 투약 요청함</h1>
+		<table border="1" style="margin-left: auto; margin-right: auto; margin-top: 150px"
+			class="table01">
 			<tr>
 				<th>제목</th>
 				<td>${dto.pill_title }</td>
@@ -108,6 +108,8 @@ style>.table {
 				</td>
 			</tr>
 		</table>
+		<footer> <%@include file="../common/footer.jsp"%> </footer>
+	
 	</section>
 </body>
 

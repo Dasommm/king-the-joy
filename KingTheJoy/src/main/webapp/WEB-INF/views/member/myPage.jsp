@@ -13,7 +13,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">debugger;</script>
 <script src="<c:url value="/resources/js/myPage.js"/>"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/myPage.css"/>">
@@ -77,7 +77,7 @@
 												<c:forEach items="${childrenList }" var="childrenList">
 													<tr>
 														<td><a href="#"><img
-																src="<c:url value="/resources/img/lion.jpg"/>" /></a> <span><c:out
+																src="<c:url value="${childrenList.children_img }"/>" /></a> <span><c:out
 																	value="${childrenList.children_name } 어린이" /></span></td>
 													</tr>
 												</c:forEach>

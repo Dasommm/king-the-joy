@@ -11,7 +11,7 @@
 	<h4>자녀사진 업로드</h4>
 	<div class="uploadDiv">
 		<input type="file" name="uploadFile">
-		<button id="uploadBtn" style="a">Submit</button>
+		<button id="uploadBtn" style="a" onclick="location.href='/children/childrenlist.do?page=1'">Submit</button>
 	</div>
 	
 <script src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>	
@@ -34,7 +34,7 @@ $(document).ready(function () {
 		formData.append("uploadFile", files[0]);
 
 		$.ajax({
-			url: '/portrait/portraitChildAction.do?school_seq='+${school_seq}+'&children_seq='+${children_seq},
+			 url: '/portrait/portraitChildAction.do?school_seq='+${school_seq}+'&children_seq='+${children_seq},
 			processData: false,
 			contentType: false,
 			data: formData,
@@ -76,5 +76,5 @@ $(document).ready(function () {
 });
 </script>	
 </body>
->>>>>>> translate
+
 </html>

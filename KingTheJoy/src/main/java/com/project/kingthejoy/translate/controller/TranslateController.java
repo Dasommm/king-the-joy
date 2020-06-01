@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.apache.http.client.methods.HttpUriRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(value = "translate")
-public class TraslateController {
+@RequestMapping(value = "/translate")
+public class TranslateController {
 	
 	@RequestMapping("/translate.do")
 	public String translateRequest() {
@@ -38,7 +39,8 @@ public class TraslateController {
 
 			URL url = new URL(apiURL);//웹의 주소를 나타내는 클래스.
 			
-			HttpURLConnection con = (HttpURLConnection) url.openConnection();//어렵다 이해가 안된다...
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			
 			con.setRequestMethod("GET");
 			con.setRequestProperty("Authorization", "KakaoAK 8bd3093c0c557eef9ced46dd548a28cb");// 카카오 인증키
 			con.setUseCaches(false);// 캐싱 데이터를 받을 지 않받을지

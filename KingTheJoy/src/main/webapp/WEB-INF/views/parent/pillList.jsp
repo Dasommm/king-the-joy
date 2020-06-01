@@ -46,16 +46,20 @@ function allChk(check) {
 }
 
 .table01 tr td:first-child {
-	text-align: center;
+	
 }
 
-.table01 caption {
-	caption-side: bottom;
-	display: none;
-}
+
 
 td {
 	text-align: center;
+}
+
+
+.pagingnation{
+display: block;
+text-align: center;
+justify-content: center;
 }
 </style>
 
@@ -77,7 +81,7 @@ td {
 		<h1 align="center"></h1>
 		<form action="/pill/pillmuldel.do" method="post">
 			<table border="1" class="table01"
-				style="margin-left: auto; margin-right: auto; margin-top: 200px;">
+				style="margin-left: auto; margin-right: auto; margin-top: 150px;">
 				<colgroup>
 					<col width="50">
 					<col width="50">
@@ -121,17 +125,13 @@ td {
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colspan="5" align="right"><input type="submit"
-							value="선택삭제"></td>
+						<td colspan="5" align="right"><input type="submit" value="선택삭제"></td>
 					</tr>
 				</tfoot>
 			</table>
 		</form>
-		<div
-			style="float: left; width: 100%; margin-left: auto; margin-right: auto;">
-
-			<ul class="pagination"
-				style="list-style: none; margin-left: auto; margin-right: auto;">
+		<div style=" margin-left: auto; margin-right: auto;">
+           <ul class="pagingnation" style="list-style: none; margin-left: auto; margin-right: auto;">
 				<li>
 					<%
 						if (pagegroup > 1) {

@@ -10,7 +10,7 @@
 <style type="text/css">
 body {
 	overflow: auto;
-	background-color: oldlace;
+	
 }
 
 div {
@@ -28,6 +28,7 @@ div {
 	margin-left: 200px;
 	margin-right: auto;
 	height: 650px;
+	margin-top: 50px;
 	/* overflow: auto; */
 	/* display: flex; */
 }
@@ -131,7 +132,8 @@ img {
 </style>
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
 var lastScrollTop = 0;
@@ -146,15 +148,15 @@ $(window).scroll(function() {//1
 
 						if ($(window).scrollTop() >= ($(document).height() - $(window).height())) {//3 현재 스크롤의 위치가 화면의 보이는 위치보다 크다면
 							 page++; 
-			                  getList(page);
+			                  getDown(page);
                              
                              
 							}//3
                    }//2
 	})//1
 				
-				function getList(page){
-	                     console.log("page->>"+page);
+				function getDown(page){
+	                    
 	                     var page = {"page" : page}
 	                     
 					$.ajax({//4
@@ -163,7 +165,7 @@ $(window).scroll(function() {//1
 								dataType:'json',
 								data : page,//
 								success : function(data) {//5
-									console.log("data->>"+data);
+									
 									var str = "";
 									
 									if (data != "") {//6
@@ -176,25 +178,25 @@ $(window).scroll(function() {//1
 																		+"<input type="+'"hidden"' + "name="+'"children_seq"'+" value="+this.children_seq+"/>" 
 																		+"<input type="+'"hidden"'+ "name="+'"class_seq"'+" value="+this.class_seq+"/>"
 																		+"<div class="+'"section01"'+" style="+'"text-align: center;"'+">"
+																		+"<img src =\""+this.children_img + "\" onerror=this.src='/resources/image/default.png'>"
+																	
 																		+"</div>"
 																		+"<div class="+'"section02"'+">"
 																		+"<p id="+'"name"'+">"+this.class_name+"</p>"
 																		+"<p style="+'"text-align: center;"'+">"+this.children_name +"어린이"+"</p>"
-																		+"<input type="+'"button"' + "value="+'"사진Up"'+" class="+'"img"'+ "onclick="+"location.href="+'"/portrait/portraitChildUpload.do?school_seq="'+this.school_seq+"&children_seq="+this.children_seq+"/>"
-																		+"<input type="+'"button"' + "value="+'"알림장"'+" onclick="+'"#"'+" class="+'"notice"'+"/>"
+																		+"<input type="+'"button"' + "value="+'"사진Up"'+" class="+'"img"'+ "onclick="+"location.href="+"'/portrait/portraitChildUpload.do?school_seq="+this.school_seq+'&children_seq='+this.children_seq+"' \/>"
+																		+"<input type="+'"button"' + "value="+'"알림장"'+" onclick="+'"openNote();"'+" class="+'"notice"'+"/>"
 																		+"</div>"
 																		+"</div>";
 																	 	} 
 								                                     )}
-									
-										//이전까지 뿌려졌던 데이터를 비워주고 <th>헤더 바로 밑에 위에서 만든 str을 뿌려준다.
-				                        /* $(".listToChange").empty();//셀렉터 태그 안의 모든 텍스트를 지운다. */
+									 
 										$(".child:last").after(str);
 				                         }//6
-									}//5
-							)}//4 ajax
+									}
+							)}
 	
-							
+								
 </script>
 
 </head>
@@ -204,6 +206,7 @@ $(window).scroll(function() {//1
 	<section>
 		<jsp:include page="../common/TeacherHeader.jsp" />
 		<div id="body">
+	<h2 align="center" style="margin-top: 80px;"></h2>
 			<div class="titlebar">
 				<ul id="classbar">
 					<li class="class-item"><a href="#"></a></li>
@@ -215,30 +218,31 @@ $(window).scroll(function() {//1
 				</ul>
 
 			</div>
-
+       
 
 			<div class="up">
-
+             
 				<c:choose>
 					<c:when test="${empty list }">
 						<p>no child</p>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${list }" var="dto" begin="${dto.children_seq }" step="1">
+						<c:forEach items="${list }" var="dto" begin="${dto.children_seq }"
+							step="1">
 							<div class="child">
-								
-							<input type="hidden" name="children_seq" value="${dto.children_seq}"> 
-								<input type="hidden" name="class_seq" value="${dto.class_seq }">
-                                <div class="section01" style="text-align: center;">
-						        <img alt="" src="" >
+
+								<input type="hidden" name="children_seq" value="${dto.children_seq}"> <input type="hidden"
+									name="class_seq" value="${dto.class_seq }">
+								<div class="section01" style="text-align: center;">
+									<img src="${dto.children_img }" onerror="this.src='/resources/image/default.png'">
 								</div>
-                                <div class="section02">
+								<div class="section02">
 									<p id="name">${dto.class_name}</p>
 									<p style="text-align: center;">${dto.children_name }어린이</p>
-
 									<input type="button" value="사진Up" class="img" onclick="location.href='/portrait/portraitChildUpload.do?school_seq=${dto.school_seq }&children_seq=${dto.children_seq }'">
-									<input type="button" value="알림장" onclick="openNote();" class="notice">
-									
+									<input type="button" value="알림장" onclick="openNote();"
+										class="notice">
+
 									<script type="text/javascript">
 									//알림장 팝업띄우기
 									function openNote(){
@@ -247,22 +251,18 @@ $(window).scroll(function() {//1
 										var popOption = "width=725px, height=800px, left=100, top=50";
 										openWin = window.open(popUrl, "NoteForm", popOption);
 									}
+									
 										
 									</script>
-					
 								</div>
-							
 							</div>
-							
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-
 			</div>
-
 		</div>
-		<jsp:include page="../common/footer.jsp" />
 
+     <footer></footer>
 
 	</section>
 

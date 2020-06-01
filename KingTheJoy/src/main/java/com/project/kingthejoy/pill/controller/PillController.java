@@ -1,11 +1,10 @@
 
 package com.project.kingthejoy.pill.controller;
 
-import java.util.List;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.project.kingthejoy.children.dto.ChildrenDto;
 import com.project.kingthejoy.member.dto.MemberDto;
 import com.project.kingthejoy.pill.biz.PillBiz;
 import com.project.kingthejoy.pill.dto.PillDto;
@@ -57,11 +52,11 @@ public class PillController {
 		if (res != 0) {
 			logger.info("pillinsert");
 			model.addAttribute("msg", "투약작성이 완료되었습니다.");
-			model.addAttribute("url", "translate.do");
+			model.addAttribute("url", "/pill/pillrequest.do");
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "투약 작성이 실패하였습니다.");
-			model.addAttribute("url", "pillreuqest.do");
+			model.addAttribute("url", "/pill/pillrequest.do");
 			return "common/alert";
 		}
 
@@ -85,23 +80,7 @@ public class PillController {
 		return "parent/pillList";
 	}
 	
-	@RequestMapping(value = "/pilllistajax.do", method = RequestMethod.POST)
-	public @ResponseBody List<PillDto> selectListAjax(@RequestParam("page") Integer page, Model model,
-			HttpSession session, HttpServletRequest request) {
-		
-		logger.info("controller->>pilllistdown");
-		
-		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-		int school_seq = memberDto.getSchool_seq();
-
-		PillPagingDto pdto = new PillPagingDto();
-		pdto.setRows(10);
-		pdto.setPage(page);
-		pdto.setTotalpage(biz.totalPage(pdto.getRows(), session));
-		
-		return biz.selectList(school_seq, pdto);
-
-	}
+	
 
 	@RequestMapping("/pillDetail.do")
 	public String pillDetail(Model model, int pill_seq) {
@@ -119,11 +98,11 @@ public class PillController {
 		int res = biz.delete(pill_seq);
 		if (res != 0) {
 			model.addAttribute("msg", "삭제완료");
-			model.addAttribute("url", "pillList.do");
+			model.addAttribute("url", "/pill/pillList.do?page=1");
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "삭제실패");
-			model.addAttribute("url", "pillDetail.do");
+			model.addAttribute("url", "/pill/pillDetail.do");
 			return "common/alert";
 		}
 
@@ -136,18 +115,18 @@ public class PillController {
 		String[] pill_seq = request.getParameterValues("chk");
 		if (pill_seq == null || pill_seq.length == 0) {
 			model.addAttribute("msg", "한개 이상 선택해 주세요");
-			model.addAttribute("url", "pillList.do");
+			model.addAttribute("url", "/pill/pillList.do?page=1");
 			return "common/alert";
 		} else {
 			int res = biz.mulDelete(pill_seq);
 			if (res > 0) {
 				model.addAttribute("msg", "삭제 성공.");
-				model.addAttribute("url", "pillList.do?page=1");
+				model.addAttribute("url", "/pill/pillList.do?page=1");
 				return "common/alert";
 
 			} else {
 				model.addAttribute("msg", "삭제실패.");
-				model.addAttribute("url", "pillList.do");
+				model.addAttribute("url", "/pill/pillList.do?page=1");
 				return "common/alert";
 
 			}
