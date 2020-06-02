@@ -28,7 +28,6 @@ public class AuthenticationUserDetailsServiceImpl implements AuthenticationUserD
 	    usersVo = biz.memberView(memberDto);
 	    
 	    
-	    
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		int roleNo = usersVo.getMember_role();
 		System.out.println(roleNo);
