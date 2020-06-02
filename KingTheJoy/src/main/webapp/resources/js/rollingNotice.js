@@ -6,7 +6,7 @@ window.onload = function() {
 				success : function(data) {
 					for (var i = 0; i < data.length; i++) {
 						$("#notification").append(
-								"<li><a href='notificationDetail.do?notification_seq="
+								"<li><a href='/notification/notificationDetail.do?notification_seq="
 										+ data[i].notification_seq + "'>"
 										+ data[i].notification_title
 										+ "</a></li>");
