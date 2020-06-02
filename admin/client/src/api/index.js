@@ -5,9 +5,11 @@ const api = axios.create({
 })
 
 const adminSelect = () => api.get('/selectList')
+const memberUpdate = () => MEMBER_SEQ => api.update('/memberUpdate' + MEMBER_SEQ)
 
 const apis = {
     adminSelect,
+    memberUpdate,
 }
 
 export default apis
